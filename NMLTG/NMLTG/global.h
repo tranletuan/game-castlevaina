@@ -20,28 +20,28 @@
 
 //---//
 //
-extern bool			G_IsInitedDX;		//Kiểm tra khởi tạo DirectX
-extern int			G_GameDepth;		//Chỉ số độ sâu
-extern LPWSTR		G_GameName;			//Tên cửa sổ game
-extern int			G_FrameRate;		//Tỷ lệ chuyển chuyển frame (30->60)
-extern int			G_ColorMode;
-extern bool			G_IsFullScreen;		//Toàn màn hình
-extern D3DFORMAT	G_BackBufferFormat;
+extern bool			kIsInitedDX;		//Kiểm tra khởi tạo DirectX
+extern int			kGameDepth;		//Chỉ số độ sâu
+extern LPWSTR		kGameName;			//Tên cửa sổ game
+extern int			kFrameRate;		//Tỷ lệ chuyển chuyển frame (30->60)
+extern int			kColorMode;
+extern bool			kIsFullScreen;		//Toàn màn hình
+extern D3DFORMAT	kBackBufferFormat;
 
-extern int			G_ScreenWidth;		//Chiều ngang màn hình
-extern int			G_ScreenHeight;		//Chiều cao màn hình
-extern RECT			G_WindowSize;		//Khung màn hình
+extern int			kScreenWidth;		//Chiều ngang màn hình
+extern int			kScreenHeight;		//Chiều cao màn hình
+extern RECT			kWindowSize;		//Khung màn hình
 
-extern HINSTANCE					G_hInstance;	//Yêu cầu từ màn hình game
-extern HWND							G_hWnd;			//Xử lý cửa sổ
+extern HINSTANCE					kHInstance;	//Yêu cầu từ màn hình game
+extern HWND							kHWND;			//Xử lý cửa sổ
 
-extern LPDIRECT3D9					G_DirectX;		//Đối tượng directX
-extern LPDIRECT3DDEVICE9			G_Device;		//Thiết bị
-extern LPDIRECT3DSURFACE9			G_BackBuffer;	//Vùng đệm	
+extern LPDIRECT3D9					kDirectX;		//Đối tượng directX
+extern LPDIRECT3DDEVICE9			kDevice;		//Thiết bị
+extern LPDIRECT3DSURFACE9			kBackBuffer;	//Vùng đệm	
 
-extern LPDIRECTINPUT8				G_DirectInput;	//Đối tượng đầu vào	
-extern LPDIRECTINPUTDEVICE8			G_KeyBoard;		//Bàn phím	
-extern LPD3DXSPRITE					G_SpriteHandler;//Đối tượng vẽ texture	
+extern LPDIRECTINPUT8				kDirectInput;	//Đối tượng đầu vào	
+extern LPDIRECTINPUTDEVICE8			kKeyBoard;		//Bàn phím	
+extern LPD3DXSPRITE					kSpriteHandler;//Đối tượng vẽ texture	
 
 
 void GLMessage(LPWSTR text);

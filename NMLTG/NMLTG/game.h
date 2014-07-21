@@ -5,32 +5,32 @@
 #include <d3d9.h>
 #include <d3dx9.h>
 #include <dinput.h>
-#include "Global.h"
+#include "global.h"
 
-class CGame
+class Game
 {
 public:
-	CGame(int cmdShow);
-	~CGame();
-	void gameInit();
-	void gameRun();
-	void gameEnd();
+	Game(int cmd_show);
+	~Game();
+	void GameInit();
+	void GameRun();
+	void GameEnd();
 
 protected:
-	int cmdShow;
-	static LRESULT CALLBACK winProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-	DWORD deltaTime; //Thời gian chuyển frame
-	BYTE keyStates[256];
-	DIDEVICEOBJECTDATA keyEvents[GL_KEY_BUFFER_SIZE];
-	bool initWindow(int cmdShow); //Khởi tạo cửa sổ
-	bool initDirectX(); //Khởi tạo đối tượng directx
-	bool initInput(); //Khởi tạo bàn phím
-	void processKeyboard(); //Nhận sự kiện 
-	void renderAll(); //Vẽ hình lên của sổ
-	int isKeyDown(int keyCode);
+	int cmd_show;
+	static LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+	DWORD delta_time; //Thời gian chuyển frame
+	BYTE key_states[256];
+	DIDEVICEOBJECTDATA key_events[GL_KEY_BUFFER_SIZE];
+	bool InitWindow(int cmdShow); //Khởi tạo cửa sổ
+	bool InitDirectX(); //Khởi tạo đối tượng directx
+	bool InitInput(); //Khởi tạo bàn phím
+	void ProcessKeyboard(); //Nhận sự kiện 
+	void RenderAll(); //Vẽ hình lên của sổ
+	int IsKeyDown(int key_code);
 
-	virtual void renderFrame(LPDIRECT3DDEVICE9 d3dDevice, int delta); //Vẽ các thành phần trong game
-	virtual void loadResources(LPDIRECT3DDEVICE9 d3dDevice);
-	virtual void processInput(LPDIRECT3DDEVICE9 d3dDevice, int delta); //Xử lý phím
+	virtual void RenderFrame(LPDIRECT3DDEVICE9 d3d_device, int delta); //Vẽ các thành phần trong game
+	virtual void LoadResources(LPDIRECT3DDEVICE9 d3d_device);
+	virtual void ProcessInput(LPDIRECT3DDEVICE9 d3d_device, int delta); //Xử lý phím
 };
 #endif // ! _GAME_H_
