@@ -18,11 +18,12 @@ public:
 
 protected:
 	int cmd_show;
-	static LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	DWORD delta_time; //Thời gian chuyển frame
 	BYTE key_states[256];
 	DIDEVICEOBJECTDATA key_events[GL_KEY_BUFFER_SIZE];
-	bool InitWindow(int cmdShow); //Khởi tạo cửa sổ
+
+	static LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+	bool InitWindow(); //Khởi tạo cửa sổ
 	bool InitDirectX(); //Khởi tạo đối tượng directx
 	bool InitInput(); //Khởi tạo bàn phím
 	void ProcessKeyboard(); //Nhận sự kiện 
@@ -32,5 +33,8 @@ protected:
 	virtual void RenderFrame(LPDIRECT3DDEVICE9 d3d_device, int delta); //Vẽ các thành phần trong game
 	virtual void LoadResources(LPDIRECT3DDEVICE9 d3d_device);
 	virtual void ProcessInput(LPDIRECT3DDEVICE9 d3d_device, int delta); //Xử lý phím
+	virtual void OnKeyDown(int key_code);
+	virtual void OnKeyUp(int key_code);
+	virtual void GameUpdate(int delta_time);
 };
 #endif // ! _GAME_H_

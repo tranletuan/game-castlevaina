@@ -2,15 +2,15 @@
 
 //CONSTANT
 bool		kIsInitedDX = false;		//Kiểm tra khởi tạo DirectX
-int			kGameDepth;		//Chỉ số độ sâu
+int			kGameDepth = 24;		//Chỉ số độ sâu
 LPWSTR		kGameName = L"Castlevania";			//Tên cửa sổ game
 int			kFrameRate = 60;		//Tỷ lệ chuyển chuyển frame (30->60)
 int			kColorMode;
 bool		kIsFullScreen = false;		//Toàn màn hình
-D3DFORMAT	kBackBufferFormat;
+D3DFORMAT	kBackBufferFormat = D3DFMT_X8R8G8B8;
 
-int			kScreenWidth = 640;		//Chiều ngang màn hình
-int			kScreenHeight = 480;		//Chiều cao màn hình
+int			kScreenWidth = 1024;		//Chiều ngang màn hình
+int			kScreenHeight = 768;		//Chiều cao màn hình
 RECT		kWindowSize;
 
 HINSTANCE					kHInstance;	//Yêu cầu từ màn hình game
