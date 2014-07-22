@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace ToolSeparationBackground
 {
-    public class BackgroundMap
+    public class MapWriter
     {
         private string _fileName;
 
-        public BackgroundMap(String fileName)
+        public MapWriter(String fileName)
         {
             _fileName = fileName;
             if (File.Exists(fileName))

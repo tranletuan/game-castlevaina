@@ -19,12 +19,17 @@ namespace ToolSeparationBackground
             
         }
 
-        Bitmap _picture;
-        BackgroundMap _map;
-        String _fileMapText;
-        String _fileTexture;
+        #region VARIABLES
 
+        Bitmap _picture;
+        Bitmap _result;
+        MapWriter _wMap;
+        String _fileMapText;
+        String _folderTexture;
+        int _width, _height;
         List<Bitmap> listTexture;
+
+        #endregion
 
         #region METHODS
 
@@ -127,10 +132,11 @@ namespace ToolSeparationBackground
                     }
 
                     mapLine += type + " ";
-                    pgbSeparation.PerformStep();
+                    int percent = (i * cWidth + j) * 100 / (cHeight * cWidth);
+                    pgbSeparation.Value = percent;
                 }
 
-                _map.writeLine(mapLine);
+                _wMap.writeLine(mapLine);
             }
         }
 
@@ -142,38 +148,57 @@ namespace ToolSeparationBackground
         /// <param name="height">chiều dài texture</param>
         private void saveListTexture(int width, int height)
         {
-            Bitmap bmp = new Bitmap(width * listTexture.Count, height);
-            Graphics g = Graphics.FromImage(bmp);
+            _result = new Bitmap(width * listTexture.Count, height);
+            Graphics g = Graphics.FromImage(_result);
+
+            //Nếu folder chứa các texture chưa tồn tại
+            //Tạo folder chứa texture của map
+            if (!Directory.Exists(_folderTexture))
+            {
+                Directory.CreateDirectory(_folderTexture);
+            }
 
             int x = 0; //Tọa độ vẽ;
             for (int i = 0; i < listTexture.Count ; i ++)
             {
                 g.DrawImageUnscaled(listTexture[i], new Point(x, 0));
                 x += width;
+
+                //Lưu texture nếu chưa tồn tại file đã lưu
+                string fileName = _folderTexture + "\\" + i + ".png";
+                if (File.Exists(fileName))
+                {
+                    File.Delete(fileName);
+                }
+
+                listTexture[i].Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
+
             }
             
-            //Lưu texture
-            if (File.Exists(_fileTexture))
+            //Xem size của folder
+            long b = 0;
+            string[] files = Directory.GetFiles(_folderTexture, "*.*");
+            for (int i = 0; i < files.Length; i++)
             {
-                File.Delete(_fileTexture);
+                FileInfo info = new FileInfo(files[i]);
+                if (info.Name != "Thumbs.db")
+                    b += info.Length;
             }
 
-            bmp.Save(_fileTexture, System.Drawing.Imaging.ImageFormat.Png);
-            lbTextureSize.Text = (new FileInfo(_fileTexture).Length / 1024).ToString("n0") + " kb";
-
+            lbTextureSize.Text = (b / 1024).ToString("n0") + " kb";
             lbTotalTexture.Text = listTexture.Count.ToString();
-            pbTexture.Image = bmp;
+            pbTexture.Image = _result;
             pbTexture.Show();
             btnReset.Enabled = true;
-            btnPicturePath.Enabled = true;
-            cmbHeight.Enabled = true;
-            cmbWidth.Enabled = true;
             trbZoom.Enabled = true;
+            pgbSeparation.Value = 100;
+        
         }
 
         #endregion
 
-      
+        #region EVENTS
+
         private void btnPicturePath_Click(object sender, EventArgs e)
         {
             //Thiết lập cửa sổ chọn ảnh
@@ -191,8 +216,8 @@ namespace ToolSeparationBackground
                 string fileName = ofd.SafeFileName;
                 string path = Path.GetDirectoryName(fullPath);
                 _fileMapText = path + "\\map_" + fileName.Split(new char[] { '.' })[0] + ".txt"; //Tên file map lưu
-                _fileTexture = path + "\\texture_" + fileName.Split(new char[] { '.' })[0] + ".png"; //Tên file texture
-                _map = new BackgroundMap(_fileMapText); 
+                _folderTexture = path + "\\texture_" + fileName.Split(new char[] { '.' })[0]; //Tên folder lưu texture
+                _wMap = new MapWriter(_fileMapText); 
 
                 txtPicturePath.Text = fullPath;
 
@@ -219,12 +244,12 @@ namespace ToolSeparationBackground
             cmbWidth.Enabled = false;
             btnReset.Enabled = false;
             trbZoom.Enabled = false;
-            
+
             //Tách texture 
-            int width = int.Parse(cmbWidth.Text);
-            int height = int.Parse(cmbHeight.Text);
-            separateImage(_picture, width, height);
-            saveListTexture(width, height);
+            _width = int.Parse(cmbWidth.Text);
+            _height = int.Parse(cmbHeight.Text);
+            separateImage(_picture, _width, _height);
+            saveListTexture(_width, _height);
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -238,6 +263,9 @@ namespace ToolSeparationBackground
             pbPicture.Hide();
             pbTexture.Hide();
             trbZoom.Enabled = false;
+            btnPicturePath.Enabled = true;
+            cmbHeight.Enabled = true;
+            cmbWidth.Enabled = true;
             lbPictureSize.Text = "0 kb";
             lbWHPicture.Text = "0 x 0";
             lbTextureSize.Text = "0 kb";
@@ -263,8 +291,8 @@ namespace ToolSeparationBackground
             cmbHeight.SelectedIndex = 2;
         }
 
-        
-
       
+        #endregion
     }
 }
+
