@@ -82,17 +82,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="camera.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="sprite.h" />
     <ClInclude Include="texture.h" />
+    <ClInclude Include="world_test.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="camera.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="global.cpp" />
     <ClCompile Include="sprite.cpp" />
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="win_main.cpp" />
+    <ClCompile Include="world_test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

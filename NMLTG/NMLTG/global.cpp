@@ -9,8 +9,8 @@ int			kColorMode;
 bool		kIsFullScreen = false;		//Toàn màn hình
 D3DFORMAT	kBackBufferFormat = D3DFMT_X8R8G8B8;
 
-int			kScreenWidth = 1024;		//Chiều ngang màn hình
-int			kScreenHeight = 768;		//Chiều cao màn hình
+int			kScreenWidth = 320;		//Chiều ngang màn hình
+int			kScreenHeight = 176;		//Chiều cao màn hình
 RECT		kWindowSize;
 
 HINSTANCE					kHInstance;	//Yêu cầu từ màn hình game

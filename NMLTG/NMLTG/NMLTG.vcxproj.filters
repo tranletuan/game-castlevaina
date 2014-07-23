@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\test">
+      <UniqueIdentifier>{4d226f0e-2404-4a09-9ad3-a46fec5ff912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\test">
+      <UniqueIdentifier>{51105c35-2ce0-43c8-94e3-b3c55ff2c4d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -26,6 +32,12 @@
     </ClInclude>
     <ClInclude Include="sprite.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="world_test.h">
+      <Filter>Header Files\test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -43,6 +55,12 @@
     </ClCompile>
     <ClCompile Include="sprite.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="world_test.cpp">
+      <Filter>Source Files\test</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
