@@ -1,12 +1,12 @@
 #include <Windows.h>
 #include "global.h"
-#include "game.h"
+#include "world_test.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	kHInstance = hInstance;
 
-	Game *game = new Game(nCmdShow);
+	WorldTest *game = new WorldTest(nCmdShow);
 	
 	game->GameInit();
 	game->GameRun();
