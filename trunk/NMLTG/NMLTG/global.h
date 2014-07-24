@@ -43,6 +43,8 @@ extern LPDIRECTINPUT8				kDirectInput;	//Đối tượng đầu vào
 extern LPDIRECTINPUTDEVICE8			kKeyBoard;		//Bàn phím	
 extern LPD3DXSPRITE					kSpriteHandler;//Đối tượng vẽ texture	
 
+//GAME CONSTANT
+extern LPCWSTR						kFolderBackground; //Thư mục chứ các file background
 
 void GLMessage(LPWSTR text);
 

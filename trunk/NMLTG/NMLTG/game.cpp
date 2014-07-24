@@ -7,6 +7,8 @@ Game::Game(int cmd_show)
 	this->cmd_show = cmd_show;
 }
 
+Game::~Game() {}
+
 void Game::GameInit()
 {
 	InitWindow();

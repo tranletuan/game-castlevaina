@@ -7,7 +7,7 @@
 class Texture
 {
 public:
-	LPWSTR file_name;
+	LPCWSTR file_name;
 	RECT size;
 	LPDIRECT3DTEXTURE9 picture;
 	int num_cols;
@@ -16,8 +16,9 @@ public:
 	int frame_width;
 	int frame_height;
 
+	Texture();
 	Texture(const Texture &texture);
-	Texture(LPWSTR file_name, int num_cols = 1, int num_rows = 1, int count = 1);
+	Texture(LPCWSTR file_name, int num_cols = 1, int num_rows = 1, int count = 1);
 	~Texture();
 	void Draw(int x, int y);
 

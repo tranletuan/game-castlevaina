@@ -1,9 +1,21 @@
 ﻿#include "texture.h"
 #include "global.h"
 
+Texture::Texture()
+{
+	file_name = NULL;
+	size = RECT();
+	num_cols = 0;
+	num_rows = 0;
+	count = 0;
+	frame_width = 0;
+	frame_height = 0;
+	picture = NULL;
+}
+
 Texture::Texture(const Texture &texture)
 {
-	file_name = texture.file_name;
+	file_name = LPCWSTR(texture.file_name);
 	size = texture.size;
 	num_cols = texture.num_cols;
 	num_rows = texture.num_rows;
@@ -13,9 +25,9 @@ Texture::Texture(const Texture &texture)
 	picture = texture.picture;
 }
 
-Texture::Texture(LPWSTR file_name, int num_cols, int num_rows, int count)
+Texture::Texture(LPCWSTR file_name, int num_cols, int num_rows, int count)
 {
-	this->file_name = file_name;
+	this->file_name = LPCWSTR(file_name);
 	this->num_cols = num_cols;
 	this->num_rows = num_rows;
 	this->count = count;

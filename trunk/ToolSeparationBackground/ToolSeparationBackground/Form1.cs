@@ -27,7 +27,8 @@ namespace ToolSeparationBackground
         String _fileMapText;
         String _folderTexture;
         int _width, _height;
-        List<Bitmap> listTexture;
+        List<Bitmap> _list_texture;
+        List<String> _map;
 
         #endregion
 
@@ -85,10 +86,13 @@ namespace ToolSeparationBackground
         private void separateImage(Bitmap img, int width, int height)
         {
             //Khởi tạo danh sách ảnh chứa tất cả các texture tách ra được
-            listTexture = new List<Bitmap>();
+            _list_texture = new List<Bitmap>();
             
             int cWidth = img.Width / width;
             int cHeight = img.Height / height;
+
+            _wMap.writeLine(cWidth + " " + cHeight);//Ghi số dòng và số cột của map
+            _map = new List<string>();
 
             for (int i = 0; i < cHeight; i++)
             {
@@ -103,19 +107,19 @@ namespace ToolSeparationBackground
                     int type = 0;
 
                     //So sánh texture vừa tách với các texture trong danh sách 
-                    if (listTexture.Count == 0)
+                    if (_list_texture.Count == 0)
                     {
                         //Danh sách rỗng thì không cần so sánh
-                        listTexture.Add(texture);
+                        _list_texture.Add(texture);
                         
                     }
                     else
                     {
                         //So sánh texture vừa tách với các texture đã lưu
                         bool flag = false;
-                        for (int k = 0; k < listTexture.Count; k++)
+                        for (int k = 0; k < _list_texture.Count; k++)
                         {
-                            if (compare2Images(texture, listTexture[k]))
+                            if (compare2Images(texture, _list_texture[k]))
                             {
                                 type = k;
                                 flag = true;
@@ -126,8 +130,8 @@ namespace ToolSeparationBackground
                         //Nếu texture vừa tách không giống với các texture đã lưu
                         if (flag == false)
                         {
-                            type = listTexture.Count;
-                            listTexture.Add(texture);
+                            type = _list_texture.Count;
+                            _list_texture.Add(texture);
                         }
                     }
 
@@ -136,7 +140,7 @@ namespace ToolSeparationBackground
                     pgbSeparation.Value = percent;
                 }
 
-                _wMap.writeLine(mapLine);
+                _map.Add(mapLine);
             }
         }
 
@@ -148,7 +152,7 @@ namespace ToolSeparationBackground
         /// <param name="height">chiều dài texture</param>
         private void saveListTexture(int width, int height)
         {
-            _result = new Bitmap(width * listTexture.Count, height);
+            _result = new Bitmap(width * _list_texture.Count, height);
             Graphics g = Graphics.FromImage(_result);
 
             //Nếu folder chứa các texture chưa tồn tại
@@ -159,9 +163,9 @@ namespace ToolSeparationBackground
             }
 
             int x = 0; //Tọa độ vẽ;
-            for (int i = 0; i < listTexture.Count ; i ++)
+            for (int i = 0; i < _list_texture.Count ; i ++)
             {
-                g.DrawImageUnscaled(listTexture[i], new Point(x, 0));
+                g.DrawImageUnscaled(_list_texture[i], new Point(x, 0));
                 x += width;
 
                 //Lưu texture nếu chưa tồn tại file đã lưu
@@ -171,8 +175,14 @@ namespace ToolSeparationBackground
                     File.Delete(fileName);
                 }
 
-                listTexture[i].Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
+                _list_texture[i].Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
+            }
 
+            //Lưu map
+            _wMap.writeLine(_list_texture.Count.ToString()); //Lưu số texture
+            for (int i = 0; i < _map.Count; i++)
+            {
+                _wMap.writeLine(_map[i]);
             }
             
             //Xem size của folder
@@ -186,7 +196,7 @@ namespace ToolSeparationBackground
             }
 
             lbTextureSize.Text = (b / 1024).ToString("n0") + " kb";
-            lbTotalTexture.Text = listTexture.Count.ToString();
+            lbTotalTexture.Text = _list_texture.Count.ToString();
             pbTexture.Image = _result;
             pbTexture.Show();
             btnReset.Enabled = true;

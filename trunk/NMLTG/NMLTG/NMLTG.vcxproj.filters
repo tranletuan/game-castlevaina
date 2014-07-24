@@ -19,6 +19,12 @@
     <Filter Include="Source Files\test">
       <UniqueIdentifier>{51105c35-2ce0-43c8-94e3-b3c55ff2c4d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\object">
+      <UniqueIdentifier>{8ed3c681-2383-4655-8924-eed5f4b18353}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\object">
+      <UniqueIdentifier>{0a7d4e55-3e07-4aa6-9113-8c8d2bafa719}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -38,6 +44,9 @@
     </ClInclude>
     <ClInclude Include="world_test.h">
       <Filter>Header Files\test</Filter>
+    </ClInclude>
+    <ClInclude Include="background.h">
+      <Filter>Header Files\object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +70,9 @@
     </ClCompile>
     <ClCompile Include="world_test.cpp">
       <Filter>Source Files\test</Filter>
+    </ClCompile>
+    <ClCompile Include="background.cpp">
+      <Filter>Source Files\object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

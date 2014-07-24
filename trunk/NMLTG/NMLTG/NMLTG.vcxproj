@@ -82,6 +82,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="background.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="global.h" />
@@ -90,6 +91,7 @@
     <ClInclude Include="world_test.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="background.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="global.cpp" />
