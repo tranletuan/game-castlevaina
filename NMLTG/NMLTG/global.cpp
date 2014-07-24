@@ -9,7 +9,7 @@ int			kColorMode;
 bool		kIsFullScreen = false;		//Toàn màn hình
 D3DFORMAT	kBackBufferFormat = D3DFMT_X8R8G8B8;
 
-int			kScreenWidth = 320;		//Chiều ngang màn hình
+int			kScreenWidth = 256;		//Chiều ngang màn hình
 int			kScreenHeight = 176;		//Chiều cao màn hình
 RECT		kWindowSize;
 
@@ -23,7 +23,8 @@ LPDIRECTINPUT8				kDirectInput;
 LPDIRECTINPUTDEVICE8		kKeyBoard;
 LPD3DXSPRITE				kSpriteHandler;
 
-
+//GAME CONSTANT
+LPCWSTR						kFolderBackground = L"H:\\Users\\Tran\\Desktop\\Map 1\\";
 
 void GLMessage(LPWSTR text)
 {
