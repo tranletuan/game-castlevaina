@@ -44,6 +44,7 @@ extern LPDIRECTINPUTDEVICE8			kKeyBoard;		//Bàn phím
 extern LPD3DXSPRITE					kSpriteHandler;//Đối tượng vẽ texture	
 
 //GAME CONSTANT
+extern D3DCOLOR						kBackgroundColorTexture;
 extern LPCWSTR						kFolderBackground; //Thư mục chứ các file background
 
 void GLMessage(LPWSTR text);

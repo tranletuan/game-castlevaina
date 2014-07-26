@@ -60,20 +60,22 @@ void Texture::Load()
 
 	frame_width = info.Width / num_cols;
 	frame_height = info.Height / num_rows;
+	width = info.Width;
+	height = info.Height;
 
 	//Load hình ảnh
 	hrs = D3DXCreateTextureFromFileEx(
 		kDevice,
 		file_name,
-		frame_width,
-		frame_height,
+		info.Width,
+		info.Height,
 		1,
 		D3DUSAGE_DYNAMIC,
 		D3DFMT_UNKNOWN,
 		D3DPOOL_DEFAULT,
 		D3DX_DEFAULT,
 		D3DX_DEFAULT,
-		0,
+		kBackgroundColorTexture,
 		&info,
 		NULL,
 		&picture);

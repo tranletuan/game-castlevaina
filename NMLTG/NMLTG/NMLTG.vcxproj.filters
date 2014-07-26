@@ -48,6 +48,9 @@
     <ClInclude Include="background.h">
       <Filter>Header Files\object</Filter>
     </ClInclude>
+    <ClInclude Include="simon.h">
+      <Filter>Header Files\object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="global.cpp">
@@ -72,6 +75,9 @@
       <Filter>Source Files\test</Filter>
     </ClCompile>
     <ClCompile Include="background.cpp">
+      <Filter>Source Files\object</Filter>
+    </ClCompile>
+    <ClCompile Include="simon.cpp">
       <Filter>Source Files\object</Filter>
     </ClCompile>
   </ItemGroup>

@@ -254,9 +254,12 @@ int Game::IsKeyDown(int key_code)
 
 void Game::RenderAll()
 {
+	//kDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0, 128, 128), 1.0f, 0);
 	if (kDevice->BeginScene())
 	{
+		kSpriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 		RenderFrame(kDevice, delta_time);
+		kSpriteHandler->End();
 		kDevice->EndScene();
 	}
 

@@ -15,6 +15,8 @@ public:
 	int count;
 	int frame_width;
 	int frame_height;
+	int width;
+	int height;
 
 	Texture();
 	Texture(const Texture &texture);

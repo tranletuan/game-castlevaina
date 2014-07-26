@@ -8,6 +8,7 @@
 #include "sprite.h"
 #include "camera.h"
 #include "background.h"
+#include "simon.h"
 
 class WorldTest : public Game
 {
@@ -17,6 +18,7 @@ public:
 protected:
 	Background *background;
 	Camera *camera;
+	Simon *simon;
 	int i;
 
 	void RenderFrame(LPDIRECT3DDEVICE9 d3d_device, int delta);
