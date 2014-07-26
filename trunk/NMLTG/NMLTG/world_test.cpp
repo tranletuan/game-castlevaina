@@ -6,6 +6,7 @@ WorldTest::WorldTest(int cmd_show) : Game(cmd_show)
 	i = kScreenWidth / 2;
 	camera = new Camera();
 	background = new Background(L"1_0", 16);
+	simon = new Simon(D3DXVECTOR2(32, 64));
 }
 
 WorldTest::~WorldTest()
@@ -16,20 +17,20 @@ WorldTest::~WorldTest()
 
 void WorldTest::RenderFrame(LPDIRECT3DDEVICE9 d3d_device, int delta)
 {
-	kSpriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 	background->Draw(*camera);
-	kSpriteHandler->End();
+	simon->Draw(*camera);
 }
 void WorldTest::LoadResources(LPDIRECT3DDEVICE9 d3d_device)
 {
 	background->LoadResources();
+	simon->LoadResources();
+	
 }
 void WorldTest::ProcessInput(LPDIRECT3DDEVICE9 d3d_device, int delta)
 {
 	if (IsKeyDown(DIK_RIGHT))
 	{
-		i += 0.045f * delta;
-		camera->UpdateCamera(i);
+		
 	}
 } //Xử lý phím
 

@@ -24,6 +24,7 @@ LPDIRECTINPUTDEVICE8		kKeyBoard;
 LPD3DXSPRITE				kSpriteHandler;
 
 //GAME CONSTANT
+D3DCOLOR					kBackgroundColorTexture = D3DCOLOR_XRGB(0, 128, 128); //Thiết lập chỉ số để xóa nền texture
 LPCWSTR						kFolderBackground = L"H:\\Users\\Tran\\Desktop\\Map 1\\";
 
 void GLMessage(LPWSTR text)

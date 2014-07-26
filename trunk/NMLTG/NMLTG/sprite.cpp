@@ -58,6 +58,8 @@ void Sprite::Reset()
 void Sprite::SelectFrameOf(int index)
 {
 	this->index = index;
+	if (index > sprite_texture->count)
+		Reset();
 }
 
 void Sprite::UpdateEffect(int elapsed_time)
@@ -73,18 +75,18 @@ void Sprite::UpdateEffect(int elapsed_time)
 
 void Sprite::Draw(int x, int y)
 {
-	RECT srcRect;
+	RECT src_rect;
 
-	srcRect.left = (index % sprite_texture->num_cols) * sprite_texture->frame_width;
-	srcRect.top = (index / sprite_texture->num_rows) * sprite_texture->frame_height;
-	srcRect.right = srcRect.left + sprite_texture->frame_width;
-	srcRect.bottom = srcRect.top + sprite_texture->frame_height;
+	src_rect.left = (index % sprite_texture->num_cols) * sprite_texture->frame_width;
+	src_rect.top = (index / sprite_texture->num_cols) * sprite_texture->frame_height;
+	src_rect.right = src_rect.left + sprite_texture->frame_width;
+	src_rect.bottom = src_rect.top + sprite_texture->frame_height;
 
 	D3DXVECTOR3 pos((float)x, (float)y, 0);
 
 	kSpriteHandler->Draw(
 		sprite_texture->picture,
-		&srcRect,
+		&src_rect,
 		NULL,
 		&pos,
 		0xFFFFFFFF);
@@ -92,38 +94,46 @@ void Sprite::Draw(int x, int y)
 
 void Sprite::DrawFlipX(int x, int y)
 {
-	D3DXMATRIX oldMatrix;
-	kSpriteHandler->GetTransform(&oldMatrix);
+	D3DXMATRIX old_matrix;
+	kSpriteHandler->GetTransform(&old_matrix);
 
-	D3DXMATRIX newMatrix;
+	D3DXMATRIX new_matrix;
 	D3DXVECTOR2 center = D3DXVECTOR2(x + sprite_texture->frame_width / 2, y + sprite_texture->frame_height / 2);
 	D3DXVECTOR2 rotate = D3DXVECTOR2(-1, 1);
 
-	D3DXMatrixTransformation2D(&newMatrix, &center, 0.0f, &rotate, NULL, 0.0f, NULL);
-	D3DXMATRIX finalMatrix = newMatrix * oldMatrix;
-	kSpriteHandler->SetTransform(&finalMatrix);
+	D3DXMatrixTransformation2D(
+		&new_matrix,
+		&center, 
+		0.0f, 
+		&rotate, 
+		NULL, 
+		0.0f, 
+		NULL);
+
+	D3DXMATRIX final_matrix = new_matrix * old_matrix;
+	kSpriteHandler->SetTransform(&final_matrix);
 
 	Draw(x, y);
 
-	kSpriteHandler->SetTransform(&oldMatrix);
+	kSpriteHandler->SetTransform(&old_matrix);
 }
 
 void Sprite::DrawFlipY(int x, int y)
 {
-	D3DXMATRIX oldMatrix;
-	kSpriteHandler->GetTransform(&oldMatrix);
+	D3DXMATRIX old_matrix;
+	kSpriteHandler->GetTransform(&old_matrix);
 
-	D3DXMATRIX newMatrix;
+	D3DXMATRIX new_matrix;
 	D3DXVECTOR2 center = D3DXVECTOR2(x + sprite_texture->frame_width / 2, y + sprite_texture->frame_height / 2);
 	D3DXVECTOR2 rotate = D3DXVECTOR2(1, -1);
 
-	D3DXMatrixTransformation2D(&newMatrix, &center, 0.0f, &rotate, NULL, 0.0f, NULL);
-	D3DXMATRIX finalMatrix = newMatrix * oldMatrix;
-	kSpriteHandler->SetTransform(&finalMatrix);
+	D3DXMatrixTransformation2D(&new_matrix, &center, 0.0f, &rotate, NULL, 0.0f, NULL);
+	D3DXMATRIX final_matrix = new_matrix * old_matrix;
+	kSpriteHandler->SetTransform(&final_matrix);
 
 	Draw(x, y);
 
-	kSpriteHandler->SetTransform(&oldMatrix);
+	kSpriteHandler->SetTransform(&old_matrix);
 }
 
 void Sprite::DrawRect(int x, int y, RECT srcRect)
@@ -140,21 +150,21 @@ void Sprite::DrawRect(int x, int y, RECT srcRect)
 
 void Sprite::DrawTransform(int x, int y, D3DXVECTOR2 scale, float degRotate, float depth)
 {
-	RECT srcRect;
+	RECT src_rect;
 
-	srcRect.left = (index % sprite_texture->num_cols) * (sprite_texture->frame_width);
-	srcRect.top = (index / sprite_texture->num_rows) * (sprite_texture->frame_height);
-	srcRect.right = srcRect.left + sprite_texture->frame_width;
-	srcRect.bottom = srcRect.top + sprite_texture->frame_height;
+	src_rect.left = (index % sprite_texture->num_cols) * (sprite_texture->frame_width);
+	src_rect.top = (index / sprite_texture->num_cols) * (sprite_texture->frame_height);
+	src_rect.right = src_rect.left + sprite_texture->frame_width;
+	src_rect.bottom = src_rect.top + sprite_texture->frame_height;
 
-	D3DXMATRIX oldMatrix;
-	kSpriteHandler->GetTransform(&oldMatrix);
+	D3DXMATRIX old_matrix;
+	kSpriteHandler->GetTransform(&old_matrix);
 
-	D3DXMATRIX newMatrix;
+	D3DXMATRIX new_natrix;
 	D3DXVECTOR2 center = D3DXVECTOR2(x + sprite_texture->frame_width / 2, y + sprite_texture->frame_height / 2);
 
 	D3DXMatrixTransformation2D(
-		&newMatrix,
+		&new_natrix,
 		&center,
 		0.0f,
 		&scale,
@@ -162,15 +172,15 @@ void Sprite::DrawTransform(int x, int y, D3DXVECTOR2 scale, float degRotate, flo
 		D3DXToRadian(degRotate),
 		NULL);
 
-	D3DXMATRIX finalMatrix = newMatrix * oldMatrix;
-	kSpriteHandler->SetTransform(&finalMatrix);
+	D3DXMATRIX final_matrix = new_natrix * old_matrix;
+	kSpriteHandler->SetTransform(&final_matrix);
 
 	kSpriteHandler->Draw(
 		sprite_texture->picture,
-		&srcRect,
+		&src_rect,
 		NULL,
 		&D3DXVECTOR3(x, y, depth),
 		0xFFFFFFFF);
 
-	kSpriteHandler->SetTransform(&oldMatrix);
+	kSpriteHandler->SetTransform(&old_matrix);
 }
