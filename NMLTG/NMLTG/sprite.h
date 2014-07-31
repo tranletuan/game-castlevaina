@@ -13,19 +13,20 @@ protected:
 	int end;
 	int index;
 	int time_ani;
-	int time_local;
+	DWORD last_time;
 public:
-
+	
 	Sprite();
 	Sprite(const Sprite &sprite);
-	Sprite(Texture *texture, int time_ani);
-	Sprite(Texture *texture, int start, int end, int time_ani);
+	Sprite(Texture *texture, int time_ani = 0);
+	Sprite(Texture *texture, int start, int end, int time_ani = 0);
 	~Sprite();
 
 	void Next(); //Chuyển hình
 	void Reset(); //Trở về trạng thái ban đầu
 	void SelectFrameOf(int index); //Chọn hiển thị frame bất kỳ
-	void UpdateEffect(int epalsed_time); //Chạy hiệu ứng
+	void UpdateAllEffect(int elapsed_time); //Chạy hiệu ứng
+	void UpdateEffect(int start_index, int end_index, int elapsed_time);
 	void Draw(int x, int y);
 	void DrawFlipX(int x, int y);
 	void DrawFlipY(int x, int y);

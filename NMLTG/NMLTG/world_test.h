@@ -10,6 +10,8 @@
 #include "background.h"
 #include "simon.h"
 
+#define GROUND 64
+
 class WorldTest : public Game
 {
 public:
@@ -17,6 +19,8 @@ public:
 	~WorldTest();
 protected:
 	Background *background;
+	Background *background1;
+	Background *background2;
 	Camera *camera;
 	Simon *simon;
 	int i;
