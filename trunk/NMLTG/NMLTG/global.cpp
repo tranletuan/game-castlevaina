@@ -2,10 +2,10 @@
 
 //CONSTANT
 bool		kIsInitedDX = false;		//Kiểm tra khởi tạo DirectX
-int			kGameDepth = 24;		//Chỉ số độ sâu
+int			kGameDepth = 32;		//Chỉ số độ sâu
 LPWSTR		kGameName = L"Castlevania";			//Tên cửa sổ game
 int			kFrameRate = 60;		//Tỷ lệ chuyển chuyển frame (30->60)
-int			kColorMode;
+int			kColorMode = 32;
 bool		kIsFullScreen = false;		//Toàn màn hình
 D3DFORMAT	kBackBufferFormat = D3DFMT_X8R8G8B8;
 
@@ -24,10 +24,12 @@ LPDIRECTINPUTDEVICE8		kKeyBoard;
 LPD3DXSPRITE				kSpriteHandler;
 
 //GAME CONSTANT
+float						kZoom = 2;
 D3DCOLOR					kBackgroundColorTexture = D3DCOLOR_XRGB(0, 128, 128); //Thiết lập chỉ số để xóa nền texture
 LPCWSTR						kFolderBackground = L"H:\\Users\\Tran\\Desktop\\Map 1\\";
+int							kGround = 16;
 
-void GLMessage(LPWSTR text)
+void GLMessage(LPCWSTR text)
 {
 	MessageBox(kHWND, text, L"Castlevania Voice", MB_OK);
 }

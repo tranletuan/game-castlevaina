@@ -56,6 +56,9 @@ void Game::GameEnd()
 {
 	if (kDevice != NULL) kDevice->Release();
 	if (kDirectX != NULL) kDirectX->Release();
+	if (kSpriteHandler != NULL) kSpriteHandler->Release();
+	if (kKeyBoard != NULL) kKeyBoard->Release();
+	if (kDirectInput != NULL) kDirectInput->Release();
 }
 
 LRESULT CALLBACK Game::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -103,7 +106,7 @@ bool Game::InitWindow()
 		screen_style = WS_OVERLAPPEDWINDOW; // Cửa sổ
 	}
 
-	//Khởi tạo cửa sổ
+	//Khởi tạo cửa 
 	kHWND = CreateWindow(
 		kGameName,
 		kGameName,
