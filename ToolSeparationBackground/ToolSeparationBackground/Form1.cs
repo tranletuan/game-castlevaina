@@ -213,7 +213,7 @@ namespace ToolSeparationBackground
         {
             //Thiết lập cửa sổ chọn ảnh
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Image Files |*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+            ofd.Filter = "Image Files |*.BMP;*.DIB;*.RLE;*.JPG;*.JPEG;*.JPE;*.JFIF;*.GIF;*.TIF;*.TIFF;*.PNG";
             ofd.Title = "Choose Picture";
             ofd.FilterIndex = 1;
             ofd.Multiselect = false;
