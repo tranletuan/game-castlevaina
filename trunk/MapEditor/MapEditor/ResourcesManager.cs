@@ -11,30 +11,31 @@ namespace MapEditor
 {
     public class ResourcesManager
     {
-        public List<ImageList> list_resources;
-        public List<List<Object>> list_objects;
-        public List<string> list_global_type;
+        private List<ImageList> list_resources;
+        private List<List<Object>> list_objects;
+        private List<string> list_global_type;
 
-        private string folder_resources_;
         private string[] define_tail = { "BMP", "DIB", "RLE", "JPG", "JPEG", "JPE", "JFIF", "GIF", "TIF", "TIFF", "PNG" };
 
-        public ResourcesManager(string folder_resources)
+        public ResourcesManager()
         {
-            this.folder_resources_ = folder_resources;
             this.list_resources = new List<ImageList>();
             this.list_objects = new List<List<Object>>();
             this.list_global_type = new List<string>();
         }
 
-        public void LoadAllResources()
+        public void LoadAllResources(string folder_resources)
         {
+            list_global_type = new List<string>();
+            list_resources = new List<ImageList>();
+            list_objects = new List<List<Object>>();
             //Đọc tất cả các thư mục con trong thư mục gốc
-            string[] folders = Directory.GetDirectories(folder_resources_);
+            string[] folders = Directory.GetDirectories(folder_resources);
             foreach (string folder in folders)
             {
                 //Tên của thư mục con được cắt ra
                 //Tên của thư mục con chính là loại bao quát
-                string global_type = folder.Substring(folder_resources_.Length + 1);
+                string global_type = folder.Substring(folder_resources.Length + 1);
                 list_global_type.Add(global_type); //Tên loại tổng quát
                 ImageList images = new ImageList(); //Danh sách texture
                 List<Object> objects = new List<Object>(); //Danh sách đối tượng
@@ -54,10 +55,10 @@ namespace MapEditor
                     if (IsImage(tail))
                     {
                         //Load texture và lưu đối tượng
-                        Image img = Image.FromFile(file.FullName);
+                        Bitmap img = new Bitmap(file.FullName);
                         if (img != null)
                         {
-                            objects.Add(new Object(Point.Empty, type, global_type, img.Width, img.Height));
+                            objects.Add(new Object(type, global_type, img));
                             images.Images.Add(type, img);
                         }
                     }
@@ -80,6 +81,38 @@ namespace MapEditor
                 }
             }
             return result;
+        }
+
+        public List<ImageList> ListResources
+        {
+            get { return list_resources; }
+        }
+
+        public List<List<Object>> ListObjects
+        {
+            get { return list_objects; }
+        }
+
+        public List<string> ListGlobalType
+        {
+            get { return list_global_type; }
+        }
+
+        public Object GetObjectBy(string type, string global_type)
+        {
+            Object o = new Object();
+            int index = list_global_type.IndexOf(global_type);
+
+            foreach (Object ob in list_objects[index])
+            {
+                if (o.Type.CompareTo(ob.Type) == 0)
+                {
+                    o = ob;
+                    break;
+                }
+            }
+
+            return o;
         }
     }
 }
