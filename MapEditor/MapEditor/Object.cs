@@ -19,6 +19,7 @@ namespace MapEditor
         private Rectangle bounds;
         private string global_type;
         private Bitmap image;
+        private int id;
 
         //Hàm khởi tạo cho đối tượng rỗng
         public Object()
@@ -30,8 +31,9 @@ namespace MapEditor
         }
 
         //Hàm khởi tạo cho đối tượng lưu vào node quadtree
-        public Object(Object ob, Point pos)
+        public Object(Object ob, Point pos, int id)
         {
+            this.id = id;
             this.pos = pos;
             type = ob.type;
             this.image = null;
@@ -46,6 +48,11 @@ namespace MapEditor
             this.global_type = global_type;
             this.image = image;
             this.bounds = new Rectangle(0, 0, image.Width, image.Height);
+        }
+
+        public string ToString()
+        {
+            return String.Format("{0} {1} {2} {3}", ID, Type, Position.X, Position.Y);
         }
 
         #region PROPERTIES
@@ -78,6 +85,13 @@ namespace MapEditor
         {
             get { return image; }
         }
+
+        public int ID
+        {
+            get { return id; }
+        }
+
+        
         #endregion
     }
 }

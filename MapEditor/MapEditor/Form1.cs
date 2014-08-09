@@ -27,6 +27,8 @@ namespace MapEditor
         private int width;
         private int height;
         private float zoom;
+        private int object_id;
+        private int max_width;
 
         #region METHODS
 
@@ -56,7 +58,7 @@ namespace MapEditor
             resources_manager = new ResourcesManager();
             list_view_objects = new List<Object>();
             map_objects = new List<Object>();
-            Zoom = 1;
+            
         }
 
         private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
@@ -104,6 +106,10 @@ namespace MapEditor
             graphics = Graphics.FromImage(bitmap);
             graphics.Clear(Color.AliceBlue);
             pbMap.Image = bitmap;
+            object_id = 0;
+            map_objects = new List<Object>();
+            Zoom = 1;
+            max_width = height;
         }
 
         private void normalToolStripMenuItem_Click(object sender, EventArgs e)
@@ -151,13 +157,17 @@ namespace MapEditor
                     current_position.Y / current_object.Bounds.Height * current_object.Bounds.Height);
                 current_position = matrix_pos;
                 
-                Object o = new Object(current_object, current_position);
+                Object o = new Object(current_object, current_position, object_id);
                 //Kiểm tra va chạm với những đối tượng đã vẽ
                 //Tránh vẽ chồng các đối tượng lên nhau
                 if (CheckCollision(map_objects, o) == false)
                 {
                     Draw(current_object.Image, current_position);
                     map_objects.Add(o);
+                    object_id++;
+
+                    max_width = max_width < o.Position.X + o.Bounds.Width ? o.Position.X + o.Bounds.Width : max_width;
+                    max_width = max_width < o.Position.Y + o.Bounds.Height ? o.Position.Y + o.Bounds.Height : max_width;
                 }
             }
         }
@@ -166,6 +176,13 @@ namespace MapEditor
         {
             get { return zoom >= 1 ? zoom : 1; }
             set { zoom = value >= 1 ? value : 1; }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Rectangle quadtree_bounds = new Rectangle(0, 0, max_width, max_width);
+            QuadTree quadtree = new QuadTree(map_objects, quadtree_bounds);
+            quadtree.SaveQuaddTreeTo(@"H:\Users\Tran\Desktop\Map QuadTree\quadtree.txt", @"H:\Users\Tran\Desktop\Map QuadTree\object.txt");
         }
     }
 }
