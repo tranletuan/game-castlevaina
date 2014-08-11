@@ -105,9 +105,10 @@ namespace MapEditor
 
             foreach (Object ob in list_objects[index])
             {
-                if (o.Type.CompareTo(ob.Type) == 0)
+                if (type.CompareTo(ob.Type) == 0)
                 {
                     o = ob;
+                    o.Image = ob.Image;
                     break;
                 }
             }

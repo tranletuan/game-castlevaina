@@ -84,6 +84,7 @@ namespace MapEditor
         public Bitmap Image
         {
             get { return image; }
+            set { image = value; }
         }
 
         public int ID

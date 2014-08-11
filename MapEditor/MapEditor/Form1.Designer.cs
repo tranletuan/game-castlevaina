@@ -34,7 +34,6 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadResourcesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zoomInMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.normalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,17 +43,19 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pbMap = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtAddHeight = new System.Windows.Forms.TextBox();
-            this.txtAddWidth = new System.Windows.Forms.TextBox();
-            this.btnAddHeight = new System.Windows.Forms.Button();
-            this.btnAddWidth = new System.Windows.Forms.Button();
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.lvObject = new System.Windows.Forms.ListView();
+            this.btnAddWidth = new System.Windows.Forms.Button();
+            this.btnAddHeight = new System.Windows.Forms.Button();
+            this.txtAddWidth = new System.Windows.Forms.TextBox();
+            this.txtAddHeight = new System.Windows.Forms.TextBox();
+            this.grbNonBackground = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMap)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.grbNonBackground.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -81,38 +82,30 @@
             // openMapToolStripMenuItem
             // 
             this.openMapToolStripMenuItem.Name = "openMapToolStripMenuItem";
-            this.openMapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openMapToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openMapToolStripMenuItem.Text = "New";
             this.openMapToolStripMenuItem.Click += new System.EventHandler(this.newMapToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadResourcesToolStripMenuItem,
             this.zoomInMapToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
-            // 
-            // loadResourcesToolStripMenuItem
-            // 
-            this.loadResourcesToolStripMenuItem.Name = "loadResourcesToolStripMenuItem";
-            this.loadResourcesToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.loadResourcesToolStripMenuItem.Text = "Load Resources";
-            this.loadResourcesToolStripMenuItem.Click += new System.EventHandler(this.loadResourcesToolStripMenuItem_Click);
             // 
             // zoomInMapToolStripMenuItem
             // 
@@ -178,16 +171,13 @@
             this.pbMap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pbMap.TabIndex = 0;
             this.pbMap.TabStop = false;
-            this.pbMap.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pbMap_MouseClick);
+            this.pbMap.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbMap_MouseDown);
             this.pbMap.MouseEnter += new System.EventHandler(this.pbMap_MouseEnter);
             this.pbMap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbMap_MouseMove);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.txtAddHeight);
-            this.groupBox2.Controls.Add(this.txtAddWidth);
-            this.groupBox2.Controls.Add(this.btnAddHeight);
-            this.groupBox2.Controls.Add(this.btnAddWidth);
+            this.groupBox2.Controls.Add(this.grbNonBackground);
             this.groupBox2.Controls.Add(this.cmbType);
             this.groupBox2.Controls.Add(this.lvObject);
             this.groupBox2.Location = new System.Drawing.Point(617, 27);
@@ -195,40 +185,6 @@
             this.groupBox2.Size = new System.Drawing.Size(167, 535);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
-            // 
-            // txtAddHeight
-            // 
-            this.txtAddHeight.Location = new System.Drawing.Point(76, 53);
-            this.txtAddHeight.Name = "txtAddHeight";
-            this.txtAddHeight.Size = new System.Drawing.Size(79, 20);
-            this.txtAddHeight.TabIndex = 5;
-            this.txtAddHeight.Text = "200";
-            // 
-            // txtAddWidth
-            // 
-            this.txtAddWidth.Location = new System.Drawing.Point(76, 20);
-            this.txtAddWidth.Name = "txtAddWidth";
-            this.txtAddWidth.Size = new System.Drawing.Size(79, 20);
-            this.txtAddWidth.TabIndex = 5;
-            this.txtAddWidth.Text = "200";
-            // 
-            // btnAddHeight
-            // 
-            this.btnAddHeight.Location = new System.Drawing.Point(15, 49);
-            this.btnAddHeight.Name = "btnAddHeight";
-            this.btnAddHeight.Size = new System.Drawing.Size(47, 27);
-            this.btnAddHeight.TabIndex = 4;
-            this.btnAddHeight.Text = "Height";
-            this.btnAddHeight.UseVisualStyleBackColor = true;
-            // 
-            // btnAddWidth
-            // 
-            this.btnAddWidth.Location = new System.Drawing.Point(15, 16);
-            this.btnAddWidth.Name = "btnAddWidth";
-            this.btnAddWidth.Size = new System.Drawing.Size(47, 27);
-            this.btnAddWidth.TabIndex = 4;
-            this.btnAddWidth.Text = "Width";
-            this.btnAddWidth.UseVisualStyleBackColor = true;
             // 
             // cmbType
             // 
@@ -251,6 +207,53 @@
             this.lvObject.UseCompatibleStateImageBehavior = false;
             this.lvObject.View = System.Windows.Forms.View.SmallIcon;
             this.lvObject.SelectedIndexChanged += new System.EventHandler(this.lvObject_SelectedIndexChanged);
+            // 
+            // btnAddWidth
+            // 
+            this.btnAddWidth.Location = new System.Drawing.Point(6, 19);
+            this.btnAddWidth.Name = "btnAddWidth";
+            this.btnAddWidth.Size = new System.Drawing.Size(87, 27);
+            this.btnAddWidth.TabIndex = 4;
+            this.btnAddWidth.Text = "Add Width";
+            this.btnAddWidth.UseVisualStyleBackColor = true;
+            // 
+            // btnAddHeight
+            // 
+            this.btnAddHeight.Location = new System.Drawing.Point(6, 52);
+            this.btnAddHeight.Name = "btnAddHeight";
+            this.btnAddHeight.Size = new System.Drawing.Size(87, 27);
+            this.btnAddHeight.TabIndex = 4;
+            this.btnAddHeight.Text = "Add Height";
+            this.btnAddHeight.UseVisualStyleBackColor = true;
+            // 
+            // txtAddWidth
+            // 
+            this.txtAddWidth.Location = new System.Drawing.Point(99, 23);
+            this.txtAddWidth.Name = "txtAddWidth";
+            this.txtAddWidth.Size = new System.Drawing.Size(47, 20);
+            this.txtAddWidth.TabIndex = 5;
+            this.txtAddWidth.Text = "200";
+            // 
+            // txtAddHeight
+            // 
+            this.txtAddHeight.Location = new System.Drawing.Point(99, 56);
+            this.txtAddHeight.Name = "txtAddHeight";
+            this.txtAddHeight.Size = new System.Drawing.Size(47, 20);
+            this.txtAddHeight.TabIndex = 5;
+            this.txtAddHeight.Text = "200";
+            // 
+            // grbNonBackground
+            // 
+            this.grbNonBackground.Controls.Add(this.btnAddWidth);
+            this.grbNonBackground.Controls.Add(this.txtAddHeight);
+            this.grbNonBackground.Controls.Add(this.btnAddHeight);
+            this.grbNonBackground.Controls.Add(this.txtAddWidth);
+            this.grbNonBackground.Location = new System.Drawing.Point(7, 16);
+            this.grbNonBackground.Name = "grbNonBackground";
+            this.grbNonBackground.Size = new System.Drawing.Size(154, 214);
+            this.grbNonBackground.TabIndex = 6;
+            this.grbNonBackground.TabStop = false;
+            this.grbNonBackground.Visible = false;
             // 
             // Form1
             // 
@@ -275,7 +278,8 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMap)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.grbNonBackground.ResumeLayout(false);
+            this.grbNonBackground.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,17 +298,17 @@
         private System.Windows.Forms.ComboBox cmbType;
         private System.Windows.Forms.ListView lvObject;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loadResourcesToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnAddWidth;
-        private System.Windows.Forms.TextBox txtAddHeight;
-        private System.Windows.Forms.TextBox txtAddWidth;
-        private System.Windows.Forms.Button btnAddHeight;
         private System.Windows.Forms.ToolStripMenuItem zoomInMapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem normalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.GroupBox grbNonBackground;
+        private System.Windows.Forms.Button btnAddWidth;
+        private System.Windows.Forms.TextBox txtAddHeight;
+        private System.Windows.Forms.Button btnAddHeight;
+        private System.Windows.Forms.TextBox txtAddWidth;
     }
 }
 
