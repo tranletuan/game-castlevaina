@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BC5B637C-2EDF-403B-9CF1-D09F66C82043}</ProjectGuid>
+    <ProjectGuid>{1C203F10-7E26-4669-9C05-A4DF55B8EC27}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MapEditor</RootNamespace>
@@ -50,13 +50,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameObject.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Node.cs" />
-    <Compile Include="Object.cs" />
-    <Compile Include="QuadTree.cs" />
-    <Compile Include="ResourcesManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuadTree.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

@@ -11,20 +11,20 @@ namespace MapEditor
     public class QuadTree
     {
         private Node root;
-        private List<Object> list_objects;
+        private List<GameObject> list_object;
 
-        public QuadTree(List<Object> list_objects, Rectangle bounds)
+        public QuadTree(List<GameObject> list_objects, Rectangle bounds)
         {
-            this.list_objects = list_objects;
+            this.list_object = list_objects;
             root = new Node(0, Location.Root, bounds);
             BuidTree();
         }
 
         private void BuidTree()
         {
-            foreach (Object o in list_objects)
+            foreach (GameObject o in list_object)
             {
-                root.Add(o);
+                root.Insert(o);
             }
         }
 
@@ -39,7 +39,7 @@ namespace MapEditor
             //Ghi file cây quadtree
             using (StreamWriter sw = new StreamWriter(file_tree, false))
             {
-                sw.WriteLine(root.Bounds.Width.ToString());
+                sw.WriteLine(root.BOUNDS.Width.ToString());
 
                 foreach (string node_info in quadtree_info)
                 {
