@@ -28,258 +28,232 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zoomInMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.normalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pbMap = new System.Windows.Forms.PictureBox();
+            this.cmbBigType = new System.Windows.Forms.ComboBox();
+            this.lvType = new System.Windows.Forms.ListView();
+            this.trbZoom = new System.Windows.Forms.TrackBar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eDITToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadResoucesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cmbType = new System.Windows.Forms.ComboBox();
-            this.lvObject = new System.Windows.Forms.ListView();
-            this.btnAddWidth = new System.Windows.Forms.Button();
-            this.btnAddHeight = new System.Windows.Forms.Button();
-            this.txtAddWidth = new System.Windows.Forms.TextBox();
-            this.txtAddHeight = new System.Windows.Forms.TextBox();
-            this.grbNonBackground = new System.Windows.Forms.GroupBox();
-            this.menuStrip1.SuspendLayout();
+            this.pnlMap = new System.Windows.Forms.Panel();
+            this.pbMap = new System.Windows.Forms.PictureBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trbZoom)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.grbNonBackground.SuspendLayout();
+            this.pnlMap.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMap)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cmbBigType);
+            this.groupBox1.Controls.Add(this.lvType);
+            this.groupBox1.Controls.Add(this.trbZoom);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(788, 27);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(221, 677);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Toolbox";
+            // 
+            // cmbBigType
+            // 
+            this.cmbBigType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBigType.FormattingEnabled = true;
+            this.cmbBigType.Location = new System.Drawing.Point(6, 207);
+            this.cmbBigType.Name = "cmbBigType";
+            this.cmbBigType.Size = new System.Drawing.Size(208, 28);
+            this.cmbBigType.TabIndex = 3;
+            this.cmbBigType.SelectedValueChanged += new System.EventHandler(this.cmbBigType_SelectedValueChanged);
+            // 
+            // lvType
+            // 
+            this.lvType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lvType.Location = new System.Drawing.Point(6, 241);
+            this.lvType.Name = "lvType";
+            this.lvType.Size = new System.Drawing.Size(208, 430);
+            this.lvType.TabIndex = 2;
+            this.lvType.UseCompatibleStateImageBehavior = false;
+            // 
+            // trbZoom
+            // 
+            this.trbZoom.Enabled = false;
+            this.trbZoom.Location = new System.Drawing.Point(66, 40);
+            this.trbZoom.Maximum = 4;
+            this.trbZoom.Name = "trbZoom";
+            this.trbZoom.Size = new System.Drawing.Size(154, 45);
+            this.trbZoom.TabIndex = 1;
+            this.trbZoom.Scroll += new System.EventHandler(this.trbZoom_Scroll);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 40);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Zoom";
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.editToolStripMenuItem});
+            this.fToolStripMenuItem,
+            this.eDITToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(784, 24);
-            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Size = new System.Drawing.Size(1008, 24);
+            this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // fileToolStripMenuItem
+            // fToolStripMenuItem
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openMapToolStripMenuItem,
+            this.fToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
             this.openToolStripMenuItem,
+            this.closeToolStripMenuItem,
             this.saveToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
+            this.fToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fToolStripMenuItem.Name = "fToolStripMenuItem";
+            this.fToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.fToolStripMenuItem.Text = "FILE";
             // 
-            // openMapToolStripMenuItem
+            // newToolStripMenuItem
             // 
-            this.openMapToolStripMenuItem.Name = "openMapToolStripMenuItem";
-            this.openMapToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.openMapToolStripMenuItem.Text = "New";
-            this.openMapToolStripMenuItem.Click += new System.EventHandler(this.newMapToolStripMenuItem_Click);
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
+            this.newToolStripMenuItem.Text = "New";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.openToolStripMenuItem.Text = "Open";
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
+            this.closeToolStripMenuItem.Text = "Close";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // editToolStripMenuItem
+            // eDITToolStripMenuItem
             // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.zoomInMapToolStripMenuItem});
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.eDITToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadMapToolStripMenuItem,
+            this.loadResoucesToolStripMenuItem});
+            this.eDITToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.eDITToolStripMenuItem.Name = "eDITToolStripMenuItem";
+            this.eDITToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.eDITToolStripMenuItem.Text = "EDIT";
             // 
-            // zoomInMapToolStripMenuItem
+            // loadMapToolStripMenuItem
             // 
-            this.zoomInMapToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.normalToolStripMenuItem,
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem3,
-            this.toolStripMenuItem4});
-            this.zoomInMapToolStripMenuItem.Name = "zoomInMapToolStripMenuItem";
-            this.zoomInMapToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.zoomInMapToolStripMenuItem.Text = "Zoom";
+            this.loadMapToolStripMenuItem.Name = "loadMapToolStripMenuItem";
+            this.loadMapToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.loadMapToolStripMenuItem.Text = "Load Map";
+            this.loadMapToolStripMenuItem.Click += new System.EventHandler(this.loadMapToolStripMenuItem_Click);
             // 
-            // normalToolStripMenuItem
+            // loadResoucesToolStripMenuItem
             // 
-            this.normalToolStripMenuItem.Name = "normalToolStripMenuItem";
-            this.normalToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
-            this.normalToolStripMenuItem.Text = "Normal";
-            this.normalToolStripMenuItem.Click += new System.EventHandler(this.normalToolStripMenuItem_Click);
+            this.loadResoucesToolStripMenuItem.Name = "loadResoucesToolStripMenuItem";
+            this.loadResoucesToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.loadResoucesToolStripMenuItem.Text = "Load Resouces";
+            this.loadResoucesToolStripMenuItem.Click += new System.EventHandler(this.loadResoucesToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem2
+            // groupBox2
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(114, 22);
-            this.toolStripMenuItem2.Text = "125%";
+            this.groupBox2.Controls.Add(this.pnlMap);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(-1, 27);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(783, 677);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
             // 
-            // toolStripMenuItem3
+            // pnlMap
             // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(114, 22);
-            this.toolStripMenuItem3.Text = "175%";
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(114, 22);
-            this.toolStripMenuItem4.Text = "200%";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.panel1);
-            this.groupBox1.Location = new System.Drawing.Point(0, 27);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(611, 535);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.AutoSize = true;
-            this.panel1.Controls.Add(this.pbMap);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 16);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(605, 516);
-            this.panel1.TabIndex = 1;
+            this.pnlMap.AutoScroll = true;
+            this.pnlMap.AutoSize = true;
+            this.pnlMap.Controls.Add(this.pbMap);
+            this.pnlMap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMap.Location = new System.Drawing.Point(3, 23);
+            this.pnlMap.Name = "pnlMap";
+            this.pnlMap.Size = new System.Drawing.Size(777, 651);
+            this.pnlMap.TabIndex = 0;
             // 
             // pbMap
             // 
             this.pbMap.Location = new System.Drawing.Point(0, 0);
             this.pbMap.Name = "pbMap";
-            this.pbMap.Size = new System.Drawing.Size(300, 200);
+            this.pbMap.Size = new System.Drawing.Size(100, 50);
             this.pbMap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pbMap.TabIndex = 0;
             this.pbMap.TabStop = false;
-            this.pbMap.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbMap_MouseDown);
-            this.pbMap.MouseEnter += new System.EventHandler(this.pbMap_MouseEnter);
-            this.pbMap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbMap_MouseMove);
+            this.pbMap.Resize += new System.EventHandler(this.pbMap_Resize);
             // 
-            // groupBox2
+            // statusStrip1
             // 
-            this.groupBox2.Controls.Add(this.grbNonBackground);
-            this.groupBox2.Controls.Add(this.cmbType);
-            this.groupBox2.Controls.Add(this.lvObject);
-            this.groupBox2.Location = new System.Drawing.Point(617, 27);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(167, 535);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 707);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1008, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
             // 
-            // cmbType
+            // toolStripStatusLabel1
             // 
-            this.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbType.FormattingEnabled = true;
-            this.cmbType.Location = new System.Drawing.Point(7, 236);
-            this.cmbType.Name = "cmbType";
-            this.cmbType.Size = new System.Drawing.Size(154, 21);
-            this.cmbType.TabIndex = 1;
-            this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
-            // 
-            // lvObject
-            // 
-            this.lvObject.GridLines = true;
-            this.lvObject.Location = new System.Drawing.Point(6, 263);
-            this.lvObject.MultiSelect = false;
-            this.lvObject.Name = "lvObject";
-            this.lvObject.Size = new System.Drawing.Size(155, 266);
-            this.lvObject.TabIndex = 0;
-            this.lvObject.UseCompatibleStateImageBehavior = false;
-            this.lvObject.View = System.Windows.Forms.View.SmallIcon;
-            this.lvObject.SelectedIndexChanged += new System.EventHandler(this.lvObject_SelectedIndexChanged);
-            // 
-            // btnAddWidth
-            // 
-            this.btnAddWidth.Location = new System.Drawing.Point(6, 19);
-            this.btnAddWidth.Name = "btnAddWidth";
-            this.btnAddWidth.Size = new System.Drawing.Size(87, 27);
-            this.btnAddWidth.TabIndex = 4;
-            this.btnAddWidth.Text = "Add Width";
-            this.btnAddWidth.UseVisualStyleBackColor = true;
-            // 
-            // btnAddHeight
-            // 
-            this.btnAddHeight.Location = new System.Drawing.Point(6, 52);
-            this.btnAddHeight.Name = "btnAddHeight";
-            this.btnAddHeight.Size = new System.Drawing.Size(87, 27);
-            this.btnAddHeight.TabIndex = 4;
-            this.btnAddHeight.Text = "Add Height";
-            this.btnAddHeight.UseVisualStyleBackColor = true;
-            // 
-            // txtAddWidth
-            // 
-            this.txtAddWidth.Location = new System.Drawing.Point(99, 23);
-            this.txtAddWidth.Name = "txtAddWidth";
-            this.txtAddWidth.Size = new System.Drawing.Size(47, 20);
-            this.txtAddWidth.TabIndex = 5;
-            this.txtAddWidth.Text = "200";
-            // 
-            // txtAddHeight
-            // 
-            this.txtAddHeight.Location = new System.Drawing.Point(99, 56);
-            this.txtAddHeight.Name = "txtAddHeight";
-            this.txtAddHeight.Size = new System.Drawing.Size(47, 20);
-            this.txtAddHeight.TabIndex = 5;
-            this.txtAddHeight.Text = "200";
-            // 
-            // grbNonBackground
-            // 
-            this.grbNonBackground.Controls.Add(this.btnAddWidth);
-            this.grbNonBackground.Controls.Add(this.txtAddHeight);
-            this.grbNonBackground.Controls.Add(this.btnAddHeight);
-            this.grbNonBackground.Controls.Add(this.txtAddWidth);
-            this.grbNonBackground.Location = new System.Drawing.Point(7, 16);
-            this.grbNonBackground.Name = "grbNonBackground";
-            this.grbNonBackground.Size = new System.Drawing.Size(154, 214);
-            this.grbNonBackground.TabIndex = 6;
-            this.grbNonBackground.TabStop = false;
-            this.grbNonBackground.Visible = false;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(65, 17);
+            this.toolStripStatusLabel1.Text = "Map Editor";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Map Editor";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trbZoom)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.grbNonBackground.ResumeLayout(false);
-            this.grbNonBackground.PerformLayout();
+            this.groupBox2.PerformLayout();
+            this.pnlMap.ResumeLayout(false);
+            this.pnlMap.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMap)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,28 +261,25 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openMapToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Panel pnlMap;
         private System.Windows.Forms.PictureBox pbMap;
-        private System.Windows.Forms.ComboBox cmbType;
-        private System.Windows.Forms.ListView lvObject;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ToolStripMenuItem zoomInMapToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem normalToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
-        private System.Windows.Forms.GroupBox grbNonBackground;
-        private System.Windows.Forms.Button btnAddWidth;
-        private System.Windows.Forms.TextBox txtAddHeight;
-        private System.Windows.Forms.Button btnAddHeight;
-        private System.Windows.Forms.TextBox txtAddWidth;
+        private System.Windows.Forms.ToolStripMenuItem eDITToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadMapToolStripMenuItem;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TrackBar trbZoom;
+        private System.Windows.Forms.ToolStripMenuItem loadResoucesToolStripMenuItem;
+        private System.Windows.Forms.ComboBox cmbBigType;
+        private System.Windows.Forms.ListView lvType;
     }
 }
 

@@ -8,7 +8,7 @@ namespace MapEditor
 {
     public class Global
     {
-        public static int BIT_ID = 10;
         public static int MIN_WIDTH = 200;
+        public static int ID = 0;
     }
 }

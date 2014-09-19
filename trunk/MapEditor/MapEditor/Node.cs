@@ -7,121 +7,127 @@ using System.Threading.Tasks;
 
 namespace MapEditor
 {
-    public enum Location { Root, TopLeft, TopRight, BottomLeft, BottomRight };
+    public enum Location 
+    {
+        Root = 0, TopLeft, TopRight, BotLeft, BotRight
+    };
 
     public class Node
     {
-        private int id;
+        /// <summary>
+        /// Các thuộc tính cơ bản của 1 node bao gồm id, khung
+        /// 4 node lá và danh sách đối tượng mà nó chứa
+        /// </summary>
+        private Int64 id;
         private Rectangle bounds;
-        private Node tl, tr, bl, br;
-        private List<Object> list_objects;
+        private Node top_left, top_right, bot_left, bot_right;
+        private List<GameObject> list_object;
 
-        public Node(int parentID, Location location, Rectangle bounds)
+        public Node(Int64 parentID, Location loc, Rectangle bounds)
         {
-            this.id = NodeID(parentID, location);
+            this.id = parentID * 10 + (int)loc;
             this.bounds = bounds;
-            this.list_objects = new List<Object>();
-            tl = tr = bl = br = null;
+            this.list_object = new List<GameObject>();
+            this.top_left = null;
+            this.top_right = null;
+            this.bot_left = null;
+            this.bot_right = null;
         }
 
-        private int NodeID(int parentID, Location location)
+        public bool Insert(GameObject go)
         {
-            return parentID * Global.BIT_ID + (int)location;
-        }
+            //Kiểm tra nếu diện tích giao nhau giữa khung bao đối tượng
+            //và khung bao của node quá nhỏ thì xem như không có
+            Rectangle inter_rect = Rectangle.Intersect(go.BOUNDS, this.bounds);
 
-        public bool Add(Object ob)
-        {
-            //Kiểm tra khung bao node với khung bao của đối tượng
-            Rectangle intersect_result = Rectangle.Intersect(ob.Bounds, bounds);
-
-            //Nếu đối tượng và node giao nhau quá ít
-            if (intersect_result.Width < 3 || intersect_result.Height < 3)
+            if (inter_rect.Width < 3 || inter_rect.Height < 3)
             {
                 return false;
             }
 
-            //Kiểm tra node mẹ còn có thể chia node con
+            //Nếu node mẹ không thể chia node con nữa thì đưa đối tượng
+            //vào node mẹ và kết thúc
             if (bounds.Width <= Global.MIN_WIDTH * 2)
             {
-                list_objects.Add(ob);
+                list_object.Add(go);
                 return true;
             }
-
-            //Nếu chưa chia node con thì chia
-            if (tl == null)
+                
+            //Khởi tạo các nút lá nếu chưa có 
+            if (top_left == null)
             {
-                int x = bounds.X, y = bounds.Y, width = bounds.Width / 2;
-                tl = new Node(id, Location.TopLeft, new Rectangle(x, y, width, width));
-                tr = new Node(id, Location.TopRight, new Rectangle(x + width, y, width, width));
-                bl = new Node(id, Location.BottomLeft, new Rectangle(x, y + width, width, width));
-                br = new Node(id, Location.BottomRight, new Rectangle(x + width, y + width, width, width));
+                int node_width = bounds.Width / 2;
+
+                top_left = new Node(id, Location.TopLeft, new Rectangle(bounds.X, bounds.Y, node_width, node_width));
+                top_right = new Node(id, Location.TopRight, new Rectangle(bounds.X + node_width, bounds.Y, node_width, node_width));
+                bot_left = new Node(id, Location.BotLeft, new Rectangle(bounds.X, bounds.Y + node_width, node_width, node_width));
+                bot_right = new Node(id, Location.BotRight, new Rectangle(bounds.X + node_width, bounds.Y + node_width, node_width, node_width));
             }
 
-            tl.Add(ob);
-            tr.Add(ob);
-            bl.Add(ob);
-            br.Add(ob);
+            top_left.Insert(go);
+            top_right.Insert(go);
+            bot_left.Insert(go);
+            bot_right.Insert(go);
 
             return true;
         }
 
-        public void Traversal(List<string> object_info, List<string> quadtree_info, List<Int32> list_id)
+        public void Traversal(List<string> object_info, List<string> quadtree_info, List<int> list_id)
         {
+            //Lấy thông tin node mẹ
             String parent_info = String.Format("{0} {1} {2} {3}", id, bounds.X, bounds.Y, bounds.Width);
 
-            //Nếu node có các node con gọi đệ quy duyệt các node con
-            if (tl != null)
+            //Kiểm tra đệ quy các node lá
+            if (top_left != null)
             {
                 quadtree_info.Add(parent_info);
-                tl.Traversal(object_info, quadtree_info, list_id);
-                tr.Traversal(object_info, quadtree_info, list_id);
-                bl.Traversal(object_info, quadtree_info, list_id);
-                br.Traversal(object_info, quadtree_info, list_id);
+                top_left.Traversal(object_info, quadtree_info, list_id);
+                top_right.Traversal(object_info, quadtree_info, list_id);
+                bot_left.Traversal(object_info, quadtree_info, list_id);
+                bot_right.Traversal(object_info, quadtree_info, list_id);
             }
             else
             {
+                //Nếu là node lá cuối cùng thì lấy danh sách đối tượng.
                 parent_info += " ";
-
-                foreach (Object o in list_objects)
+                foreach (GameObject go in list_object)
                 {
-                    //Kiểm tra id có bị lưu trùng hay không
-                    //list_object để in ra map đối tượng
+                    //Kiểm tra đối tượng có được thêm trước đó hay chưa
                     bool is_exist = false;
 
-                    foreach (int i in list_id)
+                    foreach (int o_id in list_id)
                     {
-                        if (i == o.ID)
+                        if (o_id == go.ID)
                         {
                             is_exist = true;
                             break;
                         }
                     }
 
+                    //Nếu chưa duyệt qua đối tượng thì thêm ID đối tượng
+                    //vào object_info
                     if (!is_exist)
                     {
-                        list_id.Add(o.ID);
-                        object_info.Add(o.ToString());
+                        list_id.Add(go.ID);
+                        object_info.Add(go.ToString());
                     }
 
-                    parent_info += o.ID + " ";
+                    parent_info += go.ID + " ";
                 }
 
                 quadtree_info.Add(parent_info);
             }
 
-            
         }
-
-        public Rectangle Bounds
+        
+        public Rectangle BOUNDS
         {
             get { return bounds; }
         }
 
-        public List<Object> ListObjects
+        public List<GameObject> List_Object
         {
-            get { return list_objects; }
+            get { return list_object; }
         }
-
-
     }
 }
