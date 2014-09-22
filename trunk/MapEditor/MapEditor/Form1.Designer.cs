@@ -155,7 +155,6 @@
             // 
             // trbZoom
             // 
-            this.trbZoom.Enabled = false;
             this.trbZoom.Location = new System.Drawing.Point(66, 40);
             this.trbZoom.Maximum = 4;
             this.trbZoom.Name = "trbZoom";

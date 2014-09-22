@@ -30,9 +30,8 @@ namespace MapEditor
         private ObjectDraw current_object_draw;
         private Point current_point;
         private Point last_point;
-        private bool is_change;
         private List<GameObject> objects;
-
+        private bool can_change; 
 
         #region METHOD
 
@@ -79,8 +78,6 @@ namespace MapEditor
         private void ChangeCursor(Image img = null)
         {
             //Thay đổi con trỏ chuột
-            if (current_object_draw.Object == null) return;
-
             if (img != null)
             {
                 //Hình ảnh con trỏn chuột là hình ảnh đối tượng hiện thời
@@ -116,29 +113,65 @@ namespace MapEditor
             return true;
         }
 
+        private int GetIndexByPosition(Point pos)
+        {
+            int index = -1;
+            Point p = new Point((int)(pos.X / Zoom), (int)(pos.Y / Zoom));
+
+            foreach (GameObject o in objects)
+            {
+                if (o.BOUNDS.Contains(p))
+                {
+                    index = objects.IndexOf(o);
+                    break;
+                }
+            }
+
+            return index;
+        }
+
         /// <summary>
         /// Vẽ tất cả đối tượng lên map
         /// </summary>
         private void DrawAllObject()
         {
+            try
+            {
+                back_buffer = new Bitmap(background, new Size((int)(background.Width * Zoom), (int)(background.Height * Zoom)));
+                pen = Graphics.FromImage(back_buffer);
+                pbMap.Image = back_buffer;
+            }
+            catch
+            { }
 
+            foreach (GameObject o in objects)
+            {
+                DrawObject(o);
+            }
         }
 
-        private void DrawCurrentObject()
+        private void DrawObject(GameObject o)
         {
-            if (current_object_draw.Object != null && current_object_draw.Image != null)
+            if (o != null)
             {
-                float width = current_object_draw.Bounds.Width * Zoom;
-                float height = current_object_draw.Bounds.Height * Zoom;
+                float width = o.BOUNDS.Width * Zoom;
+                float height = o.BOUNDS.Height * Zoom;
+                //Point draw_point = new Point((int)((o.POSITION.X * Zoom - width / 2)), (int)(o.POSITION.Y * Zoom - height / 2));
                 pen.DrawImage(
-                    current_object_draw.Image,
-                    current_object_draw.Position.X - width / 2,
-                    current_object_draw.Position.Y - height / 2,
-                    current_object_draw.Bounds.Width * Zoom,
-                    current_object_draw.Bounds.Height * Zoom);
+                    GetImage(o.TYPE),
+                    o.POSITION.X * Zoom,
+                    o.POSITION.Y * Zoom,
+                    o.BOUNDS.Width * Zoom,
+                    o.BOUNDS.Height * Zoom);
 
                 pbMap.Image = back_buffer;
             }
+        }
+
+        private void ChangePositionObject(int index, int stepX, int stepY)
+        {
+            Point old_pos = objects[index].POSITION;
+            objects[index].POSITION = new Point(old_pos.X + stepX, old_pos.Y + stepY);
         }
 
         #endregion
@@ -154,19 +187,13 @@ namespace MapEditor
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 background = new Bitmap(ofd.FileName);
-                back_buffer = new Bitmap(background, new Size((int)(background.Width * Zoom), (int)(background.Height * Zoom)));
-                pen = Graphics.FromImage(back_buffer);
-                pbMap.Image = back_buffer;
-                trbZoom.Enabled = true;
+                DrawAllObject();
             }
         }
 
         private void trbZoom_Scroll(object sender, EventArgs e)
         {
             zoom_rate = 1 + (float)trbZoom.Value * 0.5f;
-            back_buffer = new Bitmap(background, new Size((int)(background.Width * Zoom), (int)(background.Height * Zoom)));
-            pen = Graphics.FromImage(back_buffer);
-            pbMap.Image = back_buffer;
             DrawAllObject();
         }
 
@@ -258,7 +285,7 @@ namespace MapEditor
             string type = lvType.SelectedItems[0].Text;
             string key = cmbBigType.Text + "_" + type;
 
-            current_object_draw = new ObjectDraw(type, GetImage(key));
+            current_object_draw = new ObjectDraw(key, GetImage(key));
         }
 
         private void pbMap_MouseEnter(object sender, EventArgs e)
@@ -268,69 +295,77 @@ namespace MapEditor
 
         private void pbMap_MouseMove(object sender, MouseEventArgs e)
         {
-            if (current_object_draw.Object != null && current_object_draw.Image != null && is_change)
+            if (current_object_draw.Object == null && e.Button == MouseButtons.Left && can_change)
             {
                 current_point = new Point(e.X, e.Y);
                 Point vector = new Point(current_point.X - last_point.X, current_point.Y - last_point.Y);
                 int distance = (int)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
 
-                if (e.Button == MouseButtons.Left && distance >= Global.DISTANCE_MOVE)
+                if (distance >= Global.DISTANCE_MOVE)
                 {
-                    //Vẽ lại tất cả các đối tượng trước đó
-                    DrawAllObject();
+                    //Lấy chỉ số vị trí của đối tượng đã vẽ
+                    int redraw_index = GetIndexByPosition(last_point);
 
-                    //Gán lại last point
-                    int stepX = vector.X >= vector.Y ? trbStep.Value : 0;
-                    int stepY = vector.X >= vector.Y ? 0 : trbStep.Value;
+                    if (redraw_index >= 0)
+                    {
+                        int signX = vector.X < 0? -1 : 1;
+                        int signY = vector.Y < 0? -1 : 1;
+                        int stepX = Math.Abs(vector.X) >= Math.Abs(vector.Y) ? signX * trbStep.Value : 0;
+                        int stepY = stepX == 0 ? signY * trbStep.Value : 0;
 
-                    last_point = new Point(last_point.X + stepX, last_point.Y + stepY);
-                    current_point = last_point;
-
-                    //Vẽ đối tượng tạm trên màn hình
-                    RenderObject(new Point(), current_object_draw.Image);
+                        ChangePositionObject(redraw_index, stepX, stepY);
+                        DrawAllObject();
+                        can_change = false;
+                    }
                 }
             }
         }
 
         private void pbMap_MouseUp(object sender, MouseEventArgs e)
         {
-            if (current_object_draw.Object != null && current_object_draw.Image != null)
+            if (e.Button == MouseButtons.Left)
             {
-                if (e.Button == MouseButtons.Left)
-                {
-                    last_point = Point.Empty;
-                    current_point = Point.Empty;
-                    is_change = false;
-                    ChangeCursor(current_object_draw.Image);
-                }
+                last_point = Point.Empty;
+                current_point = Point.Empty;
+                ChangeCursor(current_object_draw.Image);
+                can_change = false;
             }
         }
 
         private void pbMap_MouseDown(object sender, MouseEventArgs e)
         {
-
             if (e.Button == MouseButtons.Left)
             {
                 last_point = new Point(e.X, e.Y);
-                current_object_draw.Position = last_point;
 
-                Point real_point = new Point((int)(last_point.X / Zoom), (int)(last_point.Y / Zoom));
-                GameObject go = new GameObject(current_object_draw.Object, real_point);
-
-                if (CheckIntersect(go))
+                if (current_object_draw.Object != null)
                 {
-                    DrawCurrentObject(); //Vẽ đối tượng lên màn hình
-                    InsertObject(go); //Lưu đối tượng vào danh sách
-                    ChangeCursor(null); 
+                    current_object_draw.Position = last_point;
+
+                    Point real_point = new Point((int)(last_point.X / Zoom - current_object_draw.Image.Width / 2),
+                        (int)(last_point.Y / Zoom - current_object_draw.Image.Height / 2));
+                    GameObject go = new GameObject(current_object_draw.Object, real_point);
+
+                    if (CheckIntersect(go))
+                    {
+                        DrawObject(go); //Vẽ đối tượng lên màn hình
+                        InsertObject(go); //Lưu đối tượng vào danh sách
+                        ChangeCursor(null);
+                    }
+                    else
+                    {
+                        //Hiển thị icon đỏ khi có va chạm với những đối tượng được vẽ trước
+                        Bitmap bmp = new Bitmap(current_object_draw.Image);
+                        Graphics gr = Graphics.FromImage(bmp);
+                        gr.FillRectangle(new SolidBrush(Color.Red), new Rectangle(0, 0, bmp.Width, bmp.Height));
+                        ChangeCursor(bmp);
+                    }
                 }
                 else
                 {
-                    //Hiển thị icon đỏ khi có va chạm với những đối tượng được vẽ trước
-                    Bitmap bmp = new Bitmap(current_object_draw.Image);
-                    Graphics gr = Graphics.FromImage(bmp);
-                    gr.FillRectangle(new SolidBrush(Color.Red),new Rectangle(0,0, bmp.Width, bmp.Height));
-                    ChangeCursor(bmp);
+                    can_change = true;
                 }
+                
             }
         }
     }
