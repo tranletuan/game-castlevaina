@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace MapEditor
 {
+
     public class GameObject
     {
         private Rectangle bounds;
@@ -62,4 +63,20 @@ namespace MapEditor
             return String.Format("{0} {1} {2} {3}", id, type, bounds.X, bounds.Y);
         }
     }
+
+    public struct ObjectDraw
+    {
+        public GameObject Object;
+        public Image Image;
+        public Rectangle Bounds;
+        public Point Position;
+
+        public ObjectDraw(string type, Image image)
+        {
+            Image = image;
+            Bounds = new Rectangle(0, 0, Image.Width, Image.Height);
+            Object = new GameObject(type, Bounds);
+            Position = Point.Empty;
+        }
+    };
 }

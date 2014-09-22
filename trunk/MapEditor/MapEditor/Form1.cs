@@ -16,7 +16,9 @@ namespace MapEditor
         public Form1()
         {
             InitializeComponent();
+            Init();
         }
+
 
         private Bitmap background; //Chứa hình nền của map
         private Bitmap back_buffer; //Vẽ các đối tượng
@@ -25,9 +27,19 @@ namespace MapEditor
         private Dictionary<string, Image> resources;
         private ImageList current_type_list;
         private List<string> current_key_list;
-        private GameObject current_object;
+        private ObjectDraw current_object_draw;
+        private Point current_point;
+        private Point last_point;
+        private bool is_change;
+        private List<GameObject> objects;
+
 
         #region METHOD
+
+        public void Init()
+        {
+            objects = new List<GameObject>();
+        }
 
         public float Zoom
         {
@@ -37,7 +49,7 @@ namespace MapEditor
 
         private Image GetImage(string key)
         {
-            return resources[type];
+            return resources[key];
         }
 
         private void SetImageList(string big_type)
@@ -59,12 +71,74 @@ namespace MapEditor
             }
         }
 
+        private void RenderObject(Point pos, Image img)
+        {
+
+        }
+
+        private void ChangeCursor(Image img = null)
+        {
+            //Thay đổi con trỏ chuột
+            if (current_object_draw.Object == null) return;
+
+            if (img != null)
+            {
+                //Hình ảnh con trỏn chuột là hình ảnh đối tượng hiện thời
+                Bitmap cur_img = new Bitmap(img, new Size((int)(img.Width * Zoom), (int)(img.Height * Zoom)));
+                Cursor cur = new Cursor(cur_img.GetHicon());
+                pbMap.Cursor = cur;
+            }
+            else
+            {
+                pbMap.Cursor = Cursors.Default;
+            }
+        }
+
+        private bool CheckIntersect(GameObject go)
+        {
+            foreach (GameObject o in objects)
+            {
+                Rectangle rect = Rectangle.Intersect(o.BOUNDS, go.BOUNDS);
+
+                if (rect.Width > 0 && rect.Height > 0)
+                {
+                    return false; //Có va chạm
+                }
+            }
+
+            return true; //Không va chạm
+        }
+
+        private bool InsertObject(GameObject go)
+        {
+            objects.Add(go);
+
+            return true;
+        }
+
         /// <summary>
         /// Vẽ tất cả đối tượng lên map
         /// </summary>
-        private void RenderAllObject()
+        private void DrawAllObject()
         {
- 
+
+        }
+
+        private void DrawCurrentObject()
+        {
+            if (current_object_draw.Object != null && current_object_draw.Image != null)
+            {
+                float width = current_object_draw.Bounds.Width * Zoom;
+                float height = current_object_draw.Bounds.Height * Zoom;
+                pen.DrawImage(
+                    current_object_draw.Image,
+                    current_object_draw.Position.X - width / 2,
+                    current_object_draw.Position.Y - height / 2,
+                    current_object_draw.Bounds.Width * Zoom,
+                    current_object_draw.Bounds.Height * Zoom);
+
+                pbMap.Image = back_buffer;
+            }
         }
 
         #endregion
@@ -83,20 +157,17 @@ namespace MapEditor
                 back_buffer = new Bitmap(background, new Size((int)(background.Width * Zoom), (int)(background.Height * Zoom)));
                 pen = Graphics.FromImage(back_buffer);
                 pbMap.Image = back_buffer;
+                trbZoom.Enabled = true;
             }
         }
 
         private void trbZoom_Scroll(object sender, EventArgs e)
         {
-            try
-            {
-                zoom_rate = 1 + (float)trbZoom.Value * 0.5f;
-                back_buffer = new Bitmap(background, new Size((int)(background.Width * Zoom), (int)(background.Height * Zoom)));
-                pen = Graphics.FromImage(back_buffer);
-                pbMap.Image = back_buffer;
-                RenderAllObject();
-            }
-            catch { }
+            zoom_rate = 1 + (float)trbZoom.Value * 0.5f;
+            back_buffer = new Bitmap(background, new Size((int)(background.Width * Zoom), (int)(background.Height * Zoom)));
+            pen = Graphics.FromImage(back_buffer);
+            pbMap.Image = back_buffer;
+            DrawAllObject();
         }
 
         private void pbMap_Resize(object sender, EventArgs e)
@@ -123,7 +194,7 @@ namespace MapEditor
             {
                 string parent_path = fbd.SelectedPath;
                 string[] folder_root = Directory.GetDirectories(parent_path);
-               
+
                 //Duyệt các folder con
                 foreach (string node in folder_root)
                 {
@@ -140,21 +211,21 @@ namespace MapEditor
                         {
                             Image img = Image.FromFile(file);
                             string file_name = file.Substring(node.Length + 1); //Lấy tên file texture
-                            string key = big_type_name + "_" + file_name.Split(new char[]{'.'},StringSplitOptions.RemoveEmptyEntries)[0];
+                            string key = big_type_name + "_" + file_name.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries)[0];
                             resources.Add(key, img);
                         }
                         catch { }
                     }
                 }
 
-                try 
+                try
                 {
                     //Đưa các danh sách type chung đọc được vào cmb
                     cmbBigType.DataSource = big_types;
                     cmbBigType.SelectedIndex = 0;
                 }
                 catch { }
-                
+
             }
 
         }
@@ -162,7 +233,7 @@ namespace MapEditor
         private void cmbBigType_SelectedValueChanged(object sender, EventArgs e)
         {
             lvType.Clear();
-            SetImageList(cmbBigType.Text);    
+            SetImageList(cmbBigType.Text);
             current_type_list.ImageSize = new Size(48, 48);
             lvType.LargeImageList = current_type_list;
 
@@ -178,15 +249,90 @@ namespace MapEditor
 
         private void lvType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(lvType.SelectedItems.Count  == 0) return;
+            if (lvType.SelectedItems.Count == 0)
+            {
+                current_object_draw = new ObjectDraw();
+                return;
+            }
 
             string type = lvType.SelectedItems[0].Text;
             string key = cmbBigType.Text + "_" + type;
-            
-            Image current_image = GetImage(key);
-            MessageBox.Show(current_image.ToString());
-            //current_object = new GameObject(type)
+
+            current_object_draw = new ObjectDraw(type, GetImage(key));
         }
 
+        private void pbMap_MouseEnter(object sender, EventArgs e)
+        {
+            ChangeCursor(current_object_draw.Image);
+        }
+
+        private void pbMap_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (current_object_draw.Object != null && current_object_draw.Image != null && is_change)
+            {
+                current_point = new Point(e.X, e.Y);
+                Point vector = new Point(current_point.X - last_point.X, current_point.Y - last_point.Y);
+                int distance = (int)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
+
+                if (e.Button == MouseButtons.Left && distance >= Global.DISTANCE_MOVE)
+                {
+                    //Vẽ lại tất cả các đối tượng trước đó
+                    DrawAllObject();
+
+                    //Gán lại last point
+                    int stepX = vector.X >= vector.Y ? trbStep.Value : 0;
+                    int stepY = vector.X >= vector.Y ? 0 : trbStep.Value;
+
+                    last_point = new Point(last_point.X + stepX, last_point.Y + stepY);
+                    current_point = last_point;
+
+                    //Vẽ đối tượng tạm trên màn hình
+                    RenderObject(new Point(), current_object_draw.Image);
+                }
+            }
+        }
+
+        private void pbMap_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (current_object_draw.Object != null && current_object_draw.Image != null)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    last_point = Point.Empty;
+                    current_point = Point.Empty;
+                    is_change = false;
+                    ChangeCursor(current_object_draw.Image);
+                }
+            }
+        }
+
+        private void pbMap_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            if (e.Button == MouseButtons.Left)
+            {
+                last_point = new Point(e.X, e.Y);
+                current_object_draw.Position = last_point;
+
+                Point real_point = new Point((int)(last_point.X / Zoom), (int)(last_point.Y / Zoom));
+                GameObject go = new GameObject(current_object_draw.Object, real_point);
+
+                if (CheckIntersect(go))
+                {
+                    DrawCurrentObject(); //Vẽ đối tượng lên màn hình
+                    InsertObject(go); //Lưu đối tượng vào danh sách
+                    ChangeCursor(null); 
+                }
+                else
+                {
+                    //Hiển thị icon đỏ khi có va chạm với những đối tượng được vẽ trước
+                    Bitmap bmp = new Bitmap(current_object_draw.Image);
+                    Graphics gr = Graphics.FromImage(bmp);
+                    gr.FillRectangle(new SolidBrush(Color.Red),new Rectangle(0,0, bmp.Width, bmp.Height));
+                    ChangeCursor(bmp);
+                }
+            }
+        }
     }
 }
+
