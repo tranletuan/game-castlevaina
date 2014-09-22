@@ -13,6 +13,7 @@ namespace MapEditor
         private Rectangle bounds;
         private string type;
         private int id;
+        private Point position;
 
         public GameObject()
         {
@@ -40,6 +41,7 @@ namespace MapEditor
         {
             this.id = Global.ID++;
             this.type = go.type;
+            this.position = position;
             this.bounds = new Rectangle(position.X, position.Y, go.bounds.Width, go.bounds.Height);
         }
 
@@ -56,6 +58,16 @@ namespace MapEditor
         public string TYPE
         {
             get { return type; }
+        }
+
+        public Point POSITION
+        {
+            get { return position; }
+            set
+            {
+                position = value;
+                bounds = new Rectangle(value.X, value.Y, bounds.Width, bounds.Height);
+            }
         }
 
         public override string ToString()
