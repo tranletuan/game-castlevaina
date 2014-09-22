@@ -25,6 +25,7 @@ namespace MapEditor
         private Dictionary<string, Image> resources;
         private ImageList current_type_list;
         private List<string> current_key_list;
+        private GameObject current_object;
 
         #region METHOD
 
@@ -34,7 +35,7 @@ namespace MapEditor
             set { zoom_rate = value >= 1 ? value : 1; }
         }
 
-        private Image GetTexture(string type)
+        private Image GetImage(string key)
         {
             return resources[type];
         }
@@ -82,17 +83,20 @@ namespace MapEditor
                 back_buffer = new Bitmap(background, new Size((int)(background.Width * Zoom), (int)(background.Height * Zoom)));
                 pen = Graphics.FromImage(back_buffer);
                 pbMap.Image = back_buffer;
-                trbZoom.Enabled = true;
             }
         }
 
         private void trbZoom_Scroll(object sender, EventArgs e)
         {
-            zoom_rate = 1 + (float)trbZoom.Value * 0.5f;
-            back_buffer = new Bitmap(background, new Size((int)(background.Width * Zoom), (int)(background.Height * Zoom)));
-            pen = Graphics.FromImage(back_buffer);
-            pbMap.Image = back_buffer;
-            RenderAllObject();
+            try
+            {
+                zoom_rate = 1 + (float)trbZoom.Value * 0.5f;
+                back_buffer = new Bitmap(background, new Size((int)(background.Width * Zoom), (int)(background.Height * Zoom)));
+                pen = Graphics.FromImage(back_buffer);
+                pbMap.Image = back_buffer;
+                RenderAllObject();
+            }
+            catch { }
         }
 
         private void pbMap_Resize(object sender, EventArgs e)
@@ -170,6 +174,18 @@ namespace MapEditor
             }
 
 
+        }
+
+        private void lvType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(lvType.SelectedItems.Count  == 0) return;
+
+            string type = lvType.SelectedItems[0].Text;
+            string key = cmbBigType.Text + "_" + type;
+            
+            Image current_image = GetImage(key);
+            MessageBox.Show(current_image.ToString());
+            //current_object = new GameObject(type)
         }
 
     }
