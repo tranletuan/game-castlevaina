@@ -10,5 +10,6 @@ namespace MapEditor
     {
         public static int MIN_WIDTH = 200;
         public static int ID = 0;
+        public static int DISTANCE_MOVE = 5;
     }
 }

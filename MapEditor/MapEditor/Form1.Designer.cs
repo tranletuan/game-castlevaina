@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.trbStep = new System.Windows.Forms.TrackBar();
+            this.label2 = new System.Windows.Forms.Label();
             this.cmbBigType = new System.Windows.Forms.ComboBox();
             this.lvType = new System.Windows.Forms.ListView();
             this.trbZoom = new System.Windows.Forms.TrackBar();
@@ -48,6 +53,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trbStep)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbZoom)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -58,6 +64,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.trbStep);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.cmbBigType);
             this.groupBox1.Controls.Add(this.lvType);
             this.groupBox1.Controls.Add(this.trbZoom);
@@ -69,6 +80,57 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Toolbox";
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton2.Location = new System.Drawing.Point(165, 150);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(49, 17);
+            this.radioButton2.TabIndex = 7;
+            this.radioButton2.Text = "More";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton1.Location = new System.Drawing.Point(75, 150);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(45, 17);
+            this.radioButton1.TabIndex = 7;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "One";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 147);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 20);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Draw";
+            // 
+            // trbStep
+            // 
+            this.trbStep.Location = new System.Drawing.Point(66, 92);
+            this.trbStep.Minimum = 1;
+            this.trbStep.Name = "trbStep";
+            this.trbStep.Size = new System.Drawing.Size(154, 45);
+            this.trbStep.TabIndex = 5;
+            this.trbStep.Value = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 92);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 20);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Step";
             // 
             // cmbBigType
             // 
@@ -84,6 +146,7 @@
             // 
             this.lvType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvType.Location = new System.Drawing.Point(6, 241);
+            this.lvType.MultiSelect = false;
             this.lvType.Name = "lvType";
             this.lvType.Size = new System.Drawing.Size(208, 430);
             this.lvType.TabIndex = 2;
@@ -92,6 +155,7 @@
             // 
             // trbZoom
             // 
+            this.trbZoom.Enabled = false;
             this.trbZoom.Location = new System.Drawing.Point(66, 40);
             this.trbZoom.Maximum = 4;
             this.trbZoom.Name = "trbZoom";
@@ -208,6 +272,10 @@
             this.pbMap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pbMap.TabIndex = 0;
             this.pbMap.TabStop = false;
+            this.pbMap.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbMap_MouseDown);
+            this.pbMap.MouseEnter += new System.EventHandler(this.pbMap_MouseEnter);
+            this.pbMap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbMap_MouseMove);
+            this.pbMap.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbMap_MouseUp);
             this.pbMap.Resize += new System.EventHandler(this.pbMap_Resize);
             // 
             // statusStrip1
@@ -244,6 +312,7 @@
             this.Text = "Map Editor";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trbStep)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbZoom)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -280,6 +349,11 @@
         private System.Windows.Forms.ToolStripMenuItem loadResoucesToolStripMenuItem;
         private System.Windows.Forms.ComboBox cmbBigType;
         private System.Windows.Forms.ListView lvType;
+        private System.Windows.Forms.TrackBar trbStep;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Label label3;
     }
 }
 
