@@ -1,7 +1,7 @@
-﻿#include "texture.h"
+﻿#include "CTexture.h"
 #include "global.h"
 
-Texture::Texture()
+CTexture::CTexture()
 {
 	file_name = NULL;
 	size = RECT();
@@ -13,7 +13,7 @@ Texture::Texture()
 	picture = NULL;
 }
 
-Texture::Texture(const Texture &texture)
+CTexture::CTexture(const CTexture &texture)
 {
 	file_name = LPCWSTR(texture.file_name);
 	size = texture.size;
@@ -25,16 +25,16 @@ Texture::Texture(const Texture &texture)
 	picture = texture.picture;
 }
 
-Texture::Texture(LPCWSTR file_name, int num_cols, int num_rows, int count)
+CTexture::CTexture(LPCWSTR file_name, int num_cols, int num_rows)
 {
 	this->file_name = LPCWSTR(file_name);
 	this->num_cols = num_cols;
 	this->num_rows = num_rows;
-	this->count = count;
+	this->count = num_cols * num_rows;
 	Load();
 }
 
-Texture::~Texture()
+CTexture::~CTexture()
 {
 	if (this->picture != NULL)
 	{
@@ -42,13 +42,18 @@ Texture::~Texture()
 	}
 }
 
-void Texture::Draw(int x, int y)
+void CTexture::Draw(int x, int y)
 {
 	D3DXVECTOR3 pos((float)x, (float)y, 0);
-	kSpriteHandler->Draw(picture, &size, NULL, &pos, 0xFFFFFFFF);
+	kSpriteHandler->Draw(
+		picture, 
+		&size, 
+		NULL, 
+		&pos, 
+		D3DCOLOR_XRGB(255, 255, 255));
 }
 
-void Texture::Load()
+void CTexture::Load()
 {
 	D3DXIMAGE_INFO info;
 	HRESULT hrs;

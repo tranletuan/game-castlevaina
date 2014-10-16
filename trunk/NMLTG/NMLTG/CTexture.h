@@ -4,7 +4,7 @@
 #include <d3d9.h>
 #include <d3dx9.h>
 
-class Texture
+class CTexture
 {
 public:
 	LPCWSTR file_name;
@@ -18,10 +18,10 @@ public:
 	int width;
 	int height;
 
-	Texture();
-	Texture(const Texture &texture);
-	Texture(LPCWSTR file_name, int num_cols = 1, int num_rows = 1, int count = 1);
-	~Texture();
+	CTexture();
+	CTexture(const CTexture &texture);
+	CTexture(LPCWSTR file_name, int num_cols = 1, int num_rows = 1);
+	~CTexture();
 	void Draw(int x, int y);
 
 protected:

@@ -9,11 +9,12 @@
 #include "global.h"
 
 using namespace std;
-class Game
+
+class CGame
 {
 public:
-	Game(int cmd_show);
-	~Game();
+	CGame(int cmd_show);
+	~CGame();
 	void GameInit();
 	void GameRun();
 	void GameEnd();
@@ -32,11 +33,13 @@ protected:
 	void RenderAll(); //Vẽ hình lên của sổ
 	int IsKeyDown(int key_code);
 
-	virtual void RenderFrame(LPDIRECT3DDEVICE9 d3d_device, int delta); //Vẽ các thành phần trong game
+	virtual void RenderFrame(LPDIRECT3DDEVICE9 d3d_device); //Vẽ các thành phần trong game
 	virtual void LoadResources(LPDIRECT3DDEVICE9 d3d_device);
 	virtual void ProcessInput(LPDIRECT3DDEVICE9 d3d_device, int delta); //Xử lý phím
 	virtual void OnKeyDown(int key_code);
 	virtual void OnKeyUp(int key_code);
 	virtual void GameUpdate(int delta_time);
+
+	LPDIRECT3DSURFACE9 _background;
 };
 #endif // ! _GAME_H_

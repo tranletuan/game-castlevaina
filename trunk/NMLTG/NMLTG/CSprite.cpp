@@ -1,7 +1,7 @@
-#include "sprite.h"
+#include "CSprite.h"
 #include "global.h"
 
-Sprite::Sprite()
+CSprite::CSprite()
 {
 	sprite_texture = NULL;
 	start = 0;
@@ -11,7 +11,7 @@ Sprite::Sprite()
 	last_time = 0;
 }
 
-Sprite::Sprite(const Sprite &sprite)
+CSprite::CSprite(const CSprite &sprite)
 {
 	sprite_texture = sprite.sprite_texture;
 	start = sprite.start;
@@ -21,7 +21,7 @@ Sprite::Sprite(const Sprite &sprite)
 	last_time = sprite.last_time;
 }
 
-Sprite::Sprite(Texture *texture, int start, int end, int time_ani) 
+CSprite::CSprite(CTexture *texture, int start, int end, int time_ani) 
 : sprite_texture(texture)
 {
 	this->start = start;
@@ -31,7 +31,7 @@ Sprite::Sprite(Texture *texture, int start, int end, int time_ani)
 	this->last_time = 0;
 }
 
-Sprite::Sprite(Texture *texture, int time_ani) :sprite_texture(texture)
+CSprite::CSprite(CTexture *texture, int time_ani) :sprite_texture(texture)
 {
 	this->start = 0;
 	this->end = texture->count - 1;
@@ -40,15 +40,12 @@ Sprite::Sprite(Texture *texture, int time_ani) :sprite_texture(texture)
 	this->last_time = 0;
 }
 
-Sprite::~Sprite()
+CSprite::~CSprite()
 {
-	if (sprite_texture != NULL)
-	{
-		delete sprite_texture;
-	}
+
 }
 
-void Sprite::Next()
+void CSprite::Next()
 {
 	index++;
 	if (index > end)
@@ -57,22 +54,23 @@ void Sprite::Next()
 	}
 }
 
-void Sprite::Reset()
+void CSprite::Reset()
 {
 	index = start;
 	last_time = 0;
 }
 
-void Sprite::SelectFrameOf(int index)
+void CSprite::SelectFrameOf(int index)
 {
 	this->index = index;
 	if (index > sprite_texture->count)
 		Reset();
 }
 
-void Sprite::UpdateAllEffect(int elapsed_time)
+void CSprite::UpdateAllEffect(int elapsed_time)
 {
 	DWORD now = GetTickCount();
+	time_ani = elapsed_time;
 
 	if (now - last_time >= time_ani)
 	{
@@ -81,24 +79,21 @@ void Sprite::UpdateAllEffect(int elapsed_time)
 	}
 }
 
-void Sprite::UpdateEffect(int start_index, int end_index, int elapsed_time)
+void CSprite::UpdateEffect()
 {
-	DWORD now = GetTickCount();
-	time_ani = elapsed_time;
-
-	if (index > end_index || index < start_index)
+	if (start < end)
 	{
-		index = start_index;
-	}
+		DWORD now = GetTickCount();
 
-	if (now - last_time >= time_ani)
-	{
-		index = index + 1 > end_index ? start_index : index + 1;
-		last_time = now;
+		if (now - last_time >= time_ani)
+		{
+			index = index + 1 > end ? start : index + 1;
+			last_time = now;
+		}
 	}
 }
 
-void Sprite::Draw(int x, int y)
+void CSprite::Draw(int x, int y)
 {
 	RECT src_rect;
 
@@ -107,17 +102,17 @@ void Sprite::Draw(int x, int y)
 	src_rect.right = src_rect.left + sprite_texture->frame_width;
 	src_rect.bottom = src_rect.top + sprite_texture->frame_height;
 
-	D3DXVECTOR3 pos((float)x, (float)y, 0);
+	D3DXVECTOR3 pos = GetCorner(x, y, sprite_texture->frame_width, sprite_texture->frame_height);
 
 	kSpriteHandler->Draw(
 		sprite_texture->picture,
 		&src_rect,
 		NULL,
 		&pos,
-		0xFFFFFFFF);
+		D3DCOLOR_XRGB(255, 255, 255));
 }
 
-void Sprite::DrawFlipX(int x, int y)
+void CSprite::DrawFlipX(int x, int y)
 {
 	RECT src_rect;
 
@@ -142,7 +137,7 @@ void Sprite::DrawFlipX(int x, int y)
 	kSpriteHandler->SetTransform(&old_matrix);
 }
 
-void Sprite::DrawFlipY(int x, int y)
+void CSprite::DrawFlipY(int x, int y)
 {
 	RECT src_rect;
 
@@ -167,7 +162,7 @@ void Sprite::DrawFlipY(int x, int y)
 	kSpriteHandler->SetTransform(&old_matrix);
 }
 
-void Sprite::DrawRect(int x, int y, RECT srcRect)
+void CSprite::DrawRect(int x, int y, RECT srcRect)
 {
 	D3DXVECTOR3 pos((float)x, (float)y, 0);
 
@@ -179,7 +174,7 @@ void Sprite::DrawRect(int x, int y, RECT srcRect)
 		D3DCOLOR_XRGB(255, 255, 255));
 }
 
-void Sprite::DrawTransform(int x, int y, D3DXVECTOR2 scale, float degRotate, float depth)
+void CSprite::DrawTransform(int x, int y, D3DXVECTOR2 scale, float degRotate, float depth)
 {
 	RECT src_rect;
 
@@ -205,13 +200,35 @@ void Sprite::DrawTransform(int x, int y, D3DXVECTOR2 scale, float degRotate, flo
 
 	D3DXMATRIX final_matrix = new_natrix * old_matrix;
 	kSpriteHandler->SetTransform(&final_matrix);
+	D3DXVECTOR3 pos = GetCorner(x, y, sprite_texture->frame_width, sprite_texture->frame_height);
 
 	kSpriteHandler->Draw(
 		sprite_texture->picture,
 		&src_rect,
 		NULL,
-		&D3DXVECTOR3(x, y, depth),
+		&D3DXVECTOR3(pos.x, pos.y, depth),
 		0xFFFFFFFF);
 
 	kSpriteHandler->SetTransform(&old_matrix);
+}
+
+void CSprite::DrawWithDirecion(D3DXVECTOR3 pos, float direction, int start, int end, int time)
+{
+	this->start = start;
+	this->end = end;
+	this->time_ani = time;
+
+	if (direction > 0)
+	{
+		Draw(pos.x, pos.y);
+	}
+	else
+	{
+		DrawFlipX(pos.x, pos.y);
+	}
+}
+
+D3DXVECTOR3 CSprite::GetCorner(int x, int y, int width, int height)
+{
+	return D3DXVECTOR3(x - width / 2, y - height / 2, 0);
 }

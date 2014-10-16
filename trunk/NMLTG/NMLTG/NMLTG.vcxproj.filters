@@ -13,71 +13,95 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\test">
-      <UniqueIdentifier>{4d226f0e-2404-4a09-9ad3-a46fec5ff912}</UniqueIdentifier>
+    <Filter Include="Header Files\platform">
+      <UniqueIdentifier>{30fa7a7f-ea2d-43e2-a50a-9c0794797da4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\test">
-      <UniqueIdentifier>{51105c35-2ce0-43c8-94e3-b3c55ff2c4d4}</UniqueIdentifier>
+    <Filter Include="Source Files\platform">
+      <UniqueIdentifier>{7ad24c8a-64cd-4565-bd00-54fe1e3a75f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\basic">
+      <UniqueIdentifier>{22f279c4-d08c-491c-a896-9ed6b1d08af0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\object">
-      <UniqueIdentifier>{8ed3c681-2383-4655-8924-eed5f4b18353}</UniqueIdentifier>
+      <UniqueIdentifier>{55da82d7-92d5-412d-9519-079c5b95a057}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\object">
       <UniqueIdentifier>{0a7d4e55-3e07-4aa6-9113-8c8d2bafa719}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\basic">
+      <UniqueIdentifier>{d12488ff-874c-4dad-9cf2-1c1df1d27ed9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="global.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="world_test.h">
-      <Filter>Header Files\test</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="background.h">
-      <Filter>Header Files\object</Filter>
+    <ClInclude Include="CCamera.h">
+      <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="simon.h">
+    <ClInclude Include="CGame.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="CSprite.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="CTexture.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="CPhysical.h">
+      <Filter>Header Files\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="CObject.h">
+      <Filter>Header Files\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="CMovableObject.h">
+      <Filter>Header Files\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="CResourcesManager.h">
+      <Filter>Header Files\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="CBackground.h">
       <Filter>Header Files\object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="global.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="win_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="world_test.cpp">
-      <Filter>Source Files\test</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="background.cpp">
-      <Filter>Source Files\object</Filter>
+    <ClCompile Include="CCamera.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="simon.cpp">
+    <ClCompile Include="CGame.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="CSprite.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="CTexture.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="CPhysical.cpp">
+      <Filter>Source Files\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="Global.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="CResourcesManager.cpp">
+      <Filter>Source Files\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="CBackground.cpp">
       <Filter>Source Files\object</Filter>
     </ClCompile>
   </ItemGroup>

@@ -82,23 +82,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="background.h" />
-    <ClInclude Include="camera.h" />
-    <ClInclude Include="game.h" />
-    <ClInclude Include="global.h" />
-    <ClInclude Include="simon.h" />
-    <ClInclude Include="sprite.h" />
-    <ClInclude Include="texture.h" />
+    <ClInclude Include="CBackground.h" />
+    <ClInclude Include="CCamera.h" />
+    <ClInclude Include="CGame.h" />
+    <ClInclude Include="CMovableObject.h" />
+    <ClInclude Include="Global.h" />
+    <ClInclude Include="CObject.h" />
+    <ClInclude Include="CPhysical.h" />
+    <ClInclude Include="CSprite.h" />
+    <ClInclude Include="CTexture.h" />
+    <ClInclude Include="CResourcesManager.h" />
+    <ClInclude Include="Utils.h" />
     <ClInclude Include="world_test.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="background.cpp" />
-    <ClCompile Include="camera.cpp" />
-    <ClCompile Include="game.cpp" />
-    <ClCompile Include="global.cpp" />
-    <ClCompile Include="simon.cpp" />
-    <ClCompile Include="sprite.cpp" />
-    <ClCompile Include="texture.cpp" />
+    <ClCompile Include="CBackground.cpp" />
+    <ClCompile Include="CCamera.cpp" />
+    <ClCompile Include="CGame.cpp" />
+    <ClCompile Include="Global.cpp" />
+    <ClCompile Include="CPhysical.cpp" />
+    <ClCompile Include="CSprite.cpp" />
+    <ClCompile Include="CTexture.cpp" />
+    <ClCompile Include="CResourcesManager.cpp" />
+    <ClCompile Include="Utils.cpp" />
     <ClCompile Include="win_main.cpp" />
     <ClCompile Include="world_test.cpp" />
   </ItemGroup>

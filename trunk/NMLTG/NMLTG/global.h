@@ -20,11 +20,8 @@
 
 //---//
 //
-extern bool			kIsInitedDX;		//Kiểm tra khởi tạo DirectX
-extern int			kGameDepth;		//Chỉ số độ sâu
 extern LPWSTR		kGameName;			//Tên cửa sổ game
 extern int			kFrameRate;		//Tỷ lệ chuyển chuyển frame (30->60)
-extern int			kColorMode;
 extern bool			kIsFullScreen;		//Toàn màn hình
 extern D3DFORMAT	kBackBufferFormat;
 
@@ -46,8 +43,7 @@ extern LPD3DXSPRITE					kSpriteHandler;//Đối tượng vẽ texture
 //GAME CONSTANT
 extern float						kZoom;
 extern D3DCOLOR						kBackgroundColorTexture;
-extern LPCWSTR						kFolderBackground; //Thư mục chứ các file background
-extern int							kGround;
+extern LPCWSTR						kBackgroundFolder;
 
 void GLMessage(LPCWSTR text);
 

@@ -3,17 +3,20 @@
 
 #include <d3d9.h>
 #include <d3dx9.h>
-#include "sprite.h"
-#include "global.h"
+#include "Global.h"
+#include "CSprite.h"
 
-class Camera
+class CCamera
 {
 public:
 	
 	D3DXVECTOR2 view_port;
-	Camera();
+	CCamera();
+
 	void UpdateCamera(int x);
+	D3DXVECTOR3 CenterSprite(int x, int y, int width, int height);
 	D3DXVECTOR3 Transform(int x, int y);
+	D3DXVECTOR3 Transform(D3DXVECTOR3 pos);
 };
 
 #endif // !_CAMERA_H_
