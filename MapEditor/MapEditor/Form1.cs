@@ -19,7 +19,6 @@ namespace MapEditor
             Init();
         }
 
-
         private Bitmap background; //Chứa hình nền của map
         private Bitmap back_buffer; //Vẽ các đối tượng
         private Graphics pen;
@@ -31,13 +30,20 @@ namespace MapEditor
         private Point current_point;
         private Point last_point;
         private List<GameObject> objects;
-        private bool can_change; 
+        private bool multil_draw;
 
         #region METHOD
 
         public void Init()
         {
             objects = new List<GameObject>();
+            Global.SETTING = new Setting(Global.SETTING_PATH);
+
+            if (Global.SETTING.AutoLoad)
+            {
+                LoadBackground();
+                LoadResources();
+            }
         }
 
         public float Zoom
@@ -130,9 +136,6 @@ namespace MapEditor
             return index;
         }
 
-        /// <summary>
-        /// Vẽ tất cả đối tượng lên map
-        /// </summary>
         private void DrawAllObject()
         {
             try
@@ -174,52 +177,24 @@ namespace MapEditor
             objects[index].POSITION = new Point(old_pos.X + stepX, old_pos.Y + stepY);
         }
 
-        #endregion
-
-        private void loadMapToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LoadBackground()
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "Load Background";
-            ofd.Filter = "Image Files |*.BMP;*.DIB;*.RLE;*.JPG;*.JPEG;*.JPE;*.JFIF;*.GIF;*.TIF;*.TIFF;*.PNG";
-            ofd.FilterIndex = 1;
-            ofd.Multiselect = false;
-
-            if (ofd.ShowDialog() == DialogResult.OK)
+            if (Global.SETTING.BackgroundPath != "")
             {
-                background = new Bitmap(ofd.FileName);
+                background = new Bitmap(Global.SETTING.BackgroundPath);
                 DrawAllObject();
             }
         }
 
-        private void trbZoom_Scroll(object sender, EventArgs e)
-        {
-            zoom_rate = 1 + (float)trbZoom.Value * 0.5f;
-            DrawAllObject();
-        }
-
-        private void pbMap_Resize(object sender, EventArgs e)
-        {
-            pnlMap.AutoScrollPosition = new Point(0, 0);
-
-            int pic_y = pnlMap.Height / 2 - back_buffer.Height / 2;
-            int pic_x = pnlMap.Width / 2 - back_buffer.Width / 2;
-
-            pic_x = pic_x >= 0 ? pic_x : 0;
-            pic_y = pic_y >= 0 ? pic_y : 0;
-
-            pbMap.Location = new Point(pic_x, pic_y);
-        }
-
-        private void loadResoucesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LoadResources()
         {
             resources = new Dictionary<string, Image>();
             List<string> big_types = new List<string>();
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
 
             //Mở folder chứa các texture
-            if (fbd.ShowDialog() == DialogResult.OK)
+            if (Global.SETTING.ResourcesPath != "")
             {
-                string parent_path = fbd.SelectedPath;
+                string parent_path = Global.SETTING.ResourcesPath;
                 string[] folder_root = Directory.GetDirectories(parent_path);
 
                 //Duyệt các folder con
@@ -254,7 +229,103 @@ namespace MapEditor
                 catch { }
 
             }
+        }
 
+        private Point RealLastPoint()
+        {
+            return new Point((int)(last_point.X / Zoom - current_object_draw.Image.Width / 2),
+                               (int)(last_point.Y / Zoom - current_object_draw.Image.Height / 2));
+        }
+
+        private void SaveObject()
+        {
+            if (current_object_draw.Object != null)
+            {
+                current_object_draw.Position = last_point;
+
+                Point real_point = RealLastPoint();
+
+                GameObject go = new GameObject(current_object_draw.Object, real_point);
+
+                if (CheckIntersect(go))
+                {
+                    DrawObject(go); //Vẽ đối tượng lên màn hình
+                    InsertObject(go); //Lưu đối tượng vào danh sách
+                    ChangeCursor(null);
+
+                    //Bật chế độ vẽ nhiều đối tượng
+                    if (rbDrawOne.Checked == false)
+                    {
+                        multil_draw = true;
+                    }
+                }
+                else
+                {
+                    //Hiển thị icon đỏ khi có va chạm với những đối tượng được vẽ trước
+                    Bitmap bmp = new Bitmap(current_object_draw.Image);
+                    Graphics gr = Graphics.FromImage(bmp);
+                    gr.FillRectangle(new SolidBrush(Color.Red), new Rectangle(0, 0, bmp.Width, bmp.Height));
+                    ChangeCursor(bmp);
+                }
+            }
+        }
+
+        private void ChangePositionObject()
+        {
+            //Khi đối tượng
+            if (current_object_draw.Object == null)
+            {
+                Point vector = new Point(current_point.X - last_point.X, current_point.Y - last_point.Y);
+                int distance = (int)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
+
+                if (distance >= Global.DISTANCE_MOVE)
+                {
+                    //Lấy chỉ số vị trí của đối tượng đã vẽ
+                    int redraw_index = GetIndexByPosition(last_point);
+
+                    if (redraw_index >= 0)
+                    {
+                        int signX = vector.X < 0 ? -1 : 1;
+                        int signY = vector.Y < 0 ? -1 : 1;
+                        int stepX = Math.Abs(vector.X) >= Math.Abs(vector.Y) ? signX * trbStep.Value : 0;
+                        int stepY = stepX == 0 ? signY * trbStep.Value : 0;
+
+                        ChangePositionObject(redraw_index, stepX, stepY);
+                        DrawAllObject();
+                    }
+                }
+            }
+        }
+
+        #endregion
+
+        private void loadMapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadBackground();
+        }
+
+        private void trbZoom_Scroll(object sender, EventArgs e)
+        {
+            zoom_rate = 1 + (float)trbZoom.Value * 0.5f;
+            DrawAllObject();
+        }
+
+        private void pbMap_Resize(object sender, EventArgs e)
+        {
+            pnlMap.AutoScrollPosition = new Point(0, 0);
+
+            int pic_y = pnlMap.Height / 2 - back_buffer.Height / 2;
+            int pic_x = pnlMap.Width / 2 - back_buffer.Width / 2;
+
+            pic_x = pic_x >= 0 ? pic_x : 0;
+            pic_y = pic_y >= 0 ? pic_y : 0;
+
+            pbMap.Location = new Point(pic_x, pic_y);
+        }
+
+        private void loadResoucesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadResources();
         }
 
         private void cmbBigType_SelectedValueChanged(object sender, EventArgs e)
@@ -295,29 +366,10 @@ namespace MapEditor
 
         private void pbMap_MouseMove(object sender, MouseEventArgs e)
         {
-            if (current_object_draw.Object == null && e.Button == MouseButtons.Left && can_change)
+            if (e.Button == MouseButtons.Left)
             {
                 current_point = new Point(e.X, e.Y);
-                Point vector = new Point(current_point.X - last_point.X, current_point.Y - last_point.Y);
-                int distance = (int)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
-
-                if (distance >= Global.DISTANCE_MOVE)
-                {
-                    //Lấy chỉ số vị trí của đối tượng đã vẽ
-                    int redraw_index = GetIndexByPosition(last_point);
-
-                    if (redraw_index >= 0)
-                    {
-                        int signX = vector.X < 0? -1 : 1;
-                        int signY = vector.Y < 0? -1 : 1;
-                        int stepX = Math.Abs(vector.X) >= Math.Abs(vector.Y) ? signX * trbStep.Value : 0;
-                        int stepY = stepX == 0 ? signY * trbStep.Value : 0;
-
-                        ChangePositionObject(redraw_index, stepX, stepY);
-                        DrawAllObject();
-                        can_change = false;
-                    }
-                }
+                ChangePositionObject();
             }
         }
 
@@ -328,7 +380,6 @@ namespace MapEditor
                 last_point = Point.Empty;
                 current_point = Point.Empty;
                 ChangeCursor(current_object_draw.Image);
-                can_change = false;
             }
         }
 
@@ -337,36 +388,14 @@ namespace MapEditor
             if (e.Button == MouseButtons.Left)
             {
                 last_point = new Point(e.X, e.Y);
-
-                if (current_object_draw.Object != null)
-                {
-                    current_object_draw.Position = last_point;
-
-                    Point real_point = new Point((int)(last_point.X / Zoom - current_object_draw.Image.Width / 2),
-                        (int)(last_point.Y / Zoom - current_object_draw.Image.Height / 2));
-                    GameObject go = new GameObject(current_object_draw.Object, real_point);
-
-                    if (CheckIntersect(go))
-                    {
-                        DrawObject(go); //Vẽ đối tượng lên màn hình
-                        InsertObject(go); //Lưu đối tượng vào danh sách
-                        ChangeCursor(null);
-                    }
-                    else
-                    {
-                        //Hiển thị icon đỏ khi có va chạm với những đối tượng được vẽ trước
-                        Bitmap bmp = new Bitmap(current_object_draw.Image);
-                        Graphics gr = Graphics.FromImage(bmp);
-                        gr.FillRectangle(new SolidBrush(Color.Red), new Rectangle(0, 0, bmp.Width, bmp.Height));
-                        ChangeCursor(bmp);
-                    }
-                }
-                else
-                {
-                    can_change = true;
-                }
-                
+                SaveObject();
             }
+        }
+
+        private void btnSetting_Click(object sender, EventArgs e)
+        {
+            Form2 fmSetting = new Form2();
+            fmSetting.ShowDialog();
         }
     }
 }
