@@ -3,35 +3,39 @@
 
 #include <d3d9.h>
 #include <d3dx9.h>
-#include "texture.h"
+#include "CTexture.h"
 
-class Sprite
+class CSprite
 {
-protected:
-	Texture *sprite_texture;
+
+public:
+	CTexture *sprite_texture;
 	int start;
 	int end;
 	int index;
 	int time_ani;
 	DWORD last_time;
-public:
+
 	
-	Sprite();
-	Sprite(const Sprite &sprite);
-	Sprite(Texture *texture, int time_ani = 0);
-	Sprite(Texture *texture, int start, int end, int time_ani = 0);
-	~Sprite();
+	CSprite();
+	CSprite(const CSprite &sprite);
+	CSprite(CTexture *texture, int time_ani = 0);
+	CSprite(CTexture *texture, int start, int end, int time_ani = 0);
+	~CSprite();
 
 	void Next(); //Chuyển hình
 	void Reset(); //Trở về trạng thái ban đầu
 	void SelectFrameOf(int index); //Chọn hiển thị frame bất kỳ
 	void UpdateAllEffect(int elapsed_time); //Chạy hiệu ứng
-	void UpdateEffect(int start_index, int end_index, int elapsed_time);
+	void UpdateEffect();
 	void Draw(int x, int y);
 	void DrawFlipX(int x, int y);
 	void DrawFlipY(int x, int y);
 	void DrawRect(int x, int y, RECT srcRect);
 	void DrawTransform(int x, int y, D3DXVECTOR2 scale, float degRotate, float depth);
+	void DrawWithDirecion(D3DXVECTOR3 pos, float direction, int start =  1, int end = 1, int time = 300);
+private:
+	D3DXVECTOR3 GetCorner(int x, int y, int width, int height);
 
 };
 #endif // !_SPRITE_H_

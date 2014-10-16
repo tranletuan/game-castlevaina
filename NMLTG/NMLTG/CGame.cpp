@@ -1,15 +1,15 @@
-﻿#include "game.h"
+﻿#include "CGame.h"
 #include <Windows.h>
 #include <time.h>
 
-Game::Game(int cmd_show)
+CGame::CGame(int cmd_show)
 {
 	this->cmd_show = cmd_show;
 }
 
-Game::~Game() {}
+CGame::~CGame() {}
 
-void Game::GameInit()
+void CGame::GameInit()
 {
 	InitWindow();
 	InitDirectX();
@@ -17,13 +17,13 @@ void Game::GameInit()
 	LoadResources(kDevice);
 }
 
-void Game::GameRun()
+void CGame::GameRun()
 {
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
 
 	DWORD frame_start = GetTickCount();
-	DWORD tick_per_fram = 100 / kFrameRate;
+	DWORD tick_per_fram = 1000 / kFrameRate;
 
 	//Vòng lặp chính quản lý thông điệp
 	while (msg.message != WM_QUIT)
@@ -41,10 +41,10 @@ void Game::GameRun()
 		{
 			//Vẽ các thành phần trong game;
 			RenderAll();
+			GameUpdate(delta_time);
 			frame_start = now;
 		}
 
-		GameUpdate(delta_time);
 
 		//Xử lý phím điều khiển
 		ProcessKeyboard();
@@ -52,7 +52,7 @@ void Game::GameRun()
 	}
 }
 
-void Game::GameEnd()
+void CGame::GameEnd()
 {
 	if (kDevice != NULL) kDevice->Release();
 	if (kDirectX != NULL) kDirectX->Release();
@@ -61,7 +61,7 @@ void Game::GameEnd()
 	if (kDirectInput != NULL) kDirectInput->Release();
 }
 
-LRESULT CALLBACK Game::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK CGame::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
@@ -74,7 +74,7 @@ LRESULT CALLBACK Game::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 	return 0;
 }
 
-bool Game::InitWindow()
+bool CGame::InitWindow()
 {
 	WNDCLASSEX wcex;
 
@@ -88,7 +88,7 @@ bool Game::InitWindow()
 	wcex.hIconSm = NULL;
 	wcex.hInstance = kHInstance;
 
-	wcex.lpfnWndProc = (WNDPROC)Game::WinProc;
+	wcex.lpfnWndProc = (WNDPROC)CGame::WinProc;
 	wcex.lpszClassName = kGameName;
 	wcex.lpszMenuName = NULL;
 	wcex.style = CS_HREDRAW | CS_VREDRAW;
@@ -138,7 +138,7 @@ bool Game::InitWindow()
 	return true;
 }
 
-bool Game::InitDirectX()
+bool CGame::InitDirectX()
 {
 	kDirectX = Direct3DCreate9(D3D_SDK_VERSION);
 	D3DPRESENT_PARAMETERS d3d_params;
@@ -175,7 +175,7 @@ bool Game::InitDirectX()
 	return true;
 }
 
-bool Game::InitInput()
+bool CGame::InitInput()
 {
 	HRESULT hrs;
 
@@ -218,7 +218,7 @@ bool Game::InitInput()
 	return true;
 }
 
-void Game::ProcessKeyboard()
+void CGame::ProcessKeyboard()
 {
 	//Quản lý các phím tác động
 	kKeyBoard->GetDeviceState(sizeof(key_states), key_states);
@@ -250,18 +250,17 @@ void Game::ProcessKeyboard()
 	}
 }
 
-int Game::IsKeyDown(int key_code)
+int CGame::IsKeyDown(int key_code)
 {
 	return (key_states[key_code] & 0x80) > 0;
 }
 
-void Game::RenderAll()
+void CGame::RenderAll()
 {
-	//kDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0, 128, 128), 1.0f, 0);
 	if (kDevice->BeginScene())
 	{
 		kSpriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
-		RenderFrame(kDevice, delta_time);
+		RenderFrame(kDevice);
 		kSpriteHandler->End();
 		kDevice->EndScene();
 	}
@@ -269,17 +268,17 @@ void Game::RenderAll()
 	kDevice->Present(NULL, NULL, NULL, NULL);
 }
 
-void Game::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int delta_time)
+void CGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv)
 {
 	d3ddv->ColorFill(kBackBuffer, NULL, D3DCOLOR_XRGB(255, 255, 255));
 }
 
-void Game::LoadResources(LPDIRECT3DDEVICE9 d3d_device) { }
+void CGame::LoadResources(LPDIRECT3DDEVICE9 d3d_device) { }
 
-void Game::ProcessInput(LPDIRECT3DDEVICE9 d3d_device, int delta_time) { }
+void CGame::ProcessInput(LPDIRECT3DDEVICE9 d3d_device, int delta_time) { }
 
-void Game::OnKeyDown(int key_code) { }
+void CGame::OnKeyDown(int key_code) { }
 
-void Game::OnKeyUp(int key_code) { }
+void CGame::OnKeyUp(int key_code) { }
 
-void Game::GameUpdate(int delta_time) { }
+void CGame::GameUpdate(int delta_time) { }

@@ -4,28 +4,23 @@
 #include <d3d9.h>
 #include <d3dx9.h>
 #include "global.h"
-#include "game.h"
-#include "sprite.h"
-#include "camera.h"
-#include "background.h"
-#include "simon.h"
+#include "CGame.h"
+#include "CResourcesManager.h"
+#include "CBackground.h"
+#include "Utils.h"
 
 #define GROUND 64
 
-class WorldTest : public Game
+class WorldTest : public CGame
 {
 public:
 	WorldTest(int cmd_show);
 	~WorldTest();
 protected:
-	Background *background;
-	Background *background1;
-	Background *background2;
-	Camera *camera;
-	Simon *simon;
-	int i;
+	CResourcesManager *texture_manager;
+	CBackground* background;
 
-	void RenderFrame(LPDIRECT3DDEVICE9 d3d_device, int delta);
+	void RenderFrame(LPDIRECT3DDEVICE9 d3d_device);
 	void LoadResources(LPDIRECT3DDEVICE9 d3d_device);
 	void ProcessInput(LPDIRECT3DDEVICE9 d3d_device, int delta); //Xử lý phím
 	void OnKeyDown(int key_code);
