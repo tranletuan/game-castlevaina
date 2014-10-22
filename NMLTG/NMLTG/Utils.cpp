@@ -1,7 +1,7 @@
 #include <d3dx9.h>
 
 #include "Utils.h"
-#include "Global.h"
+
 
 LPDIRECT3DSURFACE9 CreateSurfaceFromFile(LPDIRECT3DDEVICE9 d3ddv, LPWSTR FilePath)
 {
@@ -41,4 +41,36 @@ LPDIRECT3DSURFACE9 CreateSurfaceFromFile(LPDIRECT3DDEVICE9 d3ddv, LPWSTR FilePat
 	}
 
 	return surface;
+}
+
+void DisplayText(string text)
+{
+	D3DCOLOR fontColor = D3DCOLOR_ARGB(255, 0, 0, 255);
+
+	RECT rct;
+	rct.left = 2;
+	rct.right = kScreenWidth;
+	rct.top = 10;
+	rct.bottom = rct.top + 20;
+
+	string From = text;
+	wstring To(From.begin(), From.end());
+	LPCWSTR Last = To.c_str();
+
+	// Draw some text
+	kFont->DrawText(NULL, Last, -1, &rct, 0, fontColor);
+}
+
+void GLMessage(LPCWSTR text)
+{
+	MessageBox(kHWND, text, L"Voice", MB_OK);
+}
+
+void GLMessage(string text)
+{
+	string From = text;
+	wstring To(From.begin(), From.end());
+	LPCWSTR Last = To.c_str();
+
+	MessageBox(kHWND, Last, L"Voice", MB_OK);
 }

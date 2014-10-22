@@ -5,19 +5,20 @@
 
 enum Status
 {
-	Move, Stand, Jump, Attack, Die
+	Move, Stand, Jump, Die
 };
 
 class CMovableObject : public CObject
 {
 protected:
 	Status _status;
+	bool _is_attack;
 
 public:
 	virtual void LoadResources() = 0;
 	virtual void Draw() = 0;
 	virtual void Update(int delta_time) = 0;
-
+	virtual void SetStatus(Status stt) = 0;
 	virtual void MovingLeft() = 0;
 	virtual void MovingRight() = 0;
 	virtual void Standing() = 0;

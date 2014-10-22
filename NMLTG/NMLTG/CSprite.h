@@ -31,9 +31,8 @@ public:
 	void Draw(int x, int y);
 	void DrawFlipX(int x, int y);
 	void DrawFlipY(int x, int y);
-	void DrawRect(int x, int y, RECT srcRect);
 	void DrawTransform(int x, int y, D3DXVECTOR2 scale, float degRotate, float depth);
-	void DrawWithDirecion(D3DXVECTOR3 pos, float direction, int start =  1, int end = 1, int time = 300);
+	void DrawWithDirecion(D3DXVECTOR3 pos, float direction, int start =  0, int end = 0, int time = 100, bool start_first_index = false);
 private:
 	D3DXVECTOR3 GetCorner(int x, int y, int width, int height);
 

@@ -83,6 +83,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CBackground.h" />
+    <ClInclude Include="CBill.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CGame.h" />
     <ClInclude Include="CMovableObject.h" />
@@ -97,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CBackground.cpp" />
+    <ClCompile Include="CBill.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CGame.cpp" />
     <ClCompile Include="Global.cpp" />

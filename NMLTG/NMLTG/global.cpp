@@ -19,13 +19,10 @@ LPDIRECT3DSURFACE9			kBackBuffer;
 LPDIRECTINPUT8				kDirectInput;
 LPDIRECTINPUTDEVICE8		kKeyBoard;
 LPD3DXSPRITE				kSpriteHandler;
+LPD3DXFONT					kFont = 0;
 
 //GAME CONSTANT
 float						kZoom = 2;
 D3DCOLOR					kBackgroundColorTexture = D3DCOLOR_XRGB(255, 0, 255); //Thiết lập chỉ số để xóa nền texture
 LPCWSTR						kBackgroundFolder = L"resources/map/";
 
-void GLMessage(LPCWSTR text)
-{
-	MessageBox(kHWND, text, L"Castlevania Voice", MB_OK);
-}

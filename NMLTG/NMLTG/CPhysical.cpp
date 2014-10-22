@@ -4,7 +4,7 @@ CPhysical::CPhysical()
 {
 }
 
-CPhysical::CPhysical(float x, float y, int width, int height, float vx, float vy)
+CPhysical::CPhysical(float x, float y, float width, float height, float vx, float vy)
 {
 	this->x = x;
 	this->y = y;
@@ -13,65 +13,96 @@ CPhysical::CPhysical(float x, float y, int width, int height, float vx, float vy
 	this->width = width;
 	this->height = height;
 	this->vx_last = 1.0f;
+	this->bounds = SetBounds(x, y, width, height);
 }
 
-void CPhysical::UpdateVelocityX(int time)
+void CPhysical::UpdateVelocity(int time)
 {
-	x += vx * time;
-}
+	current_vx = vx * time;
+	x += current_vx;
 
-void CPhysical::UpdateVelocityY(int time)
-{
-	DWORD current_time = GetTickCount() - time_start_jump + 1;
-	y += vy - GRAVITY * current_time;
+	current_vy = vy * time;
+	y += current_vy;
+
+	/*if (time_in_space > 0)
+	{
+		DWORD current_time = GetTickCount() - time_in_space + 1;
+		current_vy = vy - GRAVITY * current_time;
+		y += current_vy;
+	}*/
+
+	this->bounds = SetBounds(x, y, width, height);
 }
 
 CollisionDirection CPhysical::Collision(CPhysical* physical)
 {
-	if (CheckBoundsCollision(physical) == true)
+	float dx_entry, dx_exit, tx_entry, tx_exit;
+	float dy_exit, ty_entry, ty_exit;
+
+	CollisionDirection cdx = CollisionX(dx_entry, dx_exit, tx_entry, tx_exit, physical);
+	CollisionDirection cdy = CollisionY(dy_entry, dy_exit, ty_entry, ty_exit, physical);
+
+	//Trường hợp 1 trong 2 trục x và y k có va chạm thì 2 vật k va chạm
+	if (cdx == NoCollision || cdy == NoCollision) return NoCollision;
+
+	//Trường hợp cả vx và vy = 0 
+	if (cdx != Undefined && cdy != Undefined) return (dx_entry <= dy_entry ? cdx : cdy);
+
+	//Trường hợp đã va chạm trục y và vy = 0 
+	if (cdx == Undefined && cdy != Undefined)
 	{
-		CollisionX(physical);
-		CollisionY(physical);
+		if (tx_entry < tx_exit && (tx_entry > 0 && tx_entry < 1))
+		{
+			if (dx_entry < 0) return RightCollision;
+			else return LeftCollision;
+		}
+	}
+	//Trường hợp đã va chạm trục x và vx = 0
+	else if (cdx != Undefined && cdy == Undefined)
+	{
+		if (ty_entry < ty_exit && (ty_entry > 0 && ty_entry < 1))
+		{
+			if (dy_entry < 0) return TopCollision;
+			else return BottomCollision;
+		}
+	}
+	//Trường hợp chưa va chạm và vx, vy đều != 0
+	else
+	{
+		float entry_time = Max(tx_entry, ty_entry);
+		float exit_time = Min(tx_exit, ty_exit);
 
-		entry_time = Max(dx_entry, dy_entry);
-		exit_time = Min(dx_exit, dy_exit);
-
-		//Điều kiện xảy ra va chạm 
-		if (entry_time < exit_time && entry_time < 1 && entry_time > 0)
+		if (entry_time < exit_time && (entry_time > 0 && entry_time < 1))
 		{
 			if (tx_entry > ty_entry)
 			{
-				if (tx_entry < 0)
-				{
-					return CollisionDirection::right;
-				}
-				else
-				{
-					return CollisionDirection::left;
-				}
+				if (dx_entry < 0) return RightCollision;
+				else return LeftCollision;
 			}
-			else 
+			else
 			{
-				//trường hợp tx và ty bằng nhau (va chạm vào góc)
-				//thì xem như va chạm này là ở bên trên hoặc bên dưới
-				if (ty_entry < 0)
-				{
-					return CollisionDirection::top;
-				}
-				else
-				{
-					return CollisionDirection::botton;
-				}
+				if (dy_entry < 0) return TopCollision;
+				else return BottomCollision;
 			}
-		}
-		else
-		{
-			return CollisionDirection::NoCollision;
 		}
 	}
+
+	return NoCollision;
 }
 
 //SUPPORT METHOD
+BOUNDS CPhysical::SetBounds(float centerX, float centerY, float width, float height)
+{
+	BOUNDS rect;
+
+	rect.left = centerX - width / 2;
+	rect.right = rect.left + width;
+	rect.top = centerY + height / 2;
+	rect.bottom = rect.top - height;
+
+	return rect;
+}
+
 bool CPhysical::CheckBoundsCollision(CPhysical* physical)
 {
 	bool flag = true;
@@ -81,14 +112,14 @@ bool CPhysical::CheckBoundsCollision(CPhysical* physical)
 
 void CPhysical::Swap(float &Dentry, float &Dexit)
 {
-	int temp = Dentry;
+	float temp = Dentry;
 	Dentry = Dexit;
 	Dexit = temp;
 }
 
-float CPhysical::CalcDEntry(int Sx, int Mx, int Ml)
+float CPhysical::CalcD(float S, float M)
 {
-	return Sx - (Mx + Ml);
+	return S - M;
 }
 
 float CPhysical::Max(float a, float b)
@@ -101,37 +132,89 @@ float CPhysical::Min(float a, float b)
 	return a < b ? a : b;
 }
 
-float CPhysical::CalcDExit(int Sx, int Sl, int Mx)
+CollisionDirection CPhysical::CollisionX(float &dx_entry, float &dx_exit, float &tx_entry, float &tx_exit, CPhysical* physical)
 {
-	return (Sx + Sl) - Mx;
+	float v = current_vx - physical->current_vx;
+	
+	//Trường hợp vector vận tốc giữa 2 vật != 0
+	if (v != 0)
+	{
+		dx_entry = CalcD(physical->bounds.left, bounds.right);
+		dx_exit = CalcD(physical->bounds.right, bounds.left);
+
+		if (v < 0)
+		{
+			Swap(dx_entry, dx_exit);
+		}
+
+		tx_entry = dx_entry / v;
+		tx_exit = dx_exit / v;
+
+		return Undefined;
+	}
+	else //Trường hợp vector vận tốc giữa 2 vật = 0
+	{
+		if (bounds.left <= physical->bounds.right &&
+			bounds.left >= physical->bounds.left - width)
+		{
+			if (bounds.left <= physical->bounds.left)
+			{
+				dx_entry = bounds.right - physical->bounds.left;
+				return LeftCollision;
+			}
+			else
+			{
+				dx_entry = physical->bounds.right - bounds.left;
+				return RightCollision;
+			}
+		}
+		else
+		{
+			return NoCollision;
+		}
+	}
 }
 
-void CPhysical::CollisionX(CPhysical* physical)
+CollisionDirection CPhysical::CollisionY(float &dy_entry, float &dy_exit, float &ty_entry, float &ty_exit, CPhysical* physical)
 {
-	dx_entry = CalcDEntry(physical->x, x, width);
-	dx_exit = CalcDExit(physical->x, physical->width, x);
-	float v = vx - physical->vx;
-
-	if (v < 0)
+	float v = current_vy - physical->current_vy;
+	
+	//Trường hợp tọa độ y của vật di chuyển
+	if (v != 0)
 	{
-		Swap(dx_entry, dx_exit);
+		dy_entry = CalcD(physical->bounds.bottom, bounds.top);
+		dy_exit = CalcD(physical->bounds.top, bounds.bottom);
+
+		if (v < 0)
+		{
+			Swap(dy_entry, dy_exit);
+		}
+
+		ty_entry = dy_entry / v;
+		ty_exit = dy_exit / v;
+
+		return Undefined;
 	}
-
-	tx_entry = dx_entry / v;
-	tx_exit = dx_exit / v;
-}
-
-void CPhysical::CollisionY(CPhysical* physical)
-{
-	dy_entry = CalcDEntry(physical->y, y, height);
-	dy_exit = CalcDExit(physical->y, physical->width, y);
-	float v = vy - physical->vy;
-
-	if (v < 0)
+	//Trường hợp tọa độ y của vật đứng yên hoặc vận tốc quá nhỏ
+	else 
 	{
-		Swap(dy_entry, dy_exit);
+		if (bounds.bottom <= physical->bounds.top &&
+			bounds.bottom >= physical->bounds.bottom - height)
+		{
+			if (bounds.bottom <= physical->bounds.bottom)
+			{
+				dy_entry = bounds.top - physical->bounds.bottom;
+				return BottomCollision;
+			}
+			else
+			{
+				dy_entry = physical->bounds.top - bounds.bottom;
+				return TopCollision;
+			}
+		}
+		else
+		{
+			return NoCollision;
+		}
 	}
-
-	ty_entry = dy_entry / v;
-	ty_exit = dy_exit / v;
 }

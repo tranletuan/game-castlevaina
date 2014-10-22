@@ -19,14 +19,11 @@ public:
 	CCamera* _camera;
 
 	//Contra 1
-	CTexture* _contra1_die;
-	CTexture* _contra1_in_cave;
-	CTexture* _contra1_in_water;
-	CTexture* _contra1_jump;
-	CTexture* _contra1_move_deep;
-	CTexture* _contra1_run;
-	CTexture* _contra1_run_up_down;
-	CTexture* _contra1_stand;
+	CTexture* _bill_stand;
+	CTexture* _bill_jump;
+	CTexture* _bill_die;
+	CTexture* _bill_move;
+	CTexture* _bill_in_water;
 };
 
 #endif
