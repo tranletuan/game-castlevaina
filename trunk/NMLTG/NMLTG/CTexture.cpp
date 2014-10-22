@@ -1,5 +1,5 @@
 ﻿#include "CTexture.h"
-#include "global.h"
+
 
 CTexture::CTexture()
 {

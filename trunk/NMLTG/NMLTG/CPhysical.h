@@ -2,56 +2,57 @@
 #define _PHYSICAL_H_
 
 #include <Windows.h>
+#include <math.h>
 
 #define GRAVITY 0.07f
+#define MIN_V 1.1f
 
 enum CollisionDirection
 {
-	NoCollision, left, right, top, botton
+	NoCollision, LeftCollision, RightCollision, TopCollision, BottomCollision, Undefined
+};
+
+struct BOUNDS
+{
+	float left, right, top, bottom;
 };
 
 class CPhysical
 {
 public:
-	int		x;
-	int		y;
-	int		width;
-	int		height;
+	float	x;
+	float	y;
+	float	width;
+	float	height;
 	float	vx;
 	float	vy;
 	float	vx_last;
-	int		ground;
-	DWORD	time_start_jump;
+	float	ground;
+	BOUNDS	bounds;
+	DWORD	time_in_space;
 
-	float	dx_entry;
-	float	tx_entry;
-	float	dx_exit;
-	float	tx_exit;
+	float	current_vx;
+	float	current_vy;
 
-	float	dy_entry;
-	float	ty_entry;
-	float	dy_exit;
-	float	ty_exit;
-	
-	float	entry_time;
-	float	exit_time;
+	float dy_entry;
 
 	CPhysical();
-	CPhysical(float x, float y, int width = 0, int height = 0, float vx = 0, float vy = 0);
+	CPhysical(float x, float y, float width = 0, float height = 0, float vx = 0, float vy = 0);
 
-	void UpdateVelocityY(int time);
-	void UpdateVelocityX(int time);
+	void UpdateVelocity(int time);
 	CollisionDirection Collision(CPhysical* physical);
+	
 private:
+	BOUNDS SetBounds(float centerX, float centerY, float width, float height);
 	bool CheckBoundsCollision(CPhysical* physical);
 	void Swap(float &Dentry, float &Dexit);
 	float Max(float a, float b);
 	float Min(float a, float b);
-	float CalcDEntry(int Sx, int Mx, int Ml);
-	float CalcDExit(int Sx, int Sl, int Mx);
+	float CalcD(float S, float M);
 	float CalcTEntry(float Dentry, float V);
 	float CalcTExit(float Dexit, float V);
-	void CollisionX(CPhysical* physical);
-	void CollisionY(CPhysical* physical);
+	CollisionDirection CollisionX(float &dx_entry, float &dx_exit, float &tx_entry, float &tx_exit, CPhysical* physical);
+	CollisionDirection CollisionY(float &dy_entry, float &dy_exit, float &ty_entry, float &ty_exit, CPhysical* physical);
+	
 };
 #endif

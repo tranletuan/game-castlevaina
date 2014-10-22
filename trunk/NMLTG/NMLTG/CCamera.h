@@ -13,9 +13,9 @@ public:
 	D3DXVECTOR2 view_port;
 	CCamera();
 
-	void UpdateCamera(int x);
+	void UpdateCamera(float x);
 	D3DXVECTOR3 CenterSprite(int x, int y, int width, int height);
-	D3DXVECTOR3 Transform(int x, int y);
+	D3DXVECTOR3 Transform(float x, float y);
 	D3DXVECTOR3 Transform(D3DXVECTOR3 pos);
 };
 

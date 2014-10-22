@@ -37,7 +37,7 @@ void CGame::GameRun()
 		DWORD now = GetTickCount();
 		delta_time = now - frame_start;
 
-		if (delta_time >= tick_per_fram)
+		if (delta_time > tick_per_fram)
 		{
 			//Vẽ các thành phần trong game;
 			RenderAll();
@@ -59,6 +59,7 @@ void CGame::GameEnd()
 	if (kSpriteHandler != NULL) kSpriteHandler->Release();
 	if (kKeyBoard != NULL) kKeyBoard->Release();
 	if (kDirectInput != NULL) kDirectInput->Release();
+	if (kFont != NULL) kFont->Release();
 }
 
 LRESULT CALLBACK CGame::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -67,6 +68,13 @@ LRESULT CALLBACK CGame::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM l
 	{
 	case WM_DESTROY:
 		PostQuitMessage(0);
+		break;
+	case WM_KILLFOCUS:
+		kKeyBoard->Unacquire();
+		break;
+	case WM_SETFOCUS:
+		if (kKeyBoard != NULL)
+			kKeyBoard->Acquire();
 		break;
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
@@ -171,6 +179,18 @@ bool CGame::InitDirectX()
 	srand(time(NULL));
 	kDevice->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &kBackBuffer);
 	D3DXCreateSprite(kDevice, &kSpriteHandler);
+	D3DXCreateFont(
+		kDevice, 
+		20, 
+		0, 
+		FW_BOLD, 
+		0, 
+		FALSE, 
+		DEFAULT_CHARSET, 
+		OUT_DEFAULT_PRECIS, 
+		DEFAULT_QUALITY, 
+		DEFAULT_PITCH | FF_DONTCARE, 
+		TEXT("Arial"), &kFont);
 
 	return true;
 }
@@ -257,6 +277,7 @@ int CGame::IsKeyDown(int key_code)
 
 void CGame::RenderAll()
 {
+	kDevice->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(255, 255, 255), 1.0f, 0);
 	if (kDevice->BeginScene())
 	{
 		kSpriteHandler->Begin(D3DXSPRITE_ALPHABLEND);

@@ -39,12 +39,11 @@ extern LPDIRECT3DSURFACE9			kBackBuffer;	//Vùng đệm
 extern LPDIRECTINPUT8				kDirectInput;	//Đối tượng đầu vào	
 extern LPDIRECTINPUTDEVICE8			kKeyBoard;		//Bàn phím	
 extern LPD3DXSPRITE					kSpriteHandler;//Đối tượng vẽ texture	
+extern LPD3DXFONT					kFont;
 
 //GAME CONSTANT
 extern float						kZoom;
 extern D3DCOLOR						kBackgroundColorTexture;
 extern LPCWSTR						kBackgroundFolder;
-
-void GLMessage(LPCWSTR text);
 
 #endif

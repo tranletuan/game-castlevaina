@@ -6,7 +6,8 @@
 #include <d3dx9.h>
 #include <dinput.h>
 #include <string>
-#include "global.h"
+#include "Global.h"
+#include "Utils.h"
 
 using namespace std;
 

@@ -8,8 +8,7 @@
 #include "CResourcesManager.h"
 #include "CBackground.h"
 #include "Utils.h"
-
-#define GROUND 64
+#include "CBill.h"
 
 class WorldTest : public CGame
 {
@@ -19,6 +18,10 @@ public:
 protected:
 	CResourcesManager *texture_manager;
 	CBackground* background;
+	CBill* bill;
+	CBill* bill2;
+	DWORD delta;
+	int test, test2;
 
 	void RenderFrame(LPDIRECT3DDEVICE9 d3d_device);
 	void LoadResources(LPDIRECT3DDEVICE9 d3d_device);

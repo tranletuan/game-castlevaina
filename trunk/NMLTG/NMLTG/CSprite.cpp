@@ -103,7 +103,7 @@ void CSprite::Draw(int x, int y)
 	src_rect.bottom = src_rect.top + sprite_texture->frame_height;
 
 	D3DXVECTOR3 pos = GetCorner(x, y, sprite_texture->frame_width, sprite_texture->frame_height);
-
+	
 	kSpriteHandler->Draw(
 		sprite_texture->picture,
 		&src_rect,
@@ -114,18 +114,11 @@ void CSprite::Draw(int x, int y)
 
 void CSprite::DrawFlipX(int x, int y)
 {
-	RECT src_rect;
-
-	src_rect.left = (index % sprite_texture->num_cols) * (sprite_texture->frame_width);
-	src_rect.top = (index / sprite_texture->num_cols) * (sprite_texture->frame_height);
-	src_rect.right = src_rect.left + sprite_texture->frame_width;
-	src_rect.bottom = src_rect.top + sprite_texture->frame_height;
-
 	D3DXMATRIX old_matrix;
 	kSpriteHandler->GetTransform(&old_matrix);
 
 	D3DXMATRIX new_natrix;
-	D3DXVECTOR2 center = D3DXVECTOR2(x + sprite_texture->frame_width / 2, y + sprite_texture->frame_height / 2);
+	D3DXVECTOR2 center = D3DXVECTOR2(x, y);
 	D3DXVECTOR2 rotate = D3DXVECTOR2(-1, 1);
 
 	D3DXMatrixTransformation2D(&new_natrix, &center, 0.0f, &rotate, NULL, 0.0f, NULL);
@@ -139,18 +132,11 @@ void CSprite::DrawFlipX(int x, int y)
 
 void CSprite::DrawFlipY(int x, int y)
 {
-	RECT src_rect;
-
-	src_rect.left = (index % sprite_texture->num_cols) * (sprite_texture->frame_width);
-	src_rect.top = (index / sprite_texture->num_cols) * (sprite_texture->frame_height);
-	src_rect.right = src_rect.left + sprite_texture->frame_width;
-	src_rect.bottom = src_rect.top + sprite_texture->frame_height;
-
 	D3DXMATRIX old_matrix;
 	kSpriteHandler->GetTransform(&old_matrix);
 
 	D3DXMATRIX new_natrix;
-	D3DXVECTOR2 center = D3DXVECTOR2(x + sprite_texture->frame_width / 2, y + sprite_texture->frame_height / 2);
+	D3DXVECTOR2 center = D3DXVECTOR2(x, y);
 	D3DXVECTOR2 rotate = D3DXVECTOR2(1, -1);
 
 	D3DXMatrixTransformation2D(&new_natrix, &center, 0.0f, &rotate, NULL, 0.0f, NULL);
@@ -160,18 +146,6 @@ void CSprite::DrawFlipY(int x, int y)
 	Draw(x, y);
 
 	kSpriteHandler->SetTransform(&old_matrix);
-}
-
-void CSprite::DrawRect(int x, int y, RECT srcRect)
-{
-	D3DXVECTOR3 pos((float)x, (float)y, 0);
-
-	kSpriteHandler->Draw(
-		sprite_texture->picture,
-		&srcRect,
-		NULL,
-		&pos,
-		D3DCOLOR_XRGB(255, 255, 255));
 }
 
 void CSprite::DrawTransform(int x, int y, D3DXVECTOR2 scale, float degRotate, float depth)
@@ -187,7 +161,7 @@ void CSprite::DrawTransform(int x, int y, D3DXVECTOR2 scale, float degRotate, fl
 	kSpriteHandler->GetTransform(&old_matrix);
 
 	D3DXMATRIX new_natrix;
-	D3DXVECTOR2 center = D3DXVECTOR2(x + sprite_texture->frame_width / 2, y + sprite_texture->frame_height / 2);
+	D3DXVECTOR2 center = D3DXVECTOR2(x, y);
 
 	D3DXMatrixTransformation2D(
 		&new_natrix,
@@ -212,11 +186,24 @@ void CSprite::DrawTransform(int x, int y, D3DXVECTOR2 scale, float degRotate, fl
 	kSpriteHandler->SetTransform(&old_matrix);
 }
 
-void CSprite::DrawWithDirecion(D3DXVECTOR3 pos, float direction, int start, int end, int time)
+void CSprite::DrawWithDirecion(D3DXVECTOR3 pos, float direction, int start, int end, int time, bool start_first_index)
 {
+	if (index < start || index > end)
+	{
+		if (!start_first_index)
+		{
+			index += start + index % sprite_texture->num_cols;
+		}
+		else
+		{
+			index = start;
+		}
+	}
+
 	this->start = start;
 	this->end = end;
 	this->time_ani = time;
+	UpdateEffect();
 
 	if (direction > 0)
 	{

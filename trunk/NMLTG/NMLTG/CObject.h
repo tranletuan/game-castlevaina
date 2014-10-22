@@ -2,15 +2,14 @@
 #define _COBJECT_H_
 
 #include "CPhysical.h"
-#include "CSprite.h"
-#include "CCamera.h"
+#include "CResourcesManager.h"
 
 
 
 class CObject
 {
 protected:
-	CSprite* _current_frame;
+	CSprite* _current_sprite;
 
 public:
 

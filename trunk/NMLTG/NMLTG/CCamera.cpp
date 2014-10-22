@@ -6,7 +6,7 @@ CCamera::CCamera()
 	view_port.y = kScreenHeight;
 }
 
-void CCamera::UpdateCamera(int x)
+void CCamera::UpdateCamera(float x)
 {
 	view_port.x = x - kScreenWidth / 2;
 	if (view_port.x < 0)
@@ -24,7 +24,7 @@ D3DXVECTOR3 CCamera::CenterSprite(int x, int y, int width, int height)
 	return pos;
 }
 
-D3DXVECTOR3 CCamera::Transform(int x, int y)
+D3DXVECTOR3 CCamera::Transform(float x, float y)
 {
 	//Ma trận dùng để nhân transform view port
 	D3DXMATRIX matrix;
