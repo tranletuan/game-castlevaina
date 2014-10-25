@@ -37,14 +37,17 @@ void CGame::GameRun()
 		DWORD now = GetTickCount();
 		delta_time = now - frame_start;
 
-		if (delta_time > tick_per_fram)
+		if (delta_time >= tick_per_fram)
 		{
 			//Vẽ các thành phần trong game;
 			RenderAll();
-			GameUpdate(delta_time);
+			
 			frame_start = now;
+			GameUpdate(delta_time);
+
 		}
 
+		
 
 		//Xử lý phím điều khiển
 		ProcessKeyboard();
@@ -84,7 +87,7 @@ LRESULT CALLBACK CGame::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM l
 
 bool CGame::InitWindow()
 {
-	WNDCLASSEX wcex;
+	WNDCLASSEXW wcex;
 
 	wcex.cbClsExtra = 0;
 	wcex.cbSize = sizeof(WNDCLASSEX);
@@ -101,7 +104,7 @@ bool CGame::InitWindow()
 	wcex.lpszMenuName = NULL;
 	wcex.style = CS_HREDRAW | CS_VREDRAW;
 
-	RegisterClassEx(&wcex);
+	RegisterClassExW(&wcex);
 
 	//Cửa sổ hoặc toàn màn hình
 	DWORD screen_style;
@@ -115,7 +118,7 @@ bool CGame::InitWindow()
 	}
 
 	//Khởi tạo cửa 
-	kHWND = CreateWindow(
+	kHWND = CreateWindowW(
 		kGameName,
 		kGameName,
 		screen_style,
@@ -164,9 +167,9 @@ bool CGame::InitDirectX()
 
 	kDirectX->CreateDevice(
 		D3DADAPTER_DEFAULT,
-		D3DDEVTYPE_REF,
+		D3DDEVTYPE_HAL,
 		kHWND,
-		D3DCREATE_SOFTWARE_VERTEXPROCESSING,
+		D3DCREATE_HARDWARE_VERTEXPROCESSING,
 		&d3d_params,
 		&kDevice);
 
