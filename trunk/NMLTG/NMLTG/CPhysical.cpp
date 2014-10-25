@@ -21,15 +21,12 @@ void CPhysical::UpdateVelocity(int time)
 	current_vx = vx * time;
 	x += current_vx;
 
-	current_vy = vy * time;
-	y += current_vy;
-
-	/*if (time_in_space > 0)
+	if (time_in_space > 0)
 	{
 		DWORD current_time = GetTickCount() - time_in_space + 1;
 		current_vy = vy - GRAVITY * current_time;
 		y += current_vy;
-	}*/
+	}
 
 	this->bounds = SetBounds(x, y, width, height);
 }

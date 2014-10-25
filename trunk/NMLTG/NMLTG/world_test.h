@@ -20,8 +20,6 @@ protected:
 	CBackground* background;
 	CBill* bill;
 	CBill* bill2;
-	DWORD delta;
-	int test, test2;
 
 	void RenderFrame(LPDIRECT3DDEVICE9 d3d_device);
 	void LoadResources(LPDIRECT3DDEVICE9 d3d_device);
