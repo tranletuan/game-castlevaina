@@ -186,18 +186,11 @@ void CSprite::DrawTransform(int x, int y, D3DXVECTOR2 scale, float degRotate, fl
 	kSpriteHandler->SetTransform(&old_matrix);
 }
 
-void CSprite::DrawWithDirecion(D3DXVECTOR3 pos, float direction, int start, int end, int time, bool start_first_index)
+void CSprite::DrawWithDirecion(D3DXVECTOR3 pos, float direction, int start, int end, int time)
 {
 	if (index < start || index > end)
 	{
-		if (!start_first_index)
-		{
-			index += start + index % sprite_texture->num_cols;
-		}
-		else
-		{
-			index = start;
-		}
+		index = start;
 	}
 
 	this->start = start;

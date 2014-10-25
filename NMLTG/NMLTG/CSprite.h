@@ -32,7 +32,7 @@ public:
 	void DrawFlipX(int x, int y);
 	void DrawFlipY(int x, int y);
 	void DrawTransform(int x, int y, D3DXVECTOR2 scale, float degRotate, float depth);
-	void DrawWithDirecion(D3DXVECTOR3 pos, float direction, int start =  0, int end = 0, int time = 100, bool start_first_index = false);
+	void DrawWithDirecion(D3DXVECTOR3 pos, float direction, int start = 0, int end = 0, int time = 100);
 private:
 	D3DXVECTOR3 GetCorner(int x, int y, int width, int height);
 

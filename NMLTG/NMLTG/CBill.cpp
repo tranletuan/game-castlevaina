@@ -137,13 +137,13 @@ void CBill::DrawWhenMove(D3DXVECTOR3 pos)
 		switch (_gun_direction)
 		{
 		case Normal:
-			_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 0, 4, 95);
+			_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 0, 4);
 			break;
 		case Up:
-			_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 10, 14, 95);
+			_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 10, 14);
 			break;
 		case Down:
-			_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 15, 19, 95);
+			_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 15, 19);
 			break;
 		}
 	}
@@ -156,13 +156,13 @@ void CBill::DrawWhenStand(D3DXVECTOR3 pos)
 		_current_sprite = _bill_in_water;
 		_current_sprite->DrawWithDirecion(pos, _physical.vx_last);
 	}
-	else
+	else if (_enviroment == Ground)
 	{
 		_current_sprite = _bill_stand;
 		switch (_gun_direction)
 		{
 		case Normal:
-			_current_sprite->DrawWithDirecion(pos, _physical.vx_last);
+			_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 0, 0);
 			break;
 		case Up:
 			_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 2, 2);
@@ -174,8 +174,27 @@ void CBill::DrawWhenStand(D3DXVECTOR3 pos)
 	}
 }
 
-void CBill::DrawWhenJump(D3DXVECTOR3 pos){}
+void CBill::DrawWhenJump(D3DXVECTOR3 pos)
+{
+	_current_sprite = _bill_jump;
+	_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 0, 3);
+}
 
-void CBill::DrawWhenDie(D3DXVECTOR3 pos){}
+void CBill::DrawWhenDie(D3DXVECTOR3 pos)
+{
+	_current_sprite = _bill_die;
+	_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 0, 4);
+}
 
-void CBill::DrawWhenAttack(D3DXVECTOR3 pos){}
+void CBill::DrawWhenAttack(D3DXVECTOR3 pos)
+{
+	if (_enviroment == Water)
+	{
+		_current_sprite = _bill_in_water;
+
+	}
+	else if (_enviroment == Ground)
+	{
+		
+	}
+}

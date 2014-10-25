@@ -27,7 +27,6 @@ public:
 	float	vx;
 	float	vy;
 	float	vx_last;
-	float	ground;
 	BOUNDS	bounds;
 	DWORD	time_in_space;
 
