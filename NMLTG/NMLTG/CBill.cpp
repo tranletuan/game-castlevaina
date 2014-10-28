@@ -1,14 +1,12 @@
 #include "CBill.h"
-#define SPEED_X 0.1f
-#define SPEED_Y 15.0f
 
 CBill::CBill(D3DXVECTOR3 pos, int size)
 {
 	_physical = CPhysical(pos.x, pos.y, size, size);
-	_physical.vx_last = SPEED_X;
-	_enviroment = Ground;
+	_physical.vx_last = BILL_VX;
+	_enviroment = Land;
 	_gun_direction = Normal;
-	_status = Stand;
+	_player_status = Stand;
 	_physical.time_in_space = 0;
 	_physical.vx = 0;
 }
@@ -40,7 +38,8 @@ void CBill::Draw()
 {
 	CCamera* camera = CResourcesManager::GetInstance()->_camera;
 	D3DXVECTOR3 pos = camera->Transform(_physical.x, _physical.y);
-	switch (_status)
+	
+	switch (_player_status)
 	{
 	case Move:
 		DrawWhenMove(pos);
@@ -64,11 +63,11 @@ void CBill::Update(int delta_time)
 	_physical.UpdateVelocity(delta_time);
 }
 
-void CBill::SetStatus(Status stt)
+void CBill::SetStatus(PlayerStatus stt)
 {
-	if (_status != Die || _status != Jump || (_status == Jump && stt == Die))
+	if (_player_status != Die || _player_status != Jump || (_player_status == Jump && stt == Die))
 	{
-		_status = stt;
+		_player_status = stt;
 	}
 }
 
@@ -82,17 +81,10 @@ void CBill::SetGunDirection(GunDirection gd)
 	_gun_direction = gd;
 }
 
-void CBill::MovingLeft()
+void CBill::Moving(float vx)
 {
-	_physical.vx = -SPEED_X;
-	_physical.vx_last = -SPEED_X;
-	SetStatus(Move);
-}
-
-void CBill::MovingRight()
-{
-	_physical.vx = SPEED_X;
-	_physical.vx_last = SPEED_X;
+	_physical.vx = vx;
+	_physical.vx_last = vx;
 	SetStatus(Move);
 }
 
@@ -108,7 +100,7 @@ void CBill::Jumping()
 {
 	if (_enviroment != Water)
 	{
-		_physical.vy = SPEED_Y;
+		_physical.vy = BILL_VY;
 		_physical.time_in_space = GetTickCount();
 		SetStatus(Jump);
 	}
@@ -116,7 +108,7 @@ void CBill::Jumping()
 
 void CBill::Attacking()
 {
-	_is_attack = true;
+	
 }
 
 void CBill::Dying()
@@ -156,7 +148,7 @@ void CBill::DrawWhenStand(D3DXVECTOR3 pos)
 		_current_sprite = _bill_in_water;
 		_current_sprite->DrawWithDirecion(pos, _physical.vx_last);
 	}
-	else if (_enviroment == Ground)
+	else if (_enviroment == Land)
 	{
 		_current_sprite = _bill_stand;
 		switch (_gun_direction)
@@ -193,7 +185,7 @@ void CBill::DrawWhenAttack(D3DXVECTOR3 pos)
 		_current_sprite = _bill_in_water;
 
 	}
-	else if (_enviroment == Ground)
+	else if (_enviroment == Land)
 	{
 		
 	}

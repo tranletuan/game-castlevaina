@@ -9,6 +9,7 @@
 #include "CBackground.h"
 #include "Utils.h"
 #include "CBill.h"
+#include "Config.h"
 
 class WorldTest : public CGame
 {

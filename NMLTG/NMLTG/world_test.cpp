@@ -6,6 +6,7 @@ WorldTest::WorldTest(int cmd_show) : CGame(cmd_show)
 	this->background = new CBackground(L"map1", 32);
 	this->bill = new CBill(D3DXVECTOR3(20, 135, 0), 34);
 	this->bill2 = new CBill(D3DXVECTOR3(100, 135, 0), 34);
+
 	/*
 	this->bill->_physical.vx = 0.1f;
 	this->bill->_physical.vy = 0.2f;
@@ -29,9 +30,10 @@ void WorldTest::LoadResources(LPDIRECT3DDEVICE9 d3d_device)
 
 void WorldTest::RenderFrame(LPDIRECT3DDEVICE9 d3d_device)
 {
-	background->Draw();
+	//background->Draw();
 	bill->Draw();
 	bill2->Draw();
+	DisplayText(to_string(bill->_physical.y));
 }
 
 
@@ -40,12 +42,12 @@ void WorldTest::ProcessInput(LPDIRECT3DDEVICE9 d3d_device, int delta)
 	//Set phím di chuyển trái phải
 	if (IsKeyDown(DIK_D))
 	{
-		bill->MovingRight();
+		bill->Moving(BILL_VX);
 	}
 	else if (IsKeyDown(DIK_A))
 	{
 		
-		bill->MovingLeft();
+		bill->Moving(-BILL_VX);
 	}
 
 	//Set phím hướng súng
@@ -92,7 +94,7 @@ void WorldTest::GameUpdate(int delta_time)
 	bill2->Update(delta_time);
 	camera->UpdateCamera(bill->_physical.x);
 
-	int cd = bill->_physical.Collision(&bill2->_physical);
+	//int cd = bill->_physical.Collision(&bill2->_physical);
 
 	////bill 2
 	//if (bill2->_physical.bounds.right > kScreenWidth ||

@@ -7,7 +7,7 @@ LPDIRECT3DSURFACE9 CreateSurfaceFromFile(LPDIRECT3DDEVICE9 d3ddv, LPWSTR FilePat
 {
 	D3DXIMAGE_INFO info;
 
-	HRESULT result = D3DXGetImageInfoFromFile(FilePath, &info);
+	HRESULT result = D3DXGetImageInfoFromFileW(FilePath, &info);
 	if (result != D3D_OK)
 	{
 		GLMessage(L"Can't load surface");
