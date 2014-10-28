@@ -17,12 +17,17 @@ CResourcesManager::CResourcesManager()
 
 CResourcesManager::~CResourcesManager()
 {
+	//camera
+	delete _camera;
+
 	//contra1
 	delete _bill_stand;
 	delete _bill_jump;
 	delete _bill_die;
 	delete _bill_move;
 	delete _bill_in_water;
+
+
 }
 
 CResourcesManager *CResourcesManager::GetInstance()

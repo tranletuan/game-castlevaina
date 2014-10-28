@@ -85,8 +85,10 @@
     <ClInclude Include="CBackground.h" />
     <ClInclude Include="CBill.h" />
     <ClInclude Include="CCamera.h" />
+    <ClInclude Include="CEnemy.h" />
     <ClInclude Include="CGame.h" />
-    <ClInclude Include="CMovableObject.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="IMovableObject.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CPhysical.h" />

@@ -31,6 +31,12 @@
     <Filter Include="Source Files\basic">
       <UniqueIdentifier>{d12488ff-874c-4dad-9cf2-1c1df1d27ed9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\object\enemy">
+      <UniqueIdentifier>{da5d67d8-80a5-41b5-b18e-fa0b38401534}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\object\enemy">
+      <UniqueIdentifier>{35fb0ca4-5a01-4d91-a8db-702ff482b31f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="world_test.h">
@@ -57,20 +63,26 @@
     <ClInclude Include="CObject.h">
       <Filter>Header Files\basic</Filter>
     </ClInclude>
-    <ClInclude Include="CMovableObject.h">
-      <Filter>Header Files\basic</Filter>
-    </ClInclude>
     <ClInclude Include="Utils.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="CResourcesManager.h">
       <Filter>Header Files\basic</Filter>
     </ClInclude>
-    <ClInclude Include="CBackground.h">
-      <Filter>Header Files\object</Filter>
-    </ClInclude>
     <ClInclude Include="CBill.h">
       <Filter>Header Files\object</Filter>
+    </ClInclude>
+    <ClInclude Include="IMovableObject.h">
+      <Filter>Header Files\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="CBackground.h">
+      <Filter>Header Files\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemy.h">
+      <Filter>Header Files\basic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -104,11 +116,11 @@
     <ClCompile Include="CResourcesManager.cpp">
       <Filter>Source Files\basic</Filter>
     </ClCompile>
-    <ClCompile Include="CBackground.cpp">
-      <Filter>Source Files\object</Filter>
-    </ClCompile>
     <ClCompile Include="CBill.cpp">
       <Filter>Source Files\object</Filter>
+    </ClCompile>
+    <ClCompile Include="CBackground.cpp">
+      <Filter>Source Files\basic</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
