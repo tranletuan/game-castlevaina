@@ -37,6 +37,24 @@
     <Filter Include="Source Files\object\enemy">
       <UniqueIdentifier>{35fb0ca4-5a01-4d91-a8db-702ff482b31f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\object\item">
+      <UniqueIdentifier>{a255333b-3431-4f2d-93eb-05103b70754c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\object\item">
+      <UniqueIdentifier>{09e01186-bb50-4d33-a263-7593be1e3b7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\object\bullet">
+      <UniqueIdentifier>{90fa2171-e041-4706-aace-4e23bb6cd5fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\object\bullet">
+      <UniqueIdentifier>{89cfc51b-9eec-4091-9dda-c7b9c8b5e7b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\object\ground">
+      <UniqueIdentifier>{68248c43-e6e5-4620-a205-45de80df8537}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\object\ground">
+      <UniqueIdentifier>{90bc86da-98c1-4e39-af63-26da84faa608}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="world_test.h">
