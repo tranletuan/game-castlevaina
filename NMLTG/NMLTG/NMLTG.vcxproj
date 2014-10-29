@@ -84,9 +84,11 @@
   <ItemGroup>
     <ClInclude Include="CBackground.h" />
     <ClInclude Include="CBill.h" />
+    <ClInclude Include="CBullet.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CEnemy.h" />
     <ClInclude Include="CGame.h" />
+    <ClInclude Include="CNormalBullet.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="IMovableObject.h" />
     <ClInclude Include="Global.h" />
@@ -101,8 +103,10 @@
   <ItemGroup>
     <ClCompile Include="CBackground.cpp" />
     <ClCompile Include="CBill.cpp" />
+    <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CGame.cpp" />
+    <ClCompile Include="CNormalBullet.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="CPhysical.cpp" />
     <ClCompile Include="CSprite.cpp" />

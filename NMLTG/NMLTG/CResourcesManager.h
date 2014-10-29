@@ -24,6 +24,13 @@ public:
 	CTexture* _bill_die;
 	CTexture* _bill_move;
 	CTexture* _bill_in_water;
+
+	//Bullet 
+	CTexture* _nbullet;
+	CTexture* _sbullet;
+	CTexture* _lbullet;
+	CTexture* _fbullet;
+
 };
 
 #endif

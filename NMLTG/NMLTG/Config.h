@@ -5,4 +5,7 @@
 #define BILL_VX 0.1f
 #define BILL_VY 10.f
 
+//BULLET
+#define BULLET_V 0.05f
+
 #endif
