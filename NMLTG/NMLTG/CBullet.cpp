@@ -3,7 +3,7 @@
 CBullet::CBullet(){}
 
 //Góc tối đa là 90 và tối thiểu là -90
-CBullet::CBullet(D3DXVECTOR3 pos, int angle, float direction)
+CBullet::CBullet(D3DXVECTOR3 pos, int angle, float direction, float v_max)
 {
 	_physical.x = pos.x;
 	_physical.y = pos.y;
@@ -11,7 +11,7 @@ CBullet::CBullet(D3DXVECTOR3 pos, int angle, float direction)
 	_physical.vx_last = direction;
 }
 
-void CBullet::CalcVelocity(float v)
+void CBullet::CalcVelocity(float v_max)
 {
 	if (_angle < -90 || _angle > 90)
 	{
@@ -23,8 +23,8 @@ void CBullet::CalcVelocity(float v)
 	{
 		_physical.vx = 0;
 
-		if (_angle == 90) _physical.vy = v;
-		else _physical.vy = -v;
+		if (_angle == 90) _physical.vy = v_max;
+		else _physical.vy = -v_max;
 
 		return;
 	}
@@ -33,7 +33,7 @@ void CBullet::CalcVelocity(float v)
 	if (_angle == 0)
 	{
 		_physical.vy = 0;
-		_physical.vx = v * _physical.vx_last;
+		_physical.vx = v_max * _physical.vx_last;
 
 		return;
 	}
@@ -44,15 +44,10 @@ void CBullet::CalcVelocity(float v)
 		float _tan = tan(D3DXToRadian(_angle));
 		float k = 1 / (1 + _tan * _tan);
 
-		_physical.vx = v * sqrt(k) * _physical.vx_last;
+		_physical.vx = v_max * sqrt(k) * _physical.vx_last;
 
 		int sign =  _tan > 0 ? 1 : -1;
-		_physical.vy = v * sqrt(1 - k) * sign;
+		_physical.vy = v_max * sqrt(1 - k) * sign;
 	}
 	
 }
-
-void CBullet::LoadResources(){}
-void CBullet::Update(int delta_time){}
-void CBullet::Draw(){}
-void CBullet::Moving(float v){}
