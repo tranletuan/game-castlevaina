@@ -6,14 +6,7 @@ WorldTest::WorldTest(int cmd_show) : CGame(cmd_show)
 	this->background = new CBackground(L"map1", 32);
 	this->bill = new CBill(D3DXVECTOR3(20, 135, 0), 34);
 	this->bill2 = new CBill(D3DXVECTOR3(100, 135, 0), 34);
-
-	/*
-	this->bill->_physical.vx = 0.1f;
-	this->bill->_physical.vy = 0.2f;
-
-	this->bill2->_physical.vx = 0.2f;
-	this->bill2->_physical.vy = 0.1f;
-	this->bill2->SetGunDirection(Down);*/
+	this->bullet = new CNormalBullet(D3DXVECTOR3(100, 135, 0), 60, 1);
 
 }
 
@@ -26,6 +19,7 @@ void WorldTest::LoadResources(LPDIRECT3DDEVICE9 d3d_device)
 	background->LoadResources();
 	bill->LoadResources();
 	bill2->LoadResources();
+	bullet->LoadResources();
 }
 
 void WorldTest::RenderFrame(LPDIRECT3DDEVICE9 d3d_device)
@@ -34,6 +28,7 @@ void WorldTest::RenderFrame(LPDIRECT3DDEVICE9 d3d_device)
 	bill->Draw();
 	bill2->Draw();
 	DisplayText(to_string(bill->_physical.y));
+	bullet->Draw();
 }
 
 
@@ -93,7 +88,7 @@ void WorldTest::GameUpdate(int delta_time)
 	bill->Update(delta_time);
 	bill2->Update(delta_time);
 	camera->UpdateCamera(bill->_physical.x);
-
+	bullet->Update(delta_time);
 	//int cd = bill->_physical.Collision(&bill2->_physical);
 
 	////bill 2

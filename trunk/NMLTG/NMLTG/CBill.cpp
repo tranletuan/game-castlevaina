@@ -60,7 +60,7 @@ void CBill::Draw()
 
 void CBill::Update(int delta_time)
 {
-	_physical.UpdateVelocity(delta_time);
+	_physical.CalcPositionWithGravitation(delta_time);
 }
 
 void CBill::SetStatus(PlayerStatus stt)

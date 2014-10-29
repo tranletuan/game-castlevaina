@@ -16,7 +16,7 @@ CPhysical::CPhysical(float x, float y, float width, float height, float vx, floa
 	this->bounds = SetBounds(x, y, width, height);
 }
 
-void CPhysical::UpdateVelocity(int time)
+void CPhysical::CalcPositionWithGravitation(int time)
 {
 	current_vx = vx * time;
 	x += current_vx;
@@ -27,14 +27,21 @@ void CPhysical::UpdateVelocity(int time)
 		current_vy = vy - GRAVITY * current_time;
 		y += current_vy;
 	}
+}
 
-	this->bounds = SetBounds(x, y, width, height);
+void CPhysical::CalcPositionWithoutGravitation(int time)
+{
+	current_vx = vx * time;
+	x += current_vx;
+
+	current_vy = vy * time;
+	y += current_vy;
 }
 
 CollisionDirection CPhysical::Collision(CPhysical* physical)
 {
 	float dx_entry, dx_exit, tx_entry, tx_exit;
-	float dy_exit, ty_entry, ty_exit;
+	float dy_exit, ty_entry, ty_exit, dy_entry;
 
 	CollisionDirection cdx = CollisionX(dx_entry, dx_exit, tx_entry, tx_exit, physical);
 	CollisionDirection cdy = CollisionY(dy_entry, dy_exit, ty_entry, ty_exit, physical);

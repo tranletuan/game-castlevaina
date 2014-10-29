@@ -13,6 +13,12 @@ CResourcesManager::CResourcesManager()
 	_bill_die = new CTexture(L"resources/contra/contra1_die.png", 5);
 	_bill_move = new CTexture(L"resources/contra/contra1_move.png", 5, 4);
 	_bill_in_water = new CTexture(L"resources/contra/contra1_in_water.png", 5);
+
+	//Bullet
+	_nbullet = new CTexture(L"resources/bullet/nbullet.png");
+	_sbullet = new CTexture(L"resources/bullet/sbullet.png", 3);
+	_lbullet = new CTexture(L"resources/bullet/lbullet.png");
+	_fbullet = new CTexture(L"resources/bullet/fbullet.png");
 }
 
 CResourcesManager::~CResourcesManager()

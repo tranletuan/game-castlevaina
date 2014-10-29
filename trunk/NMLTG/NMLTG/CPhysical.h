@@ -33,12 +33,11 @@ public:
 	float	current_vx;
 	float	current_vy;
 
-	float dy_entry;
-
 	CPhysical();
 	CPhysical(float x, float y, float width = 0, float height = 0, float vx = 0, float vy = 0);
 
-	void UpdateVelocity(int time);
+	void CalcPositionWithGravitation(int time);
+	void CalcPositionWithoutGravitation(int time);
 	CollisionDirection Collision(CPhysical* physical);
 	
 private:
