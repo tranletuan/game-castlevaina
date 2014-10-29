@@ -15,10 +15,11 @@ CResourcesManager::CResourcesManager()
 	_bill_in_water = new CTexture(L"resources/contra/contra1_in_water.png", 5);
 
 	//Bullet
-	_nbullet = new CTexture(L"resources/bullet/nbullet.png");
-	_sbullet = new CTexture(L"resources/bullet/sbullet.png", 3);
-	_lbullet = new CTexture(L"resources/bullet/lbullet.png");
-	_fbullet = new CTexture(L"resources/bullet/fbullet.png");
+	_bullet_n = new CTexture(L"resources/bullet/nbullet.png");
+	_bullet_s = new CTexture(L"resources/bullet/sbullet.png", 3);
+	_bullet_l = new CTexture(L"resources/bullet/lbullet.png");
+	_bullet_f = new CTexture(L"resources/bullet/fbullet.png");
+	_bullet_m = new CTexture(L"resources/bullet/mbullet.png");
 }
 
 CResourcesManager::~CResourcesManager()

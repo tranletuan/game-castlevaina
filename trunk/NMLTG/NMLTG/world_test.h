@@ -10,7 +10,11 @@
 #include "Utils.h"
 #include "CBill.h"
 #include "Config.h"
-#include "CNormalBullet.h"
+#include "CSBullet.h"
+#include "CNBullet.h"
+#include "CFBullet.h"
+#include "CLBullet.h"
+#include "CMBullet.h"
 
 class WorldTest : public CGame
 {
@@ -22,7 +26,7 @@ protected:
 	CBackground* background;
 	CBill* bill;
 	CBill* bill2;
-	CNormalBullet* bullet;
+	CBullet* bullet;
 
 	void RenderFrame(LPDIRECT3DDEVICE9 d3d_device);
 	void LoadResources(LPDIRECT3DDEVICE9 d3d_device);

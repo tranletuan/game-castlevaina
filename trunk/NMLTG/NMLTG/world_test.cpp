@@ -6,12 +6,13 @@ WorldTest::WorldTest(int cmd_show) : CGame(cmd_show)
 	this->background = new CBackground(L"map1", 32);
 	this->bill = new CBill(D3DXVECTOR3(20, 135, 0), 34);
 	this->bill2 = new CBill(D3DXVECTOR3(100, 135, 0), 34);
-	this->bullet = new CNormalBullet(D3DXVECTOR3(100, 135, 0), 60, 1);
+	this->bullet = new CMBullet(D3DXVECTOR3(100, 135, 0), 0, 1, BULLET_V);
 
 }
 
 WorldTest::~WorldTest()
 {
+	
 }
 
 void WorldTest::LoadResources(LPDIRECT3DDEVICE9 d3d_device)
@@ -27,10 +28,9 @@ void WorldTest::RenderFrame(LPDIRECT3DDEVICE9 d3d_device)
 	//background->Draw();
 	bill->Draw();
 	bill2->Draw();
-	DisplayText(to_string(bill->_physical.y));
+	DisplayText(to_string(bullet->_physical.bounds.left) + " : " + to_string(bullet->_physical.bounds.right) + " : " + to_string(bullet->_physical.bounds.right - bullet->_physical.bounds.left));
 	bullet->Draw();
 }
-
 
 void WorldTest::ProcessInput(LPDIRECT3DDEVICE9 d3d_device, int delta)
 {
@@ -65,6 +65,7 @@ void WorldTest::OnKeyDown(int key_code)
 		break;
 	}
 }
+
 void WorldTest::OnKeyUp(int key_code)
 {
 	switch (key_code)
@@ -81,41 +82,16 @@ void WorldTest::OnKeyUp(int key_code)
 	}
 	
 }
+
 void WorldTest::GameUpdate(int delta_time)
 {
 	CCamera* camera = CResourcesManager::GetInstance()->_camera;
 	
 	bill->Update(delta_time);
 	bill2->Update(delta_time);
-	camera->UpdateCamera(bill->_physical.x);
 	bullet->Update(delta_time);
-	//int cd = bill->_physical.Collision(&bill2->_physical);
 
-	////bill 2
-	//if (bill2->_physical.bounds.right > kScreenWidth ||
-	//	bill2->_physical.bounds.left < 0 || cd == 1 || cd == 2)
-	//{
-	//	bill2->_physical.vx *= -1;
-	//}
-
-	//if (bill2->_physical.bounds.top > kScreenHeight ||
-	//	bill2->_physical.bounds.bottom < 0 || cd == 3 || cd == 4)
-	//{
-	//	bill2->_physical.vy *= -1;
-	//}
-
-	////bill 1s
-	//if (bill->_physical.bounds.right > kScreenWidth ||
-	//	bill->_physical.bounds.left < 0 || cd == 1 || cd == 2)
-	//{
-	//	bill->_physical.vx *= -1;
-	//}
-
-	//if (bill->_physical.bounds.top > kScreenHeight ||
-	//	bill->_physical.bounds.bottom < 0 || cd == 3 || cd == 4)
-	//{
-	//	bill->_physical.vy *= -1;
-	//}
-
+	camera->UpdateCamera(bill->_physical.x);
+	
 	
 }

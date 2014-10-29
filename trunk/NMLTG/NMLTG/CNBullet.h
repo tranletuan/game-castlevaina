@@ -8,15 +8,19 @@ enum NormalBulletType
 	PlayerBullet, EnemyBullet
 };
 
-class CNormalBullet : public CBullet
+class CNBullet : public CBullet
 {
+protected:
+	void CalcVelocity(float v_max);
+
 public:
-	CNormalBullet(D3DXVECTOR3 pos, int angle, float direction);
-	~CNormalBullet();
+	CNBullet(D3DXVECTOR3 pos, int angle, float direction, float v_max);
+	~CNBullet();
 
 	void LoadResources();
 	void Update(int delta_time);
 	void Draw();
-	void Moving(float vx);
+	void Moving(float v);
+	
 };
 #endif // !_CNORMAL_BULLET_

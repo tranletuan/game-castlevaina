@@ -26,11 +26,11 @@ public:
 	CTexture* _bill_in_water;
 
 	//Bullet 
-	CTexture* _nbullet;
-	CTexture* _sbullet;
-	CTexture* _lbullet;
-	CTexture* _fbullet;
-
+	CTexture* _bullet_n;
+	CTexture* _bullet_s;
+	CTexture* _bullet_l;
+	CTexture* _bullet_f;
+	CTexture* _bullet_m;
 };
 
 #endif

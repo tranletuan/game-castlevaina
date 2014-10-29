@@ -13,7 +13,14 @@ CPhysical::CPhysical(float x, float y, float width, float height, float vx, floa
 	this->width = width;
 	this->height = height;
 	this->vx_last = 1.0f;
-	this->bounds = SetBounds(x, y, width, height);
+}
+
+void CPhysical::SetBounds(float x, float y, float width, float height)
+{
+	bounds.left = x - width / 2;
+	bounds.right = bounds.left + width;
+	bounds.top = y + height / 2;
+	bounds.bottom = bounds.top - height;
 }
 
 void CPhysical::CalcPositionWithGravitation(int time)
@@ -95,17 +102,6 @@ CollisionDirection CPhysical::Collision(CPhysical* physical)
 }
 
 //SUPPORT METHOD
-BOUNDS CPhysical::SetBounds(float centerX, float centerY, float width, float height)
-{
-	BOUNDS rect;
-
-	rect.left = centerX - width / 2;
-	rect.right = rect.left + width;
-	rect.top = centerY + height / 2;
-	rect.bottom = rect.top - height;
-
-	return rect;
-}
 
 bool CPhysical::CheckBoundsCollision(CPhysical* physical)
 {

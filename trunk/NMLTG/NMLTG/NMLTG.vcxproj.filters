@@ -43,17 +43,17 @@
     <Filter Include="Source Files\object\item">
       <UniqueIdentifier>{09e01186-bb50-4d33-a263-7593be1e3b7a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\object\bullet">
-      <UniqueIdentifier>{90fa2171-e041-4706-aace-4e23bb6cd5fb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\object\bullet">
-      <UniqueIdentifier>{89cfc51b-9eec-4091-9dda-c7b9c8b5e7b0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\object\ground">
       <UniqueIdentifier>{68248c43-e6e5-4620-a205-45de80df8537}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\object\ground">
       <UniqueIdentifier>{90bc86da-98c1-4e39-af63-26da84faa608}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\object\weapon">
+      <UniqueIdentifier>{90fa2171-e041-4706-aace-4e23bb6cd5fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\object\weapon">
+      <UniqueIdentifier>{89cfc51b-9eec-4091-9dda-c7b9c8b5e7b0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -93,9 +93,6 @@
     <ClInclude Include="IMovableObject.h">
       <Filter>Header Files\basic</Filter>
     </ClInclude>
-    <ClInclude Include="Config.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="CBackground.h">
       <Filter>Header Files\basic</Filter>
     </ClInclude>
@@ -103,10 +100,25 @@
       <Filter>Header Files\basic</Filter>
     </ClInclude>
     <ClInclude Include="CBullet.h">
-      <Filter>Header Files\object\bullet</Filter>
+      <Filter>Header Files\object\weapon</Filter>
     </ClInclude>
-    <ClInclude Include="CNormalBullet.h">
-      <Filter>Header Files\object\bullet</Filter>
+    <ClInclude Include="CSBullet.h">
+      <Filter>Header Files\object\weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="CNBullet.h">
+      <Filter>Header Files\object\weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="CFBullet.h">
+      <Filter>Header Files\object\weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Header Files\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="CLBullet.h">
+      <Filter>Header Files\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="CMBullet.h">
+      <Filter>Header Files\object\weapon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -147,10 +159,22 @@
       <Filter>Source Files\basic</Filter>
     </ClCompile>
     <ClCompile Include="CBullet.cpp">
-      <Filter>Source Files\object\bullet</Filter>
+      <Filter>Source Files\object\weapon</Filter>
     </ClCompile>
-    <ClCompile Include="CNormalBullet.cpp">
-      <Filter>Source Files\object\bullet</Filter>
+    <ClCompile Include="CNBullet.cpp">
+      <Filter>Source Files\object\weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="CSBullet.cpp">
+      <Filter>Source Files\object\weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="CFBullet.cpp">
+      <Filter>Source Files\object\weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="CLBullet.cpp">
+      <Filter>Source Files\object\weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="CMBullet.cpp">
+      <Filter>Source Files\object\weapon</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
