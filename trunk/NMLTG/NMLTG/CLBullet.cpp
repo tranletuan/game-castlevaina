@@ -10,10 +10,7 @@ CLBullet::CLBullet(D3DXVECTOR3 pos, int angle, float direction, float v_max)
 
 CLBullet::~CLBullet()
 {
-	if (_current_sprite != NULL)
-	{
-		delete _current_sprite;
-	}
+	CBullet::~CBullet();
 }
 
 void CLBullet::LoadResources()

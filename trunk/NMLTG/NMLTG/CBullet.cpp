@@ -2,6 +2,14 @@
 
 CBullet::CBullet(){}
 
+CBullet::~CBullet()
+{
+	if (_current_sprite != NULL)
+	{
+		delete _current_sprite;
+	}
+}
+
 //Góc tối đa là 90 và tối thiểu là -90
 CBullet::CBullet(D3DXVECTOR3 pos, int angle, float direction, float v_max)
 {

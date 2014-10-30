@@ -85,6 +85,8 @@
     <ClInclude Include="CBackground.h" />
     <ClInclude Include="CBill.h" />
     <ClInclude Include="CBullet.h" />
+    <ClInclude Include="CPlayerWaepon.h" />
+    <ClInclude Include="CWaeponFactory.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CEnemy.h" />
     <ClInclude Include="CFBullet.h" />
@@ -114,7 +116,9 @@
     <ClCompile Include="CLBullet.cpp" />
     <ClCompile Include="CMBullet.cpp" />
     <ClCompile Include="CNBullet.cpp" />
+    <ClCompile Include="CPlayerWaepon.cpp" />
     <ClCompile Include="CSBullet.cpp" />
+    <ClCompile Include="CWaeponFactory.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="CPhysical.cpp" />
     <ClCompile Include="CSprite.cpp" />
