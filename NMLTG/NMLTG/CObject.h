@@ -11,12 +11,12 @@ class CObject
 {
 protected:
 	CSprite* _current_sprite;
-	int _id;
-	string _type;
-
 public:
+	int			_id;
+	bool		_is_enable;
+	string		_type;
+	CPhysical	_physical;
 
-	CPhysical _physical;
 	virtual void LoadResources() = 0;
 	virtual void Draw() = 0;
 };

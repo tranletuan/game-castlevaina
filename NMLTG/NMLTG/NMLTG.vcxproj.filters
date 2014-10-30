@@ -55,6 +55,12 @@
     <Filter Include="Source Files\object\weapon">
       <UniqueIdentifier>{89cfc51b-9eec-4091-9dda-c7b9c8b5e7b0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\object\weapon\player bullet">
+      <UniqueIdentifier>{a0c59b13-f438-4246-a788-4e8d1987d835}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\object\weapon\player bullet">
+      <UniqueIdentifier>{d80e079a-02d5-4981-8a3a-764f08013fc0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="world_test.h">
@@ -102,22 +108,28 @@
     <ClInclude Include="CBullet.h">
       <Filter>Header Files\object\weapon</Filter>
     </ClInclude>
-    <ClInclude Include="CSBullet.h">
-      <Filter>Header Files\object\weapon</Filter>
-    </ClInclude>
-    <ClInclude Include="CNBullet.h">
-      <Filter>Header Files\object\weapon</Filter>
-    </ClInclude>
-    <ClInclude Include="CFBullet.h">
-      <Filter>Header Files\object\weapon</Filter>
-    </ClInclude>
     <ClInclude Include="Config.h">
       <Filter>Header Files\basic</Filter>
     </ClInclude>
-    <ClInclude Include="CLBullet.h">
-      <Filter>Header Files\basic</Filter>
+    <ClInclude Include="CFBullet.h">
+      <Filter>Header Files\object\weapon\player bullet</Filter>
     </ClInclude>
     <ClInclude Include="CMBullet.h">
+      <Filter>Header Files\object\weapon\player bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CNBullet.h">
+      <Filter>Header Files\object\weapon\player bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CSBullet.h">
+      <Filter>Header Files\object\weapon\player bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CLBullet.h">
+      <Filter>Header Files\object\weapon\player bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CWaeponFactory.h">
+      <Filter>Header Files\object\weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerWaepon.h">
       <Filter>Header Files\object\weapon</Filter>
     </ClInclude>
   </ItemGroup>
@@ -161,19 +173,25 @@
     <ClCompile Include="CBullet.cpp">
       <Filter>Source Files\object\weapon</Filter>
     </ClCompile>
-    <ClCompile Include="CNBullet.cpp">
-      <Filter>Source Files\object\weapon</Filter>
-    </ClCompile>
-    <ClCompile Include="CSBullet.cpp">
-      <Filter>Source Files\object\weapon</Filter>
-    </ClCompile>
     <ClCompile Include="CFBullet.cpp">
-      <Filter>Source Files\object\weapon</Filter>
+      <Filter>Source Files\object\weapon\player bullet</Filter>
     </ClCompile>
     <ClCompile Include="CLBullet.cpp">
-      <Filter>Source Files\object\weapon</Filter>
+      <Filter>Source Files\object\weapon\player bullet</Filter>
     </ClCompile>
     <ClCompile Include="CMBullet.cpp">
+      <Filter>Source Files\object\weapon\player bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CNBullet.cpp">
+      <Filter>Source Files\object\weapon\player bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CSBullet.cpp">
+      <Filter>Source Files\object\weapon\player bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CWaeponFactory.cpp">
+      <Filter>Source Files\object\weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerWaepon.cpp">
       <Filter>Source Files\object\weapon</Filter>
     </ClCompile>
   </ItemGroup>

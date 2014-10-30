@@ -8,10 +8,7 @@ CNBullet::CNBullet(D3DXVECTOR3 pos, int angle, float direction, float v_max)
 
 CNBullet::~CNBullet()
 {
-	if (_current_sprite != NULL)
-	{
-		delete _current_sprite;
-	}
+	CBullet::~CBullet();
 }
 
 void CNBullet::LoadResources()

@@ -9,10 +9,7 @@ CFBullet::CFBullet(D3DXVECTOR3 pos, int angle, float direction, float v_max)
 
 CFBullet::~CFBullet()
 {
-	if (_current_sprite != NULL)
-	{
-		delete _current_sprite;
-	}
+	CBullet::~CBullet();
 }
 
 void CFBullet::LoadResources()

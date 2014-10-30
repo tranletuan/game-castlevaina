@@ -14,6 +14,7 @@ protected:
 public:
 	CBullet();
 	CBullet(D3DXVECTOR3 pos, int angle, float direction, float v_max);
+	~CBullet();
 
 	virtual void LoadResources() = 0;
 	virtual void Update(int delta_time) = 0;
