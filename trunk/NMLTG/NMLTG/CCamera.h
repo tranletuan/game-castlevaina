@@ -14,6 +14,7 @@ public:
 	CCamera();
 
 	void UpdateCamera(float x);
+	void UpdateCameraY(float y);
 	D3DXVECTOR3 CenterSprite(int x, int y, int width, int height);
 	D3DXVECTOR3 Transform(float x, float y);
 	D3DXVECTOR3 Transform(D3DXVECTOR3 pos);

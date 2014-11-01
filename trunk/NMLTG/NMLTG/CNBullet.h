@@ -14,13 +14,13 @@ protected:
 	void CalcVelocity(float v_max);
 
 public:
-	CNBullet(D3DXVECTOR3 pos, int angle, float direction, float v_max);
+	CNBullet(D3DXVECTOR3 pos, int angle, float v_max, float vo);
 	~CNBullet();
 
 	void LoadResources();
 	void Update(int delta_time);
 	void Draw();
-	void Moving(float v);
+	void Moving(float v_max);
 	
 };
 #endif // !_CNORMAL_BULLET_

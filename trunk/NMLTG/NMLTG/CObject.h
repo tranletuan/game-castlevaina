@@ -13,7 +13,6 @@ protected:
 	CSprite* _current_sprite;
 public:
 	int			_id;
-	bool		_is_enable;
 	string		_type;
 	CPhysical	_physical;
 

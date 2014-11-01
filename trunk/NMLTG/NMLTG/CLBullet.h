@@ -9,13 +9,13 @@ protected:
 	D3DXVECTOR2 _scale;
 	void CalcVelocity(float v_max);
 public:
-	CLBullet(D3DXVECTOR3 pos, int angle, float direction, float v_max);
+	CLBullet(D3DXVECTOR3 pos, int angle, float v_max, float vo);
 	~CLBullet();
 
 	void LoadResources();
 	void Update(int delta_time);
 	void Draw();
-	void Moving(float v);
+	void Moving(float v_max);
 };
 
 #endif // !_LBULLET_H_

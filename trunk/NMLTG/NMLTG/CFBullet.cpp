@@ -1,9 +1,9 @@
 ﻿#include "CFBullet.h"
 
-CFBullet::CFBullet(D3DXVECTOR3 pos, int angle, float direction, float v_max)
-	:CBullet(pos, angle, direction, v_max)
+CFBullet::CFBullet(D3DXVECTOR3 pos, int angle, float v_max, float vo)
+	:CBullet(pos, angle, v_max, vo)
 {
-	_degrees = direction > 0 ? 180 : 0;
+	_degrees = _physical.vx_last > 0 ? 180 : 0;
 	Moving(v_max);
 }
 
@@ -39,8 +39,8 @@ void CFBullet::Update(int delta_time)
 	}
 
 	//Thiết lập để góc quay nằm trong khoảng 0 -> 360
-	if (_degrees < 0) _degrees = 360;
-	if (_degrees > 360) _degrees = 0;
+	if (_degrees < 0) _degrees += 360;
+	if (_degrees > 360) _degrees %= 360;
 
 	//Tính toán góc quay
 	_x_circle = _physical.x + BULLET_F_R * cos(D3DXToRadian(_degrees));
@@ -61,7 +61,7 @@ void CFBullet::CalcVelocity(float v_max)
 	CBullet::CalcVelocity(v_max);
 }
 
-void CFBullet::Moving(float v)
+void CFBullet::Moving(float v_max)
 {
-	CalcVelocity(v);
+	CalcVelocity(v_max);
 }

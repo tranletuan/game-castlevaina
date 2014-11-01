@@ -1,10 +1,10 @@
 #include "CLBullet.h"
 
-CLBullet::CLBullet(D3DXVECTOR3 pos, int angle, float direction, float v_max)
-	:CBullet(pos, angle, direction, v_max)
+CLBullet::CLBullet(D3DXVECTOR3 pos, int angle, float v_max, float vo)
+	:CBullet(pos, angle, v_max, vo)
 {
 	Moving(v_max);
-	_scale.x = direction > 0 ? 1 : -1;
+	_scale.x = _physical.vx_last > 0 ? 1 : -1;
 	_scale.y = 1;
 }
 
@@ -34,8 +34,7 @@ void CLBullet::Draw()
 	CCamera* c = CResourcesManager::GetInstance()->_camera;
 
 	D3DXVECTOR3 pos = c->Transform(_physical.x, _physical.y);
-	float angle = _physical.vx_last > 0 ? -_angle : _angle;
-	_current_sprite->DrawTransform(pos.x, pos.y, _scale, angle, 0);
+	_current_sprite->DrawTransform(pos.x, pos.y, _scale, 360 - _angle, 0);
 }
 
 void CLBullet::CalcVelocity(float v_max)
@@ -43,7 +42,7 @@ void CLBullet::CalcVelocity(float v_max)
 	CBullet::CalcVelocity(v_max);
 }
 
-void CLBullet::Moving(float v)
+void CLBullet::Moving(float v_max)
 {
-	CalcVelocity(v);
+	CalcVelocity(v_max);
 }

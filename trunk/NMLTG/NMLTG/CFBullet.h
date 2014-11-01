@@ -10,16 +10,16 @@ protected:
 	void CalcVelocity(float v_max);
 	float _x_circle;
 	float _y_circle;
-	float _degrees;
+	int _degrees;
 
 public:
-	CFBullet(D3DXVECTOR3 pos, int angle, float direction, float v_max);
+	CFBullet(D3DXVECTOR3 pos, int angle, float v_max, float vo);
 	~CFBullet();
 
 	void LoadResources();
 	void Draw();
 	void Update(int delta_time);
-	void Moving(float v);
+	void Moving(float v_max);
 };
 
 #endif // !_CFBULLET_H_

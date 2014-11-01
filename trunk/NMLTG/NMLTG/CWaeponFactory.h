@@ -7,14 +7,16 @@
 class CWaeponFactory
 {
 protected:
-	map<string, CBullet*> _list_bullet;
+	map<int, CBullet*> _list_bullet;
+	bool CheckBulletInView(float x, float y);
 public:
 	~CWaeponFactory();
 
-	virtual void Shooting(D3DXVECTOR3 pos, int angle, float direction) = 0;
+	virtual void Shooting(D3DXVECTOR3 pos, int angle, float vo) = 0;
 	virtual CollisionDirection CheckCollision(CObject* obj) = 0;
-	virtual void Update(int delta_time);
-	virtual void Draw();
+	virtual void Update(int delta_time) = 0;
+	virtual void Draw() = 0;
+	virtual void RemoveBullet() = 0;
 	
 };
 
