@@ -6,8 +6,8 @@ WorldTest::WorldTest(int cmd_show) : CGame(cmd_show)
 	this->background = new CBackground(L"map1", 32);
 	this->bill = new CBill(D3DXVECTOR3(20, 135, 0), 34);
 	this->bill2 = new CBill(D3DXVECTOR3(100, 135, 0), 34);
-	this->bullet = new CMBullet(D3DXVECTOR3(100, 135, 0), 0, 1, BULLET_V);
-
+	this->waepon = new CPlayerWaepon();
+	test = 0;
 }
 
 WorldTest::~WorldTest()
@@ -20,16 +20,15 @@ void WorldTest::LoadResources(LPDIRECT3DDEVICE9 d3d_device)
 	background->LoadResources();
 	bill->LoadResources();
 	bill2->LoadResources();
-	bullet->LoadResources();
 }
 
 void WorldTest::RenderFrame(LPDIRECT3DDEVICE9 d3d_device)
 {
-	//background->Draw();
+	background->Draw();
 	bill->Draw();
 	bill2->Draw();
-	DisplayText(to_string(bullet->_physical.bounds.left) + " : " + to_string(bullet->_physical.bounds.right) + " : " + to_string(bullet->_physical.bounds.right - bullet->_physical.bounds.left));
-	bullet->Draw();
+	waepon->Draw();
+
 }
 
 void WorldTest::ProcessInput(LPDIRECT3DDEVICE9 d3d_device, int delta)
@@ -61,7 +60,25 @@ void WorldTest::OnKeyDown(int key_code)
 {
 	switch (key_code)
 	{
-	default:
+	case DIK_1:
+		waepon->SetWaeponType(NBullet);
+		break;
+	case DIK_2:
+		waepon->SetWaeponType(MBullet);
+		break;
+	case DIK_3:
+		waepon->SetWaeponType(FBullet);
+		break;
+	case DIK_4:
+		waepon->SetWaeponType(LBullet);
+		break;
+	case DIK_5:
+		waepon->SetWaeponType(SBullet);
+		break;
+	case DIK_J:
+		D3DXVECTOR3 pos = D3DXVECTOR3(bill->_physical.x, bill->_physical.y, 0);
+		waepon->Shooting(pos, test, bill->_physical.vx);
+		test += 30;
 		break;
 	}
 }
@@ -89,8 +106,8 @@ void WorldTest::GameUpdate(int delta_time)
 	
 	bill->Update(delta_time);
 	bill2->Update(delta_time);
-	bullet->Update(delta_time);
-
+	waepon->Update(delta_time);
+	
 	camera->UpdateCamera(bill->_physical.x);
 	
 	

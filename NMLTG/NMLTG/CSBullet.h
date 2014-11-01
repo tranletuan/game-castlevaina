@@ -9,12 +9,12 @@ protected:
 	void CalcVelocity(float v_max);
 
 public:
-	CSBullet(D3DXVECTOR3 pos, int angle, float direction, float v_max);
+	CSBullet(D3DXVECTOR3 pos, int angle, float v_max, float vo);
 	~CSBullet();
 
 	void LoadResources();
 	void Draw();
 	void Update(int delta_time);
-	void Moving(float v);
+	void Moving(float v_max);
 };
 #endif // !_SBULLET_H_

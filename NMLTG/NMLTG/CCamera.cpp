@@ -16,6 +16,15 @@ void CCamera::UpdateCamera(float x)
 
 }
 
+void CCamera::UpdateCameraY(float y)
+{
+	view_port.y = y + kScreenHeight / 2;
+	if (view_port.y < 0)
+	{
+		view_port.y = 0;
+	}
+}
+
 //Hàm để chuyển tọa độ góc của đối tượng thành tọa đô tậm
 //Dùng trong khởi tạo
 D3DXVECTOR3 CCamera::CenterSprite(int x, int y, int width, int height)

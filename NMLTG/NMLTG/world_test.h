@@ -15,6 +15,8 @@
 #include "CFBullet.h"
 #include "CLBullet.h"
 #include "CMBullet.h"
+#include "CPlayerWaepon.h"
+
 
 class WorldTest : public CGame
 {
@@ -27,6 +29,9 @@ protected:
 	CBill* bill;
 	CBill* bill2;
 	CBullet* bullet;
+	CSprite* stest;
+	CPlayerWaepon* waepon;
+	int test;
 
 	void RenderFrame(LPDIRECT3DDEVICE9 d3d_device);
 	void LoadResources(LPDIRECT3DDEVICE9 d3d_device);

@@ -39,12 +39,10 @@ void CGame::GameRun()
 
 		if (delta_time >= tick_per_fram)
 		{
+			GameUpdate(delta_time);
 			//Vẽ các thành phần trong game;
 			RenderAll();
-			
 			frame_start = now;
-			GameUpdate(delta_time);
-
 		}
 
 		

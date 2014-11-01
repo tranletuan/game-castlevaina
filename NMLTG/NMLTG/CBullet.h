@@ -9,17 +9,19 @@ class CBullet : public CObject, public IMovableObject
 {
 protected:
 	int _angle;
+	float _vo;
 	virtual void CalcVelocity(float v_max);
+	void SetAngle(int angle);
 
 public:
 	CBullet();
-	CBullet(D3DXVECTOR3 pos, int angle, float direction, float v_max);
+	CBullet(D3DXVECTOR3 pos, int angle, float v_max, float vo);
 	~CBullet();
 
 	virtual void LoadResources() = 0;
 	virtual void Update(int delta_time) = 0;
 	virtual void Draw() = 0;
-	virtual void Moving(float v) = 0;
+	virtual void Moving(float v_max) = 0;
 	
 };
 #endif // !_CBULLET_H_

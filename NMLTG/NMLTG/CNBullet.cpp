@@ -1,7 +1,7 @@
 #include "CNBullet.h"
 
-CNBullet::CNBullet(D3DXVECTOR3 pos, int angle, float direction, float v_max)
-	: CBullet(pos, angle, direction, v_max)
+CNBullet::CNBullet(D3DXVECTOR3 pos, int angle, float v_max, float vo)
+	: CBullet(pos, angle, v_max, vo)
 {
 	Moving(v_max);
 }
@@ -35,9 +35,9 @@ void CNBullet::Draw()
 	_current_sprite->DrawWithDirecion(pos, _physical.vx_last);
 }
 
-void CNBullet::Moving(float v)
+void CNBullet::Moving(float v_max)
 {
-	CalcVelocity(v);
+	CalcVelocity(v_max);
 }
 
 void CNBullet::CalcVelocity(float v_max)
