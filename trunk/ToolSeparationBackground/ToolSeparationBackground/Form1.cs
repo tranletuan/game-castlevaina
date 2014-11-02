@@ -53,6 +53,13 @@ namespace ToolSeparationBackground
         /// <returns>true nếu giống nhau hoàn toàn, false nếu khác nhau</returns>
         private bool compare2Images(Bitmap firstImage, Bitmap secondImage)
         {
+            //Khác kích thước chắc chắn không giống nhau
+            if (firstImage.Width != secondImage.Width ||
+                firstImage.Height != secondImage.Height)
+            {
+                return false;
+            }
+
             //Bộ nhớ tạm
             MemoryStream ms = new MemoryStream();
 
@@ -91,6 +98,9 @@ namespace ToolSeparationBackground
             int cWidth = img.Width / width;
             int cHeight = img.Height / height;
 
+            cWidth = img.Width % width == 0 ? cWidth : cWidth + 1;
+            cHeight = img.Height % height == 0 ? cHeight : cHeight + 1;
+
             _wMap.writeLine(cWidth + " " + cHeight);//Ghi số dòng và số cột của map
             _map = new List<string>();
 
@@ -99,19 +109,39 @@ namespace ToolSeparationBackground
                 String mapLine = "";
                 for (int j = 0; j < cWidth; j++)
                 {
+                    Bitmap texture;
+                    Graphics g;
+                    int width_draw = width;
+                    int height_draw = height;
+
+                    //Trường hợp rơi vào cột cuối hoặc hàng cuối mà size còn lại nhỏ hơn size cần cắt
+                    if (i == cHeight - 1 || j == cWidth - 1)
+                    {
+                        if (i == cHeight - 1 && img.Height % height != 0)
+                        {
+                            height_draw = img.Height - (i * height);
+                        }
+
+                        if (j == cWidth - 1 && img.Width % width != 0)
+                        {
+                            width_draw = img.Width - (j * width);
+                        }
+                    }
+                 
                     //Tách 1 texture từ img gốc
                     //Khởi tạo một texture chứa từng hình ảnh tách ra được
-                    Bitmap texture = new Bitmap(width, height);
-                    Graphics g = Graphics.FromImage(texture);
+                    texture = new Bitmap(width_draw, height_draw);
+                    g = Graphics.FromImage(texture);
                     g.DrawImageUnscaled(img, -j * width, -i * height);
-                    int type = 0;
-
+                    
+                   
                     //So sánh texture vừa tách với các texture trong danh sách 
+                    int type = 0;
                     if (_list_texture.Count == 0)
                     {
                         //Danh sách rỗng thì không cần so sánh
                         _list_texture.Add(texture);
-                        
+
                     }
                     else
                     {
@@ -139,7 +169,6 @@ namespace ToolSeparationBackground
                     int percent = (i * cWidth + j) * 100 / (cHeight * cWidth);
                     pgbSeparation.Value = percent;
                 }
-
                 _map.Add(mapLine);
             }
         }
@@ -166,7 +195,7 @@ namespace ToolSeparationBackground
             for (int i = 0; i < _list_texture.Count ; i ++)
             {
                 g.DrawImageUnscaled(_list_texture[i], new Point(x, 0));
-                x += width;
+                x += _list_texture[i].Width;
 
                 //Lưu texture nếu chưa tồn tại file đã lưu
                 string fileName = _folderTexture + "\\" + i + ".png";
