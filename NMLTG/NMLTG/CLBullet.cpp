@@ -1,7 +1,7 @@
 #include "CLBullet.h"
 
 CLBullet::CLBullet(D3DXVECTOR3 pos, int angle, float v_max, float vo)
-	:CBullet(pos, angle, v_max, vo)
+	:CBullet(BulletL, pos, angle, v_max, vo)
 {
 	Moving(v_max);
 	_scale.x = _physical.vx_last > 0 ? 1 : -1;

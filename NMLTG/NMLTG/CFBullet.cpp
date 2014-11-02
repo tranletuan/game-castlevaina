@@ -1,7 +1,7 @@
 ﻿#include "CFBullet.h"
 
 CFBullet::CFBullet(D3DXVECTOR3 pos, int angle, float v_max, float vo)
-	:CBullet(pos, angle, v_max, vo)
+	:CBullet(BulletF, pos, angle, v_max, vo)
 {
 	_degrees = _physical.vx_last > 0 ? 180 : 0;
 	Moving(v_max);

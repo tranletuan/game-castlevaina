@@ -20,8 +20,6 @@ class CPhysical
 public:
 	float	x;
 	float	y;
-	float	width;
-	float	height;
 	float	vx;
 	float	vy;
 	float	vx_last;
@@ -32,7 +30,7 @@ public:
 	float	current_vy;
 
 	CPhysical();
-	CPhysical(float x, float y, float width = 0, float height = 0, float vx = 0, float vy = 0);
+	CPhysical(float x, float y, float vx = 0, float vy = 0);
 	
 	void SetBounds(float x, float y, float width = 0, float height = 0);
 	void CalcPositionWithGravitation(int time);

@@ -16,7 +16,9 @@
 #include "CLBullet.h"
 #include "CMBullet.h"
 #include "CPlayerWaepon.h"
-
+#include "CGround.h"
+#include "CEffectObject.h"
+#include "CAutoDestroyBridge.h"
 
 class WorldTest : public CGame
 {
@@ -31,7 +33,11 @@ protected:
 	CBullet* bullet;
 	CSprite* stest;
 	CPlayerWaepon* waepon;
+	CAutoDestroyBridge* ground;
+	CEffectObject* effect;
+
 	int test;
+	
 
 	void RenderFrame(LPDIRECT3DDEVICE9 d3d_device);
 	void LoadResources(LPDIRECT3DDEVICE9 d3d_device);

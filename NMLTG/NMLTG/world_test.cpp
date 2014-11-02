@@ -7,6 +7,7 @@ WorldTest::WorldTest(int cmd_show) : CGame(cmd_show)
 	this->bill = new CBill(D3DXVECTOR3(20, 135, 0), 34);
 	this->bill2 = new CBill(D3DXVECTOR3(100, 135, 0), 34);
 	this->waepon = new CPlayerWaepon();
+	this->ground = new CAutoDestroyBridge(GroundBridge, D3DXVECTOR3(100, 16, 0));
 	test = 0;
 }
 
@@ -17,18 +18,21 @@ WorldTest::~WorldTest()
 
 void WorldTest::LoadResources(LPDIRECT3DDEVICE9 d3d_device)
 {
+	CResourcesManager* rs = CResourcesManager::GetInstance();
+
 	background->LoadResources();
 	bill->LoadResources();
 	bill2->LoadResources();
+	ground->LoadResources();
 }
 
 void WorldTest::RenderFrame(LPDIRECT3DDEVICE9 d3d_device)
 {
-	background->Draw();
+	//background->Draw();
 	bill->Draw();
 	bill2->Draw();
 	waepon->Draw();
-
+	ground->Draw();
 }
 
 void WorldTest::ProcessInput(LPDIRECT3DDEVICE9 d3d_device, int delta)
@@ -62,6 +66,7 @@ void WorldTest::OnKeyDown(int key_code)
 	{
 	case DIK_1:
 		waepon->SetWaeponType(NBullet);
+		ground->SetTarget(100);
 		break;
 	case DIK_2:
 		waepon->SetWaeponType(MBullet);

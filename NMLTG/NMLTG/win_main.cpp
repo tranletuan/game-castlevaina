@@ -8,6 +8,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine,
 
 	WorldTest *game = new WorldTest(nCmdShow);
 	
+
 	game->GameInit();
 	game->GameRun();
 	game->GameEnd();

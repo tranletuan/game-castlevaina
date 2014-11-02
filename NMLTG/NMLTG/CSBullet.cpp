@@ -1,7 +1,7 @@
 #include "CSBullet.h"
 
 CSBullet::CSBullet(D3DXVECTOR3 pos, int angle, float v_max, float vo)
-	:CBullet(pos, angle, v_max, vo)
+	:CBullet(BulletS, pos, angle, v_max, vo)
 {
 	Moving(v_max);
 }
@@ -14,7 +14,7 @@ CSBullet::~CSBullet()
 void CSBullet::LoadResources()
 {
 	CResourcesManager* rs = CResourcesManager::GetInstance();
-	_current_sprite = new CSprite(rs->_bullet_s, BULLET_S_ELAPSED_TIME);
+	_current_sprite = new CSprite(rs->_bullet_s);
 }
 
 void CSBullet::Update(int delta_time)
@@ -32,10 +32,7 @@ void CSBullet::Draw()
 	CCamera* c = CResourcesManager::GetInstance()->_camera;
 	D3DXVECTOR3 pos = c->Transform(_physical.x, _physical.y);
 
-	if (_current_sprite->index < _current_sprite->end)
-	{
-		_current_sprite->UpdateEffect();
-	}
+	_current_sprite->PerformEffectOneTime(0, 2, BULLET_S_ELAPSED_TIME);
 
 	if (_physical.vx_last > 0)
 	{

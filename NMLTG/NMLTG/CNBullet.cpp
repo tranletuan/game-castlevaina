@@ -1,7 +1,7 @@
 #include "CNBullet.h"
 
 CNBullet::CNBullet(D3DXVECTOR3 pos, int angle, float v_max, float vo)
-	: CBullet(pos, angle, v_max, vo)
+	: CBullet(BulletN, pos, angle, v_max, vo)
 {
 	Moving(v_max);
 }

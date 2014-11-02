@@ -14,7 +14,7 @@ protected:
 	StatusEnemy _status_enemy;
 
 public:
-	CEnemy(){}
+	CEnemy(string specific_type) : CObject(specific_type, "enemy") {}
 	~CEnemy(){}
 
 	//Override 

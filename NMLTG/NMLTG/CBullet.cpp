@@ -1,7 +1,5 @@
 ﻿#include "CBullet.h"
 
-CBullet::CBullet(){}
-
 CBullet::~CBullet()
 {
 	if (_current_sprite != NULL)
@@ -11,7 +9,8 @@ CBullet::~CBullet()
 }
 
 //Góc tối đa là 90 và tối thiểu là -90
-CBullet::CBullet(D3DXVECTOR3 pos, int angle, float v_max, float vo)
+CBullet::CBullet(SpecificType specific_type, D3DXVECTOR3 pos, int angle, float v_max, float vo)
+	:CObject(specific_type, Bullet)
 {
 	_physical.x = pos.x;
 	_physical.y = pos.y;
