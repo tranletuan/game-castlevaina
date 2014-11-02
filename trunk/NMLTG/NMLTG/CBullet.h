@@ -14,8 +14,7 @@ protected:
 	void SetAngle(int angle);
 
 public:
-	CBullet();
-	CBullet(D3DXVECTOR3 pos, int angle, float v_max, float vo);
+	CBullet(SpecificType specific_type, D3DXVECTOR3 pos, int angle, float v_max, float vo);
 	~CBullet();
 
 	virtual void LoadResources() = 0;

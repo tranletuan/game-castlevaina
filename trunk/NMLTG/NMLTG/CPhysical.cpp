@@ -2,16 +2,21 @@
 
 CPhysical::CPhysical()
 {
+	this->x = 0;
+	this->y = 0;
+	this->vx = 0;
+	this->vy = 0;
+	this->vx_last = 1.0f;
+	this->current_vx = 0;
+	this->current_vy = 0;
 }
 
-CPhysical::CPhysical(float x, float y, float width, float height, float vx, float vy)
+CPhysical::CPhysical(float x, float y, float vx, float vy)
 {
 	this->x = x;
 	this->y = y;
 	this->vx = vx;
 	this->vy = vy;
-	this->width = width;
-	this->height = height;
 	this->vx_last = 1.0f;
 }
 
@@ -155,7 +160,7 @@ CollisionDirection CPhysical::CollisionX(float &dx_entry, float &dx_exit, float 
 	else //Trường hợp vector vận tốc giữa 2 vật = 0
 	{
 		if (bounds.left <= physical->bounds.right &&
-			bounds.left >= physical->bounds.left - width)
+			bounds.left >= physical->bounds.left - (bounds.right - bounds.left))
 		{
 			if (bounds.left <= physical->bounds.left)
 			{
@@ -199,7 +204,7 @@ CollisionDirection CPhysical::CollisionY(float &dy_entry, float &dy_exit, float 
 	else 
 	{
 		if (bounds.bottom <= physical->bounds.top &&
-			bounds.bottom >= physical->bounds.bottom - height)
+			bounds.bottom >= physical->bounds.bottom - (bounds.top - bounds.bottom))
 		{
 			if (bounds.bottom <= physical->bounds.bottom)
 			{

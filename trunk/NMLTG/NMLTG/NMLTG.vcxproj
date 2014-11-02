@@ -82,9 +82,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CAutoDestroyBridge.h" />
     <ClInclude Include="CBackground.h" />
     <ClInclude Include="CBill.h" />
     <ClInclude Include="CBullet.h" />
+    <ClInclude Include="CEffectObject.h" />
+    <ClInclude Include="CGround.h" />
     <ClInclude Include="CPlayerWaepon.h" />
     <ClInclude Include="CWaeponFactory.h" />
     <ClInclude Include="CCamera.h" />
@@ -107,12 +110,15 @@
     <ClInclude Include="world_test.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CAutoDestroyBridge.cpp" />
     <ClCompile Include="CBackground.cpp" />
     <ClCompile Include="CBill.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CCamera.cpp" />
+    <ClCompile Include="CEffectObject.cpp" />
     <ClCompile Include="CFBullet.cpp" />
     <ClCompile Include="CGame.cpp" />
+    <ClCompile Include="CGround.cpp" />
     <ClCompile Include="CLBullet.cpp" />
     <ClCompile Include="CMBullet.cpp" />
     <ClCompile Include="CNBullet.cpp" />

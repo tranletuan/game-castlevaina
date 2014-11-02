@@ -17,25 +17,29 @@ CSprite::CSprite(const CSprite &sprite)
 	start = sprite.start;
 	end = sprite.end;
 	index = sprite.index;
+	last_index = sprite.last_index;
 	time_ani = sprite.time_ani;
 	last_time = sprite.last_time;
 }
 
 CSprite::CSprite(CTexture *texture, int start, int end, int time_ani) 
-: sprite_texture(texture)
+	:sprite_texture(texture)
 {
 	this->start = start;
 	this->end = end;
 	this->index = start;
+	this->last_index = start;
 	this->time_ani = time_ani;
 	this->last_time = 0;
 }
 
-CSprite::CSprite(CTexture *texture, int time_ani) :sprite_texture(texture)
+CSprite::CSprite(CTexture *texture) 
+	:sprite_texture(texture)
 {
 	this->start = 0;
 	this->end = texture->count - 1;
 	this->time_ani = time_ani;
+	this->last_index = 0;
 	this->index = 0;
 	this->last_time = 0;
 }
@@ -67,10 +71,10 @@ void CSprite::SelectFrameOf(int index)
 		Reset();
 }
 
-void CSprite::UpdateAllEffect(int elapsed_time)
+void CSprite::PerformAllEffect(int time)
 {
 	DWORD now = GetTickCount();
-	time_ani = elapsed_time;
+	time_ani = time;
 
 	if (now - last_time >= time_ani)
 	{
@@ -79,8 +83,17 @@ void CSprite::UpdateAllEffect(int elapsed_time)
 	}
 }
 
-void CSprite::UpdateEffect()
+void CSprite::PerformEffect(int start, int end, int time)
 {
+	if (index < start || index > end)
+	{
+		index = start;
+	}
+
+	this->start = start;
+	this->end = end;
+	this->time_ani = time;
+
 	if (start < end)
 	{
 		DWORD now = GetTickCount();
@@ -93,7 +106,15 @@ void CSprite::UpdateEffect()
 	}
 }
 
-void CSprite::Draw(int x, int y)
+void CSprite::PerformEffectOneTime(int start, int end, int time)
+{
+	if (index != end)
+	{
+		PerformEffect(start, end, time);
+	}
+}
+
+void CSprite::Draw(float x, float y)
 {
 	RECT src_rect;
 
@@ -102,7 +123,7 @@ void CSprite::Draw(int x, int y)
 	src_rect.right = src_rect.left + sprite_texture->frame_width;
 	src_rect.bottom = src_rect.top + sprite_texture->frame_height;
 
-	D3DXVECTOR3 pos = GetCorner(x, y, sprite_texture->frame_width, sprite_texture->frame_height);
+	D3DXVECTOR3 pos = GetCorner((int)x, (int)y, sprite_texture->frame_width, sprite_texture->frame_height);
 	
 	kSpriteHandler->Draw(
 		sprite_texture->picture,
@@ -112,13 +133,13 @@ void CSprite::Draw(int x, int y)
 		D3DCOLOR_XRGB(255, 255, 255));
 }
 
-void CSprite::DrawFlipX(int x, int y)
+void CSprite::DrawFlipX(float x, float y)
 {
 	D3DXMATRIX old_matrix;
 	kSpriteHandler->GetTransform(&old_matrix);
 
 	D3DXMATRIX new_natrix;
-	D3DXVECTOR2 center = D3DXVECTOR2(x, y);
+	D3DXVECTOR2 center = D3DXVECTOR2((int)x, (int)y);
 	D3DXVECTOR2 rotate = D3DXVECTOR2(-1, 1);
 
 	D3DXMatrixTransformation2D(&new_natrix, &center, 0.0f, &rotate, NULL, 0.0f, NULL);
@@ -130,7 +151,7 @@ void CSprite::DrawFlipX(int x, int y)
 	kSpriteHandler->SetTransform(&old_matrix);
 }
 
-void CSprite::DrawFlipY(int x, int y)
+void CSprite::DrawFlipY(float x, float y)
 {
 	D3DXMATRIX old_matrix;
 	kSpriteHandler->GetTransform(&old_matrix);
@@ -148,7 +169,7 @@ void CSprite::DrawFlipY(int x, int y)
 	kSpriteHandler->SetTransform(&old_matrix);
 }
 
-void CSprite::DrawTransform(int x, int y, D3DXVECTOR2 scale, float degRotate, float depth)
+void CSprite::DrawTransform(float x, float y, D3DXVECTOR2 scale, float degRotate, float depth)
 {
 	RECT src_rect;
 
@@ -188,15 +209,7 @@ void CSprite::DrawTransform(int x, int y, D3DXVECTOR2 scale, float degRotate, fl
 
 void CSprite::DrawWithDirecion(D3DXVECTOR3 pos, float direction, int start, int end, int time)
 {
-	if (index < start || index > end)
-	{
-		index = start;
-	}
-
-	this->start = start;
-	this->end = end;
-	this->time_ani = time;
-	UpdateEffect();
+	PerformEffect(start, end, time);
 
 	if (direction > 0)
 	{
@@ -208,7 +221,7 @@ void CSprite::DrawWithDirecion(D3DXVECTOR3 pos, float direction, int start, int 
 	}
 }
 
-D3DXVECTOR3 CSprite::GetCorner(int x, int y, int width, int height)
+D3DXVECTOR3 CSprite::GetCorner(float x, float y, float width, float height)
 {
 	return D3DXVECTOR3(x - width / 2, y - height / 2, 0);
 }

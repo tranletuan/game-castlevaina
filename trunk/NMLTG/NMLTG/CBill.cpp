@@ -1,6 +1,7 @@
 #include "CBill.h"
 
 CBill::CBill(D3DXVECTOR3 pos, int size)
+	:CObject(Player1, Player)
 {
 	_physical = CPhysical(pos.x, pos.y, size, size);
 	_physical.vx_last = BILL_VX;

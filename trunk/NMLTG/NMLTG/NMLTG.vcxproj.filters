@@ -132,6 +132,15 @@
     <ClInclude Include="CPlayerWaepon.h">
       <Filter>Header Files\object\weapon</Filter>
     </ClInclude>
+    <ClInclude Include="CGround.h">
+      <Filter>Header Files\object\ground</Filter>
+    </ClInclude>
+    <ClInclude Include="CEffectObject.h">
+      <Filter>Header Files\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="CAutoDestroyBridge.h">
+      <Filter>Header Files\object\ground</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="win_main.cpp">
@@ -193,6 +202,15 @@
     </ClCompile>
     <ClCompile Include="CPlayerWaepon.cpp">
       <Filter>Source Files\object\weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="CGround.cpp">
+      <Filter>Source Files\object\ground</Filter>
+    </ClCompile>
+    <ClCompile Include="CEffectObject.cpp">
+      <Filter>Source Files\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="CAutoDestroyBridge.cpp">
+      <Filter>Source Files\object\ground</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
