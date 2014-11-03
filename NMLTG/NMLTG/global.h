@@ -44,6 +44,4 @@ extern LPD3DXFONT					kFont;
 //GAME CONSTANT
 extern float						kZoom;
 extern D3DCOLOR						kBackgroundColorTexture;
-extern LPCWSTR						kBackgroundFolder;
-
 #endif

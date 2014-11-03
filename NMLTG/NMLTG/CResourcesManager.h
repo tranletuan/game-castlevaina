@@ -34,6 +34,11 @@ public:
 	//Camera 
 	CCamera* _camera;
 
+	//Background
+	CTexture* _background_map1;
+	CTexture* _background_map2;
+	CTexture* _background_map3;
+
 	//Contra 1
 	CTexture* _bill_stand;
 	CTexture* _bill_jump;

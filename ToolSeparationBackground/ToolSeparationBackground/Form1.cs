@@ -26,7 +26,7 @@ namespace ToolSeparationBackground
         Bitmap _result;
         MapWriter _wMap;
         String _fileMapText;
-        String _folderTexture;
+        String _fileTexture;
         int _width, _height;
         List<Bitmap> _list_texture;
         List<String> _map;
@@ -130,23 +130,24 @@ namespace ToolSeparationBackground
                     int height_draw = height;
 
                     //Trường hợp rơi vào cột cuối hoặc hàng cuối mà size còn lại nhỏ hơn size cần cắt
-                    if (i == cHeight - 1 || j == cWidth - 1)
-                    {
-                        if (i == cHeight - 1 && img.Height % height != 0)
-                        {
-                            height_draw = img.Height - (i * height);
-                        }
+                    //if (i == cHeight - 1 || j == cWidth - 1)
+                    //{
+                    //    if (i == cHeight - 1 && img.Height % height != 0)
+                    //    {
+                    //        height_draw = img.Height - (i * height);
+                    //    }
 
-                        if (j == cWidth - 1 && img.Width % width != 0)
-                        {
-                            width_draw = img.Width - (j * width);
-                        }
-                    }
+                    //    if (j == cWidth - 1 && img.Width % width != 0)
+                    //    {
+                    //        width_draw = img.Width - (j * width);
+                    //    }
+                    //}
                  
                     //Tách 1 texture từ img gốc
                     //Khởi tạo một texture chứa từng hình ảnh tách ra được
                     texture = new Bitmap(width_draw, height_draw);
                     g = Graphics.FromImage(texture);
+                    //g.FillRectangle(Brushes.Pink, new Rectangle(0, 0, texture.Width, texture.Height));
                     g.DrawImageUnscaled(img, -j * width, -i * height);
                    
                     //So sánh texture vừa tách với các texture trong danh sách 
@@ -198,28 +199,14 @@ namespace ToolSeparationBackground
             _result = new Bitmap(width * _list_texture.Count, height);
             Graphics g = Graphics.FromImage(_result);
 
-            //Nếu folder chứa các texture chưa tồn tại
-            //Tạo folder chứa texture của map
-            if (!Directory.Exists(_folderTexture))
-            {
-                Directory.CreateDirectory(_folderTexture);
-            }
-
             int x = 0; //Tọa độ vẽ;
             for (int i = 0; i < _list_texture.Count ; i ++)
             {
                 g.DrawImageUnscaled(_list_texture[i], new Point(x, 0));
                 x += _list_texture[i].Width;
-
-                //Lưu texture nếu chưa tồn tại file đã lưu
-                string fileName = _folderTexture + "\\" + i + ".png";
-                if (File.Exists(fileName))
-                {
-                    File.Delete(fileName);
-                }
-
-                _list_texture[i].Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
             }
+
+            _result.Save(_fileTexture, System.Drawing.Imaging.ImageFormat.Png);
 
             //Lưu map
             _wMap.writeLine(_list_texture.Count.ToString()); //Lưu số texture
@@ -230,13 +217,8 @@ namespace ToolSeparationBackground
             
             //Xem size của folder
             long b = 0;
-            string[] files = Directory.GetFiles(_folderTexture, "*.*");
-            for (int i = 0; i < files.Length; i++)
-            {
-                FileInfo info = new FileInfo(files[i]);
-                if (info.Name != "Thumbs.db")
-                    b += info.Length;
-            }
+            FileInfo info = new FileInfo(_fileTexture);
+            b = info.Length;
 
             lbTextureSize.Text = (b / 1024).ToString("n0") + " kb";
             lbTotalTexture.Text = _list_texture.Count.ToString();
@@ -268,8 +250,8 @@ namespace ToolSeparationBackground
                 string fullPath = ofd.FileName;
                 string fileName = ofd.SafeFileName;
                 string path = Path.GetDirectoryName(fullPath);
-                _fileMapText = path + "\\map_" + fileName.Split(new char[] { '.' })[0] + ".txt"; //Tên file map lưu
-                _folderTexture = path + "\\texture_" + fileName.Split(new char[] { '.' })[0]; //Tên folder lưu texture
+                _fileMapText = path + "\\background_map_" + fileName.Split(new char[] { '.' })[0] + ".txt"; //Tên file map lưu
+                _fileTexture = path + "\\background_texture_" + fileName.Split(new char[] { '.' })[0] + ".png"; //Tên folder lưu texture
                 _wMap = new MapWriter(_fileMapText); 
 
                 txtPicturePath.Text = fullPath;

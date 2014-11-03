@@ -61,6 +61,12 @@
     <Filter Include="Source Files\object\weapon\player bullet">
       <UniqueIdentifier>{d80e079a-02d5-4981-8a3a-764f08013fc0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\map">
+      <UniqueIdentifier>{16db0a90-74b5-41c1-8f60-3a809cf9c906}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\map">
+      <UniqueIdentifier>{63ceb8e0-5cb4-4ba8-b0c2-074ac2448e99}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="world_test.h">
@@ -140,6 +146,9 @@
     </ClInclude>
     <ClInclude Include="CAutoDestroyBridge.h">
       <Filter>Header Files\object\ground</Filter>
+    </ClInclude>
+    <ClInclude Include="CMapReader.h">
+      <Filter>Header Files\map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
