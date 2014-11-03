@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,18 @@ namespace ToolSeparationBackground
         #endregion
 
         #region METHODS
+        /// <summary>
+        /// Chuyển ảnh gốc thành ảnh 8bpp (8 bit depth)
+        /// </summary>
+        /// <param name="img">Ảnh gốc</param>
+        /// <returns></returns>
+        private Bitmap ConvertTo8bpp(Image img)
+        {
+            var bmp = new Bitmap(img.Width, img.Height, System.Drawing.Imaging.PixelFormat.Format16bppRgb555);
+            using (var gr = Graphics.FromImage(bmp))
+                gr.DrawImage(img, new Rectangle(0, 0, img.Width, img.Height));
+            return bmp;
+        }
 
         /// <summary>
         /// Tải ảnh lên màn hình
@@ -92,6 +105,8 @@ namespace ToolSeparationBackground
         /// <returns></returns>
         private void separateImage(Bitmap img, int width, int height)
         {
+            //img = ConvertTo8bpp(img);
+
             //Khởi tạo danh sách ảnh chứa tất cả các texture tách ra được
             _list_texture = new List<Bitmap>();
             
@@ -133,7 +148,6 @@ namespace ToolSeparationBackground
                     texture = new Bitmap(width_draw, height_draw);
                     g = Graphics.FromImage(texture);
                     g.DrawImageUnscaled(img, -j * width, -i * height);
-                    
                    
                     //So sánh texture vừa tách với các texture trong danh sách 
                     int type = 0;
