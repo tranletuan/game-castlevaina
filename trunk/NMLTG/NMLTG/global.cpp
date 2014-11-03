@@ -7,7 +7,7 @@ bool		kIsFullScreen = false;	//Toàn màn hình
 D3DFORMAT	kBackBufferFormat = D3DFMT_UNKNOWN;
 
 int			kScreenWidth = 256;		//Chiều ngang màn hình
-int			kScreenHeight = 256;	//Chiều cao màn hình
+int			kScreenHeight = 240;	//Chiều cao màn hình
 RECT		kWindowSize;
 
 HINSTANCE					kHInstance;	//Yêu cầu từ màn hình game
@@ -24,5 +24,4 @@ LPD3DXFONT					kFont = 0;
 //GAME CONSTANT
 float						kZoom = 1;
 D3DCOLOR					kBackgroundColorTexture = D3DCOLOR_XRGB(255, 0, 255); //Thiết lập chỉ số để xóa nền texture
-LPCWSTR						kBackgroundFolder = L"resources/map/";
 

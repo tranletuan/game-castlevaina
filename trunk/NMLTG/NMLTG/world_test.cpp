@@ -4,8 +4,8 @@ WorldTest::WorldTest(int cmd_show) : CGame(cmd_show)
 {
 	this->cmd_show = cmd_show;
 	this->background = new CBackground(L"map1", 32);
-	this->bill = new CBill(D3DXVECTOR3(20, 135, 0), 34);
-	this->bill2 = new CBill(D3DXVECTOR3(100, 135, 0), 34);
+	this->bill = new CBill(D3DXVECTOR3(20, 140, 0), 34);
+	this->bill2 = new CBill(D3DXVECTOR3(100, 140, 0), 34);
 	this->waepon = new CPlayerWaepon();
 	this->ground = new CAutoDestroyBridge(GroundBridge, D3DXVECTOR3(100, 16, 0));
 	test = 0;
@@ -28,7 +28,7 @@ void WorldTest::LoadResources(LPDIRECT3DDEVICE9 d3d_device)
 
 void WorldTest::RenderFrame(LPDIRECT3DDEVICE9 d3d_device)
 {
-	//background->Draw();
+	background->Draw();
 	bill->Draw();
 	bill2->Draw();
 	waepon->Draw();

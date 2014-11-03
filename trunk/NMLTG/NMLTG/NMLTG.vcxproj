@@ -88,6 +88,7 @@
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CEffectObject.h" />
     <ClInclude Include="CGround.h" />
+    <ClInclude Include="CMapReader.h" />
     <ClInclude Include="CPlayerWaepon.h" />
     <ClInclude Include="CWaeponFactory.h" />
     <ClInclude Include="CCamera.h" />

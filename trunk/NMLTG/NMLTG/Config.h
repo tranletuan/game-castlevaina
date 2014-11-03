@@ -1,6 +1,8 @@
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
 
+#define MAP_FOLDER L"resources/map/"
+
 //GRAVITY
 #define GRAVITY 0.07f
 

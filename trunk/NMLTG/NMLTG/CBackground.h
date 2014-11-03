@@ -1,20 +1,21 @@
 ﻿#ifndef _CBACKGROUND_H_
 #define _CBACKGROUND_H_
 
-#include "CTexture.h"
-#include "Global.h"
 #include "CResourcesManager.h"
+#include "Config.h"
 #include <string>
 #include <fstream>
+#include <map>
 
 using namespace std;
 class CBackground
 {
 private:
 	LPCWSTR _name;
-	CTexture** _list_texture;//đóng vai trò dữ liệu
-	CTexture** _map_texture; //đóng vai trò vẽ
-	D3DXVECTOR2* _list_post;
+	CTexture* _background_texture;
+	CSprite* _background_sprite;
+	map<D3DXVECTOR3, int> _background_map;
+
 	int _num_col;
 	int _num_row;
 	int _total;
