@@ -40,7 +40,7 @@ protected:
 	void DrawWhenAttack(D3DXVECTOR3 pos);
 
 public:
-	CBill(D3DXVECTOR3 pos, int size);
+	CBill(int id, SpecificType specific_type, D3DXVECTOR3 pos);
 	~CBill();
 
 	void LoadResources();

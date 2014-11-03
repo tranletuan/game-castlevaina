@@ -4,10 +4,9 @@ WorldTest::WorldTest(int cmd_show) : CGame(cmd_show)
 {
 	this->cmd_show = cmd_show;
 	this->background = new CBackground(L"map1", 32);
-	this->bill = new CBill(D3DXVECTOR3(20, 140, 0), 34);
-	this->bill2 = new CBill(D3DXVECTOR3(100, 140, 0), 34);
 	this->waepon = new CPlayerWaepon();
-	this->ground = new CAutoDestroyBridge(GroundBridge, D3DXVECTOR3(100, 16, 0));
+	this->bill = new CBill(123, Player1, D3DXVECTOR3(100, 140, 0));
+	this->map_reader = new CMapReader(L"map1");
 	test = 0;
 }
 
@@ -19,20 +18,20 @@ WorldTest::~WorldTest()
 void WorldTest::LoadResources(LPDIRECT3DDEVICE9 d3d_device)
 {
 	CResourcesManager* rs = CResourcesManager::GetInstance();
-
-	background->LoadResources();
 	bill->LoadResources();
-	bill2->LoadResources();
-	ground->LoadResources();
+	map_reader->LoadResources();
+	_map_object = map_reader->GetListObject();
 }
 
 void WorldTest::RenderFrame(LPDIRECT3DDEVICE9 d3d_device)
 {
 	background->Draw();
+	for (map<int, CObject*>::iterator i = _map_object.begin(); i != _map_object.end(); i++)
+	{
+		(*i).second->Draw();
+	}
+
 	bill->Draw();
-	bill2->Draw();
-	waepon->Draw();
-	ground->Draw();
 }
 
 void WorldTest::ProcessInput(LPDIRECT3DDEVICE9 d3d_device, int delta)
@@ -44,18 +43,15 @@ void WorldTest::ProcessInput(LPDIRECT3DDEVICE9 d3d_device, int delta)
 	}
 	else if (IsKeyDown(DIK_A))
 	{
-		
 		bill->Moving(-BILL_VX);
 	}
 
 	//Set phím hướng súng
 	if (IsKeyDown(DIK_W))
 	{
-		bill->SetGunDirection(Up);
 	}
 	else if (IsKeyDown(DIK_S))
 	{
-		bill->SetGunDirection(Down);
 	}
 
 } //Xử lý phím
@@ -99,7 +95,6 @@ void WorldTest::OnKeyUp(int key_code)
 
 	case DIK_W:
 	case DIK_S:
-		bill->SetGunDirection(Normal);
 		break;
 	}
 	
@@ -108,12 +103,7 @@ void WorldTest::OnKeyUp(int key_code)
 void WorldTest::GameUpdate(int delta_time)
 {
 	CCamera* camera = CResourcesManager::GetInstance()->_camera;
-	
 	bill->Update(delta_time);
-	bill2->Update(delta_time);
-	waepon->Update(delta_time);
-	
+
 	camera->UpdateCamera(bill->_physical.x);
-	
-	
 }

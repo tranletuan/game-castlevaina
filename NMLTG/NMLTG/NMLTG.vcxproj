@@ -89,6 +89,7 @@
     <ClInclude Include="CEffectObject.h" />
     <ClInclude Include="CGround.h" />
     <ClInclude Include="CMapReader.h" />
+    <ClInclude Include="CObjectMapFactory.h" />
     <ClInclude Include="CPlayerWaepon.h" />
     <ClInclude Include="CWaeponFactory.h" />
     <ClInclude Include="CCamera.h" />
@@ -107,6 +108,7 @@
     <ClInclude Include="CSprite.h" />
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CResourcesManager.h" />
+    <ClInclude Include="IObjectFactory.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="world_test.h" />
   </ItemGroup>
@@ -121,8 +123,10 @@
     <ClCompile Include="CGame.cpp" />
     <ClCompile Include="CGround.cpp" />
     <ClCompile Include="CLBullet.cpp" />
+    <ClCompile Include="CMapReader.cpp" />
     <ClCompile Include="CMBullet.cpp" />
     <ClCompile Include="CNBullet.cpp" />
+    <ClCompile Include="CObjectMapFactory.cpp" />
     <ClCompile Include="CPlayerWaepon.cpp" />
     <ClCompile Include="CSBullet.cpp" />
     <ClCompile Include="CWaeponFactory.cpp" />

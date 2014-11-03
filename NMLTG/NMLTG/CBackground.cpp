@@ -1,8 +1,8 @@
 ﻿#include "CBackground.h"
 
-CBackground::CBackground(LPCWSTR _name, int texture_size)
+CBackground::CBackground(LPCWSTR map_name, int texture_size)
 {
-	this->_name = _name;
+	this->_map_name = map_name;
 	this->_texture_size = texture_size;
 }
 
@@ -19,11 +19,11 @@ void CBackground::LoadResources()
 	CCamera* c = rs->_camera;
 
 	wstring folder_background(MAP_FOLDER); //Thư mục chứa toàn bộ background
-	wstring background_name(_name);
-	wstring full_folder_path(folder_background + background_name + L"/"); //Đường dẫn full đến background
+	wstring map_name(_map_name);
+	wstring full_folder_path(folder_background + map_name + L"/"); //Đường dẫn full đến background
 
-	wstring file_map_txt(full_folder_path + L"background_map_" + background_name + L".txt");
-	wstring file_texture(full_folder_path + L"background_texture_" + background_name + L".png");
+	wstring file_map_txt(full_folder_path + L"background_map_" + map_name + L".txt");
+	wstring file_texture(full_folder_path + L"background_texture_" + map_name + L".png");
 
 	ifstream infile(file_map_txt);
 	infile >> this->_num_col;

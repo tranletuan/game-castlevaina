@@ -19,6 +19,7 @@
 #include "CGround.h"
 #include "CEffectObject.h"
 #include "CAutoDestroyBridge.h"
+#include "CMapReader.h"
 
 class WorldTest : public CGame
 {
@@ -35,7 +36,8 @@ protected:
 	CPlayerWaepon* waepon;
 	CAutoDestroyBridge* ground;
 	CEffectObject* effect;
-
+	CMapReader* map_reader;
+	map<int, CObject*> _map_object;
 	int test;
 	
 
