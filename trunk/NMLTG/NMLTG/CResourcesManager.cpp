@@ -4,6 +4,8 @@ CResourcesManager *CResourcesManager::_instance = 0;
 
 CResourcesManager::CResourcesManager()
 {
+	SetTypeMap();
+
 	//Camera 
 	_camera = new CCamera();
 
@@ -33,6 +35,8 @@ CResourcesManager::CResourcesManager()
 
 CResourcesManager::~CResourcesManager()
 {
+	_map_type.clear();
+
 	//camera
 	delete _camera;
 
@@ -68,6 +72,29 @@ CResourcesManager *CResourcesManager::GetInstance()
 	}
 
 	return _instance;
+}
+
+void CResourcesManager::SetTypeMap()
+{
+	//Player
+	_map_type[Player1] = Player;
+	_map_type[Player2] = Player;
+
+	//Bullet
+	_map_type[BulletN] = Bullet;
+	_map_type[BulletM] = Bullet;
+	_map_type[BulletL] = Bullet;
+	_map_type[BulletF] = Bullet;
+	_map_type[BulletS] = Bullet;
+
+	//Ground
+	_map_type[Ground1] = Ground;
+	_map_type[Ground2] = Ground;
+	_map_type[Ground3] = Ground;
+	_map_type[GroundBridge] = Ground;
+
+	//Effect
+	_map_type[EffectDestroy] = Effect;
 }
 
 

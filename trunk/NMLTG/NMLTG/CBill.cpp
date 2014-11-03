@@ -1,9 +1,8 @@
 #include "CBill.h"
 
-CBill::CBill(D3DXVECTOR3 pos, int size)
-	:CObject(Player1, Player)
+CBill::CBill(int id, SpecificType specific_type, D3DXVECTOR3 pos)
+	:CObject(id, specific_type, Player, pos)
 {
-	_physical = CPhysical(pos.x, pos.y, size, size);
 	_physical.vx_last = BILL_VX;
 	_enviroment = Land;
 	_gun_direction = Normal;

@@ -1,10 +1,8 @@
 #include "CGround.h"
 
-CGround::CGround(SpecificType specific_type, D3DXVECTOR3 pos)
-	:CObject(specific_type, Ground)
+CGround::CGround(int id, SpecificType specific_type, D3DXVECTOR3 pos)
+	:CObject(id, specific_type, Ground, pos)
 {
-	_physical.x = pos.x;
-	_physical.y = pos.y;
 }
 
 CGround::~CGround()

@@ -11,7 +11,7 @@ using namespace std;
 class CBackground
 {
 private:
-	LPCWSTR _name;
+	LPCWSTR _map_name;
 	CTexture* _background_texture;
 	CSprite* _background_sprite;
 	map<D3DXVECTOR3, int> _background_map;

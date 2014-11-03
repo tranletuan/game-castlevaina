@@ -3,6 +3,7 @@
 
 #include "CTexture.h"
 #include "CCamera.h"
+#include <map>
 
 enum  SpecificType
 {
@@ -24,13 +25,15 @@ class CResourcesManager
 {
 private:
 	static CResourcesManager *_instance;
+	void SetTypeMap();
 	CResourcesManager();
 	~CResourcesManager();
 
 public:
 
 	static CResourcesManager *GetInstance();
-	
+	map<SpecificType, BasicType> _map_type;
+
 	//Camera 
 	CCamera* _camera;
 

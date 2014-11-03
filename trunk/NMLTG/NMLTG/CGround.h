@@ -6,7 +6,7 @@
 class CGround : public CObject
 {
 public:
-	CGround(SpecificType specific_type, D3DXVECTOR3 pos);
+	CGround(int id, SpecificType specific_type, D3DXVECTOR3 pos);
 	~CGround();
 
 	virtual void LoadResources();

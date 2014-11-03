@@ -150,6 +150,12 @@
     <ClInclude Include="CMapReader.h">
       <Filter>Header Files\map</Filter>
     </ClInclude>
+    <ClInclude Include="IObjectFactory.h">
+      <Filter>Header Files\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjectMapFactory.h">
+      <Filter>Header Files\map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="win_main.cpp">
@@ -220,6 +226,12 @@
     </ClCompile>
     <ClCompile Include="CAutoDestroyBridge.cpp">
       <Filter>Source Files\object\ground</Filter>
+    </ClCompile>
+    <ClCompile Include="CMapReader.cpp">
+      <Filter>Source Files\map</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjectMapFactory.cpp">
+      <Filter>Source Files\map</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

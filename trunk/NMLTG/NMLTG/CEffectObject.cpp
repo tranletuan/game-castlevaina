@@ -1,10 +1,8 @@
 #include "CEffectObject.h"
 
 CEffectObject::CEffectObject(SpecificType specific_type, D3DXVECTOR3 pos, int effect_time)
-	:CObject(specific_type, Effect)
+	:CObject(-1, specific_type, Effect, pos)
 {
-	_physical.x = pos.x;
-	_physical.y = pos.y;
 	_effect_time = effect_time;
 }
 

@@ -10,10 +10,8 @@ CBullet::~CBullet()
 
 //Góc tối đa là 90 và tối thiểu là -90
 CBullet::CBullet(SpecificType specific_type, D3DXVECTOR3 pos, int angle, float v_max, float vo)
-	:CObject(specific_type, Bullet)
+	:CObject(-1, specific_type, Bullet, pos)
 {
-	_physical.x = pos.x;
-	_physical.y = pos.y;
 	_vo = vo;
 	SetAngle(angle);
 }

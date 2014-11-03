@@ -1,7 +1,7 @@
 ﻿#include "CAutoDestroyBridge.h"
 
-CAutoDestroyBridge::CAutoDestroyBridge(SpecificType specific_type, D3DXVECTOR3 pos)
-	:CGround(specific_type, pos)
+CAutoDestroyBridge::CAutoDestroyBridge(int id, SpecificType specific_type, D3DXVECTOR3 pos)
+	:CGround(id, specific_type, pos)
 {
 	_is_destroy = false;
 
@@ -38,7 +38,6 @@ void CAutoDestroyBridge::LoadResources()
 void CAutoDestroyBridge::Draw()
 {
 	CCamera* c = CResourcesManager::GetInstance()->_camera;
-	
 	D3DXVECTOR3 pos = c->Transform(_physical.x, _physical.y);
 	_current_sprite->Draw(pos.x, pos.y);
 
