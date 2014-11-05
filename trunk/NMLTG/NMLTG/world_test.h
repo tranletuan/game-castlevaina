@@ -39,6 +39,7 @@ protected:
 	CMapReader* map_reader;
 	map<int, CObject*> _map_object;
 	int test;
+	int test2;
 	
 
 	void RenderFrame(LPDIRECT3DDEVICE9 d3d_device);

@@ -5,8 +5,12 @@ WorldTest::WorldTest(int cmd_show) : CGame(cmd_show)
 	this->cmd_show = cmd_show;
 	this->background = new CBackground(L"map1", 32);
 	this->waepon = new CPlayerWaepon();
-	this->bill = new CBill(123, Player1, D3DXVECTOR3(100, 140, 0));
+	this->bill = new CBill(123, Player1, D3DXVECTOR3(100, 190, 0));
+	this->bill2 = new CBill(23, Player1, D3DXVECTOR3(50, 190, 0));
 	this->map_reader = new CMapReader(L"map1");
+	bill->_physical.vx = BILL_VX;
+	bill2->_physical.vx = BILL_VX;
+
 	test = 0;
 }
 
@@ -32,6 +36,10 @@ void WorldTest::RenderFrame(LPDIRECT3DDEVICE9 d3d_device)
 	}
 
 	bill->Draw();
+
+	string show = to_string(bill->_physical.current_vy) + " : " + to_string(bill->_physical.current_vx) + 
+		" : " + to_string(test) + " : " + to_string(bill->_physical.y);
+	DisplayText(show);
 }
 
 void WorldTest::ProcessInput(LPDIRECT3DDEVICE9 d3d_device, int delta)
@@ -62,7 +70,6 @@ void WorldTest::OnKeyDown(int key_code)
 	{
 	case DIK_1:
 		waepon->SetWaeponType(NBullet);
-		ground->SetTarget(100);
 		break;
 	case DIK_2:
 		waepon->SetWaeponType(MBullet);
@@ -77,9 +84,9 @@ void WorldTest::OnKeyDown(int key_code)
 		waepon->SetWaeponType(SBullet);
 		break;
 	case DIK_J:
-		D3DXVECTOR3 pos = D3DXVECTOR3(bill->_physical.x, bill->_physical.y, 0);
-		waepon->Shooting(pos, test, bill->_physical.vx);
-		test += 30;
+		bill->SetStatus(Jump);
+		bill->_physical.vy = 8.f;
+		
 		break;
 	}
 }
@@ -96,6 +103,8 @@ void WorldTest::OnKeyUp(int key_code)
 	case DIK_W:
 	case DIK_S:
 		break;
+	case DIK_J:
+		break;
 	}
 	
 }
@@ -103,7 +112,46 @@ void WorldTest::OnKeyUp(int key_code)
 void WorldTest::GameUpdate(int delta_time)
 {
 	CCamera* camera = CResourcesManager::GetInstance()->_camera;
+	
+	CollisionDirection cd = Undefined;
+	for (map<int, CObject*>::iterator i = _map_object.begin(); i != _map_object.end(); i++)
+	{
+		CObject* ground = (*i).second;
+		cd = bill->_physical.Collision(&ground->_physical);
+		
+		//if (cd == TopCollision)
+			test = cd;
+
+		if (cd == TopCollision)
+		{
+			bill->_physical.n = GRAVITY;
+			bill->_physical.y = ground->_physical.y + 33;
+			bill->_physical.time_in_space = 0;
+			 
+			break;
+		}
+	}
+	
+	
+	if (cd != TopCollision)
+	{
+		bill->_physical.n = 0;
+		bill->_physical.ground = 0;
+	}
+
 	bill->Update(delta_time);
 
-	camera->UpdateCamera(bill->_physical.x);
+	if (bill->_physical.x < 0)
+	{
+		bill->_physical.x = 0;
+		bill->_physical.vx = BILL_VX;
+	}
+	
+	if (bill->_physical.x > kScreenWidth)
+	{
+		bill->_physical.vx = -BILL_VX;
+	}
+
+	//if (bill->_physical.vx > 0 )
+	//camera->UpdateCamera(bill->_physical.x);
 }
