@@ -1,4 +1,4 @@
-#ifndef _PHYSICAL_H_
+﻿#ifndef _PHYSICAL_H_
 #define _PHYSICAL_H_
 
 #include <Windows.h>
@@ -22,9 +22,11 @@ public:
 	float	y;
 	float	vx;
 	float	vy;
+	float	n; //Phản lực n trong trường hợp gia chạm với mắt đất
 	float	vx_last;
 	BOUNDS	bounds;
 	DWORD	time_in_space;
+	float	ground;
 
 	float	current_vx;
 	float	current_vy;
@@ -33,13 +35,11 @@ public:
 	CPhysical(float x, float y, float vx = 0, float vy = 0);
 	
 	void SetBounds(float x, float y, float width = 0, float height = 0);
-	void CalcPositionWithGravitation(int time);
+	void CalcPositionWithGravitation(int time, float gravity);
 	void CalcPositionWithoutGravitation(int time);
 	CollisionDirection Collision(CPhysical* physical);
 	
 private:
-	
-	bool CheckBoundsCollision(CPhysical* physical);
 	void Swap(float &Dentry, float &Dexit);
 	float Max(float a, float b);
 	float Min(float a, float b);

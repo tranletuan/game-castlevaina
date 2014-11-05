@@ -28,8 +28,8 @@ void CAutoDestroyBridge::LoadResources()
 	_effect_destroy_sprite = new CSprite(rs->_effect_destroy);
 
 	_physical.SetBounds(
-		_physical.x - GROUND_BOUNDS_ATHWART,
-		_physical.y,
+		_physical.x,
+		_physical.y - GROUND_BOUNDS_ATHWART,
 		_current_sprite->sprite_texture->frame_width,
 		_current_sprite->sprite_texture->frame_height
 		);

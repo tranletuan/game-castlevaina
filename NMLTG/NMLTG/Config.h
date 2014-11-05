@@ -4,11 +4,11 @@
 #define MAP_FOLDER L"resources/map/"
 
 //GRAVITY
-#define GRAVITY 0.07f
+#define GRAVITY 0.03f
 
 //BILL 
 #define BILL_VX 0.1f
-#define BILL_VY 10.f
+#define BILL_VY 9.5f
 
 //BULLET
 #define BULLET_REINFORCE 0.05f
@@ -32,7 +32,7 @@
 #define BULLET_M_V 0.3f
 
 //GROUND
-#define GROUND_BOUNDS_ATHWART 6
+#define GROUND_BOUNDS_ATHWART 0
 #define GROUND_TIME_EFFECT 300
 
 #define GROUND_BRIDGE_DESTROY_EFFECT_COUNT 4

@@ -9,6 +9,7 @@ CBill::CBill(int id, SpecificType specific_type, D3DXVECTOR3 pos)
 	_player_status = Stand;
 	_physical.time_in_space = 0;
 	_physical.vx = 0;
+	_physical.SetBounds(pos.x, pos.y, 20, 32);
 }
 
 CBill::~CBill()
@@ -60,7 +61,13 @@ void CBill::Draw()
 
 void CBill::Update(int delta_time)
 {
-	_physical.CalcPositionWithGravitation(delta_time);
+	_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
+	_physical.SetBounds(
+		_physical.x,
+		_physical.y,
+		20,
+		32
+		);
 }
 
 void CBill::SetStatus(PlayerStatus stt)
@@ -91,8 +98,7 @@ void CBill::Moving(float vx)
 void CBill::Standing()
 {
 	_physical.vx = 0;
-	_physical.vy = 0;
-	_physical.time_in_space = 0;
+	//_physical.vy = 0;
 	SetStatus(Stand);
 }
 
