@@ -4,11 +4,12 @@
 #define MAP_FOLDER L"resources/map/"
 
 //GRAVITY
-#define GRAVITY 0.03f
+#define GRAVITY 0.025f
 
 //BILL 
-#define BILL_VX 0.1f
+#define BILL_VX 0.09f
 #define BILL_VY 9.5f
+#define BILL_VY_DIE 7.0f
 
 //BULLET
 #define BULLET_REINFORCE 0.05f
@@ -24,7 +25,7 @@
 
 #define BULLET_F_V 0.2f
 #define BULLET_F_R 18
-#define BULLET_F_ELAPSED_DEGREES 30
+#define BULLET_F_ELAPSED_DEGREES 40
 
 #define BULLET_L_V 0.32f
 #define BULLET_L_ELAPSED_DIS 10

@@ -4,6 +4,7 @@
 #include "IMovableObject.h"
 #include "CObject.h"
 #include "Config.h"
+#include "CPlayerWaepon.h"
 
 enum Environment
 {
@@ -17,7 +18,7 @@ enum GunDirection
 
 enum PlayerStatus
 {
-	Move, Stand, Jump, Die, Fall
+	Stand, Move, Attack, Jump, Die
 };
 
 class CBill : public IMovableObject, public CObject
@@ -33,6 +34,7 @@ protected:
 	GunDirection _gun_direction;
 	PlayerStatus _player_status;
 
+	void SetStatus(PlayerStatus status);
 	void DrawWhenMove(D3DXVECTOR3 pos);
 	void DrawWhenStand(D3DXVECTOR3 pos);
 	void DrawWhenJump(D3DXVECTOR3 pos);
@@ -46,15 +48,15 @@ public:
 	void LoadResources();
 	void Draw();
 	void Update(int delta_time);
-	void SetStatus(PlayerStatus stt);
+
 	void SetEnviroment(Environment env);
 	void SetGunDirection(GunDirection gd);
 
-	void Moving(float vx);
-	void Standing();
-	void Jumping();
-	void Attacking();
 	void Dying();
+	void Jumping();
+	void Attacking(CPlayerWaepon* waepon);
+	void Moving(float vx);
+	void Standing(float y_ground);
 };
 
 #endif // !_CBILL_H_
