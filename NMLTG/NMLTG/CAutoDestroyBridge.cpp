@@ -29,7 +29,7 @@ void CAutoDestroyBridge::LoadResources()
 
 	_physical.SetBounds(
 		_physical.x,
-		_physical.y - GROUND_BOUNDS_ATHWART,
+		_physical.y,
 		_current_sprite->sprite_texture->frame_width,
 		_current_sprite->sprite_texture->frame_height
 		);

@@ -18,7 +18,7 @@ enum GunDirection
 
 enum PlayerStatus
 {
-	Stand, Move, Attack, Jump, Die
+	Stand, Move, Attack, Jump, Fall, Die
 };
 
 class CBill : public IMovableObject, public CObject
@@ -34,7 +34,8 @@ protected:
 	GunDirection _gun_direction;
 	PlayerStatus _player_status;
 
-	void SetStatus(PlayerStatus status);
+	void UpdateBounds();
+	bool SetStatus(PlayerStatus status);
 	void DrawWhenMove(D3DXVECTOR3 pos);
 	void DrawWhenStand(D3DXVECTOR3 pos);
 	void DrawWhenJump(D3DXVECTOR3 pos);
@@ -57,6 +58,7 @@ public:
 	void Attacking(CPlayerWaepon* waepon);
 	void Moving(float vx);
 	void Standing(float y_ground);
+	void Falling();
 };
 
 #endif // !_CBILL_H_

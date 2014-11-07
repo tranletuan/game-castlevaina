@@ -10,11 +10,13 @@
 #define BILL_VX 0.09f
 #define BILL_VY 9.5f
 #define BILL_VY_DIE 7.0f
+#define BILL_BOUNDS_WIDTH 12
+#define BILL_BOUNDS_HEIGHT 28
 
 //BULLET
 #define BULLET_REINFORCE 0.05f
 
-#define BULLET_N_V 0.25f
+#define BULLET_N_V 0.2f
 #define BULLET_N_COUNT 4
 
 #define BULLET_S_COUNT 10
@@ -23,14 +25,14 @@
 #define BULLET_S_V 0.2f
 #define BULLET_S_ELAPSED_TIME 100
 
-#define BULLET_F_V 0.2f
+#define BULLET_F_V 0.15f
 #define BULLET_F_R 18
-#define BULLET_F_ELAPSED_DEGREES 40
+#define BULLET_F_ELAPSED_DEGREES 30
 
-#define BULLET_L_V 0.32f
+#define BULLET_L_V 0.3f
 #define BULLET_L_ELAPSED_DIS 10
 
-#define BULLET_M_V 0.3f
+#define BULLET_M_V 0.25f
 
 //GROUND
 #define GROUND_BOUNDS_ATHWART 0

@@ -117,16 +117,25 @@ void WorldTest::OnKeyUp(int key_code)
 void WorldTest::GameUpdate(int delta_time)
 {
 	CCamera* camera = CResourcesManager::GetInstance()->_camera;
-	
+
 	CollisionDirection cd = Undefined;
 	for (map<int, CObject*>::iterator i = _map_object.begin(); i != _map_object.end(); i++)
 	{
 		CObject* ground = (*i).second;
 		cd = bill->_physical.Collision(&ground->_physical);
 
-		if (cd == TopCollision)
+		if (cd == TopCollision && test == 0)
 		{
-			bill->Standing(ground->_physical.y + 33);
+			bill->Standing(ground->_physical.bounds.top + BILL_BOUNDS_HEIGHT / 2 + 1);
+
+			if (ground->_specific_type == Ground2)
+			{
+				bill->SetEnviroment(Water);
+			}
+			else
+			{
+				bill->SetEnviroment(Land);
+			}
 			break;
 		}
 	}
