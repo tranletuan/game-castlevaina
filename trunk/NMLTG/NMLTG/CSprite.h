@@ -28,12 +28,13 @@ public:
 	void SelectFrameOf(int index); //Chọn hiển thị frame bất kỳ
 	void PerformAllEffect(int time); //Chạy tất cả hiệu ứng
 	void PerformEffect(int start, int end, int time); //Chạy hiệu ứng trong phạm vi xác định
-	void PerformEffectOneTime(int start, int end, int time); //Chạy hiệu ứng trong phạm vi xác định 1 lần duy nhất
+	bool PerformEffectOneTime(int start, int end, int time); //Chạy hiệu ứng trong phạm vi xác định 1 lần duy nhất
 	void Draw(float x, float y);
 	void DrawFlipX(float x, float y);
 	void DrawFlipY(float x, float y);
 	void DrawTransform(float x, float y, D3DXVECTOR2 scale, float degRotate, float depth);
-	void DrawWithDirecion(D3DXVECTOR3 pos, float direction, int start = 0, int end = 0, int time = 100);
+	void DrawWithDirection(D3DXVECTOR3 pos, float direction, int start = 0, int end = 0, int time = 100);
+	bool DrawWithDirectionAndOneTimeEffect(D3DXVECTOR3 pos, float direction, int start, int end, int time = 100);
 private:
 	D3DXVECTOR3 GetCorner(float x, float y, float width, float height);
 

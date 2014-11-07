@@ -1,4 +1,4 @@
-#include "CSprite.h"
+﻿#include "CSprite.h"
 #include "global.h"
 
 CSprite::CSprite()
@@ -106,12 +106,51 @@ void CSprite::PerformEffect(int start, int end, int time)
 	}
 }
 
-void CSprite::PerformEffectOneTime(int start, int end, int time)
+bool CSprite::PerformEffectOneTime(int start, int end, int time)
 {
-	if (index != end)
+	if (index < start || index > end)
 	{
-		PerformEffect(start, end, time);
+		index = start;
 	}
+
+	this->start = start;
+	this->end = end;
+	this->time_ani = time;
+	
+	if (last_time == 0)
+	{
+		last_time = GetTickCount();
+	}
+
+	if (start <= end)
+	{
+		DWORD now = GetTickCount();
+
+		if (now - last_time >= time_ani)
+		{
+			index = index + 1 > end ? start : index + 1;
+			last_time = now;
+			
+			//Nếu start == end thì dựa vào thời gian thực hiện animation
+			//để quyết định việc thực hiện animation kết thúc hay chưa
+			if (start == end)
+			{
+				last_time = 0;
+				return true;
+			}
+		}
+
+		//Nếu start < end thì dựa vào index để quyết định 
+		//việc thực hiện animation kết thúc hay chưa
+		if (start < end && index == end)
+		{
+			last_time = 0;
+			return true;
+		}
+
+	}
+
+	return false;
 }
 
 void CSprite::Draw(float x, float y)
@@ -207,7 +246,7 @@ void CSprite::DrawTransform(float x, float y, D3DXVECTOR2 scale, float degRotate
 	kSpriteHandler->SetTransform(&old_matrix);
 }
 
-void CSprite::DrawWithDirecion(D3DXVECTOR3 pos, float direction, int start, int end, int time)
+void CSprite::DrawWithDirection(D3DXVECTOR3 pos, float direction, int start, int end, int time)
 {
 	PerformEffect(start, end, time);
 
@@ -219,6 +258,22 @@ void CSprite::DrawWithDirecion(D3DXVECTOR3 pos, float direction, int start, int 
 	{
 		DrawFlipX(pos.x, pos.y);
 	}
+}
+
+bool CSprite::DrawWithDirectionAndOneTimeEffect(D3DXVECTOR3 pos, float direction, int start, int end, int time)
+{
+	bool done = PerformEffectOneTime(start, end, time);
+
+	if (direction > 0)
+	{
+		Draw(pos.x, pos.y);
+	}
+	else
+	{
+		DrawFlipX(pos.x, pos.y);
+	}
+
+	return done;
 }
 
 D3DXVECTOR3 CSprite::GetCorner(float x, float y, float width, float height)

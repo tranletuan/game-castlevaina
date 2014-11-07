@@ -32,7 +32,7 @@ void CMBullet::Draw()
 	CCamera* c = CResourcesManager::GetInstance()->_camera;
 	D3DXVECTOR3 pos = c->Transform(_physical.x, _physical.y);
 
-	_current_sprite->DrawWithDirecion(pos, _physical.vx_last);
+	_current_sprite->DrawWithDirection(pos, _physical.vx_last);
 }
 
 void CMBullet::Moving(float v_max)

@@ -6,10 +6,9 @@ CBill::CBill(int id, SpecificType specific_type, D3DXVECTOR3 pos)
 	_physical.vx_last = 1;
 	_enviroment = Land;
 	_gun_direction = Normal;
-	_player_status = Stand;
+	_player_status = Fall;
 	_physical.time_in_space = 0;
 	_physical.vx = 0;
-	_physical.SetBounds(pos.x, pos.y, 20, 32);
 }
 
 CBill::~CBill()
@@ -54,6 +53,13 @@ void CBill::Draw()
 	case Die:
 		DrawWhenDie(pos);
 		break;
+	case Attack:
+		DrawWhenAttack(pos);
+		break;
+	case Fall:
+		_current_sprite = _bill_move;
+		_current_sprite->DrawWithDirection(pos, _physical.vx_last, 0, 0);
+		break;
 	}
 
 
@@ -62,20 +68,24 @@ void CBill::Draw()
 void CBill::Update(int delta_time)
 {
 	_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
-	_physical.SetBounds(
-		_physical.x,
-		_physical.y,
-		20,
-		32
-		);
+	UpdateBounds();
+
+	//Tự động cập nhật trạng thái rơi khi vật k chạm đất
+	if (_player_status != Jump && _physical.n == 0)
+	{
+		SetStatus(Fall);
+	}
 }
 
-void CBill::SetStatus(PlayerStatus status)
+bool CBill::SetStatus(PlayerStatus status)
 {
 	if (status >= _player_status)
 	{
 		_player_status = status;
+		return true;
 	}
+
+	return false;
 }
 
 void CBill::SetEnviroment(Environment env)
@@ -91,53 +101,72 @@ void CBill::SetGunDirection(GunDirection gd)
 //ACTIONS
 void CBill::Dying()
 {
-	SetStatus(Die);
+	//Kiểm tra trạng thái chuyển thành công hay không
+	if (!SetStatus(Die))
+	{
+		return;
+	}
 
 	int sign = _physical.vx_last > 0 ? -1 : 1;
 	_physical.vx = BILL_VX * sign;
 	_physical.vy = BILL_VY_DIE;
 }
 
+void CBill::Falling()
+{
+
+}
+
 void CBill::Jumping()
 {
-	SetStatus(Jump);
+	//Kiểm tra trạng thái Jump có chuyển thành công hay không
+	if (_enviroment == Water) return; //K được nhảy khi ở môi trường nước
+	if (!SetStatus(Jump)) return; 
 
-	//Khi trạng thái != Die thì mới nhảy
-	if (_player_status != Die)
-	{	
-		_physical.vy = BILL_VY;
-	}
+	//Nếu chuyển thành công thì thực hiện nhảy
+	_physical.vy = BILL_VY;
 }
 
 void CBill::Attacking(CPlayerWaepon* waepon)
 {
 	SetStatus(Attack);
+	//Không bắn khi trạng thái nhân vật là Die
+	if (_player_status == Die) return;
 
 	D3DXVECTOR3 pos;
 	int angle = 0;
-	float x = _physical.vx_last > 0 ? _physical.bounds.right : _physical.bounds.left;
+	float x = _physical.vx_last > 0 ? _physical.x + 12 : _physical.x - 12;
 	float y = 0;
 
+	//Góc, và tọa độ đầu tiên của đạn bay ra tùy thuộc vào hướng bắn 
 	switch (_gun_direction)
 	{
 	case Normal:
-		y = _physical.y;
+		if (_enviroment == Land) y = _physical.y;
+		else y = _physical.y - 8;
+
 		angle = _physical.vx_last > 0 ? angle : angle + 180;
 		break;
 	case Up:
 		if (_physical.vx != 0)
 		{
-			y = _physical.y + 10;
+			if(_enviroment == Land) y = _physical.y + 19;
+			else y = _physical.y + 6;
+
 			angle = 45;
 			angle = _physical.vx_last > 0 ? angle : 180 - angle;
 		}
 		else
 		{
+			x = _physical.vx_last > 0 ? _physical.x + 4 : _physical.x - 2;
 			y = _physical.y + _current_sprite->sprite_texture->frame_height / 2;
 			angle = 90;
 		}
 		break;
 	case Down:
+		//Trong môi trường nước k bắn xuống
+		if (_enviroment == Water) return;
+
 		if (_physical.vx != 0)
 		{
 			y = _physical.y - 10;
@@ -146,8 +175,17 @@ void CBill::Attacking(CPlayerWaepon* waepon)
 		}
 		else
 		{
-			y = _physical.y - _current_sprite->sprite_texture->frame_height / 2;
-			angle = -90;
+			if (_player_status == Jump)
+			{
+				x = _physical.x;
+				y = _physical.y - _current_sprite->sprite_texture->frame_height / 2;
+				angle = -90;
+			}
+			else
+			{
+				y = _physical.y - 14;
+				angle = _physical.vx_last > 0 ? 0 : 180;
+			}
 		}
 		break;
 	}
@@ -158,20 +196,20 @@ void CBill::Attacking(CPlayerWaepon* waepon)
 
 void CBill::Moving(float vx)
 {
-	SetStatus(Move); //set trạng thái theo độ ưu tiên
+	SetStatus(Move);
 
 	//Khi trạng thái hiện tại != die mới thay đổi vx
 	if (_player_status != Die)
 	{
+		//Ngoài trạng thái Die ra thì mọi trạng thái còn lại
+		//đều cần set vx
 		_physical.vx = vx;
-		if (vx == 0)
+
+		if (vx == 0 && _player_status != Jump)
 		{
-			if (_player_status != Jump)
-			{
-				_player_status = Stand;
-			}
+			_player_status = Stand;
 		}
-		else
+		else if (vx != 0)
 		{
 			_physical.vx_last = vx;
 		}
@@ -181,6 +219,7 @@ void CBill::Moving(float vx)
 void CBill::Standing(float y_ground)
 {
 	//Khi đang rơi mà va chạm mặt đất
+	//n = 0 đồng nghĩa với đối tượng đang lơ lững trên không
 	if (_physical.n == 0)
 	{
 		if (_player_status != Die)
@@ -195,37 +234,29 @@ void CBill::Standing(float y_ground)
 		_physical.vy = 0;
 	}
 
+	//Chạm đất thì vector phản lực n phải có 1 lực tương đương với vector trọng trường
 	_physical.n = GRAVITY;
 	_physical.time_in_space = GetTickCount();
 	_physical.y = y_ground;
 }
 
-//SUPPORT
+//SUPPORT DRAW
 void CBill::DrawWhenDie(D3DXVECTOR3 pos)
 {
 	_current_sprite = _bill_die;
-	
-	_current_sprite->PerformEffectOneTime(0, 4, 100);
-	
-	if (_physical.vx_last > 0)
-	{
-		_current_sprite->Draw(pos.x, pos.y);
-	}
-	else
-	{
-		_current_sprite->DrawFlipX(pos.x, pos.y);
-	}
-	
+	_current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 0, 4);
 }
 
 void CBill::DrawWhenJump(D3DXVECTOR3 pos)
 {
 	_current_sprite = _bill_jump;
-	_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 0, 3);
+	_current_sprite->DrawWithDirection(pos, _physical.vx_last, 0, 3);
 }
 
 void CBill::DrawWhenAttack(D3DXVECTOR3 pos)
 {
+	bool done = true;
+
 	//Bắn dưới nước
 	if (_enviroment == Water)
 	{
@@ -233,30 +264,45 @@ void CBill::DrawWhenAttack(D3DXVECTOR3 pos)
 		switch (_gun_direction)
 		{
 		case Normal:
-			_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 2, 2);
+			done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 2, 2, 400);
 			break;
 		case Up:
 			//Khi nhắm lên bắn có 2 kiểu, khi di chuyển hướng sung xéo
 			//còn khi đứng yên hướng súng 90 độ
 			if (_physical.vx != 0)
 			{
-				_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 3, 3);
+				done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 3, 3, 400);
 			}
 			else
 			{
-				_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 4, 4);
+				done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 4, 4, 400);
 			}
+			break;
+
+		case Down:
+			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 1, 1);
 			break;
 		}
 	}
 	//Bắn trên cạn
 	else if (_enviroment == Land)
 	{
-		//Khi di chuyển hướng và hướng súng bình thường
-		if (_physical.vx != 0 && _gun_direction == Normal)
+		//Bắn khi di chuyển
+		if (_physical.vx != 0)
 		{
 			_current_sprite = _bill_move;
-			_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 5, 9);
+			switch (_gun_direction)
+			{
+			case Normal:
+				done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 5, 9);
+				break;
+			case Up:
+				_current_sprite->DrawWithDirection(pos, _physical.vx_last, 10, 14);
+				break;
+			case Down:
+				_current_sprite->DrawWithDirection(pos, _physical.vx_last, 15, 19);
+				break;
+			}
 		}
 		else
 		{
@@ -265,17 +311,34 @@ void CBill::DrawWhenAttack(D3DXVECTOR3 pos)
 			switch (_gun_direction)
 			{
 			case Normal:
-				_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 0, 1);
+				done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 0, 1);
 				break;
 			case Up:
-				_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 2, 3);
+				if (_physical.vx == 0)
+				{
+					done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 2, 3);
+				}
 				break;
 			case Down:
-				_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 4, 4);
+				_current_sprite->DrawWithDirection(pos, _physical.vx_last, 4, 4);
 				break;
 			}
 		}
 	}
+
+	//Cờ hiệu bắn xong 1 viên đạn
+	if (done)
+	{
+		if (_physical.vx == 0)
+		{
+			_player_status = Stand;
+		}
+		else
+		{
+			_player_status = Move;
+		}
+	}
+
 }
 
 void CBill::DrawWhenMove(D3DXVECTOR3 pos)
@@ -283,7 +346,7 @@ void CBill::DrawWhenMove(D3DXVECTOR3 pos)
 	if (_enviroment == Water)
 	{
 		_current_sprite = _bill_in_water;
-		_current_sprite->DrawWithDirecion(pos, _physical.vx_last);
+		_current_sprite->DrawWithDirection(pos, _physical.vx_last, 1, 1);
 	}
 	else
 	{
@@ -291,13 +354,13 @@ void CBill::DrawWhenMove(D3DXVECTOR3 pos)
 		switch (_gun_direction)
 		{
 		case Normal:
-			_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 0, 4);
+			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 0, 4);
 			break;
 		case Up:
-			_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 10, 14);
+			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 10, 14);
 			break;
 		case Down:
-			_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 15, 19);
+			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 15, 19);
 			break;
 		}
 	}
@@ -312,10 +375,11 @@ void CBill::DrawWhenStand(D3DXVECTOR3 pos)
 		switch (_gun_direction)
 		{
 		case Normal:
-			_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 1, 1);
+		case Up:
+			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 1, 1);
 			break;
 		case Down:
-			_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 0, 0);
+			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 0, 0);
 			break;
 		}
 	}
@@ -326,16 +390,61 @@ void CBill::DrawWhenStand(D3DXVECTOR3 pos)
 		switch (_gun_direction)
 		{
 		case Normal:
-			_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 0, 0);
+			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 0, 0);
 			break;
 		case Up:
-			_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 2, 2);
+			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 2, 2);
 			break;
 		case Down:
-			_current_sprite->DrawWithDirecion(pos, _physical.vx_last, 4, 4);
+			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 4, 4);
 			break;
 		}
 	}
 }
 
+void CBill::UpdateBounds()
+{
+	//Khi ở trên cạn 
+	if (_enviroment == Land)
+	{
+		switch (_player_status)
+		{
+		case Stand:
+			if (_gun_direction == Down)
+			{
+				_physical.SetBounds(
+					_physical.x,
+					_physical.y - 20,
+					34,
+					16);
+				break;
+			}
+		case Move:
+		case Attack:
+		case Fall:
+			_physical.SetBounds(
+				_physical.x,
+				_physical.y,
+				BILL_BOUNDS_WIDTH,
+				BILL_BOUNDS_HEIGHT);
+			break;
+		case Jump:
+		case Die:
+			_physical.SetBounds(
+				_physical.x,
+				_physical.y,
+				_current_sprite->sprite_texture->frame_width,
+				_current_sprite->sprite_texture->frame_height);
+			break;
+		}
+	}
+	else //Khi ở dưới nước
+	{
+		_physical.SetBounds(
+			_physical.x,
+			_physical.y - 6,
+			BILL_BOUNDS_WIDTH,
+			16);
+	}
+}
 

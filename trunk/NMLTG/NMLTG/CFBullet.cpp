@@ -4,6 +4,7 @@ CFBullet::CFBullet(D3DXVECTOR3 pos, int angle, float v_max, float vo)
 	:CBullet(BulletF, pos, angle, v_max, vo)
 {
 	_degrees = _physical.vx_last > 0 ? 180 : 0;
+	_physical.x = _physical.vx_last > 0 ? _physical.x + 20 : _physical.x - 20;
 	Moving(v_max);
 }
 
@@ -53,7 +54,7 @@ void CFBullet::Draw()
 	CCamera* c = CResourcesManager::GetInstance()->_camera;
 
 	D3DXVECTOR3 pos = c->Transform(_x_circle, _y_circle);
-	_current_sprite->DrawWithDirecion(pos, _physical.vx_last);
+	_current_sprite->DrawWithDirection(pos, _physical.vx_last);
 }
 
 void CFBullet::CalcVelocity(float v_max)
