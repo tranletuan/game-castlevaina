@@ -34,7 +34,7 @@ protected:
 	CBullet* bullet;
 	CSprite* stest;
 	CPlayerWaepon* waepon;
-	CAutoDestroyBridge* ground;
+	CAutoDestroyBridge* bridge;
 	CEffectObject* effect;
 	CMapReader* map_reader;
 	map<int, CObject*> _map_object;

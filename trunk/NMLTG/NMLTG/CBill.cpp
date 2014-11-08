@@ -1,7 +1,7 @@
 ﻿#include "CBill.h"
 
-CBill::CBill(int id, SpecificType specific_type, D3DXVECTOR3 pos)
-	:CObject(id, specific_type, Player, pos)
+CBill::CBill(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
+	:CObject(id, specific_type, Player, pos, width, height)
 {
 	_physical.vx_last = 1;
 	_enviroment = Land;
@@ -119,7 +119,7 @@ bool CBill::Falling(CObject* ground)
 		_physical.y - BILL_BOUNDS_HEIGHT / 2 - 1 > ground->_physical.bounds.top)
 	{
 		//Nếu có khả năng tiếp đất, kiểm tra trạng thái hiện tại 
-		if (_player_status == Fall) return false;
+		if (_player_status == Fall || _player_status == Jump) return false;
 		if (!SetStatus(Fall)) return false;
 
 		//Đã chuyển được trạng thái, bắt đầu rơi
@@ -158,7 +158,7 @@ void CBill::Attacking(CPlayerWaepon* waepon)
 	switch (_gun_direction)
 	{
 	case Normal:
-		if (_enviroment == Land) y = _physical.y;
+		if (_enviroment == Land) y = _physical.y + 1;
 		else y = _physical.y - 8;
 
 		angle = _physical.vx_last > 0 ? angle : angle + 180;

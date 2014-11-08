@@ -13,7 +13,7 @@ private:
 	D3DXVECTOR3 _position_effect_destroy[GROUND_BRIDGE_DESTROY_EFFECT_COUNT];
 	
 public:
-	CAutoDestroyBridge(int id, SpecificType specific_type, D3DXVECTOR3 pos);
+	CAutoDestroyBridge(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
 	~CAutoDestroyBridge();
 
 	void LoadResources();
