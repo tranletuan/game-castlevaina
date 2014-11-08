@@ -33,12 +33,14 @@ void CMapReader::LoadResources()
 	int type;
 	float x;
 	float y;
+	int width;
+	int height;
 
-	while (infile >> id >> type >> x >> y)
+	while (infile >> id >> type >> x >> y >> width >> height)
 	{
 		SpecificType ptype = (SpecificType)type;
 		D3DXVECTOR3 pos = c->Transform(x, y);
-		CObject* obj = CreateObject(id, ptype, pos);
+		CObject* obj = CreateObject(id, ptype, pos, width, height);
 
 		if (obj != NULL)
 		{
@@ -55,17 +57,17 @@ map<int, CObject*> CMapReader::GetListObject()
 }
 
 //Tạo đối tượng mới, tọa độ đã được transform
-CObject* CMapReader::CreateObject(int id, SpecificType specific_type, D3DXVECTOR3 pos)
+CObject* CMapReader::CreateObject(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
 {
 	BasicType basic_type = _map_type[specific_type];
 
 	switch (basic_type)
 	{
 	case Player:
-		return _object_factory->GetPlayer(id, specific_type, pos);
+		return _object_factory->GetPlayer(id, specific_type, pos, width, height);
 		break;
 	case Ground:
-		return _object_factory->GetGround(id, specific_type, pos);
+		return _object_factory->GetGround(id, specific_type, pos, width, height);
 		break;
 	}
 }

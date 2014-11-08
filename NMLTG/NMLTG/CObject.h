@@ -19,13 +19,15 @@ public:
 	CPhysical		_physical;
 
 	CObject(){}
-	CObject(int id, SpecificType specific_type, BasicType basic_type, D3DXVECTOR3 pos)
+	CObject(int id, SpecificType specific_type, BasicType basic_type, 
+		D3DXVECTOR3 pos, int width = 0, int height = 0)
 	{
 		this->_id = id;
 		this->_specific_type = specific_type;
 		this->_basic_type = basic_type;
 		this->_physical.x = pos.x;
 		this->_physical.y = pos.y;
+		this->_physical.SetBounds(pos.x, pos.y, width, height);
 	}
 
 	virtual void LoadResources() = 0;

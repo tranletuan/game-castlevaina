@@ -1,7 +1,7 @@
 ﻿#include "CAutoDestroyBridge.h"
 
-CAutoDestroyBridge::CAutoDestroyBridge(int id, SpecificType specific_type, D3DXVECTOR3 pos)
-	:CGround(id, specific_type, pos)
+CAutoDestroyBridge::CAutoDestroyBridge(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
+	:CGround(id, specific_type, pos, width, height)
 {
 	_is_destroy = false;
 
@@ -26,13 +26,6 @@ void CAutoDestroyBridge::LoadResources()
 	CResourcesManager* rs = CResourcesManager::GetInstance();
 	_current_sprite = new CSprite(rs->_ground_auto_destroy_bridge);
 	_effect_destroy_sprite = new CSprite(rs->_effect_destroy);
-
-	_physical.SetBounds(
-		_physical.x,
-		_physical.y,
-		_current_sprite->sprite_texture->frame_width,
-		_current_sprite->sprite_texture->frame_height
-		);
 }
 
 void CAutoDestroyBridge::Draw()

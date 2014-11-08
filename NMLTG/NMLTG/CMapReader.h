@@ -14,7 +14,7 @@ protected:
 	map<int, CObject*> _list_object;
 	map<SpecificType, BasicType> _map_type;
 	CObjectMapFactory* _object_factory;
-	CObject* CreateObject(int id, SpecificType specific_type, D3DXVECTOR3 pos);
+	CObject* CreateObject(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
 	int _total_object;
 	
 

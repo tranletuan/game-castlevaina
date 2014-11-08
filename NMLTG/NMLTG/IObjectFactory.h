@@ -8,8 +8,8 @@
 class IObjectFactory
 {
 public:
-	virtual CGround* GetGround(int id, SpecificType specific_type, D3DXVECTOR3 pos) = 0;
-	virtual CBill* GetPlayer(int id, SpecificType specific_type, D3DXVECTOR3 pos) = 0;
+	virtual CGround* GetGround(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height) = 0;
+	virtual CBill* GetPlayer(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height) = 0;
 };
 
 #endif // !_IOBJECT_FACTORY_H_

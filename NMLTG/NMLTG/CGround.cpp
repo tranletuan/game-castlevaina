@@ -1,8 +1,9 @@
 #include "CGround.h"
 
-CGround::CGround(int id, SpecificType specific_type, D3DXVECTOR3 pos)
-	:CObject(id, specific_type, Ground, pos)
+CGround::CGround(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
+	:CObject(id, specific_type, Ground, pos, width, height)
 {
+	_count = width / GROUND_SIZE_NORMAL;
 }
 
 CGround::~CGround()
@@ -28,20 +29,19 @@ void CGround::LoadResources()
 		_current_sprite = new CSprite(rs->_ground_3);
 		break;
 	}
-
-	_physical.SetBounds(
-		_physical.x,
-		_physical.y,
-		_current_sprite->sprite_texture->frame_width,
-		_current_sprite->sprite_texture->frame_height
-		);	
 }
 
 void CGround::Draw()
 {
+	int x = _physical.bounds.left + GROUND_SIZE_NORMAL / 2;
+	
 	CCamera* c = CResourcesManager::GetInstance()->_camera;
-	D3DXVECTOR3 pos = c->Transform(_physical.x, _physical.y);
+	D3DXVECTOR3 pos = c->Transform(x, _physical.y);
 
 	_current_sprite->PerformAllEffect(GROUND_TIME_EFFECT);
-	_current_sprite->Draw(pos.x, pos.y);
+	for (int i = 0; i < _count; i++)
+	{
+		_current_sprite->Draw(pos.x, pos.y);
+		pos.x += GROUND_SIZE_NORMAL;
+	}
 }

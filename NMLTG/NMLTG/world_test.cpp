@@ -5,11 +5,10 @@ WorldTest::WorldTest(int cmd_show) : CGame(cmd_show)
 	this->cmd_show = cmd_show;
 	this->background = new CBackground(L"map1", 32);
 	this->waepon = new CPlayerWaepon();
-	this->bill = new CBill(123, Player1, D3DXVECTOR3(100, 190, 0));
-	this->bill2 = new CBill(23, Player1, D3DXVECTOR3(50, 190, 0));
+	this->bill = new CBill(123, Player1, D3DXVECTOR3(64, 190, 0), 32, 32);
+	this->bill2 = new CBill(23, Player1, D3DXVECTOR3(50, 190, 0), 32, 32);
 	this->map_reader = new CMapReader(L"map1");
-	bill->_physical.vx_last = -1;
-
+	
 	test = 0;
 }
 
@@ -77,6 +76,7 @@ void WorldTest::OnKeyDown(int key_code)
 		break;
 	case DIK_2:
 		waepon->SetWaeponType(MBullet);
+		
 		break;
 	case DIK_3:
 		waepon->SetWaeponType(FBullet);
@@ -98,7 +98,6 @@ void WorldTest::OnKeyDown(int key_code)
 				if (bill->Falling(ground) == true) return;
 			}
 		}
-		
 		break;
 	case DIK_L:
 		bill->Attacking(waepon);
@@ -130,11 +129,13 @@ void WorldTest::OnKeyUp(int key_code)
 void WorldTest::GameUpdate(int delta_time)
 {
 	CCamera* camera = CResourcesManager::GetInstance()->_camera;
+	//bill->Moving(BILL_VX);
 
 	CollisionDirection cd = Undefined;
 	for (map<int, CObject*>::iterator i = _map_object.begin(); i != _map_object.end(); i++)
 	{
 		CObject* ground = (*i).second;
+
 		//Trường hợp rơi xuống
 		if (bill->GetIdGroundIgnore() != ground->_id)
 		{
@@ -163,6 +164,5 @@ void WorldTest::GameUpdate(int delta_time)
 
 	bill->Update(delta_time);
 	waepon->Update(delta_time);
-	//if (bill->_physical.vx > 0 )
 	camera->UpdateCamera(bill->_physical.x);
 }

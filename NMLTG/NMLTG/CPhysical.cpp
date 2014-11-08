@@ -75,7 +75,8 @@ CollisionDirection CPhysical::Collision(CPhysical* physical)
 	if (cdx == NoCollision || cdy == NoCollision) return NoCollision;
 
 	//Trường hợp cả vx và vy = 0 
-	if (cdx != Undefined && cdy != Undefined) return (dx_entry <= dy_entry ? cdx : cdy);
+	if (cdx != Undefined && cdy != Undefined)
+		return (dx_entry <= dy_entry ? cdx : cdy);
 
 	//Trường hợp đã va chạm trục y và vy = 0 
 	if (cdx == Undefined && cdy != Undefined)

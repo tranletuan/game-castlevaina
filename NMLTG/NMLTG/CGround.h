@@ -5,8 +5,10 @@
 
 class CGround : public CObject
 {
+private:
+	int _count;
 public:
-	CGround(int id, SpecificType specific_type, D3DXVECTOR3 pos);
+	CGround(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
 	~CGround();
 
 	virtual void LoadResources();
