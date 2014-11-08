@@ -34,6 +34,7 @@ protected:
 	GunDirection _gun_direction;
 	PlayerStatus _player_status;
 
+	int _id_ground_stand;
 	void UpdateBounds();
 	bool SetStatus(PlayerStatus status);
 	void DrawWhenMove(D3DXVECTOR3 pos);
@@ -57,8 +58,11 @@ public:
 	void Jumping();
 	void Attacking(CPlayerWaepon* waepon);
 	void Moving(float vx);
-	void Standing(float y_ground);
-	void Falling();
+	void Standing(float y_ground, int id_ground);
+	bool Falling(CObject* ground);
+
+	int GetIdGroundIgnore();
+	int	GetGunDirection();
 };
 
 #endif // !_CBILL_H_

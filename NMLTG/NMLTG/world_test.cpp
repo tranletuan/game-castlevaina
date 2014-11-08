@@ -37,8 +37,9 @@ void WorldTest::RenderFrame(LPDIRECT3DDEVICE9 d3d_device)
 	bill->Draw();
 	waepon->Draw();
 
-	string show = to_string(bill->_physical.current_vy) + " : " + to_string(bill->_physical.current_vx) + 
-		" : " + to_string(test) + " : " + to_string(bill->_physical.y);
+	/*string show = to_string(bill->_physical.current_vy) + " : " + to_string(bill->_physical.current_vx) +
+		" : " + to_string(test) + " : " + to_string(bill->GetIdGroundIgnore());*/
+	string show = to_string(test);
 	DisplayText(show);
 }
 
@@ -87,7 +88,17 @@ void WorldTest::OnKeyDown(int key_code)
 		waepon->SetWaeponType(SBullet);
 		break;
 	case DIK_J:
-		bill->Jumping();
+		if (bill->GetGunDirection() != Down)
+			bill->Jumping();
+		else
+		{
+			for (map<int, CObject*>::iterator i = _map_object.begin(); i != _map_object.end(); i++)
+			{
+				CObject* ground = (*i).second;
+				if (bill->Falling(ground) == true) return;
+			}
+		}
+		
 		break;
 	case DIK_L:
 		bill->Attacking(waepon);
@@ -102,6 +113,7 @@ void WorldTest::OnKeyUp(int key_code)
 	case DIK_D:
 	case DIK_A:
 		bill->Moving(0);
+		
 		break;
 
 	case DIK_W:
@@ -109,6 +121,7 @@ void WorldTest::OnKeyUp(int key_code)
 		bill->SetGunDirection(Normal);
 		break;
 	case DIK_J:
+		
 		break;
 	}
 	
@@ -122,24 +135,26 @@ void WorldTest::GameUpdate(int delta_time)
 	for (map<int, CObject*>::iterator i = _map_object.begin(); i != _map_object.end(); i++)
 	{
 		CObject* ground = (*i).second;
-		cd = bill->_physical.Collision(&ground->_physical);
-
-		if (cd == TopCollision && test == 0)
+		//Trường hợp rơi xuống
+		if (bill->GetIdGroundIgnore() != ground->_id)
 		{
-			bill->Standing(ground->_physical.bounds.top + BILL_BOUNDS_HEIGHT / 2 + 1);
+			cd = bill->_physical.Collision(&ground->_physical);
+			if (cd == TopCollision && bill->_physical.current_vy < 0)
+			{
+				bill->Standing(ground->_physical.bounds.top + BILL_BOUNDS_HEIGHT / 2 + 1, ground->_id);
 
-			if (ground->_specific_type == Ground2)
-			{
-				bill->SetEnviroment(Water);
+				if (ground->_specific_type == Ground2)
+				{
+					bill->SetEnviroment(Water);
+				}
+				else
+				{
+					bill->SetEnviroment(Land);
+				}
+				break;
 			}
-			else
-			{
-				bill->SetEnviroment(Land);
-			}
-			break;
 		}
 	}
-	
 	
 	if (cd != TopCollision)
 	{
