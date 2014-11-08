@@ -9,6 +9,7 @@ CBill::CBill(int id, SpecificType specific_type, D3DXVECTOR3 pos)
 	_player_status = Fall;
 	_physical.time_in_space = 0;
 	_physical.vx = 0;
+	_id_ground_stand = -1;
 }
 
 CBill::~CBill()
@@ -102,19 +103,32 @@ void CBill::SetGunDirection(GunDirection gd)
 void CBill::Dying()
 {
 	//Kiểm tra trạng thái chuyển thành công hay không
-	if (!SetStatus(Die))
-	{
-		return;
-	}
+	if (!SetStatus(Die)) return;
 
 	int sign = _physical.vx_last > 0 ? -1 : 1;
 	_physical.vx = BILL_VX * sign;
 	_physical.vy = BILL_VY_DIE;
 }
 
-void CBill::Falling()
+bool CBill::Falling(CObject* ground)
 {
+	//Trước khi rơi kiểm tra xem có khả năng tiếp đất hay không
+	if (_physical.x >= ground->_physical.bounds.left &&
+		_physical.x <= ground->_physical.bounds.right &&
+		_id_ground_stand != ground->_id &&
+		_physical.y - BILL_BOUNDS_HEIGHT / 2 - 1 > ground->_physical.bounds.top)
+	{
+		//Nếu có khả năng tiếp đất, kiểm tra trạng thái hiện tại 
+		if (_player_status == Fall) return false;
+		if (!SetStatus(Fall)) return false;
 
+		//Đã chuyển được trạng thái, bắt đầu rơi
+		_physical.vx = 0;
+		_physical.time_in_space = GetTickCount();
+		return true;
+	}
+
+	return false;
 }
 
 void CBill::Jumping()
@@ -129,6 +143,8 @@ void CBill::Jumping()
 
 void CBill::Attacking(CPlayerWaepon* waepon)
 {
+	//Hàm này chủ yếu để tính toán góc bắn của player
+	//k đưa các thông số constant vào config.h vì quá nhiều quá đặc biệt
 	SetStatus(Attack);
 	//Không bắn khi trạng thái nhân vật là Die
 	if (_player_status == Die) return;
@@ -198,26 +214,31 @@ void CBill::Moving(float vx)
 {
 	SetStatus(Move);
 
-	//Khi trạng thái hiện tại != die mới thay đổi vx
-	if (_player_status != Die)
+	//Khi trạng thái hiện tại != die và fall mới được phép thay đổi vx
+	if (_player_status != Die && _player_status != Fall)
 	{
 		//Ngoài trạng thái Die ra thì mọi trạng thái còn lại
 		//đều cần set vx
 		_physical.vx = vx;
 
+		//K di chuyển và trạng thái != Jump thì chuyển trạng thái thành Stand
 		if (vx == 0 && _player_status != Jump)
 		{
 			_player_status = Stand;
 		}
 		else if (vx != 0)
 		{
+			//Nếu ngược lại thì xác định hướng nhân vật đang đứng
 			_physical.vx_last = vx;
 		}
 	}
 }
 
-void CBill::Standing(float y_ground)
+void CBill::Standing(float y_ground, int id_ground)
 {
+	//y_ground là tọa độ mặt đất ở game world mà nhân vật tiếp xúc (ground->_physical.bounds.top + BILL_BOUNDS_HEIGHT / 2 + 1)
+	//id_ground là id của mặt đất nhân vật đang tiếp xúc
+
 	//Khi đang rơi mà va chạm mặt đất
 	//n = 0 đồng nghĩa với đối tượng đang lơ lững trên không
 	if (_physical.n == 0)
@@ -226,11 +247,9 @@ void CBill::Standing(float y_ground)
 		{
 			_player_status = Stand;
 		}
-		else
-		{
-			_physical.vx = 0;
-		}
 
+		//Khi tiếp đất tất cả mọi vận tốc đều bằng 0
+		_physical.vx = 0;
 		_physical.vy = 0;
 	}
 
@@ -238,6 +257,7 @@ void CBill::Standing(float y_ground)
 	_physical.n = GRAVITY;
 	_physical.time_in_space = GetTickCount();
 	_physical.y = y_ground;
+	_id_ground_stand = id_ground;
 }
 
 //SUPPORT DRAW
@@ -448,3 +468,21 @@ void CBill::UpdateBounds()
 	}
 }
 
+int CBill::GetIdGroundIgnore()
+{
+	//Hàm này phục vụ cho xét va chạm, chỉ va chạm với 
+	//mặt đất mà nhân vật k bỏ qua (hàm Falling)
+	if (_player_status == Fall && _id_ground_stand >= 0)
+	{
+		return _id_ground_stand;
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+int CBill::GetGunDirection()
+{
+	return _gun_direction;
+}
