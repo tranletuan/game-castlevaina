@@ -8,9 +8,10 @@
 enum  SpecificType
 {
 	Player1, Player2, //Player
-	BulletN, BulletM, BulletL, BulletF, BulletS, //Bullet
+	BulletN, BulletM, BulletL, BulletF, BulletS, BulletNE, BulletB, //Bullet	
 	Ground1, Ground2, Ground3, GroundBridge, //Ground
-	EffectDestroy //Effect
+	EffectDestroy, //Effect
+	Solider, Rifleman, Sniper //Enemy
 };
 
 enum BasicType
@@ -18,7 +19,8 @@ enum BasicType
 	Player,
 	Bullet, 
 	Ground,
-	Effect
+	Effect,
+	Enemy
 };
 
 class CResourcesManager
@@ -55,6 +57,8 @@ public:
 	CTexture* _bullet_l;
 	CTexture* _bullet_f;
 	CTexture* _bullet_m;
+	CTexture* _bullet_ne;
+	CTexture* _bullet_b;
 
 	//Ground
 	CTexture* _ground_1;
@@ -64,6 +68,8 @@ public:
 
 	//Effect
 	CTexture* _effect_destroy;
+	CTexture* _effect_shoot;
+	CTexture* _effect_die;
 };
 
 #endif

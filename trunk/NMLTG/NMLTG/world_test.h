@@ -20,6 +20,7 @@
 #include "CEffectObject.h"
 #include "CAutoDestroyBridge.h"
 #include "CMapReader.h"
+#include "CNEBullet.h"
 
 class WorldTest : public CGame
 {

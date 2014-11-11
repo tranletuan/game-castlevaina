@@ -1,11 +1,8 @@
 ﻿#include "CFBullet.h"
 
-CFBullet::CFBullet(D3DXVECTOR3 pos, int angle, float v_max, float vo)
-	:CBullet(BulletF, pos, angle, v_max, vo)
+CFBullet::CFBullet() :CBullet(BulletF)
 {
-	_degrees = _physical.vx_last > 0 ? 180 : 0;
-	_physical.x = _physical.vx_last > 0 ? _physical.x + 20 : _physical.x - 20;
-	Moving(v_max);
+
 }
 
 CFBullet::~CFBullet()
@@ -15,8 +12,10 @@ CFBullet::~CFBullet()
 
 void CFBullet::LoadResources()
 {
+	CBullet::LoadResources();
 	CResourcesManager* rs = CResourcesManager::GetInstance();
-	_current_sprite = new CSprite(rs->_bullet_f);
+	_bullet_sprite = new CSprite(rs->_bullet_f);
+	_current_sprite = _bullet_sprite;
 }
 
 void CFBullet::Update(int delta_time)
@@ -51,10 +50,18 @@ void CFBullet::Update(int delta_time)
 
 void CFBullet::Draw()
 {
-	CCamera* c = CResourcesManager::GetInstance()->_camera;
+	if (_enable)
+	{
+		CCamera* c = CResourcesManager::GetInstance()->_camera;
 
-	D3DXVECTOR3 pos = c->Transform(_x_circle, _y_circle);
-	_current_sprite->DrawWithDirection(pos, _physical.vx_last);
+		D3DXVECTOR3 pos = c->Transform(_x_circle, _y_circle);
+		_current_sprite->DrawWithDirection(pos, _physical.vx_last);
+
+		if (_current_sprite == _ontarget_sprite)
+		{
+			_enable = false;
+		}
+	}
 }
 
 void CFBullet::CalcVelocity(float v_max)
@@ -65,4 +72,12 @@ void CFBullet::CalcVelocity(float v_max)
 void CFBullet::Moving(float v_max)
 {
 	CalcVelocity(v_max);
+}
+
+void CFBullet::Shoot(D3DXVECTOR3 pos, int angle, float v_max, float vo)
+{
+	CBullet::Shoot(pos, angle, v_max, vo);
+
+	_degrees = _physical.vx_last > 0 ? 180 : 0;
+	_physical.x = _physical.vx_last > 0 ? pos.x + 20 : pos.x - 20;
 }

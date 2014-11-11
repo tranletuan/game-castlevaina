@@ -7,7 +7,7 @@
 #define GRAVITY 0.025f
 
 //BILL 
-#define BILL_VX 0.09f
+#define BILL_VX 0.08f
 #define BILL_VY 9.5f
 #define BILL_VY_DIE 7.0f
 #define BILL_BOUNDS_WIDTH 8
@@ -25,14 +25,16 @@
 #define BULLET_S_V 0.2f
 #define BULLET_S_ELAPSED_TIME 100
 
-#define BULLET_F_V 0.15f
-#define BULLET_F_R 18
-#define BULLET_F_ELAPSED_DEGREES 30
+#define BULLET_F_V 0.1f
+#define BULLET_F_R 20
+#define BULLET_F_ELAPSED_DEGREES 20
 
 #define BULLET_L_V 0.3f
 #define BULLET_L_ELAPSED_DIS 10
 
 #define BULLET_M_V 0.25f
+
+#define BULLET_NE_V 0.06f
 
 //GROUND
 #define GROUND_SIZE_NORMAL 32

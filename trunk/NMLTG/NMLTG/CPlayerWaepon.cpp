@@ -108,8 +108,9 @@ void CPlayerWaepon::ShootingNBullet(D3DXVECTOR3 pos, int angle, float vo)
 {
 	if (_list_bullet.size() < _max_count)
 	{
-		CBullet* bullet = new CNBullet(pos, angle, BULLET_N_V + _v_powerful, vo);
+		CBullet* bullet = new CNBullet();
 		bullet->LoadResources();
+		bullet->Shoot(pos, angle, BULLET_N_V + _v_powerful, vo);
 
 		int i = 0;
 		while (i < _max_count)
@@ -129,8 +130,9 @@ void CPlayerWaepon::ShootingMBullet(D3DXVECTOR3 pos, int angle, float vo)
 {
 	if (_list_bullet.size() < _max_count)
 	{
-		CBullet* bullet = new CMBullet(pos, angle, BULLET_M_V + _v_powerful, vo);
+		CBullet* bullet = new CMBullet();
 		bullet->LoadResources();
+		bullet->Shoot(pos, angle, BULLET_M_V + _v_powerful, vo);
 
 		int i = 0;
 		while (i < _max_count)
@@ -150,8 +152,9 @@ void CPlayerWaepon::ShootingFBullet(D3DXVECTOR3 pos, int angle, float vo)
 {
 	if (_list_bullet.size() < _max_count)
 	{
-		CBullet* bullet = new CFBullet(pos, angle, BULLET_F_V + _v_powerful, vo);
+		CBullet* bullet = new CFBullet();
 		bullet->LoadResources();
+		bullet->Shoot(pos, angle, BULLET_F_V + _v_powerful, vo);
 
 		int i = 0;
 		while (i < _max_count)
@@ -191,8 +194,9 @@ void CPlayerWaepon::ShootingLBullet(D3DXVECTOR3 pos, int angle, float vo)
 		float x = pos.x + _add_x*i;
 		float y = pos.y + _add_y*i;
 		D3DXVECTOR3 position = D3DXVECTOR3(x, y, 0);
-		CBullet* bullet = new CLBullet(position, angle, BULLET_L_V + _v_powerful, vo);
+		CBullet* bullet = new CLBullet();
 		bullet->LoadResources();
+		bullet->Shoot(position, angle, BULLET_L_V + _v_powerful, vo);
 		_list_bullet[i] = bullet;
 		_id_bullet[i] = 1;
 	}
@@ -213,8 +217,10 @@ void CPlayerWaepon::ShootingSBullet(D3DXVECTOR3 pos, int angle, float vo)
 			{
 				int _mid = BULLET_S_COUNT_ONE_SHOOT / 2;
 				int _angle = (i % BULLET_S_COUNT_ONE_SHOOT - _mid) * BULLET_S_ELAPSED_DEGREES + angle;
-				CBullet* bullet = new CSBullet(pos, _angle, BULLET_S_V + _v_powerful, vo);
+				CBullet* bullet = new CSBullet();
 				bullet->LoadResources();
+				bullet->Shoot(pos, _angle, BULLET_S_V + _v_powerful, vo);
+
 				_list_bullet[i] = bullet;
 				_id_bullet[i] = 1;
 				_count++;

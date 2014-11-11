@@ -89,6 +89,7 @@
     <ClInclude Include="CEffectObject.h" />
     <ClInclude Include="CGround.h" />
     <ClInclude Include="CMapReader.h" />
+    <ClInclude Include="CNEBullet.h" />
     <ClInclude Include="CObjectMapFactory.h" />
     <ClInclude Include="CPlayerWaepon.h" />
     <ClInclude Include="CWaeponFactory.h" />
@@ -126,6 +127,7 @@
     <ClCompile Include="CMapReader.cpp" />
     <ClCompile Include="CMBullet.cpp" />
     <ClCompile Include="CNBullet.cpp" />
+    <ClCompile Include="CNEBullet.cpp" />
     <ClCompile Include="CObjectMapFactory.cpp" />
     <ClCompile Include="CPlayerWaepon.cpp" />
     <ClCompile Include="CSBullet.cpp" />

@@ -8,6 +8,7 @@ WorldTest::WorldTest(int cmd_show) : CGame(cmd_show)
 	this->bill = new CBill(123, Player1, D3DXVECTOR3(64, 190, 0), 32, 32);
 	this->bill2 = new CBill(23, Player1, D3DXVECTOR3(50, 190, 0), 32, 32);
 	this->map_reader = new CMapReader(L"map1");
+	this->bullet = new CFBullet();
 	
 	test = 0;
 }
@@ -19,27 +20,28 @@ WorldTest::~WorldTest()
 
 void WorldTest::LoadResources(LPDIRECT3DDEVICE9 d3d_device)
 {
+
 	CResourcesManager* rs = CResourcesManager::GetInstance();
 	bill->LoadResources();
+	bullet->LoadResources();
 	map_reader->LoadResources();
 	_map_object = map_reader->GetListObject();
+	background->LoadResources();
 }
 
 void WorldTest::RenderFrame(LPDIRECT3DDEVICE9 d3d_device)
 {
-	background->Draw();
+	//background->Draw();
 	for (map<int, CObject*>::iterator i = _map_object.begin(); i != _map_object.end(); i++)
 	{
 		(*i).second->Draw();
 	}
 
+
 	bill->Draw();
 	waepon->Draw();
-
-	/*string show = to_string(bill->_physical.current_vy) + " : " + to_string(bill->_physical.current_vx) +
-		" : " + to_string(test) + " : " + to_string(bill->GetIdGroundIgnore());*/
-	string show = to_string(test);
-	DisplayText(show);
+	bullet->Draw();
+	
 }
 
 void WorldTest::ProcessInput(LPDIRECT3DDEVICE9 d3d_device, int delta)
@@ -76,10 +78,11 @@ void WorldTest::OnKeyDown(int key_code)
 		break;
 	case DIK_2:
 		waepon->SetWaeponType(MBullet);
-		
+		bullet->Shoot(D3DXVECTOR3(64, 190, 0), 0, BULLET_F_V);
 		break;
 	case DIK_3:
 		waepon->SetWaeponType(FBullet);
+		bullet->OnTarget();
 		break;
 	case DIK_4:
 		waepon->SetWaeponType(LBullet);
@@ -129,7 +132,6 @@ void WorldTest::OnKeyUp(int key_code)
 void WorldTest::GameUpdate(int delta_time)
 {
 	CCamera* camera = CResourcesManager::GetInstance()->_camera;
-	//bill->Moving(BILL_VX);
 
 	CollisionDirection cd = Undefined;
 	for (map<int, CObject*>::iterator i = _map_object.begin(); i != _map_object.end(); i++)
@@ -164,5 +166,7 @@ void WorldTest::GameUpdate(int delta_time)
 
 	bill->Update(delta_time);
 	waepon->Update(delta_time);
+	bullet->Update(delta_time);
 	camera->UpdateCamera(bill->_physical.x);
 }
+

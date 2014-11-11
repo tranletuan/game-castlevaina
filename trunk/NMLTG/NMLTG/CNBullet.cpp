@@ -1,9 +1,9 @@
 #include "CNBullet.h"
 
-CNBullet::CNBullet(D3DXVECTOR3 pos, int angle, float v_max, float vo)
-	: CBullet(BulletN, pos, angle, v_max, vo)
+CNBullet::CNBullet()
+	: CBullet(BulletN)
 {
-	Moving(v_max);
+
 }
 
 CNBullet::~CNBullet()
@@ -13,8 +13,10 @@ CNBullet::~CNBullet()
 
 void CNBullet::LoadResources()
 {
+	CBullet::LoadResources();
 	CResourcesManager* rs = CResourcesManager::GetInstance();
-	_current_sprite = new CSprite(rs->_bullet_n);
+	_bullet_sprite = new CSprite(rs->_bullet_n);
+	_current_sprite = _bullet_sprite;
 }
 
 void CNBullet::Update(int delta_time)
@@ -29,10 +31,18 @@ void CNBullet::Update(int delta_time)
 
 void CNBullet::Draw()
 {
-	CCamera* c = CResourcesManager::GetInstance()->_camera;
-	D3DXVECTOR3 pos = c->Transform(_physical.x, _physical.y);
+	if (_enable)
+	{
+		CCamera* c = CResourcesManager::GetInstance()->_camera;
+		D3DXVECTOR3 pos = c->Transform(_physical.x, _physical.y);
 
-	_current_sprite->DrawWithDirection(pos, _physical.vx_last);
+		_current_sprite->DrawWithDirection(pos, _physical.vx_last);
+
+		if (_current_sprite == _ontarget_sprite)
+		{
+			_enable = false;
+		}
+	}
 }
 
 void CNBullet::Moving(float v_max)
@@ -43,4 +53,9 @@ void CNBullet::Moving(float v_max)
 void CNBullet::CalcVelocity(float v_max)
 {
 	CBullet::CalcVelocity(v_max);
+}
+
+void CNBullet::Shoot(D3DXVECTOR3 pos, int angle, float v_max, float vo)
+{
+	CBullet::Shoot(pos, angle, v_max, vo);
 }

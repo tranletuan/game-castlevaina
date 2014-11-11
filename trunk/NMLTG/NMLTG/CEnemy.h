@@ -14,13 +14,15 @@ protected:
 	StatusEnemy _status_enemy;
 
 public:
-	CEnemy(string specific_type) : CObject(specific_type, "enemy") {}
+	CEnemy(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
+		: CObject(id, specific_type, Enemy, pos, width, height){}
 	~CEnemy(){}
 
 	//Override 
 	virtual void LoadResources() = 0;
 	virtual void Draw() = 0;
 
+	virtual void Attacking() = 0;
 	virtual void SetTarget(D3DXVECTOR3 pos) = 0;
 };
 #endif // !_CENEMY_H_

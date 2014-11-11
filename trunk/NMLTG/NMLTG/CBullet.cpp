@@ -2,20 +2,31 @@
 
 CBullet::~CBullet()
 {
-	if (_current_sprite != NULL)
-	{
-		delete _current_sprite;
-	}
+	delete _bullet_sprite;
+	delete _ontarget_sprite;
 }
 
 //Góc tối đa là 90 và tối thiểu là -90
-CBullet::CBullet(SpecificType specific_type, D3DXVECTOR3 pos, int angle, float v_max, float vo)
-	:CObject(-1, specific_type, Bullet, pos)
+CBullet::CBullet(SpecificType specific_type)
+	:CObject(-1, specific_type, Bullet, D3DXVECTOR3(0,0,0))
 {
-	_vo = vo;
-	SetAngle(angle);
+	_enable = false;
 }
 
+void CBullet::LoadResources()
+{
+	CResourcesManager* rs = CResourcesManager::GetInstance();
+	_ontarget_sprite = new CSprite(rs->_effect_shoot);
+}
+
+void CBullet::OnTarget()
+{
+	_physical.vx = 0;
+	_physical.vy = 0;
+	_current_sprite = _ontarget_sprite;
+}
+
+//SUPPORT
 void CBullet::SetAngle(int angle)
 {
 	this->_angle = angle;
@@ -77,6 +88,17 @@ void CBullet::CalcVelocity(float v_max)
 		_physical.vy = v_max * sqrt(1 - k) * sign;
 		_physical.vx += _vo; //Tổng vận tốc tọa độ gốc di chuyển và đạn di chuyển
 	}
-	
-	
+
+
+}
+
+void CBullet::Shoot(D3DXVECTOR3 pos, int angle, float v_max, float vo)
+{
+	_physical.x = pos.x;
+	_physical.y = pos.y;
+	_vo = vo;
+	_enable = true;
+	_current_sprite = _bullet_sprite;
+	SetAngle(angle);
+	Moving(v_max);
 }
