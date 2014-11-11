@@ -22,6 +22,8 @@ CResourcesManager::CResourcesManager()
 	_bullet_l = new CTexture(L"resources/bullet/bullet_l.png");
 	_bullet_f = new CTexture(L"resources/bullet/bullet_f.png");
 	_bullet_m = new CTexture(L"resources/bullet/bullet_m.png");
+	_bullet_ne = new CTexture(L"resources/bullet/bullet_ne.png");
+	_bullet_b = new CTexture(L"resources/bullet/bullet_b.png");
 
 	//Ground
 	_ground_1 = new CTexture(L"resources/ground/ground1.png");
@@ -31,6 +33,8 @@ CResourcesManager::CResourcesManager()
 
 	//Effect
 	_effect_destroy = new CTexture(L"resources/effect/effect_destroy.png", 3);
+	_effect_shoot = new CTexture(L"resources/effect/effect_shoot.png");
+	_effect_die = new CTexture(L"resources/effect/effect_die.png", 3);
 }
 
 CResourcesManager::~CResourcesManager()

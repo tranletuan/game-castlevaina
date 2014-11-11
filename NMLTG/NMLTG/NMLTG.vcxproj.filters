@@ -67,6 +67,12 @@
     <Filter Include="Source Files\map">
       <UniqueIdentifier>{63ceb8e0-5cb4-4ba8-b0c2-074ac2448e99}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\object\weapon\enemy bullet">
+      <UniqueIdentifier>{2ba7b5c8-5400-41ea-9249-16eced8446db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\object\weapon\enemy bullet">
+      <UniqueIdentifier>{d91c1114-d442-4bb7-bfc3-f1cc350c5519}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="world_test.h">
@@ -106,9 +112,6 @@
       <Filter>Header Files\basic</Filter>
     </ClInclude>
     <ClInclude Include="CBackground.h">
-      <Filter>Header Files\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="CEnemy.h">
       <Filter>Header Files\basic</Filter>
     </ClInclude>
     <ClInclude Include="CBullet.h">
@@ -155,6 +158,12 @@
     </ClInclude>
     <ClInclude Include="CObjectMapFactory.h">
       <Filter>Header Files\map</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemy.h">
+      <Filter>Header Files\object\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CNEBullet.h">
+      <Filter>Header Files\object\weapon\enemy bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -232,6 +241,9 @@
     </ClCompile>
     <ClCompile Include="CObjectMapFactory.cpp">
       <Filter>Source Files\map</Filter>
+    </ClCompile>
+    <ClCompile Include="CNEBullet.cpp">
+      <Filter>Source Files\object\weapon\enemy bullet</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

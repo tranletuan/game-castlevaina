@@ -1,15 +1,16 @@
-#ifndef _CMBULLET_H_
-#define _CMBULLET_H_
+#ifndef _CNEBULLET_H_
+#define _CNEBULLET_H_
 
 #include "CBullet.h"
-class CMBullet : public CBullet
+
+class CNEBullet : public CBullet
 {
 protected:
 	void CalcVelocity(float v_max);
 
 public:
-	CMBullet();
-	~CMBullet();
+	CNEBullet();
+	~CNEBullet();
 
 	void LoadResources();
 	void Update(int delta_time);
@@ -17,4 +18,5 @@ public:
 	void Moving(float v_max);
 	void Shoot(D3DXVECTOR3 pos, int angle, float v_max, float vo = 0);
 };
-#endif // !_CMBULLET_H_
+
+#endif // !_CNEBULLET_H_
