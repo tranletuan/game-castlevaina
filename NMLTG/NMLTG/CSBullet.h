@@ -9,7 +9,7 @@ protected:
 	void CalcVelocity(float v_max);
 
 public:
-	CSBullet();
+	CSBullet(int id);
 	~CSBullet();
 
 	void LoadResources();

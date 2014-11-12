@@ -14,7 +14,7 @@ protected:
 	void CalcVelocity(float v_max);
 
 public:
-	CNBullet();
+	CNBullet(int id);
 	~CNBullet();
 
 	void LoadResources();

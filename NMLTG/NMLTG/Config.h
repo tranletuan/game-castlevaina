@@ -17,22 +17,25 @@
 #define BULLET_REINFORCE 0.05f
 
 #define BULLET_N_V 0.2f
-#define BULLET_N_COUNT 4
+#define BULLET_N_TOTAL 4
 
-#define BULLET_S_COUNT 10
+#define BULLET_S_TOTAL 10
 #define BULLET_S_COUNT_ONE_SHOOT 5
 #define BULLET_S_ELAPSED_DEGREES 10
 #define BULLET_S_V 0.2f
 #define BULLET_S_ELAPSED_TIME 100
 
 #define BULLET_F_V 0.1f
-#define BULLET_F_R 20
+#define BULLET_F_R 18
 #define BULLET_F_ELAPSED_DEGREES 20
+#define BULLET_F_TOTAL 4
 
 #define BULLET_L_V 0.3f
 #define BULLET_L_ELAPSED_DIS 10
+#define BULLET_L_TOTAL 3
 
 #define BULLET_M_V 0.25f
+#define BULLET_M_TOTAL 4
 
 #define BULLET_NE_V 0.06f
 

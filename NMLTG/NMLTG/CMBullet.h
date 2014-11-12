@@ -8,7 +8,7 @@ protected:
 	void CalcVelocity(float v_max);
 
 public:
-	CMBullet();
+	CMBullet(int id);
 	~CMBullet();
 
 	void LoadResources();

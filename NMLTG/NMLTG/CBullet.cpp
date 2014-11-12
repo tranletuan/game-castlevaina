@@ -7,8 +7,8 @@ CBullet::~CBullet()
 }
 
 //Góc tối đa là 90 và tối thiểu là -90
-CBullet::CBullet(SpecificType specific_type)
-	:CObject(-1, specific_type, Bullet, D3DXVECTOR3(0,0,0))
+CBullet::CBullet(int id, SpecificType specific_type)
+	:CObject(id, specific_type, Bullet, D3DXVECTOR3(0,0,0))
 {
 	_enable = false;
 }
@@ -43,7 +43,7 @@ void CBullet::SetAngle(int angle)
 	}
 
 	//Tính hướng bay
-	if (_angle > 270 || _angle < 90)
+	if (_angle >= 270 || _angle <= 90)
 	{
 		_physical.vx_last = 1;
 	}
