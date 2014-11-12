@@ -8,7 +8,7 @@ WorldTest::WorldTest(int cmd_show) : CGame(cmd_show)
 	this->bill = new CBill(123, Player1, D3DXVECTOR3(64, 190, 0), 32, 32);
 	this->bill2 = new CBill(23, Player1, D3DXVECTOR3(50, 190, 0), 32, 32);
 	this->map_reader = new CMapReader(L"map1");
-	this->bullet = new CFBullet();
+	this->bullet = new CFBullet(10);
 	
 	test = 0;
 }
@@ -22,6 +22,8 @@ void WorldTest::LoadResources(LPDIRECT3DDEVICE9 d3d_device)
 {
 
 	CResourcesManager* rs = CResourcesManager::GetInstance();
+	
+	waepon->LoadResources();
 	bill->LoadResources();
 	bullet->LoadResources();
 	map_reader->LoadResources();
@@ -73,22 +75,20 @@ void WorldTest::OnKeyDown(int key_code)
 	switch (key_code)
 	{
 	case DIK_1:
-		waepon->SetWaeponType(NBullet);
+		waepon->SetWaeponType(WPN);
 		bill->Dying();
 		break;
 	case DIK_2:
-		waepon->SetWaeponType(MBullet);
-		bullet->Shoot(D3DXVECTOR3(64, 190, 0), 0, BULLET_F_V);
+		waepon->SetWaeponType(WPM);
 		break;
 	case DIK_3:
-		waepon->SetWaeponType(FBullet);
-		bullet->OnTarget();
+		waepon->SetWaeponType(WPF);
 		break;
 	case DIK_4:
-		waepon->SetWaeponType(LBullet);
+		waepon->SetWaeponType(WPL);
 		break;
 	case DIK_5:
-		waepon->SetWaeponType(SBullet);
+		waepon->SetWaeponType(WPS);
 		break;
 	case DIK_J:
 		if (bill->GetGunDirection() != Down)

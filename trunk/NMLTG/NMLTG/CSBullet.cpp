@@ -1,7 +1,7 @@
 #include "CSBullet.h"
 
-CSBullet::CSBullet()
-	:CBullet(BulletS)
+CSBullet::CSBullet(int id)
+	:CBullet(id, BulletS)
 {
 }
 

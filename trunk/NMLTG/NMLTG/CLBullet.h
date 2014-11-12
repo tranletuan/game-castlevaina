@@ -9,7 +9,7 @@ protected:
 	D3DXVECTOR2 _scale;
 	void CalcVelocity(float v_max);
 public:
-	CLBullet();
+	CLBullet(int id);
 	~CLBullet();
 
 	void LoadResources();

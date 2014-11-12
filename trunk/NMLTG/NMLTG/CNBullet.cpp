@@ -1,7 +1,7 @@
 #include "CNBullet.h"
 
-CNBullet::CNBullet()
-	: CBullet(BulletN)
+CNBullet::CNBullet(int id)
+	: CBullet(id, BulletN)
 {
 
 }

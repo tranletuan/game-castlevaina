@@ -1,7 +1,7 @@
 #include "CMBullet.h"
 
-CMBullet::CMBullet()
-	:CBullet(BulletM)
+CMBullet::CMBullet(int id)
+	:CBullet(id, BulletM)
 {
 
 }

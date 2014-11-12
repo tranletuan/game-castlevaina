@@ -158,23 +158,31 @@ void CBill::Attacking(CPlayerWaepon* waepon)
 	switch (_gun_direction)
 	{
 	case Normal:
-		if (_enviroment == Land) y = _physical.y + 1;
-		else y = _physical.y - 8;
+		if (_enviroment == Land) 
+			y = _physical.y + 1;
+		else 
+			y = _physical.y - 8;
 
 		angle = _physical.vx_last > 0 ? angle : angle + 180;
 		break;
 	case Up:
 		if (_physical.vx != 0)
 		{
-			if(_enviroment == Land) y = _physical.y + 19;
-			else y = _physical.y + 6;
+			if(_enviroment == Land) 
+				y = _physical.y + 19;
+			else 
+				y = _physical.y + 6;
 
 			angle = 45;
 			angle = _physical.vx_last > 0 ? angle : 180 - angle;
 		}
 		else
 		{
-			x = _physical.vx_last > 0 ? _physical.x + 4 : _physical.x - 2;
+			if (waepon->GetWaeponType() == WPF) 
+				x = _physical.vx_last > 0 ? _physical.x - 10 : _physical.x - 18;
+			else 
+				x = _physical.vx_last > 0 ? _physical.x + 4 : _physical.x - 2;
+
 			y = _physical.y + _current_sprite->sprite_texture->frame_height / 2;
 			angle = 90;
 		}
@@ -186,14 +194,18 @@ void CBill::Attacking(CPlayerWaepon* waepon)
 		if (_physical.vx != 0)
 		{
 			y = _physical.y - 10;
-			angle = -45;
+			angle = -55;
 			angle = _physical.vx_last > 0 ? angle : -180 - angle;
 		}
 		else
 		{
 			if (_player_status == Jump)
 			{
-				x = _physical.x;
+				if (waepon->GetWaeponType() == WPF)
+					x = _physical.vx_last > 0 ? _physical.x - 10 : _physical.x - 18;
+				else
+					x = _physical.x;
+
 				y = _physical.y - _current_sprite->sprite_texture->frame_height / 2;
 				angle = -90;
 			}

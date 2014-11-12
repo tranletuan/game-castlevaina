@@ -13,7 +13,7 @@ protected:
 	int _degrees;
 
 public:
-	CFBullet();
+	CFBullet(int id);
 	~CFBullet();
 
 	void LoadResources();

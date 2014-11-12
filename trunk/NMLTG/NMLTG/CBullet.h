@@ -16,7 +16,7 @@ protected:
 	CSprite* _bullet_sprite;
 	
 public:
-	CBullet(SpecificType specific_type);
+	CBullet(int id, SpecificType specific_type);
 	~CBullet();
 
 	virtual void LoadResources();

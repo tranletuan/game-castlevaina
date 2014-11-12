@@ -1,6 +1,6 @@
 #include "CLBullet.h"
 
-CLBullet::CLBullet():CBullet(BulletL)
+CLBullet::CLBullet(int id):CBullet(id, BulletL)
 {
 
 }

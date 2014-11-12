@@ -1,7 +1,7 @@
 #include "CNEBullet.h"
 
-CNEBullet::CNEBullet()
-	:CBullet(BulletNE)
+CNEBullet::CNEBullet(int id)
+	:CBullet(id, BulletNE)
 {
 }
 

@@ -9,7 +9,7 @@ protected:
 	void CalcVelocity(float v_max);
 
 public:
-	CNEBullet();
+	CNEBullet(int id);
 	~CNEBullet();
 
 	void LoadResources();

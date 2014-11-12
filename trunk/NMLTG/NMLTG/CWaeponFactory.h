@@ -13,10 +13,13 @@ public:
 	~CWaeponFactory();
 
 	virtual void Shooting(D3DXVECTOR3 pos, int angle, float vo) = 0;
+	virtual void RemoveDisabledBullet() = 0;
 	virtual CollisionDirection CheckCollision(CObject* obj) = 0;
+	
+	virtual void LoadResources() = 0;
 	virtual void Update(int delta_time) = 0;
 	virtual void Draw() = 0;
-	virtual void RemoveBullet() = 0;
+	
 	
 };
 

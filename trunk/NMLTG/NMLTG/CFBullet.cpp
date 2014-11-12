@@ -1,6 +1,6 @@
 ﻿#include "CFBullet.h"
 
-CFBullet::CFBullet() :CBullet(BulletF)
+CFBullet::CFBullet(int id) :CBullet(id, BulletF)
 {
 
 }
