@@ -11,7 +11,7 @@ enum  SpecificType
 	BulletN, BulletM, BulletL, BulletF, BulletS, BulletNE, BulletB, //Bullet	
 	Ground1, Ground2, Ground3, GroundBridge, //Ground
 	EffectDestroy, //Effect
-	Solider, Rifleman, Sniper //Enemy
+	Solider, Rifleman1, Sniper //Enemy
 };
 
 enum BasicType
@@ -70,6 +70,9 @@ public:
 	CTexture* _effect_destroy;
 	CTexture* _effect_shoot;
 	CTexture* _effect_die;
+
+	//Enemy
+	CTexture* _enemy_rifleman_1;
 };
 
 #endif

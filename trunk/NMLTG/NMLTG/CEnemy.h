@@ -2,8 +2,9 @@
 #define _CENEMY_H_
 
 #include "CObject.h"
+#include "CEnemyWaepon.h"
 
-enum StatusEnemy
+enum EnemyStatus
 {
 	Hide, Attack, Die
 };
@@ -11,18 +12,25 @@ enum StatusEnemy
 class CEnemy : public CObject
 {
 protected:
-	StatusEnemy _status_enemy;
+	EnemyStatus _enemy_status;
+	D3DXVECTOR3 _target;
+	int _hp;
+
+	virtual void DrawWhenHide() = 0;
+	virtual void DrawWhenAttack() = 0;
+	virtual void DrawWhenDie() = 0;
 
 public:
-	CEnemy(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
-		: CObject(id, specific_type, Enemy, pos, width, height){}
-	~CEnemy(){}
+	CEnemy(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
+	~CEnemy();
 
-	//Override 
+	virtual void Draw();
 	virtual void LoadResources() = 0;
-	virtual void Draw() = 0;
+	
 
-	virtual void Attacking() = 0;
-	virtual void SetTarget(D3DXVECTOR3 pos) = 0;
+	virtual void Attacking(CEnemyWaepon* waepon) = 0;
+	virtual void SetTarget(float x, float y);
+
+	
 };
 #endif // !_CENEMY_H_

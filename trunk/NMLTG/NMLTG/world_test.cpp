@@ -8,8 +8,9 @@ WorldTest::WorldTest(int cmd_show) : CGame(cmd_show)
 	this->bill = new CBill(123, Player1, D3DXVECTOR3(64, 190, 0), 32, 32);
 	this->bill2 = new CBill(23, Player1, D3DXVECTOR3(50, 190, 0), 32, 32);
 	this->map_reader = new CMapReader(L"map1");
-	this->bullet = new CFBullet(10);
-	
+	this->bullet = new CNEBullet(10);
+	this->enemy_waepon = new CEnemyWaepon();
+
 	test = 0;
 }
 
@@ -22,7 +23,7 @@ void WorldTest::LoadResources(LPDIRECT3DDEVICE9 d3d_device)
 {
 
 	CResourcesManager* rs = CResourcesManager::GetInstance();
-	
+	enemy_waepon->LoadResources();
 	waepon->LoadResources();
 	bill->LoadResources();
 	bullet->LoadResources();
@@ -41,6 +42,7 @@ void WorldTest::RenderFrame(LPDIRECT3DDEVICE9 d3d_device)
 
 
 	bill->Draw();
+	enemy_waepon->Draw();
 	waepon->Draw();
 	bullet->Draw();
 	
@@ -80,12 +82,17 @@ void WorldTest::OnKeyDown(int key_code)
 		break;
 	case DIK_2:
 		waepon->SetWaeponType(WPM);
+		//bullet->Shoot(D3DXVECTOR3(50, 190, 0), 0, BULLET_NE_V);
+		/*enemy_waepon->ShootingBulletB(D3DXVECTOR3(50, 190, 0), 0);
+		enemy_waepon->ShootingBulletB(D3DXVECTOR3(50, 150, 0), 0);*/
 		break;
 	case DIK_3:
 		waepon->SetWaeponType(WPF);
+		//enemy_waepon->ShootingBulletNE(D3DXVECTOR3(50, 190, 0), 0);
 		break;
 	case DIK_4:
 		waepon->SetWaeponType(WPL);
+		
 		break;
 	case DIK_5:
 		waepon->SetWaeponType(WPS);
@@ -166,6 +173,7 @@ void WorldTest::GameUpdate(int delta_time)
 
 	bill->Update(delta_time);
 	waepon->Update(delta_time);
+	enemy_waepon->Update(delta_time);
 	bullet->Update(delta_time);
 	camera->UpdateCamera(bill->_physical.x);
 }

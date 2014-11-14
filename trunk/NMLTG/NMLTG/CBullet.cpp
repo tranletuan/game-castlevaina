@@ -23,7 +23,9 @@ void CBullet::OnTarget()
 {
 	_physical.vx = 0;
 	_physical.vy = 0;
+	_physical.n = GRAVITY; //Đặc biệt dành cho đạn có gia tốc trọng trường
 	_current_sprite = _ontarget_sprite;
+	_current_sprite->Reset();
 }
 
 //SUPPORT
@@ -96,9 +98,11 @@ void CBullet::Shoot(D3DXVECTOR3 pos, int angle, float v_max, float vo)
 {
 	_physical.x = pos.x;
 	_physical.y = pos.y;
+	_physical.n = 0;
 	_vo = vo;
 	_enable = true;
 	_current_sprite = _bullet_sprite;
+	_current_sprite->Reset();
 	SetAngle(angle);
 	Moving(v_max);
 }
