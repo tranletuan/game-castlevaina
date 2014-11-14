@@ -160,45 +160,6 @@ void CPlayerWaepon::LoadResources()
 	}
 }
 
-void CPlayerWaepon::Update(int delta_time)
-{
-	if (_list_bullet.size() > 0)
-	{
-		for (map<int, CBullet*>::iterator i = _list_bullet.begin(); i != _list_bullet.end(); i++)
-		{
-			int id = (*i).first;
-			CBullet* bullet = (*i).second;
-
-			//Bỏ qua những viên đạn 
-			if (!bullet->_enable) continue;
-
-			//Cập nhật vật lý của đạn
-			bullet->Update(delta_time);
-
-			//Kiểm tra đạn có nằm trong màn hình không
-			if (!CheckBulletInView(bullet->_physical.x, bullet->_physical.y))
-			{
-				bullet->OnTarget();
-				_queue_id_remove.push(bullet->_id);
-			}
-		}
-
-		//Xóa những viên đạn không còn hiệu lực
-		RemoveDisabledBullet();
-	}
-}
-
-void CPlayerWaepon::Draw()
-{
-	if (_list_bullet.size() > 0)
-	{
-		for (map<int, CBullet*>::iterator i = _list_bullet.begin(); i != _list_bullet.end(); i++)
-		{
-			(*i).second->Draw();
-		}
-	}
-}
-
 //Support
 void CPlayerWaepon::ShootingNBullet(D3DXVECTOR3 pos, int angle, float vo)
 {
@@ -229,7 +190,7 @@ void CPlayerWaepon::ShootingFBullet(D3DXVECTOR3 pos, int angle, float vo)
 	if (!_queue_bullet_f.empty())
 	{
 		CBullet* bullet = _queue_bullet_f.front();
-		bullet->Shoot(pos, angle, BULLET_F_V + _v_powerful, vo);
+		bullet->Shoot(pos, angle, BULLET_F_V + _v_powerful, 0);
 		
 		_queue_bullet_f.pop();
 		_list_bullet[bullet->_id] = bullet;

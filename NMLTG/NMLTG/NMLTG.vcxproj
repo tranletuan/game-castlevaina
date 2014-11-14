@@ -84,15 +84,19 @@
   <ItemGroup>
     <ClInclude Include="CAutoDestroyBridge.h" />
     <ClInclude Include="CBackground.h" />
+    <ClInclude Include="CBBullet.h" />
     <ClInclude Include="CBill.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CEffectObject.h" />
+    <ClInclude Include="CEnemyUseGun.h" />
+    <ClInclude Include="CEnemyWaepon.h" />
     <ClInclude Include="CGround.h" />
     <ClInclude Include="CMapReader.h" />
     <ClInclude Include="CNEBullet.h" />
     <ClInclude Include="CObjectMapFactory.h" />
     <ClInclude Include="CPlayerWaepon.h" />
-    <ClInclude Include="CWaeponFactory.h" />
+    <ClInclude Include="CRifleman1.h" />
+    <ClInclude Include="CWaepon.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CEnemy.h" />
     <ClInclude Include="CFBullet.h" />
@@ -116,10 +120,14 @@
   <ItemGroup>
     <ClCompile Include="CAutoDestroyBridge.cpp" />
     <ClCompile Include="CBackground.cpp" />
+    <ClCompile Include="CBBullet.cpp" />
     <ClCompile Include="CBill.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CEffectObject.cpp" />
+    <ClCompile Include="CEnemy.cpp" />
+    <ClCompile Include="CEnemyUseGun.cpp" />
+    <ClCompile Include="CEnemyWaepon.cpp" />
     <ClCompile Include="CFBullet.cpp" />
     <ClCompile Include="CGame.cpp" />
     <ClCompile Include="CGround.cpp" />
@@ -130,8 +138,9 @@
     <ClCompile Include="CNEBullet.cpp" />
     <ClCompile Include="CObjectMapFactory.cpp" />
     <ClCompile Include="CPlayerWaepon.cpp" />
+    <ClCompile Include="CRifleman1.cpp" />
     <ClCompile Include="CSBullet.cpp" />
-    <ClCompile Include="CWaeponFactory.cpp" />
+    <ClCompile Include="CWaepon.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="CPhysical.cpp" />
     <ClCompile Include="CSprite.cpp" />

@@ -35,6 +35,9 @@ CResourcesManager::CResourcesManager()
 	_effect_destroy = new CTexture(L"resources/effect/effect_destroy.png", 3);
 	_effect_shoot = new CTexture(L"resources/effect/effect_shoot.png");
 	_effect_die = new CTexture(L"resources/effect/effect_die.png", 3);
+
+	//Enemy
+	_enemy_rifleman_1 = new CTexture(L"resources/enemy/rifleman1.png", 5);
 }
 
 CResourcesManager::~CResourcesManager()
@@ -66,6 +69,11 @@ CResourcesManager::~CResourcesManager()
 
 	//effect
 	delete _effect_destroy;
+	delete _effect_shoot;
+	delete _effect_die;
+
+	//enemy
+	delete _enemy_rifleman_1;
 }
 
 CResourcesManager *CResourcesManager::GetInstance()

@@ -21,6 +21,8 @@
 #include "CAutoDestroyBridge.h"
 #include "CMapReader.h"
 #include "CNEBullet.h"
+#include "CBBullet.h"
+#include "CEnemyWaepon.h"
 
 class WorldTest : public CGame
 {
@@ -35,6 +37,7 @@ protected:
 	CBullet* bullet;
 	CSprite* stest;
 	CPlayerWaepon* waepon;
+	CEnemyWaepon* enemy_waepon;
 	CAutoDestroyBridge* bridge;
 	CEffectObject* effect;
 	CMapReader* map_reader;

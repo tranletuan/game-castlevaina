@@ -1,8 +1,7 @@
 #ifndef _CPLAYER_WAEPON_H_
 #define _CPLAYER_WAEPON_H_
 
-#include <queue>
-#include "CWaeponFactory.h"
+#include "CWaepon.h"
 #include "CSBullet.h"
 #include "CNBullet.h"
 #include "CFBullet.h"
@@ -14,7 +13,7 @@ enum PlayerWaeponType
 	WPN, WPM, WPS, WPF, WPL
 };
 
-class CPlayerWaepon : public CWaeponFactory
+class CPlayerWaepon : public CWaepon
 {
 private:
 	float _v_powerful;
@@ -26,7 +25,6 @@ private:
 	void ShootingFBullet(D3DXVECTOR3 pos, int angle, float vo);
 	void ShootingSBullet(D3DXVECTOR3 pos, int angle, float vo);
 
-	queue<int> _queue_id_remove;
 	queue<CBullet*> _queue_bullet_n;
 	queue<CBullet*> _queue_bullet_m;
 	queue<CBullet*> _queue_bullet_s;
@@ -36,19 +34,16 @@ private:
 public:
 	CPlayerWaepon();
 	~CPlayerWaepon();
+	void LoadResources();
 
 	void SetWaeponType(PlayerWaeponType type);
-	PlayerWaeponType GetWaeponType();
 	void SetVelocityPowerful(float vp);
+
 	void Shooting(D3DXVECTOR3 pos, int angle, float vo);
 	void RemoveDisabledBullet();
+
 	CollisionDirection CheckCollision(CObject* obj);
-
-	void LoadResources();
-	void Update(int delta_time);
-	void Draw();
-
-	
+	PlayerWaeponType GetWaeponType();
 };
 
 #endif // !_CPLAYER_WAEPON_H_

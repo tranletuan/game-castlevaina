@@ -22,10 +22,10 @@
 #define BULLET_S_TOTAL 10
 #define BULLET_S_COUNT_ONE_SHOOT 5
 #define BULLET_S_ELAPSED_DEGREES 10
-#define BULLET_S_V 0.2f
+#define BULLET_S_V 0.25f
 #define BULLET_S_ELAPSED_TIME 100
 
-#define BULLET_F_V 0.1f
+#define BULLET_F_V 0.12f
 #define BULLET_F_R 18
 #define BULLET_F_ELAPSED_DEGREES 20
 #define BULLET_F_TOTAL 4
@@ -38,6 +38,12 @@
 #define BULLET_M_TOTAL 4
 
 #define BULLET_NE_V 0.06f
+#define BULLET_NE_TOTAL 20
+
+#define BULLET_B_VX 0.05f
+#define BULLET_B_RANDOM_VX 150
+#define BULLET_B_VY 5.0f
+#define BULLET_B_TOTAL 4
 
 //GROUND
 #define GROUND_SIZE_NORMAL 32
@@ -51,4 +57,6 @@
 //EFFECT 
 #define EFFECT_DESTROY_TIME 200
 
+//ENEMY
+#define ENEMY_ATTACK_DISTANCE 110
 #endif
