@@ -27,7 +27,7 @@ void CWaepon::Update(int delta_time)
 			int id = (*i).first;
 			CBullet* bullet = (*i).second;
 
-			//Bỏ qua những viên đạn 
+			//Bỏ qua những viên đạn vô hiệu
 			if (!bullet->_enable) continue;
 
 			//Cập nhật vật lý của đạn

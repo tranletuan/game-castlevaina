@@ -82,26 +82,51 @@ CollisionDirection CEnemyWaepon::CheckCollision(CObject* obj)
 	return TopCollision;
 }
 
-void CEnemyWaepon::ShootingBulletNE(D3DXVECTOR3 pos, int angle)
+void CEnemyWaepon::UpdateQueueIdBullet(queue<int> &queue_id_bullet)
+{
+	int i = 0;
+	int max = queue_id_bullet.size();
+
+	while (!queue_id_bullet.empty() && i < max)
+	{
+		int id = queue_id_bullet.front();
+		queue_id_bullet.pop();
+
+		if (_list_bullet.find(id) != _list_bullet.end())
+		{
+			queue_id_bullet.push(id);
+		}
+		
+		i++;
+	}
+}
+
+int CEnemyWaepon::ShootingBulletNE(D3DXVECTOR3 pos, int angle, float vo)
 {
 	if (!_queue_bullet_ne.empty())
 	{
 		CBullet* bullet = _queue_bullet_ne.front();
-		bullet->Shoot(pos, angle, BULLET_NE_V);
+		bullet->Shoot(pos, angle, BULLET_NE_V, vo);
 
 		_queue_bullet_ne.pop();
 		_list_bullet[bullet->_id] = bullet;
+		return bullet->_id;
 	}
+
+	return -1;
 }
 
-void CEnemyWaepon::ShootingBulletB(D3DXVECTOR3 pos, int angle)
+int CEnemyWaepon::ShootingBulletB(D3DXVECTOR3 pos, int angle, float vo)
 {
 	if (!_queue_bullet_b.empty())
 	{
 		CBullet* bullet = _queue_bullet_b.front();
-		bullet->Shoot(pos, angle, BULLET_B_VX);
+		bullet->Shoot(pos, angle, BULLET_B_VX, vo);
 
 		_queue_bullet_b.pop();
 		_list_bullet[bullet->_id] = bullet;
+		return bullet->_id;
 	}
+
+	return -1;
 }

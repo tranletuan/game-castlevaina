@@ -5,11 +5,12 @@ WorldTest::WorldTest(int cmd_show) : CGame(cmd_show)
 	this->cmd_show = cmd_show;
 	this->background = new CBackground(L"map1", 32);
 	this->waepon = new CPlayerWaepon();
-	this->bill = new CBill(123, Player1, D3DXVECTOR3(64, 190, 0), 32, 32);
+	this->bill = new CBill(123, Player1, D3DXVECTOR3(190, 190, 0), 32, 32);
 	this->bill2 = new CBill(23, Player1, D3DXVECTOR3(50, 190, 0), 32, 32);
 	this->map_reader = new CMapReader(L"map1");
-	this->bullet = new CNEBullet(10);
+	//this->bullet = new CNEBullet(10);
 	this->enemy_waepon = new CEnemyWaepon();
+	this->enemy = new CRifleman1(234, Rifleman1, D3DXVECTOR3(50, 50, 0), 32, 32);
 
 	test = 0;
 }
@@ -26,10 +27,11 @@ void WorldTest::LoadResources(LPDIRECT3DDEVICE9 d3d_device)
 	enemy_waepon->LoadResources();
 	waepon->LoadResources();
 	bill->LoadResources();
-	bullet->LoadResources();
+	//bullet->LoadResources();
 	map_reader->LoadResources();
 	_map_object = map_reader->GetListObject();
 	background->LoadResources();
+	enemy->LoadResources();
 }
 
 void WorldTest::RenderFrame(LPDIRECT3DDEVICE9 d3d_device)
@@ -42,10 +44,11 @@ void WorldTest::RenderFrame(LPDIRECT3DDEVICE9 d3d_device)
 
 
 	bill->Draw();
-	enemy_waepon->Draw();
 	waepon->Draw();
-	bullet->Draw();
-	
+	// bullet->Draw();
+	enemy_waepon->Draw();
+	enemy->Draw();
+
 }
 
 void WorldTest::ProcessInput(LPDIRECT3DDEVICE9 d3d_device, int delta)
@@ -78,17 +81,18 @@ void WorldTest::OnKeyDown(int key_code)
 	{
 	case DIK_1:
 		waepon->SetWaeponType(WPN);
-		bill->Dying();
+		enemy->_hp = 0;
 		break;
 	case DIK_2:
 		waepon->SetWaeponType(WPM);
+		
 		//bullet->Shoot(D3DXVECTOR3(50, 190, 0), 0, BULLET_NE_V);
 		/*enemy_waepon->ShootingBulletB(D3DXVECTOR3(50, 190, 0), 0);
 		enemy_waepon->ShootingBulletB(D3DXVECTOR3(50, 150, 0), 0);*/
 		break;
 	case DIK_3:
 		waepon->SetWaeponType(WPF);
-		//enemy_waepon->ShootingBulletNE(D3DXVECTOR3(50, 190, 0), 0);
+		//enemy_waepon->ShootingBulletNE(D3DXVECTOR3(50, 190, 0), 0, 0);
 		break;
 	case DIK_4:
 		waepon->SetWaeponType(WPL);
@@ -173,8 +177,16 @@ void WorldTest::GameUpdate(int delta_time)
 
 	bill->Update(delta_time);
 	waepon->Update(delta_time);
+
+	//bullet->Update(delta_time);
+
+
 	enemy_waepon->Update(delta_time);
-	bullet->Update(delta_time);
+	enemy->Update(delta_time);
+	enemy->SetTarget(bill->_physical.x, bill->_physical.y);
+	enemy->Attacking(enemy_waepon);
+	
+
 	camera->UpdateCamera(bill->_physical.x);
 }
 
