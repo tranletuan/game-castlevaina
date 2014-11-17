@@ -1,4 +1,4 @@
-#include "CGround.h"
+﻿#include "CGround.h"
 
 CGround::CGround(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
 	:CObject(id, specific_type, Ground, pos, width, height)
@@ -33,6 +33,7 @@ void CGround::LoadResources()
 
 void CGround::Draw()
 {
+	//Chỉ vẽ để kiểm tra, khi chạy game đoạn code sẽ bị xóa
 	int x = _physical.bounds.left + GROUND_SIZE_NORMAL / 2;
 	
 	CCamera* c = CResourcesManager::GetInstance()->_camera;

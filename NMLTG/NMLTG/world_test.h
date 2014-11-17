@@ -23,6 +23,7 @@
 #include "CNEBullet.h"
 #include "CBBullet.h"
 #include "CEnemyWaepon.h"
+#include "CRifleman1.h"
 
 class WorldTest : public CGame
 {
@@ -41,6 +42,7 @@ protected:
 	CAutoDestroyBridge* bridge;
 	CEffectObject* effect;
 	CMapReader* map_reader;
+	CRifleman1* enemy;
 	map<int, CObject*> _map_object;
 	int test;
 	int test2;

@@ -18,8 +18,9 @@ public:
 	void LoadResources();
 	void RemoveDisabledBullet();
 	CollisionDirection CheckCollision(CObject* obj);
+	void UpdateQueueIdBullet(queue<int> &queue_id_bullet);
 
-	void ShootingBulletNE(D3DXVECTOR3 pos, int angle);
-	void ShootingBulletB(D3DXVECTOR3 pos, int angle);
+	int ShootingBulletNE(D3DXVECTOR3 pos, int angle, float vo);
+	int ShootingBulletB(D3DXVECTOR3 pos, int angle, float vo);
 };
 #endif // !_CENEMY_WAEPON_H_

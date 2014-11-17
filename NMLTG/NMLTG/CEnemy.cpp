@@ -3,6 +3,8 @@
 CEnemy::CEnemy(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
 	:CObject(id, specific_type, Enemy, pos, width, height)
 {
+	_enemy_status = EWait;
+	_physical.vx_last = -1;
 }
 
 CEnemy::~CEnemy()
@@ -16,14 +18,14 @@ void CEnemy::Draw()
 
 	switch (_enemy_status)
 	{
-	case Hide:
-		DrawWhenHide();
+	case EWait:
+		DrawWhenWait(pos);
 		break;
-	case Attack:
-		DrawWhenAttack();
+	case EAttack:
+		DrawWhenAttack(pos);
 		break;
-	case Die:
-		DrawWhenDie();
+	case EDie:
+		DrawWhenDie(pos);
 		break;
 	}
 }
@@ -32,4 +34,25 @@ void CEnemy::SetTarget(float x, float y)
 {
 	_target.x = x;
 	_target.y = y;
+}
+
+bool CEnemy::SetStatus(EnemyStatus status)
+{
+	if (status >= _enemy_status)
+	{
+		_enemy_status = status;
+		return true;
+	}
+
+	return false;
+}
+
+bool CEnemy::CheckTarget()
+{
+	if (abs(_physical.x - _target.x) <= ENEMY_ATTACK_DISTANCE)
+	{
+		return true;
+	}
+
+	return false;
 }
