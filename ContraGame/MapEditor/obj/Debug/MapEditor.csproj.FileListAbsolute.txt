@@ -1,0 +1,20 @@
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\contragamecaca\ContraGame\MapEditor\bin\Debug\MapEditor.exe.config
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\contragamecaca\ContraGame\MapEditor\bin\Debug\MapEditor.exe
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\contragamecaca\ContraGame\MapEditor\bin\Debug\MapEditor.pdb
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\contragamecaca\ContraGame\MapEditor\obj\Debug\MapEditor.csprojResolveAssemblyReference.cache
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\contragamecaca\ContraGame\MapEditor\obj\Debug\MapEditor.Background.resources
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\contragamecaca\ContraGame\MapEditor\obj\Debug\MapEditor.MapEditor.resources
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\contragamecaca\ContraGame\MapEditor\obj\Debug\MapEditor.Properties.Resources.resources
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\contragamecaca\ContraGame\MapEditor\obj\Debug\MapEditor.csproj.GenerateResource.Cache
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\contragamecaca\ContraGame\MapEditor\obj\Debug\MapEditor.exe
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\contragamecaca\ContraGame\MapEditor\obj\Debug\MapEditor.pdb
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\New folder\ContraGame\MapEditor\bin\Debug\MapEditor.exe.config
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\New folder\ContraGame\MapEditor\bin\Debug\MapEditor.exe
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\New folder\ContraGame\MapEditor\bin\Debug\MapEditor.pdb
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\New folder\ContraGame\MapEditor\obj\Debug\MapEditor.csprojResolveAssemblyReference.cache
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\New folder\ContraGame\MapEditor\obj\Debug\MapEditor.Background.resources
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\New folder\ContraGame\MapEditor\obj\Debug\MapEditor.MapEditor.resources
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\New folder\ContraGame\MapEditor\obj\Debug\MapEditor.Properties.Resources.resources
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\New folder\ContraGame\MapEditor\obj\Debug\MapEditor.csproj.GenerateResource.Cache
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\New folder\ContraGame\MapEditor\obj\Debug\MapEditor.exe
+C:\Users\Caca-PC\Documents\Visual Studio 2013\Projects\New folder\ContraGame\MapEditor\obj\Debug\MapEditor.pdb

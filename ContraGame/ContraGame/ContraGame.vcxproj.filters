@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Game Engine">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Contra Game">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Game Engine\Register">
+      <UniqueIdentifier>{21d876c1-dc52-49d5-a270-39216c9f68c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Game">
+      <UniqueIdentifier>{d8d978a2-1188-4b8c-8c54-4cdc33d03fd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Engine\Graphic">
+      <UniqueIdentifier>{6b152519-7ead-4def-a9a3-0150e857e455}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Engine\Timer">
+      <UniqueIdentifier>{01bfb5d2-16db-4bdf-bb31-c1ef719d2bcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Engine\Input">
+      <UniqueIdentifier>{ed039400-3219-4a50-9ed5-34f9d6181468}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Engine\Camera">
+      <UniqueIdentifier>{4dc6a0e8-748b-4fd7-8491-2bbcf3924459}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Engine\Text">
+      <UniqueIdentifier>{20e1a7ac-9e3c-4a5e-b589-738ec8ec6f1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Engine\Surface">
+      <UniqueIdentifier>{8ea80a06-6f61-4847-965c-a74d2b81d354}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Scene">
+      <UniqueIdentifier>{d9bf209a-bcb9-4fe7-a8a8-b8470b21ebc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Scene\ScenePlay">
+      <UniqueIdentifier>{fa44f8aa-43e5-4c24-a359-0db01dd13de4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Scene\SceneMenu">
+      <UniqueIdentifier>{9fc1919a-3ba6-42e5-a6c1-83fa268dd817}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Scene\SceneLoading">
+      <UniqueIdentifier>{98e9b5fd-6014-4a15-8fec-219807da86d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Scene\ScenePause">
+      <UniqueIdentifier>{b3ece762-a58e-496b-bc0f-3b3bf94893c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Manager">
+      <UniqueIdentifier>{0e23923d-5fd0-4274-932c-52c23d898ff0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\QuadTree">
+      <UniqueIdentifier>{76edf08d-778a-4c8e-b78d-867909c1a380}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\QuadTree\Node">
+      <UniqueIdentifier>{e26b3f96-b049-4522-a555-f50aedb4247b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\QuadTree\Tree">
+      <UniqueIdentifier>{3cd84a51-9507-4425-9d52-2a23f88f471e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Scene\BaseScene">
+      <UniqueIdentifier>{ee96ee97-624f-4440-b6da-d1eaa48f4d46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Manager\Resource">
+      <UniqueIdentifier>{a4ef4f1c-c997-4f24-85a5-d965841db70d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Manager\Scene">
+      <UniqueIdentifier>{5d359a19-0780-4488-80f0-d56b44fadf57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Engine\Audio">
+      <UniqueIdentifier>{03305089-b254-44a4-af36-9ba65f7426e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Engine\Texture">
+      <UniqueIdentifier>{86d05d08-2735-4ab6-892f-473fb34152a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Other">
+      <UniqueIdentifier>{ef948674-8ca5-468d-971a-1ba79f26ab6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Other\Global">
+      <UniqueIdentifier>{41f772ff-b4dc-4f87-b9d4-1fe59c20345c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Other\Utils">
+      <UniqueIdentifier>{919b742a-a375-43cf-9f07-5bde03f50c57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Engine\Sprite">
+      <UniqueIdentifier>{444e064e-8d4e-4fb7-987e-4d9a298a5ad0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Engine\Physical">
+      <UniqueIdentifier>{e9b6f42d-a910-4a7c-8b9f-8cb2c5dbc441}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object">
+      <UniqueIdentifier>{2ad2f3ae-105c-4b25-9d07-839c7fb82247}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Background">
+      <UniqueIdentifier>{a5fea4df-8d9c-4480-9aea-b54ef1e21701}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Background\Tiled">
+      <UniqueIdentifier>{b77d9709-87b5-4e12-968b-d38f9442a093}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\CameraHUD">
+      <UniqueIdentifier>{0f73374f-c561-4f04-a9c2-812ca960b943}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Object Game">
+      <UniqueIdentifier>{5b64846f-0462-495c-b7c8-2a007b09727e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Weapon Game">
+      <UniqueIdentifier>{d61ec230-c23b-426e-b658-ef2beb242457}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Weapon Game\Weapon">
+      <UniqueIdentifier>{c4ddf0b9-6528-48af-80fa-301e1e1bd03d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Weapon Game\Weapon Player">
+      <UniqueIdentifier>{dd70c39d-2857-4175-b485-b106037d7e6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Weapon Game\Weapon Enemy">
+      <UniqueIdentifier>{654ba958-849f-48f0-9805-224836cbcfe6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Bullet Game">
+      <UniqueIdentifier>{e862c96c-fbc9-476e-a741-ac25ef379eac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Bullet Game\Bullet">
+      <UniqueIdentifier>{a7b2c504-01f9-4b30-b028-ad0acf702edf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Bullet Game\Bullet Enemy">
+      <UniqueIdentifier>{30ccdce5-e860-4601-997b-cc10f142d3df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Bullet Game\Bullet Player">
+      <UniqueIdentifier>{be332bb2-fcf9-4448-a041-ae952d57ab51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Bullet Game\Bullet Enemy\CBBullet">
+      <UniqueIdentifier>{7389c9e6-465e-4a90-b945-0eabb137a80f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Bullet Game\Bullet Enemy\CNEBullet">
+      <UniqueIdentifier>{f4fe3a67-7998-4510-b8ee-3a1083071d37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Bullet Game\Bullet Player\CFBullet">
+      <UniqueIdentifier>{3909de2c-ebae-4b55-b71d-65a7fae564e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Bullet Game\Bullet Player\CLBullet">
+      <UniqueIdentifier>{6668d507-a5a7-4307-91f5-5b3eb816b667}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Bullet Game\Bullet Player\CMBullet">
+      <UniqueIdentifier>{141741b5-5352-4b78-82a7-44ffd0cc5fa1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Bullet Game\Bullet Player\CNBullet">
+      <UniqueIdentifier>{00541412-a817-4904-bf29-5d5cbec5124a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Bullet Game\Bullet Player\CSBullet">
+      <UniqueIdentifier>{8f1649a0-8e58-4693-94ff-ba182d1b9220}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Bill">
+      <UniqueIdentifier>{b7adb786-406d-48fc-a710-fd410c1f0967}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Effect Game">
+      <UniqueIdentifier>{f3bb669b-4dbd-4cac-84b5-ac488720a6df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Effect Game\EffectObject">
+      <UniqueIdentifier>{328e6c8e-47a1-4f8c-bcbf-d7e72fd311e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Ground Game">
+      <UniqueIdentifier>{7960e88e-8a42-42a4-9674-a5191e48748a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Ground Game\Ground">
+      <UniqueIdentifier>{57de4018-5863-4105-912f-191e7ec62827}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Ground Game\Bridge">
+      <UniqueIdentifier>{cb2cc364-affd-4ec9-bd30-f75ed04ae95e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Enemy Game">
+      <UniqueIdentifier>{585e2bc1-743a-4e20-943a-2a31295576ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Enemy Game\CRifleman1">
+      <UniqueIdentifier>{d28afe82-4f6b-4251-8716-0964ac014417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Enemy Game\Enemy">
+      <UniqueIdentifier>{8ba7f0d4-a722-4941-8291-2f84ae0b5768}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Enemy Game\EnemyUseGun">
+      <UniqueIdentifier>{e67d20a4-aec9-46a3-8d21-8bc7db5f3f71}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>Contra Game\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Register.cpp">
+      <Filter>Game Engine\Register</Filter>
+    </ClCompile>
+    <ClCompile Include="GameContra.cpp">
+      <Filter>Contra Game\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphic.cpp">
+      <Filter>Game Engine\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Game Engine\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Game Engine\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Game Engine\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Game Engine\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>Contra Game\Object\Background</Filter>
+    </ClCompile>
+    <ClCompile Include="Surface.cpp">
+      <Filter>Game Engine\Surface</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Contra Game\Manager\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseScene.cpp">
+      <Filter>Contra Game\Scene\BaseScene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneLoading.cpp">
+      <Filter>Contra Game\Scene\SceneLoading</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMenu.cpp">
+      <Filter>Contra Game\Scene\SceneMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="ScenePlay.cpp">
+      <Filter>Contra Game\Scene\ScenePlay</Filter>
+    </ClCompile>
+    <ClCompile Include="ScenePause.cpp">
+      <Filter>Contra Game\Scene\ScenePause</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio.cpp">
+      <Filter>Game Engine\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="dsutil.cpp">
+      <Filter>Game Engine\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Tiled.cpp">
+      <Filter>Contra Game\Object\Background\Tiled</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraHUD.cpp">
+      <Filter>Contra Game\Object\CameraHUD</Filter>
+    </ClCompile>
+    <ClCompile Include="QTNode.cpp">
+      <Filter>Contra Game\QuadTree\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="QTTree.cpp">
+      <Filter>Contra Game\QuadTree\Tree</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Game Engine\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Contra Game\Other\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Global.cpp">
+      <Filter>Contra Game\Other\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Game Engine\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Physical.cpp">
+      <Filter>Game Engine\Physical</Filter>
+    </ClCompile>
+    <ClCompile Include="CRifleman1.cpp">
+      <Filter>Contra Game\Object\Enemy Game\CRifleman1</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemyUseGun.cpp">
+      <Filter>Contra Game\Object\Enemy Game\EnemyUseGun</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemy.cpp">
+      <Filter>Contra Game\Object\Enemy Game\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CWeapon.cpp">
+      <Filter>Contra Game\Object\Weapon Game\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemyWaepon.cpp">
+      <Filter>Contra Game\Object\Weapon Game\Weapon Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CBullet.cpp">
+      <Filter>Contra Game\Object\Bullet Game\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CNEBullet.cpp">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Enemy\CNEBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CBBullet.cpp">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Enemy\CBBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CResourcesManager.cpp">
+      <Filter>Contra Game\Manager\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="CFBullet.cpp">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Player\CFBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CLBullet.cpp">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Player\CLBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CMBullet.cpp">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Player\CMBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CNBullet.cpp">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Player\CNBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CSBullet.cpp">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Player\CSBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerWeapon.cpp">
+      <Filter>Contra Game\Object\Weapon Game\Weapon Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CBill.cpp">
+      <Filter>Contra Game\Object\Bill</Filter>
+    </ClCompile>
+    <ClCompile Include="CAutoDestroyBridge.cpp">
+      <Filter>Contra Game\Object\Ground Game\Bridge</Filter>
+    </ClCompile>
+    <ClCompile Include="CGround.cpp">
+      <Filter>Contra Game\Object\Ground Game\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="CEffectObject.cpp">
+      <Filter>Contra Game\Object\Effect Game\EffectObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CObject.cpp">
+      <Filter>Contra Game\Object\Object Game</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Register.h">
+      <Filter>Game Engine\Register</Filter>
+    </ClInclude>
+    <ClInclude Include="GameContra.h">
+      <Filter>Contra Game\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphic.h">
+      <Filter>Game Engine\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Game Engine\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Game Engine\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Game Engine\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Game Engine\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>Contra Game\Object\Background</Filter>
+    </ClInclude>
+    <ClInclude Include="Surface.h">
+      <Filter>Game Engine\Surface</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Contra Game\Manager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseScene.h">
+      <Filter>Contra Game\Scene\BaseScene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneLoading.h">
+      <Filter>Contra Game\Scene\SceneLoading</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMenu.h">
+      <Filter>Contra Game\Scene\SceneMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenePause.h">
+      <Filter>Contra Game\Scene\ScenePause</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenePlay.h">
+      <Filter>Contra Game\Scene\ScenePlay</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneID.h">
+      <Filter>Contra Game\Scene\BaseScene</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuID.h">
+      <Filter>Contra Game\Scene\SceneMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio.h">
+      <Filter>Game Engine\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="dsutil.h">
+      <Filter>Game Engine\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="dxutil.h">
+      <Filter>Game Engine\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Tiled.h">
+      <Filter>Contra Game\Object\Background\Tiled</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraHUD.h">
+      <Filter>Contra Game\Object\CameraHUD</Filter>
+    </ClInclude>
+    <ClInclude Include="QTNode.h">
+      <Filter>Contra Game\QuadTree\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="QTTree.h">
+      <Filter>Contra Game\QuadTree\Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Game Engine\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Contra Game\Other\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.h">
+      <Filter>Contra Game\Other\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Game Engine\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Physical.h">
+      <Filter>Game Engine\Physical</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemyUseGun.h">
+      <Filter>Contra Game\Object\Enemy Game\EnemyUseGun</Filter>
+    </ClInclude>
+    <ClInclude Include="CRifleman1.h">
+      <Filter>Contra Game\Object\Enemy Game\CRifleman1</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemy.h">
+      <Filter>Contra Game\Object\Enemy Game\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemyWaepon.h">
+      <Filter>Contra Game\Object\Weapon Game\Weapon Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CBullet.h">
+      <Filter>Contra Game\Object\Bullet Game\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CNEBullet.h">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Enemy\CNEBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CBBullet.h">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Enemy\CBBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CResourcesManager.h">
+      <Filter>Contra Game\Manager\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="CFBullet.h">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Player\CFBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CLBullet.h">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Player\CLBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CMBullet.h">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Player\CMBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CNBullet.h">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Player\CNBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CSBullet.h">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Player\CSBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CWeapon.h">
+      <Filter>Contra Game\Object\Weapon Game\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerWeapon.h">
+      <Filter>Contra Game\Object\Weapon Game\Weapon Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CBill.h">
+      <Filter>Contra Game\Object\Bill</Filter>
+    </ClInclude>
+    <ClInclude Include="CAutoDestroyBridge.h">
+      <Filter>Contra Game\Object\Ground Game\Bridge</Filter>
+    </ClInclude>
+    <ClInclude Include="CGround.h">
+      <Filter>Contra Game\Object\Ground Game\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="CEffectObject.h">
+      <Filter>Contra Game\Object\Effect Game\EffectObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjectID.h">
+      <Filter>Contra Game\Object\Object Game</Filter>
+    </ClInclude>
+    <ClInclude Include="CObject.h">
+      <Filter>Contra Game\Object\Object Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Contra Game\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="CResourcesPath.h">
+      <Filter>Contra Game\Manager\Resource</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

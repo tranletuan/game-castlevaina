@@ -1,0 +1,8 @@
+1 Ground 32 127 736 16 
+2 Ground 159 96 96 16 
+3 Ground 414 96 64 16 
+4 Sniper 164 154 24 32 
+5 Sniper 345 201 24 32 
+6 Sniper 414 163 24 32 
+0 Camera 0 240 256 240 
+0 Character 40 240 36 46 
