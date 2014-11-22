@@ -38,6 +38,7 @@ CResourcesManager::CResourcesManager()
 
 	//Enemy
 	_enemy_rifleman_1 = new CTexture(L"resources/enemy/rifleman1.png", 5);
+	_enemy_rifleman_2 = new CTexture(L"resources/enemy/rifleman2.png", 5);
 }
 
 CResourcesManager::~CResourcesManager()
@@ -74,6 +75,7 @@ CResourcesManager::~CResourcesManager()
 
 	//enemy
 	delete _enemy_rifleman_1;
+	delete _enemy_rifleman_2;
 }
 
 CResourcesManager *CResourcesManager::GetInstance()

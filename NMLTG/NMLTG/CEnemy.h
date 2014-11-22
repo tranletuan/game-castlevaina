@@ -2,7 +2,7 @@
 #define _CENEMY_H_
 
 #include "CObject.h"
-#include "CEnemyWaepon.h"
+#include "CEnemyWeapon.h"
 
 enum EnemyStatus
 {
@@ -15,6 +15,9 @@ protected:
 	EnemyStatus _enemy_status;
 	D3DXVECTOR3 _target;
 
+	CSprite* _live_sprite;
+	CSprite* _die_sprite;
+
 	virtual void DrawWhenWait(D3DXVECTOR3 pos) = 0;
 	virtual void DrawWhenAttack(D3DXVECTOR3 pos) = 0;
 	virtual void DrawWhenDie(D3DXVECTOR3 pos) = 0;
@@ -26,7 +29,7 @@ public:
 
 	virtual void Draw();
 	virtual void LoadResources() = 0;
-	virtual void Attacking(CEnemyWaepon* waepon) = 0;
+	virtual void Attacking(CEnemyWeapon* weapon) = 0;
 	virtual void SetTarget(float x, float y);
 	
 	bool SetStatus(EnemyStatus status);

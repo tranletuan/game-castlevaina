@@ -16,11 +16,10 @@ void CEnemy::LoadResources()
 
 }
 
-void CEnemy::Update(int delta_time)
+void CEnemy::Update(float delta_time)
 {
 
 }
-
 
 void CEnemy::Draw()
 {

@@ -15,14 +15,14 @@
 #include "CFBullet.h"
 #include "CLBullet.h"
 #include "CMBullet.h"
-#include "CPlayerWaepon.h"
+#include "CPlayerWeapon.h"
 #include "CGround.h"
 #include "CEffectObject.h"
 #include "CAutoDestroyBridge.h"
 #include "CMapReader.h"
 #include "CNEBullet.h"
 #include "CBBullet.h"
-#include "CEnemyWaepon.h"
+#include "CEnemyWeapon.h"
 #include "CRifleman1.h"
 
 class WorldTest : public CGame
@@ -37,8 +37,8 @@ protected:
 	CBill* bill2;
 	CBullet* bullet;
 	CSprite* stest;
-	CPlayerWaepon* waepon;
-	CEnemyWaepon* enemy_waepon;
+	CPlayerWeapon* waepon;
+	CEnemyWeapon* enemy_waepon;
 	CAutoDestroyBridge* bridge;
 	CEffectObject* effect;
 	CMapReader* map_reader;

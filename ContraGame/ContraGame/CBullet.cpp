@@ -19,7 +19,7 @@ void CBullet::LoadResources()
 	_ontarget_sprite = new CSprite(rs->_effect_shoot);
 }
 
-void CBullet::Update(int delta_time)
+void CBullet::Update(float delta_time)
 {
 
 }

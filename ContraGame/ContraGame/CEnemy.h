@@ -26,7 +26,7 @@ public:
 
 	virtual void Draw();
 	virtual void LoadResources();
-	virtual void Update(int delta_time);
+	virtual void Update(float delta_time);
 	virtual void Attacking(CEnemyWaepon* waepon) = 0;
 	virtual void SetTarget(float x, float y);
 

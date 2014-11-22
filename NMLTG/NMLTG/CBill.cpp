@@ -141,7 +141,7 @@ void CBill::Jumping()
 	_physical.vy = BILL_VY;
 }
 
-void CBill::Attacking(CPlayerWaepon* waepon)
+void CBill::Attacking(CPlayerWeapon* weapon)
 {
 	//Hàm này chủ yếu để tính toán góc bắn của player
 	//k đưa các thông số constant vào config.h vì quá nhiều quá đặc biệt
@@ -178,7 +178,7 @@ void CBill::Attacking(CPlayerWaepon* waepon)
 		}
 		else
 		{
-			if (waepon->GetWaeponType() == WPF) 
+			if (weapon->GetWeaponType() == WPF)
 				x = _physical.vx_last > 0 ? _physical.x - 10 : _physical.x - 18;
 			else 
 				x = _physical.vx_last > 0 ? _physical.x + 4 : _physical.x - 2;
@@ -201,7 +201,7 @@ void CBill::Attacking(CPlayerWaepon* waepon)
 		{
 			if (_player_status == Jump)
 			{
-				if (waepon->GetWaeponType() == WPF)
+				if (weapon->GetWeaponType() == WPF)
 					x = _physical.vx_last > 0 ? _physical.x - 10 : _physical.x - 18;
 				else
 					x = _physical.x;
@@ -219,7 +219,7 @@ void CBill::Attacking(CPlayerWaepon* waepon)
 	}
 
 	pos = D3DXVECTOR3(x, y, 0);
-	waepon->Shooting(pos, angle, _physical.vx);
+	weapon->Shooting(pos, angle, _physical.vx);
 }
 
 void CBill::Moving(float vx)

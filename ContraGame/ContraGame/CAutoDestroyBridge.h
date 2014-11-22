@@ -18,7 +18,7 @@ public:
 
 	void LoadResources();
 	void Draw();
-	void Update(int delta_time);
+	void Update(float delta_time);
 
 	void SetTarget(float x); //Nhận vị trí của người chơi để tự động phá hủy
 

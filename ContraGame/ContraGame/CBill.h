@@ -1,7 +1,6 @@
 #ifndef _CBILL_H_
 #define _CBILL_H_
 
-#include "IMovableObject.h"
 #include "CObject.h"
 #include "Config.h"
 #include "CPlayerWeapon.h"
@@ -22,7 +21,7 @@ enum PlayerStatus
 	Stand, Move, Attack, Jump, Fall, Die
 };
 
-class CBill : public IMovableObject, public CObject
+class CBill : public CObject
 {
 protected:
 	CInput *_input;
@@ -53,7 +52,7 @@ public:
 
 	void LoadResources();
 	void Draw();
-	void Update(int delta_time);
+	void Update(float delta_time);
 
 	void SetEnviroment(Environment env);
 	void SetGunDirection(GunDirection gd);
@@ -67,6 +66,8 @@ public:
 
 	int GetIdGroundIgnore();
 	int	GetGunDirection();
+
+	void ProcessInput();
 };
 
 #endif // !_CBILL_H_

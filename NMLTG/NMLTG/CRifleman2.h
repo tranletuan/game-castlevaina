@@ -1,10 +1,9 @@
-#ifndef _CRIFLEMAN1_H_
-#define _CRIFLEMAN1_H_
+#ifndef _CRIFLEMAN2_H_
+#define _CRIFLEMAN2_H_
 
 #include "CEnemyUseGun.h"
-#include "IMovableObject.h"
 
-class CRifleman1 : public CEnemyUseGun, public IMovableObject
+class CRifleman2 : public CEnemyUseGun
 {
 protected:
 	void DrawWhenAttack(D3DXVECTOR3 pos);
@@ -12,8 +11,8 @@ protected:
 	void DrawWhenWait(D3DXVECTOR3 pos);
 
 public:
-	CRifleman1(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
-	~CRifleman1();
+	CRifleman2(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
+	~CRifleman2();
 
 	void LoadResources();
 	void Draw();
@@ -22,4 +21,4 @@ public:
 	void Moving(float v);
 
 };
-#endif // !_CRIFLEMAN_H_
+#endif // !_CRIFLEMAN2_H_

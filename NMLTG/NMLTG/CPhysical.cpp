@@ -65,6 +65,7 @@ void CPhysical::CalcPositionWithoutGravitation(int time)
 
 CollisionDirection CPhysical::Collision(CPhysical* physical)
 {
+
 	float dx_entry, dx_exit, tx_entry, tx_exit;
 	float dy_exit, ty_entry, ty_exit, dy_entry;
 

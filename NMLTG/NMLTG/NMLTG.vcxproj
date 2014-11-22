@@ -89,14 +89,14 @@
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CEffectObject.h" />
     <ClInclude Include="CEnemyUseGun.h" />
-    <ClInclude Include="CEnemyWaepon.h" />
+    <ClInclude Include="CEnemyWeapon.h" />
     <ClInclude Include="CGround.h" />
     <ClInclude Include="CMapReader.h" />
     <ClInclude Include="CNEBullet.h" />
     <ClInclude Include="CObjectMapFactory.h" />
-    <ClInclude Include="CPlayerWaepon.h" />
+    <ClInclude Include="CPlayerWeapon.h" />
     <ClInclude Include="CRifleman1.h" />
-    <ClInclude Include="CWaepon.h" />
+    <ClInclude Include="CWeapon.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CEnemy.h" />
     <ClInclude Include="CFBullet.h" />
@@ -114,6 +114,7 @@
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CResourcesManager.h" />
     <ClInclude Include="IObjectFactory.h" />
+    <ClInclude Include="CRifleman2.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="world_test.h" />
   </ItemGroup>
@@ -127,7 +128,7 @@
     <ClCompile Include="CEffectObject.cpp" />
     <ClCompile Include="CEnemy.cpp" />
     <ClCompile Include="CEnemyUseGun.cpp" />
-    <ClCompile Include="CEnemyWaepon.cpp" />
+    <ClCompile Include="CEnemyWeapon.cpp" />
     <ClCompile Include="CFBullet.cpp" />
     <ClCompile Include="CGame.cpp" />
     <ClCompile Include="CGround.cpp" />
@@ -137,10 +138,11 @@
     <ClCompile Include="CNBullet.cpp" />
     <ClCompile Include="CNEBullet.cpp" />
     <ClCompile Include="CObjectMapFactory.cpp" />
-    <ClCompile Include="CPlayerWaepon.cpp" />
+    <ClCompile Include="CPlayerWeapon.cpp" />
     <ClCompile Include="CRifleman1.cpp" />
+    <ClCompile Include="CRifleman2.cpp" />
     <ClCompile Include="CSBullet.cpp" />
-    <ClCompile Include="CWaepon.cpp" />
+    <ClCompile Include="CWeapon.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="CPhysical.cpp" />
     <ClCompile Include="CSprite.cpp" />

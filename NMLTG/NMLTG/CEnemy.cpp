@@ -9,6 +9,8 @@ CEnemy::CEnemy(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, i
 
 CEnemy::~CEnemy()
 {
+	delete _live_sprite;
+	delete _die_sprite;
 }
 
 void CEnemy::Draw()

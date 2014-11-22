@@ -86,7 +86,7 @@ int GameContra::runGame()
 {
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
-	int done = 0;
+	bool done = false;
 	while (!done)
 	{
 		m_timer->startCount();
@@ -94,8 +94,9 @@ int GameContra::runGame()
 		{
 			if (msg.message == WM_QUIT)
 			{
-				done = 1;
+				done = true;
 			}
+
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}

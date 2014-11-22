@@ -9,8 +9,7 @@ CRifleman1::CRifleman1(int id, SpecificType specific_type, D3DXVECTOR3 pos, int 
 
 CRifleman1::~CRifleman1()
 {
-	delete _live_sprite;
-	delete _die_sprite;
+	
 }
 
 void CRifleman1::LoadResources()
@@ -49,7 +48,7 @@ void CRifleman1::Draw()
 	CEnemy::Draw();
 }
 
-void CRifleman1::Attacking(CEnemyWaepon* waepon)
+void CRifleman1::Attacking(CEnemyWeapon* weapon)
 {
 	if (!CheckTarget()) return; //Mục tiêu chưa vào tầm tấn công
 	
@@ -59,7 +58,7 @@ void CRifleman1::Attacking(CEnemyWaepon* waepon)
 	if (now - _last_time_shoot >= ENEMY_RIFLEMAN_ELAPSED_SHOOT)
 	{
 		//Cập nhật lại những viên đạn có thể bắn trong list của enemy
-		waepon->UpdateQueueIdBullet(_queue_id_bullet);
+		weapon->UpdateQueueIdBullet(_queue_id_bullet);
 
 		//Kiểm tra số đạn đã bắn, nếu vẫn còn bắn được thì bắn
 		if (_queue_id_bullet.size() < _max_bullet)
@@ -77,10 +76,25 @@ void CRifleman1::Attacking(CEnemyWaepon* waepon)
 			int x = _physical.x;
 			int y = _physical.y;
 
-			x = _physical.vx_last > 0 ? x + 12 : x - 12;
-			y = _attack_angle < 180 ? y + 11 : y - 10;
 
-			int id = waepon->ShootingBulletNE(D3DXVECTOR3(x, y, 0), _attack_angle, 0);
+			x = _physical.vx_last > 0 ? x + 13 : x - 13;
+
+			//Điều chỉnh đạn bay ra hợp lý với sprite hình
+			if (_attack_angle == 180 || _attack_angle == 0)
+			{
+				y = y + 8;
+			}
+			else if (_attack_angle < 180)
+			{
+				y = y + 20;
+			}  
+			else
+			{
+				y = y - 10;
+			}
+			
+			//Bắn
+			int id = weapon->ShootingBulletNE(D3DXVECTOR3(x, y, 0), _attack_angle, 0);
 			
 			if (id >= 0)
 			{

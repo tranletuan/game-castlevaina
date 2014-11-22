@@ -135,9 +135,6 @@
     <ClInclude Include="CLBullet.h">
       <Filter>Header Files\object\weapon\player bullet</Filter>
     </ClInclude>
-    <ClInclude Include="CPlayerWaepon.h">
-      <Filter>Header Files\object\weapon</Filter>
-    </ClInclude>
     <ClInclude Include="CGround.h">
       <Filter>Header Files\object\ground</Filter>
     </ClInclude>
@@ -165,17 +162,23 @@
     <ClInclude Include="CBBullet.h">
       <Filter>Header Files\object\weapon\enemy bullet</Filter>
     </ClInclude>
-    <ClInclude Include="CEnemyWaepon.h">
-      <Filter>Header Files\object\weapon</Filter>
-    </ClInclude>
-    <ClInclude Include="CWaepon.h">
-      <Filter>Header Files\object\weapon</Filter>
-    </ClInclude>
     <ClInclude Include="CEnemyUseGun.h">
       <Filter>Header Files\object\enemy</Filter>
     </ClInclude>
     <ClInclude Include="CRifleman1.h">
       <Filter>Header Files\object\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CRifleman2.h">
+      <Filter>Header Files\object\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CWeapon.h">
+      <Filter>Header Files\object\weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerWeapon.h">
+      <Filter>Header Files\object\weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemyWeapon.h">
+      <Filter>Header Files\object\weapon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -233,9 +236,6 @@
     <ClCompile Include="CSBullet.cpp">
       <Filter>Source Files\object\weapon\player bullet</Filter>
     </ClCompile>
-    <ClCompile Include="CPlayerWaepon.cpp">
-      <Filter>Source Files\object\weapon</Filter>
-    </ClCompile>
     <ClCompile Include="CGround.cpp">
       <Filter>Source Files\object\ground</Filter>
     </ClCompile>
@@ -257,12 +257,6 @@
     <ClCompile Include="CBBullet.cpp">
       <Filter>Source Files\object\weapon\enemy bullet</Filter>
     </ClCompile>
-    <ClCompile Include="CWaepon.cpp">
-      <Filter>Source Files\object\weapon</Filter>
-    </ClCompile>
-    <ClCompile Include="CEnemyWaepon.cpp">
-      <Filter>Source Files\object\weapon</Filter>
-    </ClCompile>
     <ClCompile Include="CEnemy.cpp">
       <Filter>Source Files\object\enemy</Filter>
     </ClCompile>
@@ -271,6 +265,18 @@
     </ClCompile>
     <ClCompile Include="CRifleman1.cpp">
       <Filter>Source Files\object\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CRifleman2.cpp">
+      <Filter>Source Files\object\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemyWeapon.cpp">
+      <Filter>Source Files\object\weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerWeapon.cpp">
+      <Filter>Source Files\object\weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="CWeapon.cpp">
+      <Filter>Source Files\object\weapon</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

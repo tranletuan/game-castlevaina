@@ -1,20 +1,19 @@
-﻿#include "CRifleman1.h"
+﻿#include "CSniperStand.h"
 
-CRifleman1::CRifleman1(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
+CSniperStand::CSniperStand(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
 	:CEnemyUseGun(id, specific_type, pos, width, height)
 {
 	_hp = 1;
-	Moving(0);
 	LoadResources();
 }
 
-CRifleman1::~CRifleman1()
+CSniperStand::~CSniperStand()
 {
 	delete _live_sprite;
 	delete _die_sprite;
 }
 
-void CRifleman1::LoadResources()
+void CSniperStand::LoadResources()
 {
 	CResourcesManager* rs = CResourcesManager::GetInstance();
 
@@ -28,7 +27,7 @@ void CRifleman1::LoadResources()
 	_current_sprite = _live_sprite;
 }
 
-void CRifleman1::Update(int delta_time)
+void CSniperStand::Update(float delta_time)
 {
 	//Khi hp = 0 cho lính nhảy lên
 	if (_hp == 0 && _physical.current_vy >= 0)
@@ -45,12 +44,12 @@ void CRifleman1::Update(int delta_time)
 	}
 }
 
-void CRifleman1::Draw()
+void CSniperStand::Draw()
 {
 	CEnemy::Draw();
 }
 
-void CRifleman1::Attacking(CEnemyWaepon* waepon)
+void CSniperStand::Attacking(CEnemyWaepon* waepon)
 {
 	if (!CheckTarget()) return; //Mục tiêu chưa vào tầm tấn công
 
@@ -94,7 +93,7 @@ void CRifleman1::Attacking(CEnemyWaepon* waepon)
 	}
 }
 
-void CRifleman1::DrawWhenAttack(D3DXVECTOR3 pos)
+void CSniperStand::DrawWhenAttack(D3DXVECTOR3 pos)
 {
 	bool done = true;
 	if (_attack_angle == 180 || _attack_angle == 0)
@@ -116,7 +115,7 @@ void CRifleman1::DrawWhenAttack(D3DXVECTOR3 pos)
 	}
 }
 
-void CRifleman1::DrawWhenWait(D3DXVECTOR3 pos)
+void CSniperStand::DrawWhenWait(D3DXVECTOR3 pos)
 {
 	if (_attack_angle == 180 || _attack_angle == 0)
 	{
@@ -132,7 +131,7 @@ void CRifleman1::DrawWhenWait(D3DXVECTOR3 pos)
 	}
 }
 
-void CRifleman1::DrawWhenDie(D3DXVECTOR3 pos)
+void CSniperStand::DrawWhenDie(D3DXVECTOR3 pos)
 {
 	_current_sprite = _die_sprite;
 	if (_current_sprite->index != _current_sprite->sprite_texture->count - 1)
@@ -141,7 +140,3 @@ void CRifleman1::DrawWhenDie(D3DXVECTOR3 pos)
 	}
 }
 
-void CRifleman1::Moving(float vx)
-{
-	_physical.vx = vx;
-}
