@@ -45,8 +45,6 @@ void CGame::GameRun()
 			frame_start = now;
 		}
 
-		
-
 		//Xử lý phím điều khiển
 		ProcessKeyboard();
 		ProcessInput(kDevice, delta_time);

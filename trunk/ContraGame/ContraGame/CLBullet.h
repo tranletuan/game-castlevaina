@@ -13,7 +13,7 @@ public:
 	~CLBullet();
 
 	void LoadResources();
-	void Update(int delta_time);
+	void Update(float delta_time);
 	void Draw();
 	void Moving(float v_max);
 	void Shoot(D3DXVECTOR3 pos, int angle, float v_max, float vo = 0);

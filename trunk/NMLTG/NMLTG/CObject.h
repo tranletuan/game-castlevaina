@@ -32,6 +32,8 @@ public:
 
 	virtual void LoadResources() = 0;
 	virtual void Draw() = 0;
+	//virtual void Update(int delta_time) = 0;
+	
 };
 
 #endif

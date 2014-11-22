@@ -4,13 +4,13 @@ WorldTest::WorldTest(int cmd_show) : CGame(cmd_show)
 {
 	this->cmd_show = cmd_show;
 	this->background = new CBackground(L"map1", 32);
-	this->waepon = new CPlayerWaepon();
+	this->waepon = new CPlayerWeapon();
 	this->bill = new CBill(123, Player1, D3DXVECTOR3(190, 190, 0), 32, 32);
 	this->bill2 = new CBill(23, Player1, D3DXVECTOR3(50, 190, 0), 32, 32);
 	this->map_reader = new CMapReader(L"map1");
 	//this->bullet = new CNEBullet(10);
-	this->enemy_waepon = new CEnemyWaepon();
-	this->enemy = new CRifleman1(234, Rifleman1, D3DXVECTOR3(50, 50, 0), 32, 32);
+	this->enemy_waepon = new CEnemyWeapon();
+	this->enemy = new CRifleman1(234, Rifleman1, D3DXVECTOR3(50, 100, 0), 32, 32);
 
 	test = 0;
 }
@@ -53,6 +53,7 @@ void WorldTest::RenderFrame(LPDIRECT3DDEVICE9 d3d_device)
 
 void WorldTest::ProcessInput(LPDIRECT3DDEVICE9 d3d_device, int delta)
 {
+
 	//Set phím di chuyển trái phải
 	if (IsKeyDown(DIK_D))
 	{
@@ -80,26 +81,26 @@ void WorldTest::OnKeyDown(int key_code)
 	switch (key_code)
 	{
 	case DIK_1:
-		waepon->SetWaeponType(WPN);
-		enemy->_hp = 0;
+		waepon->SetWeaponType(WPN);
+		
 		break;
 	case DIK_2:
-		waepon->SetWaeponType(WPM);
+		waepon->SetWeaponType(WPM);
 		
 		//bullet->Shoot(D3DXVECTOR3(50, 190, 0), 0, BULLET_NE_V);
 		/*enemy_waepon->ShootingBulletB(D3DXVECTOR3(50, 190, 0), 0);
 		enemy_waepon->ShootingBulletB(D3DXVECTOR3(50, 150, 0), 0);*/
 		break;
 	case DIK_3:
-		waepon->SetWaeponType(WPF);
+		waepon->SetWeaponType(WPF);
 		//enemy_waepon->ShootingBulletNE(D3DXVECTOR3(50, 190, 0), 0, 0);
 		break;
 	case DIK_4:
-		waepon->SetWaeponType(WPL);
+		waepon->SetWeaponType(WPL);
 		
 		break;
 	case DIK_5:
-		waepon->SetWaeponType(WPS);
+		waepon->SetWeaponType(WPS);
 		break;
 	case DIK_J:
 		if (bill->GetGunDirection() != Down)
@@ -169,6 +170,9 @@ void WorldTest::GameUpdate(int delta_time)
 			}
 		}
 	}
+
+	
+
 	
 	if (cd != TopCollision)
 	{
@@ -188,5 +192,6 @@ void WorldTest::GameUpdate(int delta_time)
 	
 
 	camera->UpdateCamera(bill->_physical.x);
+	
 }
 

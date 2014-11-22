@@ -28,7 +28,7 @@ void CAutoDestroyBridge::LoadResources()
 	_effect_destroy_sprite = new CSprite(rs->_effect_destroy);
 }
 
-void CAutoDestroyBridge::Update(int delta_time)
+void CAutoDestroyBridge::Update(float delta_time)
 {
 
 }

@@ -13,9 +13,6 @@ protected:
 	queue<int> _queue_id_bullet; //dùng để kiểm tra số đạn đã bắn
 	DWORD _last_time_shoot;
 
-	CSprite* _live_sprite;
-	CSprite* _die_sprite;
-
 	virtual void DrawWhenAttack(D3DXVECTOR3 pos) = 0;
 	virtual void DrawWhenWait(D3DXVECTOR3 pos) = 0;
 	virtual void DrawWhenDie(D3DXVECTOR3 pos) = 0;
@@ -26,7 +23,7 @@ public:
 
 	virtual void LoadResources() = 0;
 	virtual void Draw() = 0;
-	virtual void Attacking(CEnemyWaepon* waepon) = 0;
+	virtual void Attacking(CEnemyWeapon* weapon) = 0;
 
 	void SetTarget(float x, float y);
 

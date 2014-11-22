@@ -12,6 +12,6 @@ public:
 
 	void LoadResources();
 	void Draw();
-	void Update(int delta_time);
+	void Update(float delta_time);
 };
 #endif // !_CEFFECT_OBJECT_H_

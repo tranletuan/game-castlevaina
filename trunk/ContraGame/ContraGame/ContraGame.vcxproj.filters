@@ -171,14 +171,14 @@
     <Filter Include="Contra Game\Object\Enemy Game">
       <UniqueIdentifier>{585e2bc1-743a-4e20-943a-2a31295576ae}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contra Game\Object\Enemy Game\CRifleman1">
-      <UniqueIdentifier>{d28afe82-4f6b-4251-8716-0964ac014417}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contra Game\Object\Enemy Game\Enemy">
       <UniqueIdentifier>{8ba7f0d4-a722-4941-8291-2f84ae0b5768}</UniqueIdentifier>
     </Filter>
     <Filter Include="Contra Game\Object\Enemy Game\EnemyUseGun">
       <UniqueIdentifier>{e67d20a4-aec9-46a3-8d21-8bc7db5f3f71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Enemy Game\Sniper">
+      <UniqueIdentifier>{d28afe82-4f6b-4251-8716-0964ac014417}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -263,9 +263,6 @@
     <ClCompile Include="Physical.cpp">
       <Filter>Game Engine\Physical</Filter>
     </ClCompile>
-    <ClCompile Include="CRifleman1.cpp">
-      <Filter>Contra Game\Object\Enemy Game\CRifleman1</Filter>
-    </ClCompile>
     <ClCompile Include="CEnemyUseGun.cpp">
       <Filter>Contra Game\Object\Enemy Game\EnemyUseGun</Filter>
     </ClCompile>
@@ -322,6 +319,9 @@
     </ClCompile>
     <ClCompile Include="CObject.cpp">
       <Filter>Contra Game\Object\Object Game</Filter>
+    </ClCompile>
+    <ClCompile Include="CSniperStand.cpp">
+      <Filter>Contra Game\Object\Enemy Game\Sniper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -415,9 +415,6 @@
     <ClInclude Include="CEnemyUseGun.h">
       <Filter>Contra Game\Object\Enemy Game\EnemyUseGun</Filter>
     </ClInclude>
-    <ClInclude Include="CRifleman1.h">
-      <Filter>Contra Game\Object\Enemy Game\CRifleman1</Filter>
-    </ClInclude>
     <ClInclude Include="CEnemy.h">
       <Filter>Contra Game\Object\Enemy Game\Enemy</Filter>
     </ClInclude>
@@ -480,6 +477,9 @@
     </ClInclude>
     <ClInclude Include="CResourcesPath.h">
       <Filter>Contra Game\Manager\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="CSniperStand.h">
+      <Filter>Contra Game\Object\Enemy Game\Sniper</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

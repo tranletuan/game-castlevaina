@@ -34,7 +34,7 @@ void CPhysical::SetBounds(float x, float y, float width, float height)
 	bounds.bottom = bounds.top - height;
 }
 
-void CPhysical::CalcPositionWithGravitation(int time, float gravity)
+void CPhysical::CalcPositionWithGravitation(float time, float gravity)
 {
 	current_vx = vx * time;
 	x += current_vx;
@@ -54,7 +54,7 @@ void CPhysical::CalcPositionWithGravitation(int time, float gravity)
 	}
 }
 
-void CPhysical::CalcPositionWithoutGravitation(int time)
+void CPhysical::CalcPositionWithoutGravitation(float time)
 {
 	current_vx = vx * time;
 	x += current_vx;

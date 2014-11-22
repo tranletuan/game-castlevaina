@@ -4,7 +4,7 @@
 #include "IMovableObject.h"
 #include "CObject.h"
 #include "Config.h"
-#include "CPlayerWaepon.h"
+#include "CPlayerWeapon.h"
 
 enum Environment
 {
@@ -56,7 +56,7 @@ public:
 
 	void Dying();
 	void Jumping();
-	void Attacking(CPlayerWaepon* waepon);
+	void Attacking(CPlayerWeapon* weapon);
 	void Moving(float vx);
 	void Standing(float y_ground, int id_ground);
 	bool Falling(CObject* ground);

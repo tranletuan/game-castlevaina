@@ -18,7 +18,7 @@ bool CWeapon::CheckBulletInView(float x, float y)
 	return true;
 }
 
-void CWeapon::Update(float delta_time)
+void CWeapon::Update(int delta_time)
 {
 	if (_list_bullet.size() > 0)
 	{

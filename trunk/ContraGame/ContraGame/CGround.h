@@ -13,7 +13,7 @@ public:
 
 	virtual void LoadResources();
 	virtual void Draw();
-	virtual void Update(int delta_time);
+	virtual void Update(float delta_time);
 
 	
 };
