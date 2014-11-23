@@ -4,7 +4,7 @@
 #include "QTNode.h"
 #include "CResourcesManager.h"
 #include "CGround.h"
-#include "CRifleman1.h"
+#include "CSniperStand.h"
 
 class QTTree
 {
