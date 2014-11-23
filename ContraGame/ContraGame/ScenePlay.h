@@ -8,6 +8,7 @@
 #include "QTTree.h"
 #include "CBill.h"
 #include "CEnemyWaepon.h"
+#include "CSniperStand.h"
 
 class Background;
 class ScenePlay:

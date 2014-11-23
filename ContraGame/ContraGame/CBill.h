@@ -25,6 +25,7 @@ class CBill : public CObject
 {
 protected:
 	CInput *_input;
+	CPlayerWeapon* _weapon;
 
 	CSprite* _bill_stand;
 	CSprite* _bill_jump;
@@ -44,6 +45,9 @@ protected:
 	void DrawWhenJump(D3DXVECTOR3 pos);
 	void DrawWhenDie(D3DXVECTOR3 pos);
 	void DrawWhenAttack(D3DXVECTOR3 pos);
+	void OnKeyDown();
+	void OnKeyUp();
+	void IsKeyDown();
 
 public:
 	CBill(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
@@ -56,10 +60,11 @@ public:
 
 	void SetEnviroment(Environment env);
 	void SetGunDirection(GunDirection gd);
+	void SetWeapon(CPlayerWeapon* weapon) { _weapon = weapon; }
 
 	void Dying();
 	void Jumping();
-	void Attacking(CPlayerWeapon* waepon);
+	void Attacking();
 	void Moving(float vx);
 	void Standing(float y_ground, int id_ground);
 	bool Falling(CObject* ground);
@@ -68,6 +73,7 @@ public:
 	int	GetGunDirection();
 
 	void ProcessInput();
+
 };
 
 #endif // !_CBILL_H_
