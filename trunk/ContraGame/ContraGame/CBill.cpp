@@ -160,7 +160,7 @@ void CBill::Jumping()
 	_physical.vy = BILL_VY;
 }
 
-void CBill::Attacking(CPlayerWeapon* waepon)
+void CBill::Attacking()
 {
 	//Hàm này chủ yếu để tính toán góc bắn của player
 	//k đưa các thông số constant vào config.h vì quá nhiều quá đặc biệt
@@ -197,7 +197,7 @@ void CBill::Attacking(CPlayerWeapon* waepon)
 		}
 		else
 		{
-			if (waepon->GetWeaponType() == WPF)
+			if (_weapon->GetWeaponType() == WPF)
 				x = _physical.vx_last > 0 ? _physical.x - 10 : _physical.x - 18;
 			else
 				x = _physical.vx_last > 0 ? _physical.x + 4 : _physical.x - 2;
@@ -220,7 +220,7 @@ void CBill::Attacking(CPlayerWeapon* waepon)
 		{
 			if (_player_status == Jump)
 			{
-				if (waepon->GetWeaponType() == WPF)
+				if (_weapon->GetWeaponType() == WPF)
 					x = _physical.vx_last > 0 ? _physical.x - 10 : _physical.x - 18;
 				else
 					x = _physical.x;
@@ -238,7 +238,7 @@ void CBill::Attacking(CPlayerWeapon* waepon)
 	}
 
 	pos = D3DXVECTOR3(x, y, 0);
-	waepon->Shooting(pos, angle, _physical.vx);
+	_weapon->Shooting(pos, angle, _physical.vx);
 }
 
 void CBill::Moving(float vx)
@@ -520,5 +520,62 @@ int CBill::GetGunDirection()
 
 void CBill::ProcessInput()
 {
+	IsKeyDown();
+	OnKeyDown();
+	OnKeyUp();
+}
 
+void CBill::OnKeyDown()
+{
+	
+	if (_input->KeyDown(DIK_L))
+	{
+		if (GetGunDirection() != Down)
+		{
+			Jumping();
+		}
+	}
+	else if (_input->KeyDown(DIK_J))
+	{
+		Attacking();
+	}
+}
+
+void CBill::OnKeyUp()
+{
+	//Ngừng di chuyển
+	if (_input->onKeyUp(DIK_D) ||
+		_input->onKeyUp(DIK_A))
+	{
+		Moving(0);
+	} 
+	//Hướng súng trở về bình thường
+	else if (_input->onKeyUp(DIK_W) ||
+		_input->onKeyUp(DIK_S))
+	{
+		SetGunDirection(Normal);
+	}
+}
+
+void CBill::IsKeyDown()
+{
+	//Set phím di chuyển trái phải
+	if (_input->KeyDown(DIK_D))
+	{
+		Moving(BILL_VX);
+	}
+	else if (_input->KeyDown(DIK_A))
+	{
+		Moving(-BILL_VX);
+	}
+
+	//Set phím hướng súng
+	if (_input->KeyDown(DIK_W))
+	{
+		SetGunDirection(Up);
+	}
+	else if (_input->KeyDown(DIK_S))
+	{
+		SetGunDirection(Down);
+	}
 }

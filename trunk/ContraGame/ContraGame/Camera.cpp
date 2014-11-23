@@ -16,13 +16,13 @@ CCamera::CCamera(float posX, float posY)
 void CCamera::UpdateCamera(float x)
 {
 	
-	/*view_port.x = x - kScreenWidth / 2;
+	view_port.x = x - kScreenWidth / 2;
 	if (view_port.x < 0)
 	{
 		view_port.x = 0;
 	}
-*/
-	view_port.x += 10;
+
+//	view_port.x += 10;
 
 }
 

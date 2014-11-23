@@ -18,7 +18,7 @@ ScenePlay::~ScenePlay()
 
 void ScenePlay::processInput()
 {
-	//m_bill->processInput();
+	m_bill->ProcessInput();
 }
 
 void ScenePlay::init()
