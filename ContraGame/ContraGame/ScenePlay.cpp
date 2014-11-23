@@ -18,7 +18,7 @@ ScenePlay::~ScenePlay()
 
 void ScenePlay::processInput()
 {
-	//m_character->processInput();
+	//m_bill->processInput();
 }
 
 void ScenePlay::init()
@@ -30,9 +30,9 @@ void ScenePlay::update(float time)
 {	
 	m_background->update(time);	
 	m_tree->update(time);
-	//m_character->update(time);	
+	m_bill->Update(time);
 	//m_camera->update(time, ResourceManager::getInstance()->m_posChar);
-	m_camera->UpdateCamera(0);
+	m_camera->UpdateCamera(m_bill->getPosX());
 	m_cameraHUD->update(time);
 }
 
@@ -40,7 +40,7 @@ void ScenePlay::draw()
 {
 	m_background->draw();
 	m_tree->draw();
-	//m_character->draw();
+	m_bill->Draw();
 	m_cameraHUD->draw();
 }
 

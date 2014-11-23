@@ -170,7 +170,7 @@ void QTTree::update(float time)
 
 	for (int i = 0; i < m_listObInView.size(); i++)
 	{
-	//	m_listObInView.at(i)->Update(time);
+		m_listObInView.at(i)->Update(time);
 	}
 }
 void QTTree::draw()
@@ -197,7 +197,7 @@ CObject * QTTree::getObjectTrust(CObject *x)
 	case Ground_Grass:
 		return new CGround(x->_id, x->getSpecificType(),pos,x->getWidth(),x->getHeight());		
 	case Sniper_Stand:
-		return new CRifleman1(x->_id, x->getSpecificType(), pos, x->getWidth(), x->getHeight());
+		return new CSniperStand(x->_id, x->getSpecificType(), pos, x->getWidth(), x->getHeight());
 	default:
 		break;
 	}
