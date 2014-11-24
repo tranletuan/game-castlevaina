@@ -6,8 +6,8 @@
 class CSniperHide : public CEnemyUseGun
 {
 protected:
-	bool _shoot_done;
-	bool _wait_done;
+	bool _ready_shoot;
+	bool _is_shot;
 
 	void DrawWhenAttack(D3DXVECTOR3 pos);
 	void DrawWhenDie(D3DXVECTOR3 pos);
