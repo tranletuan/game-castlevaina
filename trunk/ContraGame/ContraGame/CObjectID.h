@@ -33,10 +33,14 @@ enum  SpecificType
 	Sniper_Hide,
 	
 	
+	
 	// Item
 	ItemM,
+	ItemB,
 	ItemL,
 	ItemR,
+	ItemF,
+	ItemM_Stand // item dung yen
 };
 
 // loai object

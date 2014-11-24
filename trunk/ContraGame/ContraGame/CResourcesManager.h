@@ -21,6 +21,7 @@ using namespace std;
 
 class QTNode;
 class CObject;
+class CCamera;
 class CResourcesManager
 {
 
@@ -43,6 +44,7 @@ public:
 	int m_heightMap;
 	int m_widthMap;
 	vector<CObject*> listObinView;
+	vector<CObject*> listObNoneTree; // list ob khong nam trong quad tree
 
 	/*------    HUD Camera     -----*/
 	CTexture *HUD_badge;
@@ -102,6 +104,10 @@ public:
 	CTexture* _enemy_sniper_stand;
 	CTexture* _enemy_sniper_hide;
 
+	// Item
+	CTexture* _item;
+	CTexture* _item_stand;
+
 	/*-------- Background -------*/
 	vector<int> map1_bg_listTile; // danh sach list file text background
 	vector<int> map2_bg_listTile;
@@ -132,6 +138,8 @@ public:
 	void loadPlayAudio();
 	void unloadPlayResource();
 
+	// load list cac object khong nam trong quad tree
+	vector<CObject*> loadFileTextOBNoneTree(string path);
 	// load list cac tile tu file text
 	vector<int> loadFileTextBG(string path);	
 	// load list node tu file text
