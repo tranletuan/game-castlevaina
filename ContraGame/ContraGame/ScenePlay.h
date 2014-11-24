@@ -9,6 +9,7 @@
 #include "CBill.h"
 #include "CEnemyWeapon.h"
 #include "CSniperStand.h"
+#include "CSniperHide.h"
 
 class Background;
 class ScenePlay:

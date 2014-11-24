@@ -60,6 +60,7 @@ void CSniperStand::SetTarget(float x, float y)
 
 void CSniperStand::Attacking()
 {
+	if (_hp == 0) return;
 	if (!CheckTarget()) return; //Mục tiêu chưa vào tầm tấn công
 
 	DWORD now = GetTickCount();
@@ -110,6 +111,7 @@ void CSniperStand::Attacking()
 
 			_last_time_shoot = now;
 			SetStatus(EAttack);
+			_hp = 0;
 		}
 	}
 }

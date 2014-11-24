@@ -8,7 +8,7 @@ ScenePlay::ScenePlay()
 	m_tree = new QTTree();
 	m_playerWeapon = new CPlayerWeapon();
 	m_enemyWeapon = new CEnemyWeapon();
-	m_enemy_test = new CSniperStand(123, Sniper_Stand, D3DXVECTOR3(0, 0, 0), 26, 44);
+	m_enemy_test = new CSniperHide(123, Sniper_Hide, D3DXVECTOR3(200, 142, 0), 26, 44);
 	m_enemy_test->SetWeapon(m_enemyWeapon);
 	init();
 }
@@ -33,8 +33,10 @@ void ScenePlay::update(float time)
 	m_background->update(time);	
 	m_tree->update(time);
 	m_enemyWeapon->Update(time);
+
 	m_enemy_test->SetTarget(100, 50);
 	m_enemy_test->Update(time);
+	
 	//m_bill->Update(time);
 	//m_camera->update(time, ResourceManager::getInstance()->m_posChar);
 	m_camera->UpdateCamera(m_bill->getPosX());
@@ -44,14 +46,12 @@ void ScenePlay::update(float time)
 void ScenePlay::draw()
 {
 	m_background->draw();
-	m_tree->draw();
-	m_bill->Draw();
+	//m_tree->draw();
+	//m_bill->Draw();
 	m_enemy_test->Draw();
 	m_cameraHUD->draw();
 	m_enemyWeapon->Draw();
-
 }
-
 
 void ScenePlay::destroy()
 {

@@ -4,6 +4,7 @@ CSniperHide::CSniperHide(int id, SpecificType specific_type, D3DXVECTOR3 pos, in
 	:CEnemyUseGun(id, specific_type, pos, width, height)
 {
 	_hp = 1;
+	_last_time_shoot = 0;
 	LoadResources();
 }
 
@@ -25,6 +26,7 @@ void CSniperHide::LoadResources()
 
 	_die_sprite = new CSprite(rs->_effect_die);
 	_current_sprite = _live_sprite;
+	_current_sprite->index = 1;
 }
 
 void CSniperHide::Update(int delta_time)
@@ -33,23 +35,47 @@ void CSniperHide::Update(int delta_time)
 	_weapon->UpdateQueueIdBullet(_queue_id_bullet);
 
 	//Khi hp = 0 cho lính nhảy lên
-	if (_hp == 0 && _physical.current_vy >= 0)
+	if (_hp == 0)
 	{
-		_physical.vx = 0.01f;
-		_physical.vy = ENEMY_VY_DIE;
-		_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
+		if (_physical.current_vy >= 0)
+		{
+			_physical.vx = 0.01f;
+			_physical.vy = ENEMY_VY_DIE;
+			_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
+		}
+		//Khi đạt độ cao cực đại thì trạng thái chuyển sang die
+		else
+		{
+			SetStatus(EDie);
+		}
 	}
-
-	//Khi đạt độ cao cực đại thì trạng thái chuyển sang die
-	if (_physical.current_vy < 0)
+	else 
 	{
-		SetStatus(EDie);
-	}
+		if (_is_shot && _queue_id_bullet.size() == 0)
+		{
+			_is_shot = false;
+			_ready_shoot = false;
+			_enemy_status = EWait;
+			_physical.SetBounds(0, 0, 0, 0);
 
-	DWORD now = GetTickCount();
-	if (now - _last_time_shoot >= ENEMT_SNIPER_HIDE_TIME_WAIT)
-	{
-		SetStatus(EAttack);
+		}
+
+		//Chờ bắn đợt đạn tiếp theo
+		if (_enemy_status == EWait && CheckTarget())
+		{
+			if (_last_time_shoot == 0)
+			{
+				_last_time_shoot = GetTickCount();
+			}
+
+			DWORD now = GetTickCount();
+			if (now - _last_time_shoot >= ENEMT_SNIPER_HIDE_TIME_WAIT)
+			{
+				SetStatus(EAttack);
+				_physical.SetBounds(_physical.x, _physical.y, 20, 28);
+				_last_time_shoot = 0;
+			}
+		}
 	}
 }
 
@@ -66,12 +92,13 @@ void CSniperHide::SetTarget(float x, float y)
 
 void CSniperHide::Attacking()
 {
+	if (_hp == 0) return;
 	if (!CheckTarget()) return; //Mục tiêu chưa vào tầm tấn công
 
 	//Kiểm tra sprite bắn 
-	if (_shoot_done)
+	if (_ready_shoot)
 	{
-		//Kiểm tra số đạn đã bắn, nếu vẫn còn bắn được thì bắn
+		//Kiểm tra số đạn đã bắn
 		if (_queue_id_bullet.size() < _max_bullet)
 		{
 			//Lấy góc bắn
@@ -80,39 +107,35 @@ void CSniperHide::Attacking()
 
 			//Chỉnh tọa độ bắn
 			int x = _physical.vx_last > 0 ? _physical.x + 13 : _physical.x - 13;
-			int y = _physical.y;
+			int y = _physical.y + 6;
 
 			int id = _weapon->ShootingBulletNE(D3DXVECTOR3(x, y, 0), _attack_angle, 0);
 
 			if (id >= 0)
 			{
 				_queue_id_bullet.push(id);
+				_is_shot = true;
 			}
-
-			_shoot_done = false;
 		}
 	}
 }
 
 void CSniperHide::DrawWhenAttack(D3DXVECTOR3 pos)
 {
-	_shoot_done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 1, 3);
-}
-
-void CSniperHide::DrawWhenWait(D3DXVECTOR3 pos)
-{
-	if (_attack_angle == 180 || _attack_angle == 0)
+	//Chạy hết frame mới bắn
+	if (_hp != 0)
 	{
-		_current_sprite->DrawWithDirection(pos, _physical.vx_last, 1, 1);
-	}
-	else if (_attack_angle > 0 && _attack_angle < 180)
-	{
-		_current_sprite->DrawWithDirection(pos, _physical.vx_last, 3, 3);
+		_ready_shoot = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 1, 3);
 	}
 	else
 	{
 		_current_sprite->DrawWithDirection(pos, _physical.vx_last);
 	}
+}
+
+void CSniperHide::DrawWhenWait(D3DXVECTOR3 pos)
+{
+	_current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 3, 5);
 }
 
 void CSniperHide::DrawWhenDie(D3DXVECTOR3 pos)
