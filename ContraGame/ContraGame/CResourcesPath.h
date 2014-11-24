@@ -36,7 +36,8 @@
 #pragma endregion HUDPath
 
 #pragma region MapPath
-#define PATH_OB_MAP1 ".//DataGame//Map//1_ob_qt.txt"
+#define PATH_OB_MAP1 ".//DataGame//Map//1_ob.txt"
+#define PATH_OB_MAP1_QT ".//DataGame//Map//1_ob_qt.txt"
 #define PATH_QT_MAP1 ".//DataGame//Map//1_quadtree.txt"
 #pragma endregion MapPath
 
@@ -76,8 +77,9 @@
 #define PATH_PLAYER_IN_WATER ".//DataGame//Images//Game//Object//player//bill_in_water.png"
 #pragma endregion PlayerPath
 
-#pragma region xx
-
-#pragma endregion xxx
+#pragma region ItemPath
+#define PATH_ITEM ".//DataGame//Images//Game//Object//item//item.png"
+#define PATH_ITEM_STAND ".//DataGame//Images//Game//Object//item//item_stand.png"
+#pragma endregion ItemPath
 
 #endif
