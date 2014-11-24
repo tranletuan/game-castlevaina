@@ -18,7 +18,7 @@ void CFBullet::LoadResources()
 	_current_sprite = _bullet_sprite;
 }
 
-void CFBullet::Update(float delta_time)
+void CFBullet::Update(int delta_time)
 {
 	//Cập nhật tâm quay
 	_physical.CalcPositionWithoutGravitation(delta_time);

@@ -9,8 +9,6 @@ Background::Background()
 	init();
 }
 
-
-
 void Background::draw()
 {
 	for (int row = m_beginRow; row < m_endRow; row++) {
@@ -63,7 +61,7 @@ void Background::init()
 
 }
 
-void Background::update(float time)
+void Background::update(int time)
 {
 
 	// update ve theo camera, 
@@ -94,9 +92,3 @@ Background::~Background()
 {
 
 }
-
-
-
-
-
-

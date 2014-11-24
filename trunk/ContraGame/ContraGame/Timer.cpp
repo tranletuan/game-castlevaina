@@ -52,7 +52,7 @@ void CTimer::setMaxFps(float _maxFps)
 
 float CTimer::getDeltaTime()
 {
-	return (float)(1.0f / m_lockFps) * 10;
+	return (float)(1.0f / m_lockFps) * 1000;
 }
 
 float CTimer::getTime()

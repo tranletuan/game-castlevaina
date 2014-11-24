@@ -19,6 +19,7 @@ protected:
 	virtual void DrawWhenAttack(D3DXVECTOR3 pos) = 0;
 	virtual void DrawWhenWait(D3DXVECTOR3 pos) = 0;
 	virtual void DrawWhenDie(D3DXVECTOR3 pos) = 0;
+	virtual void Attacking() = 0;
 
 public:
 	CEnemyUseGun(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
@@ -26,11 +27,8 @@ public:
 
 	virtual void LoadResources() = 0;
 	virtual void Draw() = 0;
-	virtual void Update(float delta_time) = 0;
-	virtual void Attacking(CEnemyWaepon* waepon) = 0;
-
-	void SetTarget(float x, float y);
-
+	virtual void Update(int delta_time) = 0;
+	virtual void SetTarget(float x, float y);
 };
 #endif // !_CENEMY_USE_GUN_H_
 

@@ -152,7 +152,8 @@ void CResourcesManager::loadMap1()
 	_effect_die = new CTexture(PATH_EFFECT_DIE, 3);
 
 	//Enemy
-	_enemy_rifleman_1 = new CTexture(PATH_ENEMY_RIFLEMAN_1, 5);
+	_enemy_sniper_stand = new CTexture(PATH_ENEMY_SNIPER_STAND, 5);
+	_enemy_sniper_hide = new CTexture(PATH_ENEMY_SNIPER_HIDE, 6);
 
 	/*-----------------------------------------------------------*/
 	/* --- Background ---*/	

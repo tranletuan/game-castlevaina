@@ -20,7 +20,7 @@ public:
 	~CameraHUD();
 
 	void draw();
-	void update(float time);
+	void update(int time);
 	void init();
 
 	int getLife(){ return m_life; }

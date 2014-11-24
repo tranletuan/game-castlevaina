@@ -30,6 +30,7 @@ enum  SpecificType
 	RunMan,
 	RunMan_Fire,
 	Sniper_Stand,
+	Sniper_Hide,
 	
 	
 	// Item

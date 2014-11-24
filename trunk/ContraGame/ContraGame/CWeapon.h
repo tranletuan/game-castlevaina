@@ -19,7 +19,7 @@ public:
 	virtual CollisionDirection CheckCollision(CObject* obj) = 0;
 
 	virtual void LoadResources() = 0;
-	void Update(float delta_time);
+	void Update(int delta_time);
 	void Draw();
 };
 

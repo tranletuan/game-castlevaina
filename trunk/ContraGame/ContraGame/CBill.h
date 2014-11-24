@@ -56,7 +56,7 @@ public:
 
 	void LoadResources();
 	void Draw();
-	void Update(float delta_time);
+	void Update(int delta_time);
 
 	void SetEnviroment(Environment env);
 	void SetGunDirection(GunDirection gd);

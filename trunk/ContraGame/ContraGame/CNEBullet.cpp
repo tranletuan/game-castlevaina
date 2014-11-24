@@ -18,7 +18,7 @@ void CNEBullet::LoadResources()
 	_current_sprite = _bullet_sprite;
 }
 
-void CNEBullet::Update(float delta_time)
+void CNEBullet::Update(int delta_time)
 {
 	_physical.CalcPositionWithoutGravitation(delta_time);
 	_physical.SetBounds(

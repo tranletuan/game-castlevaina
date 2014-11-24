@@ -37,7 +37,7 @@ public:
 	int runGame();
 	int endGame();
 
-	void updateWorld(float time);
+	void updateWorld(int time);
 	void drawWorld();
 
 };

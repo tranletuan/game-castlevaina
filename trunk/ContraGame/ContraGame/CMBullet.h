@@ -12,7 +12,7 @@ public:
 	~CMBullet();
 
 	void LoadResources();
-	void Update(float delta_time);
+	void Update(int delta_time);
 	void Draw();
 
 	void Moving(float v_max);

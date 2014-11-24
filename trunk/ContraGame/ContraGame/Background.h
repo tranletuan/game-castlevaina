@@ -27,7 +27,7 @@ public:
 	
 	void draw();
 	void init();
-	void update(float time);
+	void update(int time);
 	void setWidthBG(int x){ m_width = x; }
 	int getWidthBG(){ return m_width; }
 	void setHeightBG(int x){ m_height = x; }

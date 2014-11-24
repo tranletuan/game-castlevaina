@@ -1,4 +1,4 @@
-#include "GameContra.h"
+﻿#include "GameContra.h"
  
 GameContra::GameContra()
 {
@@ -86,30 +86,29 @@ int GameContra::runGame()
 {
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
-	bool done = false;
-	while (!done)
-	{
-		m_timer->startCount();
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-		{
-			if (msg.message == WM_QUIT)
-			{
-				done = true;
-			}
 
+	DWORD frame_start = GetTickCount();
+	DWORD tick_per_fram = 1000 / kFrameRate;
+
+	//Vòng lặp chính quản lý thông điệp
+	while (msg.message != WM_QUIT)
+	{
+		if (PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
+		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-		else
-		{			
-			if (m_timer->getTime() < 1.0f)
-			{
-				updateWorld(m_timer->getDeltaTime());
-				drawWorld();
-				m_timer->endCount();
-			}
-		}
 
+		DWORD now = GetTickCount();
+		DWORD delta_time = now - frame_start;
+
+		if (delta_time >= tick_per_fram)
+		{
+			updateWorld(delta_time);
+			//Vẽ các thành phần trong game;
+			drawWorld();
+			frame_start = now;
+		}
 	}
 	return (int)msg.wParam;
 }
@@ -128,7 +127,7 @@ int GameContra::endGame()
 	return 1;
 }
 
-void GameContra::updateWorld(float time)
+void GameContra::updateWorld(int time)
 {
 	m_input->processKeyBoard();
 

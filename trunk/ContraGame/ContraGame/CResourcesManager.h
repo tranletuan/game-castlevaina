@@ -99,7 +99,8 @@ public:
 	CTexture* _effect_die;
 
 	//Enemy
-	CTexture* _enemy_rifleman_1;
+	CTexture* _enemy_sniper_stand;
+	CTexture* _enemy_sniper_hide;
 
 	/*-------- Background -------*/
 	vector<int> map1_bg_listTile; // danh sach list file text background

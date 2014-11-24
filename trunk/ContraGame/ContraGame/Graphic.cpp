@@ -26,9 +26,9 @@ bool CGraphic::initDevice(HWND hWnd)
 	d3dpp.hDeviceWindow = hWnd;
 	// Create a default DirectX device
 	if (FAILED(m_pd3d->CreateDevice(D3DADAPTER_DEFAULT,
-		D3DDEVTYPE_REF,
+		D3DDEVTYPE_HAL,
 		hWnd,
-		D3DCREATE_SOFTWARE_VERTEXPROCESSING,
+		D3DCREATE_HARDWARE_VERTEXPROCESSING,
 		&d3dpp,
 		&m_pd3Device)))
 	{
@@ -36,8 +36,6 @@ bool CGraphic::initDevice(HWND hWnd)
 	}
 	return true;
 }
-
-
 
 void CGraphic::beginRender()
 {

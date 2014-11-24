@@ -19,20 +19,23 @@ void CSniperStand::LoadResources()
 
 	if (_specific_type == Sniper_Stand)
 	{
-		_live_sprite = new CSprite(rs->_enemy_rifleman_1);
-		_max_bullet = ENEMY_RIFLEMAN_MAX_BULLET;
+		_live_sprite = new CSprite(rs->_enemy_sniper_stand);
+		_max_bullet = ENEMY_SNIPER_STAND_MAX_BULLET;
 	}
 
 	_die_sprite = new CSprite(rs->_effect_die);
 	_current_sprite = _live_sprite;
 }
 
-void CSniperStand::Update(float delta_time)
+void CSniperStand::Update(int delta_time)
 {
+	//Cập nhật lại những viên đạn có thể bắn trong list của enemy
+	_weapon->UpdateQueueIdBullet(_queue_id_bullet);
+
 	//Khi hp = 0 cho lính nhảy lên
 	if (_hp == 0 && _physical.current_vy >= 0)
 	{
-		_physical.vx = 0;
+		_physical.vx = 0.01f;
 		_physical.vy = ENEMY_VY_DIE;
 		_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
 	}
@@ -49,18 +52,21 @@ void CSniperStand::Draw()
 	CEnemy::Draw();
 }
 
-void CSniperStand::Attacking(CEnemyWaepon* waepon)
+void CSniperStand::SetTarget(float x, float y)
+{
+	CEnemyUseGun::SetTarget(x, y);
+	Attacking();
+}
+
+void CSniperStand::Attacking()
 {
 	if (!CheckTarget()) return; //Mục tiêu chưa vào tầm tấn công
 
 	DWORD now = GetTickCount();
 
 	//Giãn cách bắn 
-	if (now - _last_time_shoot >= ENEMY_RIFLEMAN_ELAPSED_SHOOT)
+	if (now - _last_time_shoot >= ENEMY_SNIPER_STAND_ELAPSED_SHOOT)
 	{
-		//Cập nhật lại những viên đạn có thể bắn trong list của enemy
-		waepon->UpdateQueueIdBullet(_queue_id_bullet);
-
 		//Kiểm tra số đạn đã bắn, nếu vẫn còn bắn được thì bắn
 		if (_queue_id_bullet.size() < _max_bullet)
 		{
@@ -77,10 +83,25 @@ void CSniperStand::Attacking(CEnemyWaepon* waepon)
 			int x = _physical.x;
 			int y = _physical.y;
 
-			x = _physical.vx_last > 0 ? x + 12 : x - 12;
-			y = _attack_angle < 180 ? y + 11 : y - 10;
 
-			int id = waepon->ShootingBulletNE(D3DXVECTOR3(x, y, 0), _attack_angle, 0);
+			x = _physical.vx_last > 0 ? x + 13 : x - 13;
+
+			//Điều chỉnh đạn bay ra hợp lý với sprite hình
+			if (_attack_angle == 180 || _attack_angle == 0)
+			{
+				y = y + 8;
+			}
+			else if (_attack_angle < 180)
+			{
+				y = y + 20;
+			}
+			else
+			{
+				y = y - 10;
+			}
+
+			//Bắn
+			int id = _weapon->ShootingBulletNE(D3DXVECTOR3(x, y, 0), _attack_angle, 0);
 
 			if (id >= 0)
 			{

@@ -28,9 +28,12 @@ void CAutoDestroyBridge::LoadResources()
 	_effect_destroy_sprite = new CSprite(rs->_effect_destroy);
 }
 
-void CAutoDestroyBridge::Update(float delta_time)
+void CAutoDestroyBridge::Update(int delta_time)
 {
+	int x_target = CResourcesManager::GetInstance()->m_posBill.x;
+	//Cần so sánh x của bill và lance
 
+	SetTarget(x_target);
 }
 
 void CAutoDestroyBridge::Draw()

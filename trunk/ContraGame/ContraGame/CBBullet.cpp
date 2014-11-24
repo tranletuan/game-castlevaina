@@ -18,7 +18,7 @@ void CBBullet::LoadResources()
 	_current_sprite = _bullet_sprite;
 }
 
-void CBBullet::Update(float delta_time)
+void CBBullet::Update(int delta_time)
 {
 	_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
 	_physical.SetBounds(

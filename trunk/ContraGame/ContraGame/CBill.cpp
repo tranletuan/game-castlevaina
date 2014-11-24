@@ -85,7 +85,7 @@ void CBill::Draw()
 
 }
 
-void CBill::Update(float delta_time)
+void CBill::Update(int delta_time)
 {
 	_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
 	UpdateBounds();
