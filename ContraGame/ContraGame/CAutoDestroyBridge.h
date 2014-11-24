@@ -12,15 +12,15 @@ private:
 	CSprite* _effect_destroy_sprite;
 	D3DXVECTOR3 _position_effect_destroy[GROUND_BRIDGE_DESTROY_EFFECT_COUNT];
 
+	void SetTarget(float x); //Nhận vị trí của người chơi để tự động phá hủy
+
 public:
 	CAutoDestroyBridge(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
 	~CAutoDestroyBridge();
 
 	void LoadResources();
 	void Draw();
-	void Update(float delta_time);
-
-	void SetTarget(float x); //Nhận vị trí của người chơi để tự động phá hủy
+	void Update(int delta_time);
 
 };
 #endif // !_CAUTO_DESTROY_BRIDGE_H_

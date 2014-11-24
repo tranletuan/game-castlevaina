@@ -64,7 +64,8 @@
 #pragma endregion EffectPath
 
 #pragma region EnemyPath
-#define PATH_ENEMY_RIFLEMAN_1 ".//DataGame//Images//Game//Object//enemy//rifleman1.png"
+#define PATH_ENEMY_SNIPER_STAND ".//DataGame//Images//Game//Object//enemy//sniper_stand.png"
+#define PATH_ENEMY_SNIPER_HIDE ".//DataGame//Images//Game//Object//enemy//sniper_hide.png"
 #pragma endregion EnemyPath
 
 #pragma region PlayerPath

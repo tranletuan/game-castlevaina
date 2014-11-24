@@ -19,7 +19,7 @@ public:
 	~CBullet();
 
 	virtual void LoadResources();
-	virtual void Update(float delta_time);
+	virtual void Update(int delta_time);
 	virtual void Draw() = 0;
 	virtual void Moving(float v_max) ;
 	virtual void Shoot(D3DXVECTOR3 pos, int angle, float v_max, float vo = 0);

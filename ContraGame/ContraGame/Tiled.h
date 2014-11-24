@@ -27,7 +27,7 @@ public:
 	Tiled(int index, int id, float posX, float posY);
 	~Tiled();
 
-	void update(float time);
+	void update(int time);
 	void draw();
 	void init();	
 

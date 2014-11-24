@@ -37,8 +37,8 @@ public:
 	~CPhysical();
 
 	void SetBounds(float x, float y, float width = 0, float height = 0);
-	void CalcPositionWithGravitation(float time, float gravity);
-	void CalcPositionWithoutGravitation(float time);
+	void CalcPositionWithGravitation(int time, float gravity);
+	void CalcPositionWithoutGravitation(int time);
 	CollisionDirection Collision(CPhysical* physical);
 
 private:

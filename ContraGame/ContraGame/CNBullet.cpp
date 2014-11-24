@@ -19,7 +19,7 @@ void CNBullet::LoadResources()
 	_current_sprite = _bullet_sprite;
 }
 
-void CNBullet::Update(float delta_time)
+void CNBullet::Update(int delta_time)
 {
 	_physical.CalcPositionWithoutGravitation(delta_time);
 	_physical.SetBounds(

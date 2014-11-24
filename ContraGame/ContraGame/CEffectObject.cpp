@@ -24,7 +24,7 @@ void CEffectObject::LoadResources()
 
 }
 
-void CEffectObject::Update(float delta_time)
+void CEffectObject::Update(int delta_time)
 {
 
 }

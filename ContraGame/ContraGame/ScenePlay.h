@@ -7,7 +7,7 @@
 #include "Camera.h"
 #include "QTTree.h"
 #include "CBill.h"
-#include "CEnemyWaepon.h"
+#include "CEnemyWeapon.h"
 #include "CSniperStand.h"
 
 class Background;
@@ -21,7 +21,8 @@ private:
 	QTTree *m_tree;
 	CBill *m_bill;
 	CPlayerWeapon *m_playerWeapon;
-	CEnemyWaepon *m_enemyWeapon;
+	CEnemyWeapon *m_enemyWeapon;
+	CEnemy *m_enemy_test;
 
 public:
 	ScenePlay();

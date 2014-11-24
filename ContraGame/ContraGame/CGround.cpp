@@ -32,7 +32,7 @@ void CGround::LoadResources()
 	}
 }
 
-void CGround::Update(float delta_time)
+void CGround::Update(int delta_time)
 {
 
 }

@@ -177,8 +177,11 @@
     <Filter Include="Contra Game\Object\Enemy Game\EnemyUseGun">
       <UniqueIdentifier>{e67d20a4-aec9-46a3-8d21-8bc7db5f3f71}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contra Game\Object\Enemy Game\Sniper">
+    <Filter Include="Contra Game\Object\Enemy Game\SniperStand">
       <UniqueIdentifier>{d28afe82-4f6b-4251-8716-0964ac014417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Enemy Game\SniperHide">
+      <UniqueIdentifier>{367067e8-91c8-4ffc-b7ea-bf55def11506}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -272,9 +275,6 @@
     <ClCompile Include="CWeapon.cpp">
       <Filter>Contra Game\Object\Weapon Game\Weapon</Filter>
     </ClCompile>
-    <ClCompile Include="CEnemyWaepon.cpp">
-      <Filter>Contra Game\Object\Weapon Game\Weapon Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="CBullet.cpp">
       <Filter>Contra Game\Object\Bullet Game\Bullet</Filter>
     </ClCompile>
@@ -321,7 +321,13 @@
       <Filter>Contra Game\Object\Object Game</Filter>
     </ClCompile>
     <ClCompile Include="CSniperStand.cpp">
-      <Filter>Contra Game\Object\Enemy Game\Sniper</Filter>
+      <Filter>Contra Game\Object\Enemy Game\SniperStand</Filter>
+    </ClCompile>
+    <ClCompile Include="CSniperHide.cpp">
+      <Filter>Contra Game\Object\Enemy Game\SniperHide</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemyWeapon.cpp">
+      <Filter>Contra Game\Object\Weapon Game\Weapon Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -418,9 +424,6 @@
     <ClInclude Include="CEnemy.h">
       <Filter>Contra Game\Object\Enemy Game\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="CEnemyWaepon.h">
-      <Filter>Contra Game\Object\Weapon Game\Weapon Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="CBullet.h">
       <Filter>Contra Game\Object\Bullet Game\Bullet</Filter>
     </ClInclude>
@@ -479,7 +482,13 @@
       <Filter>Contra Game\Manager\Resource</Filter>
     </ClInclude>
     <ClInclude Include="CSniperStand.h">
-      <Filter>Contra Game\Object\Enemy Game\Sniper</Filter>
+      <Filter>Contra Game\Object\Enemy Game\SniperStand</Filter>
+    </ClInclude>
+    <ClInclude Include="CSniperHide.h">
+      <Filter>Contra Game\Object\Enemy Game\SniperHide</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemyWeapon.h">
+      <Filter>Contra Game\Object\Weapon Game\Weapon Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

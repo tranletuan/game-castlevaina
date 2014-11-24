@@ -39,7 +39,7 @@ void Tiled::init()
 
 
 
-void Tiled::update(float time)
+void Tiled::update(int time)
 {
 
 }

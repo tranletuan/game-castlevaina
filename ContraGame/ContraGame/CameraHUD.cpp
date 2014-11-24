@@ -27,7 +27,7 @@ void CameraHUD::draw()
 	}
 }
 
-void CameraHUD::update(float time)
+void CameraHUD::update(int time)
 {
 	m_life = CResourcesManager::GetInstance()->m_life;
 }

@@ -22,7 +22,7 @@
     <ClCompile Include="CEffectObject.cpp" />
     <ClCompile Include="CEnemy.cpp" />
     <ClCompile Include="CEnemyUseGun.cpp" />
-    <ClCompile Include="CEnemyWaepon.cpp" />
+    <ClCompile Include="CEnemyWeapon.cpp" />
     <ClCompile Include="CFBullet.cpp" />
     <ClCompile Include="CLBullet.cpp" />
     <ClCompile Include="CMBullet.cpp" />
@@ -30,6 +30,7 @@
     <ClCompile Include="CNEBullet.cpp" />
     <ClCompile Include="CObject.cpp" />
     <ClCompile Include="CPlayerWeapon.cpp" />
+    <ClCompile Include="CSniperHide.cpp" />
     <ClCompile Include="CSniperStand.cpp" />
     <ClCompile Include="CSBullet.cpp" />
     <ClCompile Include="CWeapon.cpp" />
@@ -71,7 +72,7 @@
     <ClInclude Include="CEffectObject.h" />
     <ClInclude Include="CEnemy.h" />
     <ClInclude Include="CEnemyUseGun.h" />
-    <ClInclude Include="CEnemyWaepon.h" />
+    <ClInclude Include="CEnemyWeapon.h" />
     <ClInclude Include="CFBullet.h" />
     <ClInclude Include="CLBullet.h" />
     <ClInclude Include="CMBullet.h" />
@@ -81,6 +82,7 @@
     <ClInclude Include="CObjectID.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="CPlayerWeapon.h" />
+    <ClInclude Include="CSniperHide.h" />
     <ClInclude Include="CSniperStand.h" />
     <ClInclude Include="CSBullet.h" />
     <ClInclude Include="dsutil.h" />
