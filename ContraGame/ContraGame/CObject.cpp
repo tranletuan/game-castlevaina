@@ -38,17 +38,17 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(RunMan);
 	}
-	else if (x == "ItemL")
+	else if (x == "ItemR")
 	{
-		setSpecificType(ItemL);
+		setSpecificType(ItemR);
 	}
 	else if (x == "ItemM")
 	{
 		setSpecificType(ItemM);
 	}
-	else if (x == "BradgeEagle")
+	else if (x == "ItemStandM")
 	{
-
+		setSpecificType(ItemM_Stand);
 	}
 
 

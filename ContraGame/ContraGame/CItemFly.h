@@ -10,7 +10,7 @@ enum SItemFly
 };
 
 class CItemFly
-	:CObject
+	:public CObject
 {
 private:
 	CSprite *_sprite_effect;

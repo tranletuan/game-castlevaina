@@ -1,4 +1,4 @@
-#include "QTTree.h"
+﻿#include "QTTree.h"
 
 QTTree::QTTree()
 {
@@ -163,21 +163,21 @@ void QTTree::getObjectInView()
 	
 }
 
-void QTTree::update(float time)
+void QTTree::update(int time)
 {
 	getObjectInView();
 
 
 	for (int i = 0; i < m_listObInView.size(); i++)
-	{
-		m_listObInView.at(i)->Update(time);
+	{		
+		m_listObInView.at(i)->Update(time);		
 	}
 }
 void QTTree::draw()
 {
 	for (int i = 0; i < m_listObInView.size(); i++)
 	{
-		m_listObInView.at(i)->Draw();
+		m_listObInView.at(i)->Draw();		
 	}
 }
 
@@ -191,13 +191,18 @@ bool QTTree::isCollWithCam(QTNode *node)
 
 CObject * QTTree::getObjectTrust(CObject *x)
 {
-	D3DXVECTOR3 pos = x->getPos();
+	// chuyển tọa độ từ top - left sang center
+	float posX = x->getPosX() + x->getWidth() / 2;
+	float posY = x->getPosY() - x->getHeight() / 2;
+
 	switch (x->getSpecificType())
 	{
 	case Ground_Grass:
-		return new CGround(x->_id, x->getSpecificType(),pos,x->getWidth(),x->getHeight());		
+		return new CGround(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	case Sniper_Stand:
-		return new CSniperStand(x->_id, x->getSpecificType(), pos, x->getWidth(), x->getHeight());
+		return new CSniperStand(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
+	case ItemM_Stand:
+		return new CItemStand(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	default:
 		break;
 	}

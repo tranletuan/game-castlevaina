@@ -36,9 +36,6 @@
     <Filter Include="Contra Game\Scene">
       <UniqueIdentifier>{d9bf209a-bcb9-4fe7-a8a8-b8470b21ebc0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contra Game\Scene\ScenePlay">
-      <UniqueIdentifier>{fa44f8aa-43e5-4c24-a359-0db01dd13de4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contra Game\Scene\SceneMenu">
       <UniqueIdentifier>{9fc1919a-3ba6-42e5-a6c1-83fa268dd817}</UniqueIdentifier>
     </Filter>
@@ -183,6 +180,21 @@
     <Filter Include="Contra Game\Object\Enemy Game\SniperHide">
       <UniqueIdentifier>{367067e8-91c8-4ffc-b7ea-bf55def11506}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contra Game\Object\Item">
+      <UniqueIdentifier>{578c0815-a743-4a72-8a78-3d0f94aa94e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Item\ItemFly">
+      <UniqueIdentifier>{d6c5e7d5-4058-491e-b577-dc7a52fc99e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Item\ItemStand">
+      <UniqueIdentifier>{7f808265-0e20-40ce-8bb3-f89eb0e52bf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Scene\ScenePlay">
+      <UniqueIdentifier>{bd91e391-bcf8-45af-bbc7-b0b36c52263a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\ListObjectNoneTree">
+      <UniqueIdentifier>{089bdab2-c230-4751-9374-0785ed1ecf6f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -226,9 +238,6 @@
     </ClCompile>
     <ClCompile Include="SceneMenu.cpp">
       <Filter>Contra Game\Scene\SceneMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="ScenePlay.cpp">
-      <Filter>Contra Game\Scene\ScenePlay</Filter>
     </ClCompile>
     <ClCompile Include="ScenePause.cpp">
       <Filter>Contra Game\Scene\ScenePause</Filter>
@@ -329,6 +338,18 @@
     <ClCompile Include="CEnemyWeapon.cpp">
       <Filter>Contra Game\Object\Weapon Game\Weapon Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="CItemStand.cpp">
+      <Filter>Contra Game\Object\Item\ItemStand</Filter>
+    </ClCompile>
+    <ClCompile Include="CItemFly.cpp">
+      <Filter>Contra Game\Object\Item\ItemFly</Filter>
+    </ClCompile>
+    <ClCompile Include="COBNoneTree.cpp">
+      <Filter>Contra Game\ListObjectNoneTree</Filter>
+    </ClCompile>
+    <ClCompile Include="ScenePlay.cpp">
+      <Filter>Contra Game\Scene\ScenePlay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Register.h">
@@ -372,9 +393,6 @@
     </ClInclude>
     <ClInclude Include="ScenePause.h">
       <Filter>Contra Game\Scene\ScenePause</Filter>
-    </ClInclude>
-    <ClInclude Include="ScenePlay.h">
-      <Filter>Contra Game\Scene\ScenePlay</Filter>
     </ClInclude>
     <ClInclude Include="SceneID.h">
       <Filter>Contra Game\Scene\BaseScene</Filter>
@@ -489,6 +507,18 @@
     </ClInclude>
     <ClInclude Include="CEnemyWeapon.h">
       <Filter>Contra Game\Object\Weapon Game\Weapon Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CItemStand.h">
+      <Filter>Contra Game\Object\Item\ItemStand</Filter>
+    </ClInclude>
+    <ClInclude Include="CItemFly.h">
+      <Filter>Contra Game\Object\Item\ItemFly</Filter>
+    </ClInclude>
+    <ClInclude Include="COBNoneTree.h">
+      <Filter>Contra Game\ListObjectNoneTree</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenePlay.h">
+      <Filter>Contra Game\Scene\ScenePlay</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

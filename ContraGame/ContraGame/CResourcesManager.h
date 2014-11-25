@@ -33,7 +33,6 @@ private:
 public:
 
 	// var
-
 	CInput *m_input;	
 	CAudio *m_audio;
 	CCamera *_camera;

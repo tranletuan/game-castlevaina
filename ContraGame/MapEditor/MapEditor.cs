@@ -28,6 +28,7 @@ namespace MapEditor
         CursorCur CurrentCursor;
         private List<ObjectTile> listObject;
         private List<ObjectTile> listObNoneTree;
+        bool isItemStand;
 
         public MapEditor()
         {
@@ -95,6 +96,9 @@ namespace MapEditor
             Xwidth = Convert.ToInt32(textBoxXWidth.Text);
             buttonEdit.Enabled = false;
             comboBoxDir.SelectedIndex = 0;
+            comboBoxNameItem.Visible = false;
+            comboBoxNameItem.SelectedIndex = 0;
+            isItemStand = false;
         }
 
         private void buttonBG_Click(object sender, EventArgs e)
@@ -139,26 +143,39 @@ namespace MapEditor
                 int imgIndex = itm.ImageIndex;
                 if (imgIndex >= 0 && imgIndex < this.imageListOB.Images.Count)
                 {
-                    imageCursor = this.imageListOB.Images[imgIndex];
 
+                    imageCursor = this.imageListOB.Images[imgIndex];
                     if (imgIndex == 2)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 24, 32);
+                        comboBoxNameItem.Visible = false;
+                        textBoxNameOB.Visible = true;
+                        isItemStand = false;
                     }
                     else if (imgIndex == 0)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 32, 32);
+                        comboBoxNameItem.Visible = false;
+                        textBoxNameOB.Visible = true;
+                        isItemStand = false;
                     }
                     else if (imgIndex == 1)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 32, 32);
+                        comboBoxNameItem.Visible = true;
+                        textBoxNameOB.Visible = false;
+                        isItemStand = true;
                     }
                     else if (imgIndex == 3)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 18, 33);
+                        comboBoxNameItem.Visible = false;
+                        textBoxNameOB.Visible = true;
+                        isItemStand = false;
                     }
                 }
             }
+
             this.Cursor = new Cursor(((Bitmap)imageCursor).GetHicon());
             textBoxHeightOB.Text = imageCursor.Height.ToString();
             textBoxWidthOB.Text = imageCursor.Width.ToString();
@@ -230,7 +247,13 @@ namespace MapEditor
                     }
                     else{
                           // them vao list  
-                        ObjectTile ob = new ObjectTile(p, (listObject.Count + 1), textBoxNameOB.Text, Convert.ToInt32(textBoxX.Text.Trim()),
+                        string nameOb = textBoxNameOB.Text;
+                        if (isItemStand)
+                        {
+                            nameOb = comboBoxNameItem.Text.Trim();
+                        }
+
+                        ObjectTile ob = new ObjectTile(p, (listObject.Count + 1), nameOb, Convert.ToInt32(textBoxX.Text.Trim()),
                             Convert.ToInt32(textBoxY.Text.Trim()),direction);
                         listObject.Add(ob);
                         listObject.ElementAt(listObject.Count - 1).Pic.Click += new System.EventHandler(PictureBoxes_Click);
@@ -368,6 +391,9 @@ namespace MapEditor
                     if (imgIndex == 0)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 32 * Xwidth, 16);
+                        comboBoxNameItem.Visible = false;
+                        textBoxNameOB.Visible = true;
+                        isItemStand = false;
                     }
                     else if (imgIndex == 1)
                     {
@@ -397,26 +423,44 @@ namespace MapEditor
                     if (imgIndex == 0)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 24, 15);
+                        comboBoxNameItem.Visible = false;
+                        textBoxNameOB.Visible = true;
+                        isItemStand = false;
                     }
                     else if (imgIndex == 1)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 24, 15);
+                        comboBoxNameItem.Visible = false;
+                        textBoxNameOB.Visible = true;
+                        isItemStand = false;
                     }
                     else if (imgIndex == 2)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 24, 15);
+                        comboBoxNameItem.Visible = false;
+                        textBoxNameOB.Visible = true;
+                        isItemStand = false;
                     }
                     else if (imgIndex == 3)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 24, 15);
+                        comboBoxNameItem.Visible = false;
+                        textBoxNameOB.Visible = true;
+                        isItemStand = false;
                     }
                     else if (imgIndex == 4)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 24, 15);
+                        comboBoxNameItem.Visible = false;
+                        textBoxNameOB.Visible = true;
+                        isItemStand = false;
                     }
                     else if (imgIndex == 5)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 24, 15);
+                        comboBoxNameItem.Visible = false;
+                        textBoxNameOB.Visible = true;
+                        isItemStand = false;
                     }
                 }
             }
@@ -483,6 +527,7 @@ namespace MapEditor
             buttonEdit.Text = "Edit";
             textBoxXWidth.Text = "1";
             textBoxXWidth.Enabled = false;
+
         }
 
     }

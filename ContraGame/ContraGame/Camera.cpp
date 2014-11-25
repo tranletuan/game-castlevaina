@@ -13,7 +13,7 @@ CCamera::CCamera(float posX, float posY)
 	view_port.y = posY;
 }
 
-void CCamera::UpdateCamera(float x)
+void CCamera::UpdateCameraX(float x)
 {
 	
 	view_port.x = x - kScreenWidth / 2;
@@ -22,6 +22,7 @@ void CCamera::UpdateCamera(float x)
 		view_port.x = 0;
 	}
 
+	
 //	view_port.x += 10;
 
 }
@@ -33,6 +34,25 @@ void CCamera::UpdateCameraY(float y)
 	{
 		view_port.y = 0;
 	}
+}
+
+void CCamera::Update(float x, float y)
+{
+	CResourcesManager *rs = CResourcesManager::GetInstance();
+	/*switch (rs->m_levelMap)
+	{
+	case 1:
+		UpdateCameraX(x);
+		break;
+	case 2:
+		UpdateCameraY(y);
+		break;
+	case 3:
+		break;
+	default:
+		break;
+	}*/
+	//rs->_camera = this;
 }
 
 //Hàm để chuyển tọa độ góc của đối tượng thành tọa đô tậm
@@ -58,6 +78,27 @@ D3DXVECTOR3 CCamera::Transform(float x, float y)
 	D3DXVec3Transform(&final_matrix, &pos3, &matrix); //Nhân ma trận transform
 
 	return D3DXVECTOR3((float)final_matrix.x, (float)final_matrix.y, 0);
+}
+
+
+void CCamera::processInput()
+{
+	CResourcesManager *rs = CResourcesManager::GetInstance();
+
+	if (rs->m_input->KeyDown(DIK_RIGHTARROW))
+	{
+		view_port.x += 2;
+	}
+	else if (rs->m_input->KeyDown(DIK_LEFTARROW))
+	{
+		view_port.x -= 2;
+	}
+	else if (rs->m_input->onKeyDown(DIK_UPARROW))
+	{
+		view_port.x += 0;
+	}
+	
+
 }
 
 D3DXVECTOR3 CCamera::Transform(D3DXVECTOR3 pos)
