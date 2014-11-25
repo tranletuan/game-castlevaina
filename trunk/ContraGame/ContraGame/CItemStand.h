@@ -1,5 +1,5 @@
-﻿#ifndef CITEM_H
-#define CITEM_H
+﻿#ifndef CITEMSTAND_H
+#define CITEMSTAND_H
 
 #include "CObject.h"
 
@@ -12,7 +12,7 @@ enum SItemStand
 };
 
 class CItemStand :
-	CObject
+	public CObject
 {
 private:
 	CSprite *_sprite_effect;

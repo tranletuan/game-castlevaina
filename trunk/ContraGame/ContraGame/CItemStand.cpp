@@ -38,6 +38,7 @@ void CItemStand::Draw()
 	{
 		pos = _cam->Transform(_physical.x, _physical.y);
 	}
+
 	// Xử lý vẽ theo state item
 	switch (_state_item_stand)
 	{
@@ -104,8 +105,8 @@ void CItemStand::Update(int delta_time)
 	if (_hp == 0 )
 	{
 		_state_item_stand = SIS_Spatter;
-		_physical.vx = ITEM_VX_ENABLE;
-		_physical.vy = ITEM_VY_ENABLE;
+		_physical.vx = ITEM_STAND_VX_ENABLE;
+		_physical.vy = ITEM_STAND_VY_ENABLE;
 		_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
 	}
 }

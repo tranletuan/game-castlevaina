@@ -10,6 +10,7 @@ ScenePlay::ScenePlay()
 	m_enemyWeapon = new CEnemyWeapon();
 	m_enemy_test = new CSniperHide(123, Sniper_Hide, D3DXVECTOR3(200, 142, 0), 26, 44);
 	m_enemy_test->SetWeapon(m_enemyWeapon);
+	m_listOBNoneTree = new COBNoneTree();
 	init();
 }
 
@@ -21,6 +22,11 @@ ScenePlay::~ScenePlay()
 void ScenePlay::processInput()
 {
 	m_bill->ProcessInput();
+
+	// test
+	m_camera->processInput();
+	
+	
 }
 
 void ScenePlay::init()
@@ -39,18 +45,21 @@ void ScenePlay::update(float time)
 	
 	//m_bill->Update(time);
 	//m_camera->update(time, ResourceManager::getInstance()->m_posChar);
-	m_camera->UpdateCamera(m_bill->getPosX());
-	m_cameraHUD->update(time);
+	m_camera->Update(m_bill->getPosX(), m_bill->getPosY());
+	m_cameraHUD->update(time);	
+	m_listOBNoneTree->Update(time);
+	m_tree->update(time);
 }
 
 void ScenePlay::draw()
 {
 	m_background->draw();
-	//m_tree->draw();
+	m_tree->draw();
 	//m_bill->Draw();
 	m_enemy_test->Draw();
 	m_cameraHUD->draw();
-	m_enemyWeapon->Draw();
+	m_enemyWeapon->Draw();	
+	m_listOBNoneTree->Draw();
 }
 
 void ScenePlay::destroy()

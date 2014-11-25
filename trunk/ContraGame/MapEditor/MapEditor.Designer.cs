@@ -82,6 +82,7 @@
             this.textBoxCamX = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.comboBoxNameItem = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBG)).BeginInit();
             this.panel2.SuspendLayout();
@@ -156,6 +157,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBoxNameItem);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.comboBoxDir);
             this.groupBox1.Controls.Add(this.textBoxXWidth);
@@ -598,6 +600,21 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "Camera : ";
             // 
+            // comboBoxNameItem
+            // 
+            this.comboBoxNameItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxNameItem.FormattingEnabled = true;
+            this.comboBoxNameItem.Items.AddRange(new object[] {
+            "M",
+            "B",
+            "L",
+            "S",
+            "R"});
+            this.comboBoxNameItem.Location = new System.Drawing.Point(100, 103);
+            this.comboBoxNameItem.Name = "comboBoxNameItem";
+            this.comboBoxNameItem.Size = new System.Drawing.Size(132, 21);
+            this.comboBoxNameItem.TabIndex = 11;
+            // 
             // MapEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -690,6 +707,7 @@
         private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox comboBoxDir;
+        private System.Windows.Forms.ComboBox comboBoxNameItem;
     }
 }
 

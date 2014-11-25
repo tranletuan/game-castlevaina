@@ -19,6 +19,7 @@ public:
 	BasicType		_basic_type;
 	CPhysical		_physical;
 
+
 	CObject();
 	CObject(int id, SpecificType specific_type, BasicType basic_type,D3DXVECTOR3 pos, int width = 0, int height = 0);
 	CObject(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);

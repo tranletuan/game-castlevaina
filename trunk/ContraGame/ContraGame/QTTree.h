@@ -5,6 +5,7 @@
 #include "CResourcesManager.h"
 #include "CGround.h"
 #include "CSniperStand.h"
+#include "CItemStand.h"
 
 class QTTree
 {
@@ -23,7 +24,7 @@ public:
 	void init();
 	// lay cac doi tuong nam trong camera
 	void getObjectInView();
-	void update(float time);
+	void update(int time);
 	void draw();
 
 	// update node leaf
