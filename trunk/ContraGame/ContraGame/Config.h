@@ -72,4 +72,14 @@
 #define BG_TILED_WIDTH 16
 #define BG_TILED_HEIGTH 16
 
+// ITEM
+#define ITEM_STAND_VY_ENABLE 13.0f
+#define ITEM_STAND_VX_ENABLE 0.05f
+#define ITEM_FLY_VX_MOVE 0.05f
+#define ITEM_FLY_ANGLE 15 
+#define ITEM_FLY_BOUND_COS 20
+#define ITEM_FLY_VX_DIE 0.05f
+#define ITEM_FLY_VY_DIE 10.0f
+
+
 #endif
