@@ -3,6 +3,14 @@
 
 #include "CObject.h"
 
+enum SItemStand
+{
+	SIS_Close, // Sate Item Stand đóng
+	SIS_Open, // chưa có thể bắn
+	SIS_Enable, // có thể bắn
+	SIS_Spatter // Bị pá hiểu và văng
+};
+
 class CItemStand :
 	CObject
 {
@@ -12,6 +20,7 @@ private:
 	CSprite *_sprite_stand;	
 
 	D3DXVECTOR3 _pos_stand; // tọa độ đứng yên
+	SItemStand _state_item_stand;
 
 public:
 	int _hp;
@@ -23,15 +32,17 @@ public:
 	void Update(int delta_time);
 
 	// ve cua item stand, khi chua vung hoat dong, dong' lai
-	void DrawWhenStand();
+	void DrawWhenStand(D3DXVECTOR3 pos);
 	// ve cua item stand, khi da hoat dong dong mo item
-	void DrawWhenActivity();
+	void DrawWhenActivity(D3DXVECTOR3 pos);
 	// khi bi bat vo
 	void DrawWhenAttack(D3DXVECTOR3 pos);
 
 	
 	int getHp(){ return _hp; }
 	void setHp(int x){ _hp = x; }
+	void setSIS(SItemStand x){ _state_item_stand = x; }
+	SItemStand getSIS(){ return _state_item_stand; }
 };
 
 #endif
