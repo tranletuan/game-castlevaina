@@ -9,11 +9,8 @@
 #include "CBill.h"
 #include "CEnemyWeapon.h"
 #include "CSniperStand.h"
-#include "CItemStand.h"
-#include "CItemFly.h"
 #include "CSniperHide.h"
-#include "COBNoneTree.h"
-
+#include "CGroundCanon.h"
 
 class Background;
 class ScenePlay:
@@ -28,11 +25,6 @@ private:
 	CPlayerWeapon *m_playerWeapon;
 	CEnemyWeapon *m_enemyWeapon;
 	CEnemy *m_enemy_test;
-	COBNoneTree *m_listOBNoneTree;
-
-
-	// test
-
 
 public:
 	ScenePlay();

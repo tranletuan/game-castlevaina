@@ -153,7 +153,9 @@ void CResourcesManager::loadMap1()
 
 	//Enemy
 	_enemy_sniper_stand = new CTexture(PATH_ENEMY_SNIPER_STAND, 5);
-	_enemy_sniper_hide = new CTexture(PATH_ENEMY_SNIPER_HIDE, 6);
+	_enemy_sniper_hide = new CTexture(PATH_ENEMY_SNIPER_HIDE, 4);
+	_enemy_wall_turret = new CTexture(PATH_ENEMY_WALL_TURRET, 3, 14);
+	_enemy_ground_canon = new CTexture(PATH_ENEMY_GROUND_CANON, 3, 5);
 
 	// Item
 	_item = new CTexture(PATH_ITEM,10);

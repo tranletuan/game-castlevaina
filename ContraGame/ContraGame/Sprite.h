@@ -28,16 +28,16 @@ public:
 	void Reset(); //Trở về trạng thái ban đầu
 	void SelectFrameOf(int index); //Chọn hiển thị frame bất kỳ
 	void PerformAllEffect(int time); //Chạy tất cả hiệu ứng
-	void PerformEffect(int start, int end, int time); //Chạy hiệu ứng trong phạm vi xác định
-	bool PerformEffectOneTime(int start, int end, int time); //Chạy hiệu ứng trong phạm vi xác định 1 lần duy nhất
+	void PerformEffect(int start, int end, int time, int step = 1); //Chạy hiệu ứng trong phạm vi xác định
+	bool PerformEffectOneTime(int start, int end, int time, int step = 1); //Chạy hiệu ứng trong phạm vi xác định 1 lần duy nhất
 
 	void Draw(float x, float y);
 	
 	void DrawFlipX(float x, float y);
 	void DrawFlipY(float x, float y);
 	void DrawTransform(float x, float y, D3DXVECTOR2 scale, float degRotate, float depth);
-	void DrawWithDirection(D3DXVECTOR3 pos, float direction, int start = 0, int end = 0, int time = 100);
-	bool DrawWithDirectionAndOneTimeEffect(D3DXVECTOR3 pos, float direction, int start, int end, int time = 100);
+	void DrawWithDirection(D3DXVECTOR3 pos, float direction, int start = 0, int end = 0, int time = 100, int step = 1);
+	bool DrawWithDirectionAndOneTimeEffect(D3DXVECTOR3 pos, float direction, int start, int end, int time = 100, int step = 1);
 
 
 	RECT GetRect(int left, int top, int right, int bottom);
