@@ -9,8 +9,6 @@ CSniperStand::CSniperStand(int id, SpecificType specific_type, D3DXVECTOR3 pos, 
 
 CSniperStand::~CSniperStand()
 {
-	delete _live_sprite;
-	delete _die_sprite;
 }
 
 void CSniperStand::LoadResources()
@@ -111,7 +109,6 @@ void CSniperStand::Attacking()
 
 			_last_time_shoot = now;
 			SetStatus(EAttack);
-			_hp = 0;
 		}
 	}
 }

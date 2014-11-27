@@ -16,10 +16,14 @@ protected:
 	D3DXVECTOR3 _target;
 	CEnemyWeapon* _weapon;
 
+	CSprite* _live_sprite;
+	CSprite* _die_sprite;
+
 	virtual void DrawWhenWait(D3DXVECTOR3 pos) = 0;
 	virtual void DrawWhenAttack(D3DXVECTOR3 pos) = 0;
 	virtual void DrawWhenDie(D3DXVECTOR3 pos) = 0;
 	virtual void Attacking() = 0;
+
 	bool CheckTarget();
 	bool SetStatus(EnemyStatus status);
 

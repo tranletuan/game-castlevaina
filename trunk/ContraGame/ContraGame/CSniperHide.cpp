@@ -10,8 +10,6 @@ CSniperHide::CSniperHide(int id, SpecificType specific_type, D3DXVECTOR3 pos, in
 
 CSniperHide::~CSniperHide()
 {
-	delete _live_sprite;
-	delete _die_sprite;
 }
 
 void CSniperHide::LoadResources()
@@ -135,7 +133,7 @@ void CSniperHide::DrawWhenAttack(D3DXVECTOR3 pos)
 
 void CSniperHide::DrawWhenWait(D3DXVECTOR3 pos)
 {
-	_current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 3, 5);
+	_current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 3, 1);
 }
 
 void CSniperHide::DrawWhenDie(D3DXVECTOR3 pos)
@@ -146,4 +144,3 @@ void CSniperHide::DrawWhenDie(D3DXVECTOR3 pos)
 		_current_sprite->DrawWithDirection(pos, _physical.vx_last, 0, 2);
 	}
 }
-

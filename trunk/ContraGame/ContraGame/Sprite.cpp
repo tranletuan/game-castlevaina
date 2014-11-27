@@ -83,11 +83,12 @@ void CSprite::PerformAllEffect(int time)
 	}
 }
 
-void CSprite::PerformEffect(int start, int end, int time)
+void CSprite::PerformEffect(int start, int end, int time, int step)
 {
+	if (start == end) return;
 	if (index < start || index > end)
 	{
-		index = start;
+		index = start < end ? start : end;
 	}
 
 	this->start = start;
@@ -100,15 +101,27 @@ void CSprite::PerformEffect(int start, int end, int time)
 
 		if (now - last_time >= time_ani)
 		{
-			index = index + 1 > end ? start : index + 1;
+			index = index + step > end ? start : index + step;
+			last_time = now;
+		}
+	}
+	else if (start > end)
+	{
+		DWORD now = GetTickCount();
+
+		if (now - last_time >= time_ani)
+		{
+			index = index - step < start ? end : index - step;
 			last_time = now;
 		}
 	}
 }
 
-bool CSprite::PerformEffectOneTime(int start, int end, int time)
+bool CSprite::PerformEffectOneTime(int start, int end, int time, int step)
 {
-	if (index < start || index > end)
+	if (start == end) return true;
+	if (((start < end) && (index < start || index > end)) ||
+		((start > end) && (index > start || index < end)))
 	{
 		index = start;
 	}
@@ -122,32 +135,31 @@ bool CSprite::PerformEffectOneTime(int start, int end, int time)
 		last_time = GetTickCount();
 	}
 
-	if (start <= end)
+	else if (start != end)
 	{
 		DWORD now = GetTickCount();
 
 		if (now - last_time >= time_ani)
 		{
-			index = index + 1 > end ? start : index + 1;
-			last_time = now;
-
-			//Nếu start == end thì dựa vào thời gian thực hiện animation
-			//để quyết định việc thực hiện animation kết thúc hay chưa
-			if (start == end)
+			if (start < end)
 			{
-				last_time = 0;
-				return true;
+				index = index + step > end ? start : index + step;
 			}
+			else
+			{
+				index = index - step < end ? start : index - step;
+			}
+
+			last_time = now;
 		}
 
-		//Nếu start < end thì dựa vào index để quyết định 
+		//Nếu start  end thì dựa vào index để quyết định 
 		//việc thực hiện animation kết thúc hay chưa
-		if (start < end && index == end)
+		if (index == end)
 		{
 			last_time = 0;
 			return true;
 		}
-
 	}
 
 	return false;
@@ -277,9 +289,9 @@ void CSprite::DrawTransform(float x, float y, D3DXVECTOR2 scale, float degRotate
 	kSpriteHandler->SetTransform(&old_matrix);
 }
 
-void CSprite::DrawWithDirection(D3DXVECTOR3 pos, float direction, int start, int end, int time)
+void CSprite::DrawWithDirection(D3DXVECTOR3 pos, float direction, int start, int end, int time, int step)
 {
-	PerformEffect(start, end, time);
+	PerformEffect(start, end, time, step);
 
 	if (direction > 0)
 	{
@@ -291,9 +303,9 @@ void CSprite::DrawWithDirection(D3DXVECTOR3 pos, float direction, int start, int
 	}
 }
 
-bool CSprite::DrawWithDirectionAndOneTimeEffect(D3DXVECTOR3 pos, float direction, int start, int end, int time)
+bool CSprite::DrawWithDirectionAndOneTimeEffect(D3DXVECTOR3 pos, float direction, int start, int end, int time, int step)
 {
-	bool done = PerformEffectOneTime(start, end, time);
+	bool done = PerformEffectOneTime(start, end, time, step);
 
 	if (direction > 0)
 	{

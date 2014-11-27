@@ -78,7 +78,7 @@ void CBullet::CalcVelocity(float v_max)
 	{
 		_physical.vy = 0;
 		_physical.vx = _physical.vx_last > 0 ? v_max : -v_max;
-		_physical.vx += _vo;
+		_physical.vx += _physical.vx_last > 0 ? _vo : -_vo;
 		return;
 	}
 
@@ -93,7 +93,7 @@ void CBullet::CalcVelocity(float v_max)
 
 		int sign = _tan *_physical.vx > 0 ? 1 : -1;
 		_physical.vy = v_max * sqrt(1 - k) * sign;
-		_physical.vx += _vo; //Tổng vận tốc tọa độ gốc di chuyển và đạn di chuyển
+		_physical.vx += _physical.vx_last > 0 ? _vo : -_vo; //Tổng vận tốc tọa độ gốc di chuyển và đạn di chuyển
 	}
 
 

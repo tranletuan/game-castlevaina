@@ -31,7 +31,8 @@ enum  SpecificType
 	RunMan_Fire,
 	Sniper_Stand,
 	Sniper_Hide,
-	
+	Ground_Canon,
+	Wall_Turret,
 	
 	
 	// Item
