@@ -253,13 +253,6 @@ void CSprite::DrawFlipY(float x, float y)
 
 void CSprite::DrawTransform(float x, float y, D3DXVECTOR2 scale, float degRotate, float depth)
 {
-	RECT src_rect;
-
-	src_rect.left = (index % sprite_texture->num_cols) * (sprite_texture->frame_width);
-	src_rect.top = (index / sprite_texture->num_cols) * (sprite_texture->frame_height);
-	src_rect.right = src_rect.left + sprite_texture->frame_width;
-	src_rect.bottom = src_rect.top + sprite_texture->frame_height;
-
 	D3DXMATRIX old_matrix;
 	kSpriteHandler->GetTransform(&old_matrix);
 
@@ -277,14 +270,8 @@ void CSprite::DrawTransform(float x, float y, D3DXVECTOR2 scale, float degRotate
 
 	D3DXMATRIX final_matrix = new_natrix * old_matrix;
 	kSpriteHandler->SetTransform(&final_matrix);
-	D3DXVECTOR3 pos = GetCorner(x, y, sprite_texture->frame_width, sprite_texture->frame_height);
 
-	kSpriteHandler->Draw(
-		sprite_texture->picture,
-		&src_rect,
-		NULL,
-		&D3DXVECTOR3(pos.x, pos.y, depth),
-		0xFFFFFFFF);
+	Draw(x, y);
 
 	kSpriteHandler->SetTransform(&old_matrix);
 }

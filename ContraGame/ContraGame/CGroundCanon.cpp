@@ -71,7 +71,7 @@ void CGroundCanon::Attacking()
 	DWORD now = GetTickCount();
 
 	//Giãn cách bắn 
-	if (now - _last_time_shoot >= ENEMY_GROUND_CANON_ELAPSED_SHOOT && _ready_shoot)
+	if (now - _last_time_shoot >= ENEMY_GROUND_CANON_ELAPSED_SHOOT && _ready_shoot && _can_shoot)
 	{
 		int test = _queue_id_bullet.size();
 		//Kiểm tra số đạn đã bắn, nếu vẫn còn bắn được thì bắn
@@ -91,7 +91,7 @@ void CGroundCanon::Attacking()
 				y += 4;
 			}
 
-			if (_can_shoot && _attack_angle <= 180 && _attack_angle >= 120)
+			if (_attack_angle <= 180 && _attack_angle >= 120)
 			{
 				//Bắn
 				int id = _weapon->ShootingBulletNE(D3DXVECTOR3(x, y, 0), _attack_angle, 0);

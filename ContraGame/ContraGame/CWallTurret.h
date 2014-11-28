@@ -1,15 +1,16 @@
-﻿#ifndef _CGROUND_CANON_H_
-#define _CGROUND_CANON_H_
+#ifndef _CWALL_TURRET_H_
+#define _CWALL_TURRET_H_
 
 #include "CEnemyUseGun.h"
 
-class CGroundCanon : public CEnemyUseGun
+class CWallTurret : public CEnemyUseGun
 {
 protected:
 	bool _ready_shoot;
-	bool _can_shoot; 
-	bool _is_hide;
+	bool _can_shoot;
 	int _real_angle;
+	float _x_shoot;
+	float _y_shoot;
 
 	void DrawWhenAttack(D3DXVECTOR3 pos);
 	void DrawWhenDie(D3DXVECTOR3 pos);
@@ -17,10 +18,12 @@ protected:
 	void Attacking();
 	bool CheckCorrectAngle();
 	int GetIndexSpriteByAngle(int angle);
+	void ChangeRealAngle();
+	void ChangeShootPosition(int angle);
 
 public:
-	CGroundCanon(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
-	~CGroundCanon();
+	CWallTurret(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
+	~CWallTurret();
 
 	void LoadResources();
 	void Draw();
@@ -28,4 +31,4 @@ public:
 	void SetTarget(float x, float y);
 
 };
-#endif // !_CGROUND_CANON_H_
+#endif // !_CWALL_TURRET_H_
