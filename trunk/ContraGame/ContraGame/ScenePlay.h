@@ -11,6 +11,7 @@
 #include "CSniperStand.h"
 #include "CSniperHide.h"
 #include "CGroundCanon.h"
+#include "CWallTurret.h"
 
 class Background;
 class ScenePlay:

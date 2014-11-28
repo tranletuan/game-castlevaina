@@ -24,6 +24,7 @@
     <ClCompile Include="CEnemyUseGun.cpp" />
     <ClCompile Include="CEnemyWeapon.cpp" />
     <ClCompile Include="CFBullet.cpp" />
+    <ClCompile Include="CGroundCanon.cpp" />
     <ClCompile Include="CItemFly.cpp" />
     <ClCompile Include="CItemStand.cpp" />
     <ClCompile Include="CLBullet.cpp" />
@@ -36,6 +37,7 @@
     <ClCompile Include="CSniperHide.cpp" />
     <ClCompile Include="CSniperStand.cpp" />
     <ClCompile Include="CSBullet.cpp" />
+    <ClCompile Include="CWallTurret.cpp" />
     <ClCompile Include="CWeapon.cpp" />
     <ClCompile Include="dsutil.cpp" />
     <ClCompile Include="GameContra.cpp" />
@@ -77,6 +79,7 @@
     <ClInclude Include="CEnemyUseGun.h" />
     <ClInclude Include="CEnemyWeapon.h" />
     <ClInclude Include="CFBullet.h" />
+    <ClInclude Include="CGroundCanon.h" />
     <ClInclude Include="CItemFly.h" />
     <ClInclude Include="CItemStand.h" />
     <ClInclude Include="CLBullet.h" />
@@ -91,6 +94,7 @@
     <ClInclude Include="CSniperHide.h" />
     <ClInclude Include="CSniperStand.h" />
     <ClInclude Include="CSBullet.h" />
+    <ClInclude Include="CWallTurret.h" />
     <ClInclude Include="dsutil.h" />
     <ClInclude Include="dxutil.h" />
     <ClInclude Include="GameContra.h" />
@@ -150,8 +154,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

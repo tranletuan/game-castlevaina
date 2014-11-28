@@ -195,6 +195,12 @@
     <Filter Include="Contra Game\ListObjectNoneTree">
       <UniqueIdentifier>{089bdab2-c230-4751-9374-0785ed1ecf6f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contra Game\Object\Enemy Game\GroundCanon">
+      <UniqueIdentifier>{1da098d5-8d4e-4002-a8dc-2d37baf0c101}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Enemy Game\WallTurret">
+      <UniqueIdentifier>{6f5a04c3-dda1-4bb2-9a63-803f1717c902}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -349,6 +355,12 @@
     </ClCompile>
     <ClCompile Include="ScenePlay.cpp">
       <Filter>Contra Game\Scene\ScenePlay</Filter>
+    </ClCompile>
+    <ClCompile Include="CGroundCanon.cpp">
+      <Filter>Contra Game\Object\Enemy Game\GroundCanon</Filter>
+    </ClCompile>
+    <ClCompile Include="CWallTurret.cpp">
+      <Filter>Contra Game\Object\Enemy Game\WallTurret</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -519,6 +531,12 @@
     </ClInclude>
     <ClInclude Include="ScenePlay.h">
       <Filter>Contra Game\Scene\ScenePlay</Filter>
+    </ClInclude>
+    <ClInclude Include="CGroundCanon.h">
+      <Filter>Contra Game\Object\Enemy Game\GroundCanon</Filter>
+    </ClInclude>
+    <ClInclude Include="CWallTurret.h">
+      <Filter>Contra Game\Object\Enemy Game\WallTurret</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
