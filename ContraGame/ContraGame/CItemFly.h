@@ -17,10 +17,9 @@ private:
 	CSprite *_sprite_item;
 
 	SItemFly _state_item_fly;
-	D3DXVECTOR3 _pos_effect;
-	float _posY_center; // tọa độ tâm dao động của đồ thị cos
-	int _time_counter;
-	int _counter; // Biến đếm để giảm số lần vẽ item
+	D3DXVECTOR3 _pos_effect;	
+	int _angle; // Số góc
+
 public:
 	int _hp;
 	CItemFly(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);	
@@ -35,7 +34,7 @@ public:
 	void MoveWhenDie(int delta_time);
 	// Vẽ khi di chuyển
 	void DrawWhenMove(D3DXVECTOR3 pos);
-	// Vẽ khi bị bắt
+	// Vẽ khi bị bắn
 	void DrawWhenDie(D3DXVECTOR3 pos);
 
 	SItemFly getSIF(){ return _state_item_fly; }
