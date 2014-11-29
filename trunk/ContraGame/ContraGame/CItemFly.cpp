@@ -5,7 +5,8 @@ CItemFly::CItemFly(int id, SpecificType specific_type, D3DXVECTOR3 pos, int widt
 {
 	_hp = 1;
 	_state_item_fly = SIF_Move;
-	_posY_center = pos.y;
+	_physical.vx = ITEM_FLY_VX_MOVE;
+	_angle = 0;
 	LoadResources();
 }
 
@@ -14,7 +15,7 @@ void CItemFly::LoadResources()
 	CResourcesManager* rs = CResourcesManager::GetInstance();
 	_sprite_effect = new CSprite(rs->_effect_destroy);
 	_sprite_item = new CSprite(rs->_item);
-	_sprite_item->SelectFrameOf(0);
+	_sprite_item->SelectFrameOf(0);	
 }
 
 void CItemFly::Draw()
@@ -68,24 +69,13 @@ void CItemFly::Update(int delta_time)
 
 void CItemFly::MoveFollowCos(int delta_time)
 {
-	_physical.vx = ITEM_FLY_VX_MOVE;
-	_physical.current_vx = _physical.vx * delta_time;
-	_physical.x += _physical.current_vx;
+	_angle += ITEM_FLY_ANGLE;
+	if (_angle > 360) _angle = 360 - _angle;
 
-	// Để trách trường hợp vật di chuyển quá nhanh ảnh hưởng đến viêc vẽ
-	// giảm số lần cập nhật tọa độ Y
-	_counter++;
-	_time_counter += ITEM_FLY_ANGLE;
+	_physical.y += ITEM_FLY_BOUND_COS * cos(D3DXToRadian(_angle));
 	_physical.vy = 0;
-	if (_counter % 3 == 0)
-	{
-		_physical.current_vy = ITEM_FLY_BOUND_COS * (cos(_time_counter));
-	}	
-	else
-	{
-		_physical.current_vy = 0;
-	}
-	_physical.y += _physical.current_vy;
+	_physical.CalcPositionWithoutGravitation(delta_time);
+
 
 }
 
@@ -113,6 +103,20 @@ void CItemFly::DrawWhenDie(D3DXVECTOR3 pos)
 	{
 	case ItemM:
 		_sprite_item->SelectFrameOf(1);
+		break;
+	case  ItemR:
+		_sprite_item->SelectFrameOf(6);
+	case ItemF:
+		_sprite_item->SelectFrameOf(3);
+		break;
+	case ItemL:
+		_sprite_item->SelectFrameOf(5);
+		break;
+	case ItemB:
+		_sprite_item->SelectFrameOf(2);
+		break;
+	case ItemS:
+		_sprite_item->SelectFrameOf(4);
 		break;
 	default:
 		break;
