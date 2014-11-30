@@ -17,7 +17,6 @@ void Background::draw()
 			m_listTiled.at(index)->draw();
 		}
 	}
-
 }
 
 void Background::init()
@@ -45,6 +44,8 @@ void Background::init()
 
 	m_width = m_cols * BG_TILED_WIDTH;
 	m_height = m_rows * BG_TILED_HEIGTH;
+	CResourcesManager::GetInstance()->m_widthMap = m_width;
+	CResourcesManager::GetInstance()->m_heightMap = m_height;
 
 	// list tiled
 	for (int row = 0; row < m_rows; row++) {

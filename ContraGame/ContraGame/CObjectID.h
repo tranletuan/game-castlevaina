@@ -1,4 +1,4 @@
-#ifndef COBJECT_H
+﻿#ifndef COBJECT_H
 #define COBJECT_H
 
 // object cu the
@@ -53,6 +53,15 @@ enum BasicType
 	Ground,
 	Effect,
 	Enemy
+};
+
+// đường đi của ob
+enum TrackID
+{
+	Track_LR, // trai sang pai
+	Track_RL,
+	Track_UD, // tren xuong duoi
+	Track_DU,
 };
 
 #endif
