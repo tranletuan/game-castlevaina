@@ -13,6 +13,7 @@
 #include "CGroundCanon.h"
 #include "CWallTurret.h"
 #include "CListNoTree.h"
+#include "CBoss1.h"
 
 class Background;
 class ScenePlay:
@@ -29,6 +30,7 @@ private:
 	CEnemy *m_enemy_test;
 
 	CListNoTree *m_listNoTree;
+	CBoss1 *m_boss;
 
 public:
 	ScenePlay();

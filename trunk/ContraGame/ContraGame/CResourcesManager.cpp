@@ -161,6 +161,10 @@ void CResourcesManager::loadMap1()
 	_item = new CTexture(PATH_ITEM,10);
 	_item_stand = new CTexture(PATH_ITEM_STAND,7);
 
+	// Boss
+	_boss1_bg = new CTexture(PATH_BOSS1_BG, 2);;
+	_boss1_badge = new CTexture(PATH_BOSS1_BAGDE, 3);;
+
 	/*-----------------------------------------------------------*/
 	/* --- Background ---*/
 

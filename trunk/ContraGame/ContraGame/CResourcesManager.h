@@ -109,6 +109,10 @@ public:
 	CTexture* _item;
 	CTexture* _item_stand;
 
+	// Boss
+	CTexture* _boss1_bg;
+	CTexture* _boss1_badge;
+
 	/*-------- Background -------*/
 	vector<int> map1_bg_listTile; // danh sach list file text background
 	vector<int> map2_bg_listTile;

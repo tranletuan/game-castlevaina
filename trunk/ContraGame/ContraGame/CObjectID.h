@@ -5,26 +5,26 @@
 enum  SpecificType
 {
 	//Player
-	Player1, 
-	Player2, 
+	Player1,
+	Player2,
 
 	// bullet
-	BulletN, 
-	BulletM, 
-	BulletL, 
+	BulletN,
+	BulletM,
+	BulletL,
 	BulletF,
-	BulletS, 
-	BulletNE, 
-	BulletB, 
+	BulletS,
+	BulletNE,
+	BulletB,
 
 	// Ground
 	Ground_Grass, // vo hinh
 	Ground_Water,
-	Ground3, 
+	Ground3,
 	GroundBridge,
 
 	// Effect
-	EffectDestroy, 
+	EffectDestroy,
 
 	//Enemy
 	RunMan,
@@ -33,8 +33,8 @@ enum  SpecificType
 	Sniper_Hide,
 	Ground_Canon,
 	Wall_Turret,
-	
-	
+
+
 	// Item
 	ItemM,
 	ItemB,
@@ -42,7 +42,10 @@ enum  SpecificType
 	ItemR,
 	ItemF,
 	ItemS,
-	ItemM_Stand // item dung yen
+	ItemM_Stand, // item dung yen
+
+	// Boss
+	Boss1,
 };
 
 // loai object
