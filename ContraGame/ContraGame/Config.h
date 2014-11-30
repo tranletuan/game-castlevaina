@@ -88,5 +88,12 @@
 #define ITEM_FLY_VX_DIE 0.05f
 #define ITEM_FLY_VY_DIE 10.0f
 
+// BOSS
+#define BOSS1_SPACE_X 36
+#define BOSS1_SPACE_Y 46
+#define BOSS1_SPACE_DESTROY_X 10
+#define BOSS1_SPACE_DESTROY_Y 30
+#define BOSS1_NUMBER_DESTROY 8
+
 
 #endif

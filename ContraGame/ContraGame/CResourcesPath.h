@@ -84,4 +84,9 @@
 #define PATH_ITEM_STAND ".//DataGame//Images//Game//Object//item//item_stand.png"
 #pragma endregion ItemPath
 
+#pragma region BossPath
+#define PATH_BOSS1_BG ".//DataGame//Images//Game//Object//boss//boss1_bg.png"
+#define PATH_BOSS1_BAGDE ".//DataGame//Images//Game//Object//boss//boss1_badge.png"
+#pragma endregion BossPath
+
 #endif
