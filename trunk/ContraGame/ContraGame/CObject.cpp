@@ -13,6 +13,8 @@ CObject::CObject(int id, SpecificType specific_type, BasicType basic_type, D3DXV
 	this->_physical.x = pos.x;
 	this->_physical.y = pos.y;
 	this->_physical.SetBounds((float)pos.x, (float)pos.y, width, height);
+	this->_track = Track_LR;
+	this->_enable = false;
 }
 
 CObject::CObject(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
@@ -22,6 +24,19 @@ CObject::CObject(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width,
 	this->_physical.x = pos.x;
 	this->_physical.y = pos.y;
 	this->_physical.SetBounds((float)pos.x, (float)pos.y, width, height);
+	this->_track = Track_LR;
+	this->_enable = false;
+}
+
+CObject::CObject(int id, SpecificType specific_type, D3DXVECTOR3 pos, TrackID track, int width, int height)
+{
+	this->_id = id;
+	this->_specific_type = specific_type;
+	this->_physical.x = pos.x;
+	this->_physical.y = pos.y;
+	this->_physical.SetBounds((float)pos.x, (float)pos.y, width, height);
+	this->_track = track;
+	this->_enable = false;
 }
 
 void CObject::setSpecificType(string x)
@@ -50,7 +65,26 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(ItemM_Stand);
 	}
+}
 
+void CObject::setTrack(string x)
+{
+	if (x =="0")
+	{
+		_track = Track_LR;
+	}
+	else if (x == "1")
+	{
+		_track = Track_RL;
+	}
+	else if (x == "2")
+	{
+		_track = Track_UD;
+	}
+	else if (x == "3")
+	{
+		_track = Track_DU;
+	}
 
 }
 

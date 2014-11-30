@@ -43,7 +43,7 @@ public:
 	int m_heightMap;
 	int m_widthMap;
 	vector<CObject*> listObinView;
-	vector<CObject*> listObNoneTree; // list ob khong nam trong quad tree
+	vector<CObject*> listObNoTree; // list ob khong nam trong quad tree
 
 	/*------    HUD Camera     -----*/
 	CTexture *HUD_badge;

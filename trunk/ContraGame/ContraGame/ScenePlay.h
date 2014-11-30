@@ -12,6 +12,7 @@
 #include "CSniperHide.h"
 #include "CGroundCanon.h"
 #include "CWallTurret.h"
+#include "CListNoTree.h"
 
 class Background;
 class ScenePlay:
@@ -26,6 +27,8 @@ private:
 	CPlayerWeapon *m_playerWeapon;
 	CEnemyWeapon *m_enemyWeapon;
 	CEnemy *m_enemy_test;
+
+	CListNoTree *m_listNoTree;
 
 public:
 	ScenePlay();

@@ -172,7 +172,7 @@ void CResourcesManager::loadMap1()
 	// load object from file text
 	map1_listOb = loadFileTextOB(PATH_OB_MAP1_QT);
 	// load list ob khong nam trong quad tree
-	listObNoneTree = loadFileTextOBNoneTree(PATH_OB_MAP1);
+	listObNoTree = loadFileTextOBNoneTree(PATH_OB_MAP1);
 
 	// load camera + bill
 	float posX = map1_listOb.at(map1_listOb.size() - 2)->getPosX();
@@ -302,9 +302,9 @@ CObject* CResourcesManager::splitTextPushOB(string str)
 		{
 			ob->setHeight(atoi(token.c_str()));
 		}
-		else if (dem == 6)
+		else if (dem == 6) // doi voi cac ob nam ngoai quad tree co huong
 		{
-			ob->_physical.vx_last = atoi(token.c_str());
+			ob->setTrack(token);
 		}
 		str.erase(0, pos + delimiter.length());
 		dem++;

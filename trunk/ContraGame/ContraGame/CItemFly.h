@@ -22,7 +22,8 @@ private:
 
 public:
 	int _hp;
-	CItemFly(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);	
+	CItemFly(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
+	CItemFly(int id, SpecificType specific_type, D3DXVECTOR3 pos, TrackID track, int width, int height);
 	~CItemFly();
 
 	void LoadResources();
