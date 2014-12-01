@@ -209,6 +209,51 @@ void CResourcesManager::unloadPlayResource()
 
 }
 
+/*-----------  Pause ----------------- */
+void CResourcesManager::loadPauseResource()
+{
+	loadPauseGraphics();
+	loadPauseAudio();
+}
+
+void CResourcesManager::loadPauseGraphics()
+{
+
+}
+
+void CResourcesManager::loadPauseAudio()
+{
+
+}
+
+void CResourcesManager::unloadPauseResource()
+{
+
+}
+
+/*----------- Game Over ----------*/
+void CResourcesManager::loadOverResource()
+{
+	loadOverGraphics();
+	loadOverAudio();
+}
+
+void CResourcesManager::loadOverGraphics()
+{
+
+}
+
+void CResourcesManager::loadOverAudio()
+{
+
+}
+
+void CResourcesManager::unloadOverResource()
+{
+
+}
+
+/* ------------------ Other -------------------*/
 vector<CObject*> CResourcesManager::loadFileTextOBNoneTree(string path)
 {
 	vector<CObject*> gameOb;

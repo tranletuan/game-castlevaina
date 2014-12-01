@@ -8,10 +8,15 @@
 #include "Input.h"
 #include "SceneLoading.h"
 #include "ScenePlay.h"
+#include "ScenePause.h"
+#include "SceneGameOver.h"
 
 class SceneMenu;
 class ScenePlay;
 class SceneLoading;
+class SceneGameOver;
+class ScenePause;
+
 class SceneManager
 {
 
@@ -22,6 +27,8 @@ private:
 	SceneMenu *m_sceneMenu;
 	SceneLoading *m_sceneLoad;
 	ScenePlay *m_scenePlay;
+	SceneGameOver *m_sceneOver;
+	ScenePause *m_scenePause;
 
 	SceneManager();
 
@@ -42,15 +49,27 @@ public:
 	BaseScene *getCurScene(){ return m_curScene; };
 	SceneType getTypeScene() { return m_typeScene; };
 
+	// Menu
 	void createMenuScene();
 	void loadMenuScene();
 	void destroyMenuScene();
-
+	// Loading
 	void createLoadingScene();
+	void loadLoadingScene();
 	void destroyLoadingScene();
-
+	// Play
 	void createPlayScene();
+	void loadPlayScene();
 	void destroyPlayScene();
+	// Pause
+	void createPauseScene();
+	void loadPauseScene();
+	void destroyPauseScene();
+	// GameOver
+	void createOverScene();
+	void loadOverScene();
+	void destroyOverScene();
+
 };
 
 #endif

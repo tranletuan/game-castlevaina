@@ -1,6 +1,8 @@
+#include "SceneGameOver.h"
+
 #include "ScenePause.h"
 
-ScenePause::ScenePause()
+SceneGameOver::SceneGameOver()
 	:BaseScene()
 {
 	m_timeDuring = 100;
@@ -8,17 +10,17 @@ ScenePause::ScenePause()
 
 }
 
-ScenePause::~ScenePause()
+SceneGameOver::~SceneGameOver()
 {
 
 }
 
-void ScenePause::processInput()
+void SceneGameOver::processInput()
 {
 
 }
 
-void ScenePause::init()
+void SceneGameOver::init()
 {
 	m_sp1P = new CSprite(m_resource->load_1p);
 	m_sp1P->setPostion(D3DXVECTOR2(20, 40));
@@ -33,11 +35,11 @@ void ScenePause::init()
 
 }
 
-void ScenePause::draw()
+void SceneGameOver::draw()
 {
 	m_sp1P->Draw(m_sp1P->_pos);
 	m_spHi->Draw(m_spHi->_pos);
-	
+
 	if (m_timeDuring % 10 == 0)
 	{
 		drawNumber("10000", 110, 90);
@@ -46,12 +48,12 @@ void ScenePause::draw()
 
 }
 
-void ScenePause::update(float time)
+void SceneGameOver::update(float time)
 {
-	
+
 }
 
-void ScenePause::drawNumber(string str, float posX, float posY)
+void SceneGameOver::drawNumber(string str, float posX, float posY)
 {
 	int length = str.length();
 	int begin = 0;
@@ -72,7 +74,7 @@ void ScenePause::drawNumber(string str, float posX, float posY)
 }
 
 
-void ScenePause::destroy()
+void SceneGameOver::destroy()
 {
 
 }
