@@ -1,11 +1,11 @@
-#ifndef SCENEPAUSE_H
-#define SCENEPAUSE_H
+#ifndef SCENEOVER_H
+#define SCENEOVER_H
 
 #include "BaseScene.h"
 #include "SceneManager.h"
 
 class SceneManager;
-class ScenePause :
+class SceneGameOver :
 	public BaseScene
 {
 private:
@@ -17,8 +17,8 @@ private:
 	CSprite *m_spEnd;
 
 public:
-	ScenePause();
-	~ScenePause();
+	SceneGameOver();
+	~SceneGameOver();
 
 	void processInput();
 	void init();
@@ -29,7 +29,7 @@ public:
 	// ve so diem 
 	void drawNumber(string str, float posX, float posY);
 
-	SceneType getSceneID(){ return SCENE_PAUSE; }
+	SceneType getSceneID(){ return SCENE_GAMEOVER; }
 
 
 };

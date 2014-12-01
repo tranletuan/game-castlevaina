@@ -126,22 +126,34 @@ public:
 	static CResourcesManager *GetInstance();
 	static void prepareManager(LPD3DXSPRITE, LPDIRECT3DDEVICE9, HINSTANCE, HWND, CInput*, CAudio*);
 
+	// Menu
 	void loadMenuResource();
 	void loadMenuGraphics();
 	void loadMenuAudio();
 	void unloadMenuResource();
-
+	//Loading
 	void loadLoadingResource();
 	void loadLoadingGraphics();
 	void loadLoadingAudio();
 	void unloadLoadingResource();
-
+	//Play
 	void loadPlayResource();	
 	void loadMap1();
 	void loadMap2();
 	void loadPlayGraphics();
 	void loadPlayAudio();
 	void unloadPlayResource();
+	//Pause
+	void loadPauseResource();
+	void loadPauseGraphics();
+	void loadPauseAudio();
+	void unloadPauseResource();
+	// Game Over
+	void loadOverResource();
+	void loadOverGraphics();
+	void loadOverAudio();
+	void unloadOverResource();
+
 
 	// load list cac object khong nam trong quad tree
 	vector<CObject*> loadFileTextOBNoneTree(string path);

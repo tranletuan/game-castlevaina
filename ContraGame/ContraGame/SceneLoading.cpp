@@ -16,11 +16,6 @@ SceneLoading::~SceneLoading()
 void SceneLoading::processInput()
 {
 
-	if (m_input->onKeyDown(DIK_RETURN))
-	{
-		m_backScene = true;
-	}
-
 }
 
 void SceneLoading::init()
@@ -35,7 +30,6 @@ void SceneLoading::init()
 	m_spHi->setPostion(D3DXVECTOR2(80, 90));
 
 	m_spNumber = new CSprite(m_resource->load_number);
-	//m_spNumber->setPostion(D3DXVECTOR2(110, 90));
 
 	m_spStage = new CSprite(m_resource->load_stage);
 	m_spStage->setPostion(D3DXVECTOR2(100, 130));
@@ -52,10 +46,10 @@ void SceneLoading::draw()
 	m_spRest->Draw(m_spRest->_pos);
 	m_spStage->Draw(m_spStage->_pos);
 	m_spNameStage->Draw(m_spNameStage->_pos);
-	/*if (m_timeDuring % 10 == 0)
+	if (m_timeDuring % 10 == 0)
 	{
-	drawNumber("10000", 110, 90);
-	}*/\
+		drawNumber("10000", 110, 90);
+	}
 
 	
 }

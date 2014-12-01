@@ -75,8 +75,8 @@ int GameContra::initGame(HINSTANCE hIstance)
 	// scene manager
 	
 	m_sceneManager = SceneManager::getInstance();
-	//SceneManager::getInstance()->createMenuScene();
-	SceneManager::getInstance()->createPlayScene();
+	SceneManager::getInstance()->createMenuScene();
+	//SceneManager::getInstance()->createPlayScene();
 	
 	return 1;
 
