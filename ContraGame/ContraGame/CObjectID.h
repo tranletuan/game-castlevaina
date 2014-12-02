@@ -20,8 +20,8 @@ enum  SpecificType
 	// Ground
 	Ground_Grass, // vo hinh
 	Ground_Water,
-	Ground3,
-	GroundBridge,
+	Ground_Effect,
+	Ground_Bridge,
 
 	// Effect
 	EffectDestroy,

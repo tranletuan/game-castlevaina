@@ -46,7 +46,9 @@ void SceneLoading::draw()
 	m_spRest->Draw(m_spRest->_pos);
 	m_spStage->Draw(m_spStage->_pos);
 	m_spNameStage->Draw(m_spNameStage->_pos);
-	if (m_timeDuring % 10 == 0)
+
+	int delta = m_timeDuring % 10;
+	if (delta > 4 && delta <7)
 	{
 		drawNumber("10000", 110, 90);
 	}

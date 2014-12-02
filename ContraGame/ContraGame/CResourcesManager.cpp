@@ -74,7 +74,7 @@ void CResourcesManager::loadLoadingGraphics()
 	load_hi = new CTexture(PATH_LOAD_HI, D3DCOLOR_XRGB(0, 0, 0));
 	load_stage = new CTexture(PATH_LOAD_STAGE, D3DCOLOR_XRGB(0, 0, 0));
 	load_nameStage = new CTexture(PATH_LOAD_NAMESTAGE, D3DCOLOR_XRGB(0, 0, 0));
-	load_number = new CTexture(PATH_LOAD_NUMBER, D3DCOLOR_XRGB(108, 199, 241), 10);
+	load_number = new CTexture(PATH_LOAD_NUMBER, 10);
 }
 
 void CResourcesManager::loadLoadingAudio()
@@ -143,7 +143,7 @@ void CResourcesManager::loadMap1()
 	//Ground
 	_ground_grass = new CTexture(PATH_GROUND_1);
 	_ground_water = new CTexture(PATH_GROUND_2, 2);
-	_ground_3 = new CTexture(PATH_GROUND_3, 2);
+	_ground_effect1 = new CTexture(PATH_GROUND_EFFECT1);
 	_ground_auto_destroy_bridge = new CTexture(PATH_GROUND_AUTO_DETROY, 1, 6);
 
 	//Effect

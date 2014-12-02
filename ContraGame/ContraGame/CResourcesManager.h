@@ -91,7 +91,7 @@ public:
 	//Ground
 	CTexture* _ground_grass;
 	CTexture* _ground_water;
-	CTexture* _ground_3;
+	CTexture* _ground_effect1;
 	CTexture* _ground_auto_destroy_bridge;
 
 	//Effect
