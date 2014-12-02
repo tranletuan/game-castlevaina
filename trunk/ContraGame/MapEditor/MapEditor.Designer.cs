@@ -186,7 +186,8 @@
             "B",
             "L",
             "S",
-            "R"});
+            "R",
+            "F"});
             this.comboBoxNameItem.Location = new System.Drawing.Point(100, 103);
             this.comboBoxNameItem.Name = "comboBoxNameItem";
             this.comboBoxNameItem.Size = new System.Drawing.Size(132, 21);

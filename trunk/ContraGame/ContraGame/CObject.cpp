@@ -93,8 +93,10 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(Boss1);
 	}
-
-	
+	else if (x == "Brigde")
+	{
+		setSpecificType(Ground_Bridge);
+	}	
 }
 
 void CObject::setTrack(string x)

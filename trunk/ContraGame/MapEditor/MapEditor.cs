@@ -50,7 +50,7 @@ namespace MapEditor
             listViewOB.Items.Add("Boss1", 5);
             listViewOB.Items.Add("CannonBoss", 6);
             listViewOB.Items.Add("SniperHide", 7);
-         
+
             imageListOB.TransparentColor = Color.Transparent;
 
             // List Icon Control
@@ -161,11 +161,11 @@ namespace MapEditor
                     imageCursor = this.imageListOB.Images[imgIndex];
                     if (imgIndex == 2)
                     {
-                        imageCursor = FileTool.ResizeImage(imageCursor, 24, 32);     
+                        imageCursor = FileTool.ResizeImage(imageCursor, 24, 32);
                     }
                     else if (imgIndex == 0)
                     {
-                        imageCursor = FileTool.ResizeImage(imageCursor, 32, 32);                        
+                        imageCursor = FileTool.ResizeImage(imageCursor, 32, 32);
                     }
                     else if (imgIndex == 1)
                     {
@@ -178,10 +178,10 @@ namespace MapEditor
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 18, 33);
                         CurrentCursor = CursorCur.ITEM;
-                    }                   
+                    }
                     else if (imgIndex == 4)
                     {
-                        imageCursor = FileTool.ResizeImage(imageCursor, 32, 32);                     
+                        imageCursor = FileTool.ResizeImage(imageCursor, 32, 32);
                     }
                     else if (imgIndex == 5)
                     {
@@ -200,9 +200,9 @@ namespace MapEditor
 
             this.Cursor = new Cursor(((Bitmap)imageCursor).GetHicon());
             textBoxHeightOB.Text = imageCursor.Height.ToString();
-            textBoxWidthOB.Text = imageCursor.Width.ToString();           
-            textBoxNameOB.Text = listViewOB.SelectedItems[0].Text;   
-            
+            textBoxWidthOB.Text = imageCursor.Width.ToString();
+            textBoxNameOB.Text = listViewOB.SelectedItems[0].Text;
+
             resetButtonEdit();
         }
 
@@ -220,33 +220,36 @@ namespace MapEditor
                 }
                 else
                 {
-                    // toa do top - left
-                    if (coordinates.X - imageCursor.Width / 2 >= 0 && coordinates.Y - imageCursor.Height / 2 >= 0
-                        && coordinates.X + imageCursor.Width / 2 <= pictureBoxBG.Width && coordinates.Y + imageCursor.Height / 2 <= pictureBoxBG.Height)
-                    {
-                        textBoxX.Text = (coordinates.X - imageCursor.Width / 2).ToString();
-                        textBoxY.Text = (pictureBoxBG.Image.Height - (coordinates.Y - imageCursor.Height / 2)).ToString();
-                    }
-                    else
-                    {
-                        textBoxX.Text = "?";
-                        textBoxY.Text = "?";
-                    }
-                }
-                if (imageCursor != null)
-                {
                     try
                     {
+                        // toa do top - left
+                        if (coordinates.X - imageCursor.Width / 2 >= 0 && coordinates.Y - imageCursor.Height / 2 >= 0
+                            && coordinates.X + imageCursor.Width / 2 <= pictureBoxBG.Width && coordinates.Y + imageCursor.Height / 2 <= pictureBoxBG.Height)
+                        {
+                            textBoxX.Text = (coordinates.X - imageCursor.Width / 2).ToString();
+                            textBoxY.Text = (pictureBoxBG.Image.Height - (coordinates.Y - imageCursor.Height / 2)).ToString();
+                        }
+                        else
+                        {
+                            textBoxX.Text = "?";
+                            textBoxY.Text = "?";
+                        }
                         this.Cursor = new Cursor(((Bitmap)imageCursor).GetHicon());
                     }
                     catch
                     {
                         MessageBox.Show("Có lỗi !!! Nhập lại");
-                        return;
+                        imageCursor = null;
+                        this.Cursor = Cursors.Default;
+                        CurrentCursor = CursorCur.NONE;
+                        textBoxHeightOB.Text = "0";
+                        textBoxWidthOB.Text = "0";
+                        textBoxNameOB.Text = "";
+                        resetButtonEdit();
                     }
-
-                    
                 }
+
+
             }
 
         }
@@ -270,15 +273,16 @@ namespace MapEditor
 
                     if (CurrentCursor == CursorCur.ITEM)
                     {
-                          // them vao list  
+                        // them vao list  
                         ObjectTile ob = new ObjectTile(p, (listObNoneTree.Count + 1), textBoxNameOB.Text, Convert.ToInt32(textBoxX.Text.Trim()),
                             Convert.ToInt32(textBoxY.Text.Trim()), direction);
                         listObNoneTree.Add(ob);
                         listObNoneTree.ElementAt(listObNoneTree.Count - 1).Pic.Click += new System.EventHandler(PictureBoxes_Click);
                         pictureBoxBG.Controls.Add(listObNoneTree.ElementAt(listObNoneTree.Count - 1).Pic);
                     }
-                    else{
-                          // them vao list  
+                    else
+                    {
+                        // them vao list  
                         string nameOb = textBoxNameOB.Text;
                         if (isItemStand)
                         {
@@ -286,12 +290,12 @@ namespace MapEditor
                         }
 
                         ObjectTile ob = new ObjectTile(p, (listObject.Count + 1), nameOb, Convert.ToInt32(textBoxX.Text.Trim()),
-                            Convert.ToInt32(textBoxY.Text.Trim()),direction);
+                            Convert.ToInt32(textBoxY.Text.Trim()), direction);
                         listObject.Add(ob);
                         listObject.ElementAt(listObject.Count - 1).Pic.Click += new System.EventHandler(PictureBoxes_Click);
                         pictureBoxBG.Controls.Add(listObject.ElementAt(listObject.Count - 1).Pic);
-                    }                  
-                   
+                    }
+
                 }
                 else
                 {
@@ -423,7 +427,7 @@ namespace MapEditor
                     if (imgIndex == 0)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 32 * Xwidth, 16);
-                        
+
                     }
                     else if (imgIndex == 1)
                     {
@@ -445,7 +449,7 @@ namespace MapEditor
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 32 * Xwidth, 16);
                     }
-                   
+
 
                 }
             }
@@ -478,32 +482,32 @@ namespace MapEditor
                     if (imgIndex == 0)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 24, 15);
-                       
+
                     }
                     else if (imgIndex == 1)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 24, 15);
-                      
+
                     }
                     else if (imgIndex == 2)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 24, 15);
-                      
+
                     }
                     else if (imgIndex == 3)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 24, 15);
-                        
+
                     }
                     else if (imgIndex == 4)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 24, 15);
-                       
+
                     }
                     else if (imgIndex == 5)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 24, 15);
-                        
+
                     }
                 }
             }
