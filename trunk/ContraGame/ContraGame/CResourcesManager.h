@@ -104,6 +104,7 @@ public:
 	CTexture* _enemy_sniper_hide;
 	CTexture* _enemy_wall_turret;
 	CTexture* _enemy_ground_canon;
+	CTexture* _enemy_run_man;
 
 	// Item
 	CTexture* _item;
