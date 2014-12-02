@@ -18,22 +18,28 @@
     <ClCompile Include="CBill.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CBBullet.cpp" />
+    <ClCompile Include="CBoss1.cpp" />
+    <ClCompile Include="CBossGun.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CEffectObject.cpp" />
     <ClCompile Include="CEnemy.cpp" />
     <ClCompile Include="CEnemyUseGun.cpp" />
     <ClCompile Include="CEnemyWeapon.cpp" />
     <ClCompile Include="CFBullet.cpp" />
+    <ClCompile Include="CGround.cpp" />
     <ClCompile Include="CGroundCanon.cpp" />
+    <ClCompile Include="CGroundEffect.cpp" />
     <ClCompile Include="CItemFly.cpp" />
     <ClCompile Include="CItemStand.cpp" />
     <ClCompile Include="CLBullet.cpp" />
+    <ClCompile Include="CListNoTree.cpp" />
     <ClCompile Include="CMBullet.cpp" />
     <ClCompile Include="CNBullet.cpp" />
     <ClCompile Include="CNEBullet.cpp" />
     <ClCompile Include="CObject.cpp" />
-    <ClCompile Include="COBNoneTree.cpp" />
     <ClCompile Include="CPlayerWeapon.cpp" />
+    <ClCompile Include="CRunman.cpp" />
+    <ClCompile Include="CRunManManager.cpp" />
     <ClCompile Include="CSniperHide.cpp" />
     <ClCompile Include="CSniperStand.cpp" />
     <ClCompile Include="CSBullet.cpp" />
@@ -44,12 +50,12 @@
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="CameraHUD.cpp" />
-    <ClCompile Include="CGround.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Physical.cpp" />
     <ClCompile Include="QTNode.cpp" />
     <ClCompile Include="Register.cpp" />
     <ClCompile Include="CResourcesManager.cpp" />
+    <ClCompile Include="SceneGameOver.cpp" />
     <ClCompile Include="SceneLoading.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SceneMenu.cpp" />
@@ -73,24 +79,30 @@
     <ClInclude Include="CBill.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CBBullet.h" />
+    <ClInclude Include="CBoss1.h" />
+    <ClInclude Include="CBossGun.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CEffectObject.h" />
     <ClInclude Include="CEnemy.h" />
     <ClInclude Include="CEnemyUseGun.h" />
     <ClInclude Include="CEnemyWeapon.h" />
     <ClInclude Include="CFBullet.h" />
+    <ClInclude Include="CGround.h" />
     <ClInclude Include="CGroundCanon.h" />
+    <ClInclude Include="CGroundEffect.h" />
     <ClInclude Include="CItemFly.h" />
     <ClInclude Include="CItemStand.h" />
     <ClInclude Include="CLBullet.h" />
+    <ClInclude Include="CListNoTree.h" />
     <ClInclude Include="CMBullet.h" />
     <ClInclude Include="CNBullet.h" />
     <ClInclude Include="CNEBullet.h" />
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CObjectID.h" />
-    <ClInclude Include="COBNoneTree.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="CPlayerWeapon.h" />
+    <ClInclude Include="CRunman.h" />
+    <ClInclude Include="CRunManManager.h" />
     <ClInclude Include="CSniperHide.h" />
     <ClInclude Include="CSniperStand.h" />
     <ClInclude Include="CSBullet.h" />
@@ -101,7 +113,6 @@
     <ClInclude Include="Global.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="CameraHUD.h" />
-    <ClInclude Include="CGround.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="MenuID.h" />
     <ClInclude Include="Physical.h" />
@@ -110,6 +121,7 @@
     <ClInclude Include="Register.h" />
     <ClInclude Include="CResourcesManager.h" />
     <ClInclude Include="CResourcesPath.h" />
+    <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneID.h" />
     <ClInclude Include="SceneLoading.h" />
     <ClInclude Include="SceneManager.h" />
@@ -154,8 +166,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

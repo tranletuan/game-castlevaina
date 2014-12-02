@@ -192,14 +192,32 @@
     <Filter Include="Contra Game\Scene\ScenePlay">
       <UniqueIdentifier>{bd91e391-bcf8-45af-bbc7-b0b36c52263a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contra Game\ListObjectNoneTree">
-      <UniqueIdentifier>{089bdab2-c230-4751-9374-0785ed1ecf6f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contra Game\Object\Enemy Game\GroundCanon">
       <UniqueIdentifier>{1da098d5-8d4e-4002-a8dc-2d37baf0c101}</UniqueIdentifier>
     </Filter>
     <Filter Include="Contra Game\Object\Enemy Game\WallTurret">
       <UniqueIdentifier>{6f5a04c3-dda1-4bb2-9a63-803f1717c902}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Boss">
+      <UniqueIdentifier>{d4ef459e-813a-48ea-82ec-9ac93315e9bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Boss\Boss1">
+      <UniqueIdentifier>{dfcdd6f1-1861-4895-9af7-7ced7fecaaab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Boss\BossGun">
+      <UniqueIdentifier>{08c67c7f-779c-4042-90dd-0537c94ffcef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\RunMan">
+      <UniqueIdentifier>{590ece62-d9e9-4e1d-a806-5f51bf0f72eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Ground Game\GroundEffect">
+      <UniqueIdentifier>{77fb6fb0-e8e5-470d-9539-2727ca04d129}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\ListNoTree">
+      <UniqueIdentifier>{089bdab2-c230-4751-9374-0785ed1ecf6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Scene\SceneGameOver">
+      <UniqueIdentifier>{959eb80f-8f21-40ce-a12f-59db09c30725}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -326,9 +344,6 @@
     <ClCompile Include="CAutoDestroyBridge.cpp">
       <Filter>Contra Game\Object\Ground Game\Bridge</Filter>
     </ClCompile>
-    <ClCompile Include="CGround.cpp">
-      <Filter>Contra Game\Object\Ground Game\Ground</Filter>
-    </ClCompile>
     <ClCompile Include="CEffectObject.cpp">
       <Filter>Contra Game\Object\Effect Game\EffectObject</Filter>
     </ClCompile>
@@ -350,17 +365,38 @@
     <ClCompile Include="CItemFly.cpp">
       <Filter>Contra Game\Object\Item\ItemFly</Filter>
     </ClCompile>
-    <ClCompile Include="COBNoneTree.cpp">
-      <Filter>Contra Game\ListObjectNoneTree</Filter>
-    </ClCompile>
-    <ClCompile Include="ScenePlay.cpp">
-      <Filter>Contra Game\Scene\ScenePlay</Filter>
-    </ClCompile>
     <ClCompile Include="CGroundCanon.cpp">
       <Filter>Contra Game\Object\Enemy Game\GroundCanon</Filter>
     </ClCompile>
     <ClCompile Include="CWallTurret.cpp">
       <Filter>Contra Game\Object\Enemy Game\WallTurret</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss1.cpp">
+      <Filter>Contra Game\Object\Boss\Boss1</Filter>
+    </ClCompile>
+    <ClCompile Include="CBossGun.cpp">
+      <Filter>Contra Game\Object\Boss\BossGun</Filter>
+    </ClCompile>
+    <ClCompile Include="CRunManManager.cpp">
+      <Filter>Contra Game\Object\RunMan</Filter>
+    </ClCompile>
+    <ClCompile Include="CRunman.cpp">
+      <Filter>Contra Game\Object\RunMan</Filter>
+    </ClCompile>
+    <ClCompile Include="CGroundEffect.cpp">
+      <Filter>Contra Game\Object\Ground Game\GroundEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="CListNoTree.cpp">
+      <Filter>Contra Game\ListNoTree</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGameOver.cpp">
+      <Filter>Contra Game\Scene\SceneGameOver</Filter>
+    </ClCompile>
+    <ClCompile Include="CGround.cpp">
+      <Filter>Contra Game\Object\Ground Game\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="ScenePlay.cpp">
+      <Filter>Contra Game\Scene\ScenePlay</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -493,9 +529,6 @@
     <ClInclude Include="CAutoDestroyBridge.h">
       <Filter>Contra Game\Object\Ground Game\Bridge</Filter>
     </ClInclude>
-    <ClInclude Include="CGround.h">
-      <Filter>Contra Game\Object\Ground Game\Ground</Filter>
-    </ClInclude>
     <ClInclude Include="CEffectObject.h">
       <Filter>Contra Game\Object\Effect Game\EffectObject</Filter>
     </ClInclude>
@@ -526,9 +559,6 @@
     <ClInclude Include="CItemFly.h">
       <Filter>Contra Game\Object\Item\ItemFly</Filter>
     </ClInclude>
-    <ClInclude Include="COBNoneTree.h">
-      <Filter>Contra Game\ListObjectNoneTree</Filter>
-    </ClInclude>
     <ClInclude Include="ScenePlay.h">
       <Filter>Contra Game\Scene\ScenePlay</Filter>
     </ClInclude>
@@ -537,6 +567,30 @@
     </ClInclude>
     <ClInclude Include="CWallTurret.h">
       <Filter>Contra Game\Object\Enemy Game\WallTurret</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoss1.h">
+      <Filter>Contra Game\Object\Boss\Boss1</Filter>
+    </ClInclude>
+    <ClInclude Include="CBossGun.h">
+      <Filter>Contra Game\Object\Boss\BossGun</Filter>
+    </ClInclude>
+    <ClInclude Include="CRunman.h">
+      <Filter>Contra Game\Object\RunMan</Filter>
+    </ClInclude>
+    <ClInclude Include="CRunManManager.h">
+      <Filter>Contra Game\Object\RunMan</Filter>
+    </ClInclude>
+    <ClInclude Include="CGroundEffect.h">
+      <Filter>Contra Game\Object\Ground Game\GroundEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="CListNoTree.h">
+      <Filter>Contra Game\ListNoTree</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameOver.h">
+      <Filter>Contra Game\Scene\SceneGameOver</Filter>
+    </ClInclude>
+    <ClInclude Include="CGround.h">
+      <Filter>Contra Game\Object\Ground Game\Ground</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
