@@ -13,6 +13,7 @@ CAutoDestroyBridge::CAutoDestroyBridge(int id, SpecificType specific_type, D3DXV
 		float y = (rand() % GROUND_BRIDGE_ELAPSED_RANDOM_POSITION) * sign_y + pos.y;
 		_position_effect_destroy[i] = D3DXVECTOR3(x, y, 0);
 	}
+	LoadResources();
 }
 
 CAutoDestroyBridge::~CAutoDestroyBridge()

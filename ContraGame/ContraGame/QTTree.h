@@ -11,6 +11,7 @@
 #include "CGroundCanon.h"
 #include "CBoss1.h"
 #include "CSniperHide.h"
+#include "CAutoDestroyBridge.h"
 
 class QTTree
 {

@@ -212,8 +212,9 @@ CObject * QTTree::getObjectTrust(CObject *x)
 	case Boss1:
 		return new CBoss1(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());		
 	case Sniper_Hide:
-		return new CSniperHide(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
-
+		return new CSniperHide(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());		
+	case Ground_Bridge:
+		return new CAutoDestroyBridge(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	default:
 		break;
 	}
