@@ -1,9 +1,6 @@
 1 ItemStandM 321 96 32 32 
-2 RunMan 244 154 18 33 
-3 RunMan 296 154 18 33 
 5 Sniper 305 58 24 32 
 6 Sniper 626 56 24 32 
-6 RunMan 360 155 18 33 
 7 Ground 31 128 736 16 
 8 Ground 159 97 96 16 
 9 Ground 256 63 32 16 
