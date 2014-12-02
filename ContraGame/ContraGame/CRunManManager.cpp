@@ -62,7 +62,7 @@ void CRunmanManager::Draw()
 
 CollisionDirection CRunmanManager::CheckCollision(vector<CObject*>* list_ground, CObject* player)
 {
-
+	return LeftCollision;
 }
 
 void CRunmanManager::RemoveDisableRunman()

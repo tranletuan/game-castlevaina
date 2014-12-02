@@ -3,6 +3,7 @@
 
 #include "CObject.h"
 #include "CItemFly.h"
+#include "CRunman.h"
 
 class CListNoTree
 {
