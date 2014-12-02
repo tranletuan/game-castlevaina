@@ -133,8 +133,8 @@ void CBoss1::DrawWhenBadgeDie(D3DXVECTOR3 pos)
 void CBoss1::DrawWhenDestroyBG1(D3DXVECTOR3 pos)
 {
 	_sprite_bg->DrawWithDirectionAndOneTimeEffect(pos, 1, 0, 1, 100);
-	D3DXVECTOR3 pos_draw = D3DXVECTOR3(pos.x - 10 - BOSS1_SPACE_DESTROY_X, pos.y + 30, 0);
-	D3DXVECTOR3 pos_draw1 = D3DXVECTOR3(pos.x - 10 - BOSS1_SPACE_DESTROY_X, pos.y + 30 + BOSS1_SPACE_DESTROY_Y, 0);
+	D3DXVECTOR3 pos_draw = D3DXVECTOR3(pos.x - 2.3* BOSS1_SPACE_DESTROY_X, pos.y + 30, 0);
+	D3DXVECTOR3 pos_draw1 = D3DXVECTOR3(pos.x - 2.3* BOSS1_SPACE_DESTROY_X, pos.y + 30 + BOSS1_SPACE_DESTROY_Y, 0);
 	_sprite_effect1->DrawWithDirectionAndOneTimeEffect(pos_draw, 1, 0, 2, 300);
 	_sprite_effect1->DrawWithDirectionAndOneTimeEffect(pos_draw1, 1, 0, 2, 300);
 }
@@ -142,8 +142,8 @@ void CBoss1::DrawWhenDestroyBG2(D3DXVECTOR3 pos)
 {
 	_sprite_bg->SelectFrameOf(1);
 	_sprite_bg->Draw(pos.x, pos.y);
-	D3DXVECTOR3 pos_draw = D3DXVECTOR3(pos.x + BOSS1_SPACE_DESTROY_X, pos.y + 30, 0);
-	D3DXVECTOR3 pos_draw1 = D3DXVECTOR3(pos.x + BOSS1_SPACE_DESTROY_X, pos.y + 30 + BOSS1_SPACE_DESTROY_Y, 0);
+	D3DXVECTOR3 pos_draw = D3DXVECTOR3(pos.x , pos.y + 30, 0);
+	D3DXVECTOR3 pos_draw1 = D3DXVECTOR3(pos.x ,pos.y + 30 + BOSS1_SPACE_DESTROY_Y, 0);
 	_sprite_effect2->DrawWithDirectionAndOneTimeEffect(pos_draw, 1, 0, 2, 300);
 	_sprite_effect2->DrawWithDirectionAndOneTimeEffect(pos_draw1, 1, 0, 2, 300);
 }
@@ -151,8 +151,8 @@ void CBoss1::DrawWhenDestroyBG3(D3DXVECTOR3 pos)
 {
 	_sprite_bg->SelectFrameOf(1);
 	_sprite_bg->Draw(pos.x, pos.y);
-	D3DXVECTOR3 pos_draw = D3DXVECTOR3(pos.x + 2 * BOSS1_SPACE_DESTROY_X, pos.y + 30, 0);
-	D3DXVECTOR3 pos_draw1 = D3DXVECTOR3(pos.x + 2 * BOSS1_SPACE_DESTROY_X, pos.y + 30 + BOSS1_SPACE_DESTROY_Y, 0);
+	D3DXVECTOR3 pos_draw = D3DXVECTOR3(pos.x + 1.3* BOSS1_SPACE_DESTROY_X, pos.y + 30, 0);
+	D3DXVECTOR3 pos_draw1 = D3DXVECTOR3(pos.x + 1.3* BOSS1_SPACE_DESTROY_X, pos.y + 30 + BOSS1_SPACE_DESTROY_Y, 0);
 	_sprite_effect3->DrawWithDirectionAndOneTimeEffect(pos_draw, 1, 0, 2, 300);
 	_sprite_effect3->DrawWithDirectionAndOneTimeEffect(pos_draw1, 1, 0, 2, 300);
 }
