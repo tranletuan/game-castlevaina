@@ -132,10 +132,12 @@ bool CRunman::SetStatus(RMStatus status)
 
 bool CRunman::Jumping()
 {
-	if (!SetStatus(RMJump)) return;
+	if (!SetStatus(RMJump)) return false;
 
 	//Nếu chuyển thành công thì thực hiện nhảy
 	_physical.vy = BILL_VY;
+	
+	return true;
 }
 
 void CRunman::Standing(float y_ground, SpecificType ground_type)

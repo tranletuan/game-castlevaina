@@ -7,6 +7,8 @@ class CGround : public CObject
 {
 private:
 	int _count;
+	int _time_count;
+	bool _isDraw;
 public:
 	CGround(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
 	~CGround();
@@ -15,6 +17,6 @@ public:
 	virtual void Draw();
 	virtual void Update(int delta_time);
 
-	
+
 };
 #endif // !_CGROUND_H_

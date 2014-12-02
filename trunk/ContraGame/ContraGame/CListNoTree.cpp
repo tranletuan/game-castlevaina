@@ -62,6 +62,9 @@ CObject *CListNoTree::getObjectTrust(CObject *x)
 	case ItemS:
 		ob = new CItemFly(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getTrack(), x->getWidth(), x->getHeight());
 		break;
+	case RunMan:
+		ob = new CRunman(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
+		break;
 	default:
 		break;
 	}

@@ -46,6 +46,7 @@ enum  SpecificType
 
 	// Boss
 	Boss1,
+	Boss_Gun,
 };
 
 // loai object

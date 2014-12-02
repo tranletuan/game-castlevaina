@@ -14,6 +14,7 @@
 #include "CWallTurret.h"
 #include "CListNoTree.h"
 #include "CBoss1.h"
+#include "CGroundEffect.h"
 
 class Background;
 class ScenePlay:
@@ -31,6 +32,7 @@ private:
 
 	CListNoTree *m_listNoTree;
 	CBoss1 *m_boss;
+	CGroundEffect *m_ground;
 
 public:
 	ScenePlay();
