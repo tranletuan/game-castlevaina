@@ -10,11 +10,7 @@ ScenePlay::ScenePlay()
 	m_enemyWeapon = new CEnemyWeapon();
 	m_enemy_test = new CSniperHide(123, Sniper_Hide, D3DXVECTOR3(200, 142, 0), 26, 44);
 	m_enemy_test->SetWeapon(m_enemyWeapon);
-	m_listNoTree = new CListNoTree();
-
-	m_boss = new CBoss1(123, Boss1, D3DXVECTOR3(200, 142, 0), 112, 161);
-
-	m_ground = new CGroundEffect(125, Ground_Effect, D3DXVECTOR3(94, 40, 0), 128, 16);
+	m_listNoTree = new CListNoTree();	
 	init();
 }
 
@@ -57,10 +53,8 @@ void ScenePlay::update(float time)
 
 	m_listNoTree->Update(time);
 	m_tree->update(time);
-	m_boss->Update(time);
-
 	m_cameraHUD->update(time);
-	m_ground->Update(time);
+
 }
 
 void ScenePlay::draw()
@@ -72,8 +66,7 @@ void ScenePlay::draw()
 	m_cameraHUD->draw();
 	m_enemyWeapon->Draw();
 	m_listNoTree->Draw();
-	m_boss->Draw();
-	m_ground->Draw();
+	
 }
 
 void ScenePlay::destroy()

@@ -73,6 +73,28 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(ItemM_Stand);
 	}
+	else if (x == "WaterEffect1")
+	{
+		setSpecificType(Ground_Effect1);
+	}
+	else if (x == "BlockHouse")
+	{
+		setSpecificType(Wall_Turret);
+	}
+	else if (x == "SniperHide")
+	{
+		setSpecificType(Sniper_Hide);
+	}
+	else if (x == "Obstacle")
+	{
+		setSpecificType(Ground_Canon);
+	}
+	else if (x == "Boss1")
+	{
+		setSpecificType(Boss1);
+	}
+
+	
 }
 
 void CObject::setTrack(string x)

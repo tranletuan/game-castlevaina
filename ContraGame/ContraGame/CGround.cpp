@@ -28,7 +28,7 @@ void CGround::LoadResources()
 	case Ground_Water:
 		_current_sprite = new CSprite(rs->_ground_water);
 		break;
-	case Ground_Effect:
+	case Ground_Effect1:
 		_current_sprite = new CSprite(rs->_ground_effect1);
 		break;
 	}
