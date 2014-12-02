@@ -21,10 +21,9 @@ void CGroundEffect::LoadResources()
 {
 	CResourcesManager* rs = CResourcesManager::GetInstance();
 	switch (_specific_type)
-	{
-	
+	{	
 		break;
-	case Ground_Effect:
+	case Ground_Effect1:
 		_current_sprite = new CSprite(rs->_ground_effect1);
 		break;
 	}
@@ -35,7 +34,7 @@ void CGroundEffect::Update(int delta_time)
 
 	switch (_specific_type)
 	{
-	case Ground_Effect:
+	case Ground_Effect1:
 		_time_count++;
 		_isDraw = false;
 		if (_time_count > 10000)

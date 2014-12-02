@@ -46,6 +46,11 @@ namespace MapEditor
             listViewOB.Items.Add("BradgeEagle", 1);
             listViewOB.Items.Add("Sniper", 2);
             listViewOB.Items.Add("RunMan", 3);
+            listViewOB.Items.Add("Obstacle", 4);
+            listViewOB.Items.Add("Boss1", 5);
+            listViewOB.Items.Add("CannonBoss", 6);
+            listViewOB.Items.Add("SniperHide", 7);
+         
             imageListOB.TransparentColor = Color.Transparent;
 
             // List Icon Control
@@ -68,6 +73,11 @@ namespace MapEditor
             listViewBG.LargeImageList = imageListBG;
             listViewBG.View = View.LargeIcon;
             listViewBG.Items.Add("Ground", 0);
+            listViewBG.Items.Add("Water", 1);
+            listViewBG.Items.Add("Brigde", 2);
+            listViewBG.Items.Add("WaterEffect1", 3);
+            listViewBG.Items.Add("WaterEffect2", 4);
+            listViewBG.Items.Add("WaterEffect3", 5);
 
             // other
             CurrentCursor = CursorCur.NONE;
@@ -136,6 +146,10 @@ namespace MapEditor
 
         private void listViewOB_MouseClick(object sender, MouseEventArgs e)
         {
+            comboBoxNameItem.Visible = false;
+            textBoxNameOB.Visible = true;
+            isItemStand = false;
+            CurrentCursor = CursorCur.OBJECT;
 
             // Lay image khi click + doi cursor          
             foreach (ListViewItem itm in listViewOB.SelectedItems)
@@ -147,17 +161,11 @@ namespace MapEditor
                     imageCursor = this.imageListOB.Images[imgIndex];
                     if (imgIndex == 2)
                     {
-                        imageCursor = FileTool.ResizeImage(imageCursor, 24, 32);
-                        comboBoxNameItem.Visible = false;
-                        textBoxNameOB.Visible = true;
-                        isItemStand = false;
+                        imageCursor = FileTool.ResizeImage(imageCursor, 24, 32);     
                     }
                     else if (imgIndex == 0)
                     {
-                        imageCursor = FileTool.ResizeImage(imageCursor, 32, 32);
-                        comboBoxNameItem.Visible = false;
-                        textBoxNameOB.Visible = true;
-                        isItemStand = false;
+                        imageCursor = FileTool.ResizeImage(imageCursor, 32, 32);                        
                     }
                     else if (imgIndex == 1)
                     {
@@ -169,18 +177,32 @@ namespace MapEditor
                     else if (imgIndex == 3)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 18, 33);
-                        comboBoxNameItem.Visible = false;
-                        textBoxNameOB.Visible = true;
-                        isItemStand = false;
+                        CurrentCursor = CursorCur.ITEM;
+                    }                   
+                    else if (imgIndex == 4)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 32, 32);                     
+                    }
+                    else if (imgIndex == 5)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 112, 161);
+                    }
+                    else if (imgIndex == 6)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 12, 6);
+                    }
+                    else if (imgIndex == 7)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 24, 32);
                     }
                 }
             }
 
             this.Cursor = new Cursor(((Bitmap)imageCursor).GetHicon());
             textBoxHeightOB.Text = imageCursor.Height.ToString();
-            textBoxWidthOB.Text = imageCursor.Width.ToString();
-            textBoxNameOB.Text = listViewOB.SelectedItems[0].Text;
-            CurrentCursor = CursorCur.OBJECT;
+            textBoxWidthOB.Text = imageCursor.Width.ToString();           
+            textBoxNameOB.Text = listViewOB.SelectedItems[0].Text;   
+            
             resetButtonEdit();
         }
 
@@ -213,7 +235,17 @@ namespace MapEditor
                 }
                 if (imageCursor != null)
                 {
-                    this.Cursor = new Cursor(((Bitmap)imageCursor).GetHicon());
+                    try
+                    {
+                        this.Cursor = new Cursor(((Bitmap)imageCursor).GetHicon());
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Có lỗi !!! Nhập lại");
+                        return;
+                    }
+
+                    
                 }
             }
 
@@ -250,7 +282,7 @@ namespace MapEditor
                         string nameOb = textBoxNameOB.Text;
                         if (isItemStand)
                         {
-                            nameOb = comboBoxNameItem.Text.Trim();
+                            nameOb = "ItemStand" + comboBoxNameItem.Text.Trim();
                         }
 
                         ObjectTile ob = new ObjectTile(p, (listObject.Count + 1), nameOb, Convert.ToInt32(textBoxX.Text.Trim()),
@@ -391,17 +423,37 @@ namespace MapEditor
                     if (imgIndex == 0)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 32 * Xwidth, 16);
-                        comboBoxNameItem.Visible = false;
-                        textBoxNameOB.Visible = true;
-                        isItemStand = false;
+                        
                     }
                     else if (imgIndex == 1)
                     {
-
+                        imageCursor = FileTool.ResizeImage(imageCursor, 32 * Xwidth, 16);
                     }
+                    else if (imgIndex == 2)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 128, 32);
+                    }
+                    else if (imgIndex == 3)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 32 * Xwidth, 16);
+                    }
+                    else if (imgIndex == 4)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 32 * Xwidth, 16);
+                    }
+                    else if (imgIndex == 5)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 32 * Xwidth, 16);
+                    }
+                   
 
                 }
             }
+
+            comboBoxNameItem.Visible = false;
+            textBoxNameOB.Visible = true;
+            isItemStand = false;
+
             this.Cursor = new Cursor(((Bitmap)imageCursor).GetHicon());
             textBoxHeightOB.Text = imageCursor.Height.ToString();
             textBoxWidthOB.Text = imageCursor.Width.ToString();
@@ -412,6 +464,9 @@ namespace MapEditor
 
         private void listViewItem_MouseClick(object sender, MouseEventArgs e)
         {
+            comboBoxNameItem.Visible = false;
+            textBoxNameOB.Visible = true;
+            isItemStand = false;
             // Lay image khi click + doi cursor          
             foreach (ListViewItem itm in listViewItem.SelectedItems)
             {
@@ -423,44 +478,32 @@ namespace MapEditor
                     if (imgIndex == 0)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 24, 15);
-                        comboBoxNameItem.Visible = false;
-                        textBoxNameOB.Visible = true;
-                        isItemStand = false;
+                       
                     }
                     else if (imgIndex == 1)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 24, 15);
-                        comboBoxNameItem.Visible = false;
-                        textBoxNameOB.Visible = true;
-                        isItemStand = false;
+                      
                     }
                     else if (imgIndex == 2)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 24, 15);
-                        comboBoxNameItem.Visible = false;
-                        textBoxNameOB.Visible = true;
-                        isItemStand = false;
+                      
                     }
                     else if (imgIndex == 3)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 24, 15);
-                        comboBoxNameItem.Visible = false;
-                        textBoxNameOB.Visible = true;
-                        isItemStand = false;
+                        
                     }
                     else if (imgIndex == 4)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 24, 15);
-                        comboBoxNameItem.Visible = false;
-                        textBoxNameOB.Visible = true;
-                        isItemStand = false;
+                       
                     }
                     else if (imgIndex == 5)
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 24, 15);
-                        comboBoxNameItem.Visible = false;
-                        textBoxNameOB.Visible = true;
-                        isItemStand = false;
+                        
                     }
                 }
             }

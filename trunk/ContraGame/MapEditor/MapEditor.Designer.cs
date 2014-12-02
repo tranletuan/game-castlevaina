@@ -37,6 +37,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.listViewControl = new System.Windows.Forms.ListView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxNameItem = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.comboBoxDir = new System.Windows.Forms.ComboBox();
             this.textBoxXWidth = new System.Windows.Forms.TextBox();
@@ -82,7 +83,6 @@
             this.textBoxCamX = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboBoxNameItem = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBG)).BeginInit();
             this.panel2.SuspendLayout();
@@ -176,6 +176,21 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detail : ";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // comboBoxNameItem
+            // 
+            this.comboBoxNameItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxNameItem.FormattingEnabled = true;
+            this.comboBoxNameItem.Items.AddRange(new object[] {
+            "M",
+            "B",
+            "L",
+            "S",
+            "R"});
+            this.comboBoxNameItem.Location = new System.Drawing.Point(100, 103);
+            this.comboBoxNameItem.Name = "comboBoxNameItem";
+            this.comboBoxNameItem.Size = new System.Drawing.Size(132, 21);
+            this.comboBoxNameItem.TabIndex = 11;
             // 
             // label13
             // 
@@ -470,12 +485,21 @@
             this.imageListOB.Images.SetKeyName(2, "Sniper.png");
             this.imageListOB.Images.SetKeyName(3, "RunMan.png");
             this.imageListOB.Images.SetKeyName(4, "Obstacle.png");
+            this.imageListOB.Images.SetKeyName(5, "Boss1.png");
+            this.imageListOB.Images.SetKeyName(6, "CanonBoss.png");
+            this.imageListOB.Images.SetKeyName(7, "SniperHide.png");
+            this.imageListOB.Images.SetKeyName(8, "Bridge.png");
             // 
             // imageListBG
             // 
             this.imageListBG.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListBG.ImageStream")));
             this.imageListBG.TransparentColor = System.Drawing.Color.Transparent;
             this.imageListBG.Images.SetKeyName(0, "Ground.png");
+            this.imageListBG.Images.SetKeyName(1, "Water.png");
+            this.imageListBG.Images.SetKeyName(2, "Bridge.png");
+            this.imageListBG.Images.SetKeyName(3, "WaterEffect1.png");
+            this.imageListBG.Images.SetKeyName(4, "WaterEffect2.png");
+            this.imageListBG.Images.SetKeyName(5, "WaterEffect3.png");
             // 
             // buttonSave
             // 
@@ -599,21 +623,6 @@
             this.label8.Size = new System.Drawing.Size(52, 13);
             this.label8.TabIndex = 0;
             this.label8.Text = "Camera : ";
-            // 
-            // comboBoxNameItem
-            // 
-            this.comboBoxNameItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxNameItem.FormattingEnabled = true;
-            this.comboBoxNameItem.Items.AddRange(new object[] {
-            "M",
-            "B",
-            "L",
-            "S",
-            "R"});
-            this.comboBoxNameItem.Location = new System.Drawing.Point(100, 103);
-            this.comboBoxNameItem.Name = "comboBoxNameItem";
-            this.comboBoxNameItem.Size = new System.Drawing.Size(132, 21);
-            this.comboBoxNameItem.TabIndex = 11;
             // 
             // MapEditor
             // 
