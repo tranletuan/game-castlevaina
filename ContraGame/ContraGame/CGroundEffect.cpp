@@ -41,7 +41,7 @@ void CGroundEffect::Update(int delta_time)
 		{
 			_time_count = 0;
 		}
-		if (_time_count % 10 > 4 && _time_count % 10 < 8)
+		if (_time_count % 20 > 5 && _time_count % 20 < 20)
 		{
 			_isDraw = true;
 		}

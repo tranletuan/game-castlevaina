@@ -198,10 +198,13 @@ CObject * QTTree::getObjectTrust(CObject *x)
 	switch (x->getSpecificType())
 	{
 	case Ground_Grass:
+	case Ground_Water:
 		return new CGround(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	case Sniper_Stand:
 		return new CSniperStand(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	case ItemM_Stand:
+	case ItemF_Stand:
+	case ItemS_Stand:
 		return new CItemStand(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	case Ground_Effect1:
 		return new CGroundEffect(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());

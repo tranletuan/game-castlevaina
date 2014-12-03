@@ -51,7 +51,7 @@ CObject *CListNoTree::getObjectTrust(CObject *x)
 {
 	float posX = x->getPosX() + x->getWidth() / 2;
 	float posY = x->getPosY() - x->getHeight() / 2;
-	CObject *ob = NULL;
+	
 	switch (x->getSpecificType())
 	{
 	case ItemM:
@@ -60,16 +60,12 @@ CObject *CListNoTree::getObjectTrust(CObject *x)
 	case ItemL:
 	case ItemR:
 	case ItemS:
-		ob = new CItemFly(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getTrack(), x->getWidth(), x->getHeight());
-		break;
+		return new CItemFly(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getTrack(), x->getWidth(), x->getHeight());		
 	case RunMan:
-		ob = new CRunman(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
-		break;
+		return new CRunman(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());		
 	default:
 		break;
 	}
-	return ob;
-
 }
 
 void CListNoTree::setActivity(CObject *x)

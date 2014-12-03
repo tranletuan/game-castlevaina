@@ -486,10 +486,8 @@
             this.imageListOB.Images.SetKeyName(2, "Sniper.png");
             this.imageListOB.Images.SetKeyName(3, "RunMan.png");
             this.imageListOB.Images.SetKeyName(4, "Obstacle.png");
-            this.imageListOB.Images.SetKeyName(5, "Boss1.png");
-            this.imageListOB.Images.SetKeyName(6, "CanonBoss.png");
-            this.imageListOB.Images.SetKeyName(7, "SniperHide.png");
-            this.imageListOB.Images.SetKeyName(8, "Bridge.png");
+            this.imageListOB.Images.SetKeyName(5, "SniperHide.png");
+            this.imageListOB.Images.SetKeyName(6, "Boss1.png");
             // 
             // imageListBG
             // 

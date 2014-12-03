@@ -47,9 +47,8 @@ namespace MapEditor
             listViewOB.Items.Add("Sniper", 2);
             listViewOB.Items.Add("RunMan", 3);
             listViewOB.Items.Add("Obstacle", 4);
-            listViewOB.Items.Add("Boss1", 5);
-            listViewOB.Items.Add("CannonBoss", 6);
-            listViewOB.Items.Add("SniperHide", 7);
+            listViewOB.Items.Add("SniperHide", 5);
+            listViewOB.Items.Add("Boss1", 6);
 
             imageListOB.TransparentColor = Color.Transparent;
 
@@ -146,6 +145,7 @@ namespace MapEditor
 
         private void listViewOB_MouseClick(object sender, MouseEventArgs e)
         {
+
             comboBoxNameItem.Visible = false;
             textBoxNameOB.Visible = true;
             isItemStand = false;
@@ -185,11 +185,11 @@ namespace MapEditor
                     }
                     else if (imgIndex == 5)
                     {
-                        imageCursor = FileTool.ResizeImage(imageCursor, 112, 161);
+                        imageCursor = FileTool.ResizeImage(imageCursor, 24, 32);
                     }
                     else if (imgIndex == 6)
                     {
-                        imageCursor = FileTool.ResizeImage(imageCursor, 12, 6);
+                        imageCursor = FileTool.ResizeImage(imageCursor, 112, 184);
                     }
                     else if (imgIndex == 7)
                     {
@@ -203,6 +203,8 @@ namespace MapEditor
             textBoxWidthOB.Text = imageCursor.Width.ToString();
             textBoxNameOB.Text = listViewOB.SelectedItems[0].Text;
 
+
+
             resetButtonEdit();
         }
 
@@ -213,39 +215,24 @@ namespace MapEditor
             Point coordinates = me.Location;
             if (pictureBoxBG.Image != null)
             {
-                if (imageCursor == null)
+                if (this.imageCursor == null)
                 {
                     textBoxX.Text = "???";
                     textBoxY.Text = "???";
                 }
                 else
                 {
-                    try
+                    // toa do top - left
+                    if (coordinates.X - imageCursor.Width / 2 >= 0 && coordinates.Y - imageCursor.Height / 2 >= 0
+                        && coordinates.X + imageCursor.Width / 2 <= pictureBoxBG.Width && coordinates.Y + imageCursor.Height / 2 <= pictureBoxBG.Height)
                     {
-                        // toa do top - left
-                        if (coordinates.X - imageCursor.Width / 2 >= 0 && coordinates.Y - imageCursor.Height / 2 >= 0
-                            && coordinates.X + imageCursor.Width / 2 <= pictureBoxBG.Width && coordinates.Y + imageCursor.Height / 2 <= pictureBoxBG.Height)
-                        {
-                            textBoxX.Text = (coordinates.X - imageCursor.Width / 2).ToString();
-                            textBoxY.Text = (pictureBoxBG.Image.Height - (coordinates.Y - imageCursor.Height / 2)).ToString();
-                        }
-                        else
-                        {
-                            textBoxX.Text = "?";
-                            textBoxY.Text = "?";
-                        }
-                        this.Cursor = new Cursor(((Bitmap)imageCursor).GetHicon());
+                        textBoxX.Text = (coordinates.X - imageCursor.Width / 2).ToString();
+                        textBoxY.Text = (pictureBoxBG.Image.Height - (coordinates.Y - imageCursor.Height / 2)).ToString();
                     }
-                    catch
+                    else
                     {
-                        MessageBox.Show("Có lỗi !!! Nhập lại");
-                        imageCursor = null;
-                        this.Cursor = Cursors.Default;
-                        CurrentCursor = CursorCur.NONE;
-                        textBoxHeightOB.Text = "0";
-                        textBoxWidthOB.Text = "0";
-                        textBoxNameOB.Text = "";
-                        resetButtonEdit();
+                        textBoxX.Text = "?";
+                        textBoxY.Text = "?";
                     }
                 }
 
@@ -256,6 +243,8 @@ namespace MapEditor
 
         private void pictureBoxBG_Click(object sender, EventArgs e)
         {
+
+
             if (CurrentCursor == CursorCur.OBJECT || CurrentCursor == CursorCur.ITEM)
             {
                 if (textBoxX.Text.Trim() != "?" && textBoxY.Text.Trim() != "?")
@@ -278,6 +267,8 @@ namespace MapEditor
                             Convert.ToInt32(textBoxY.Text.Trim()), direction);
                         listObNoneTree.Add(ob);
                         listObNoneTree.ElementAt(listObNoneTree.Count - 1).Pic.Click += new System.EventHandler(PictureBoxes_Click);
+                        listObNoneTree.ElementAt(listObNoneTree.Count - 1).Pic.MouseMove += new System.Windows.Forms.MouseEventHandler(PictureBoxes_MouseMove);
+                        listObNoneTree.ElementAt(listObNoneTree.Count - 1).Pic.MouseLeave += new System.EventHandler(PictureBoxes_MouseLeave);
                         pictureBoxBG.Controls.Add(listObNoneTree.ElementAt(listObNoneTree.Count - 1).Pic);
                     }
                     else
@@ -293,6 +284,8 @@ namespace MapEditor
                             Convert.ToInt32(textBoxY.Text.Trim()), direction);
                         listObject.Add(ob);
                         listObject.ElementAt(listObject.Count - 1).Pic.Click += new System.EventHandler(PictureBoxes_Click);
+                        listObject.ElementAt(listObject.Count - 1).Pic.MouseMove += new System.Windows.Forms.MouseEventHandler(PictureBoxes_MouseMove);
+                        listObject.ElementAt(listObject.Count - 1).Pic.MouseLeave += new System.EventHandler(PictureBoxes_MouseLeave);
                         pictureBoxBG.Controls.Add(listObject.ElementAt(listObject.Count - 1).Pic);
                     }
 
@@ -325,7 +318,6 @@ namespace MapEditor
         {
             textBoxX.Text = "?";
             textBoxY.Text = "?";
-            this.Cursor = Cursors.Default;
 
         }
 
@@ -345,9 +337,10 @@ namespace MapEditor
                     }
                     else
                     {
+
                         imageCursor = this.imageListControl.Images[imgIndex];
+                        imageCursor = FileTool.ResizeImage(imageCursor, 8, 8);
                         CurrentCursor = CursorCur.ICON;
-                        imageCursor = FileTool.ResizeImage(imageCursor, 16, 16);
                         this.Cursor = new Cursor(((Bitmap)imageCursor).GetHicon());
                     }
 
@@ -413,8 +406,15 @@ namespace MapEditor
 
         private void listViewBG_MouseClick(object sender, MouseEventArgs e)
         {
+
+
             resetButtonEdit();
-            Xwidth = Convert.ToInt32(textBoxXWidth.Text);
+            Xwidth = 1;
+            if (Convert.ToInt32(textBoxXWidth.Text.Trim()) > 0)
+            {
+                Xwidth = Convert.ToInt32(textBoxXWidth.Text.Trim());
+            }
+
 
             // Lay image khi click + doi cursor          
             foreach (ListViewItem itm in listViewBG.SelectedItems)
@@ -464,13 +464,17 @@ namespace MapEditor
             textBoxNameOB.Text = listViewBG.SelectedItems[0].Text;
             CurrentCursor = CursorCur.OBJECT;
             buttonEdit.Enabled = true;
+
         }
 
         private void listViewItem_MouseClick(object sender, MouseEventArgs e)
         {
+
+
             comboBoxNameItem.Visible = false;
             textBoxNameOB.Visible = true;
             isItemStand = false;
+
             // Lay image khi click + doi cursor          
             foreach (ListViewItem itm in listViewItem.SelectedItems)
             {
@@ -543,7 +547,8 @@ namespace MapEditor
 
         private void textBoxXWidth_KeyUp(object sender, KeyEventArgs e)
         {
-            if (textBoxXWidth.Text.Trim() != "")
+
+            if (textBoxXWidth.Text.Trim() != "" && Convert.ToInt32(textBoxXWidth.Text.Trim()) > 0)
             {
                 int Xold = Xwidth; // gia tri Xwidth cu
                 Xwidth = Convert.ToInt32(textBoxXWidth.Text);
@@ -576,6 +581,16 @@ namespace MapEditor
             textBoxXWidth.Enabled = false;
 
         }
+        private void PictureBoxes_MouseMove(object sender, EventArgs e)
+        {           
+            this.Cursor = Cursors.Hand;
+        }
 
+        private void PictureBoxes_MouseLeave(object sender, EventArgs e)
+        {
+            this.Cursor = new Cursor(((Bitmap)imageCursor).GetHicon());
+        }
     }
+
+
 }

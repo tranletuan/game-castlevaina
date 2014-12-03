@@ -11,6 +11,7 @@ ScenePlay::ScenePlay()
 	m_enemy_test = new CSniperHide(123, Sniper_Hide, D3DXVECTOR3(200, 142, 0), 26, 44);
 	m_enemy_test->SetWeapon(m_enemyWeapon);
 	m_listNoTree = new CListNoTree();	
+	
 	init();
 }
 
@@ -47,7 +48,7 @@ void ScenePlay::update(float time)
 	m_enemy_test->SetTarget(100, 50);
 	m_enemy_test->Update(time);
 
-	//m_bill->Update(time);
+	m_bill->Update(time);
 	//m_camera->update(time, ResourceManager::getInstance()->m_posChar);
 	m_camera->Update(m_bill->getPosX(), m_bill->getPosY());
 
@@ -55,13 +56,14 @@ void ScenePlay::update(float time)
 	m_tree->update(time);
 	m_cameraHUD->update(time);
 
+
 }
 
 void ScenePlay::draw()
 {
 	m_background->draw();
 	m_tree->draw();
-	//m_bill->Draw();
+	m_bill->Draw();
 	m_enemy_test->Draw();
 	m_cameraHUD->draw();
 	m_enemyWeapon->Draw();
