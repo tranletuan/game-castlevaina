@@ -69,9 +69,21 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(ItemB);
 	}
+	else if (x == "ItemL")
+	{
+		setSpecificType(ItemL);
+	}
 	else if (x == "ItemStandM")
 	{
 		setSpecificType(ItemM_Stand);
+	}
+	else if (x == "ItemStandF")
+	{
+		setSpecificType(ItemF_Stand);
+	}
+	else if (x == "ItemStandS")
+	{
+		setSpecificType(ItemS_Stand);
 	}
 	else if (x == "WaterEffect1")
 	{
@@ -97,6 +109,10 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(Ground_Bridge);
 	}	
+	else if (x == "Water")
+	{
+		setSpecificType(Ground_Water);
+	}
 }
 
 void CObject::setTrack(string x)
