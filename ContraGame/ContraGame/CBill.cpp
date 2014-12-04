@@ -95,6 +95,10 @@ void CBill::Update(int delta_time)
 	{
 		SetStatus(Fall);
 	}
+
+	CResourcesManager* rs = CResourcesManager::GetInstance();
+	rs->m_posBill.x = _physical.x;
+	rs->m_posBill.y = _physical.y;
 }
 
 bool CBill::SetStatus(PlayerStatus status)

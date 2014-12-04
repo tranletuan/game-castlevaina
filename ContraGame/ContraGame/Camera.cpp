@@ -16,7 +16,7 @@ CCamera::CCamera(float posX, float posY)
 void CCamera::UpdateCameraX(float x)
 {
 	
-	view_port.x = x - kScreenWidth / 2;
+	view_port.x = (int)x - kScreenWidth / 2;
 	if (view_port.x < 0)
 	{
 		view_port.x = 0;
@@ -25,23 +25,23 @@ void CCamera::UpdateCameraX(float x)
 
 void CCamera::UpdateCameraY(float y)
 {
-	view_port.y = y + kScreenHeight / 2;
+	view_port.y = (int)y + kScreenHeight / 2;
 	if (view_port.y < 0)
 	{
 		view_port.y = 0;
 	}
 }
 
-void CCamera::Update(float x, float y)
+void CCamera::Update()
 {
 	CResourcesManager* rs = CResourcesManager::GetInstance();
 	switch (rs->m_levelMap)
 	{
 	case 1:
-		UpdateCameraX(x);
+		UpdateCameraX(rs->m_posBill.x);
 		break;
 	case 2:
-		UpdateCameraY(y);
+		UpdateCameraY(rs->m_posBill.y);
 		break;
 	}
 	rs->_camera = this;
