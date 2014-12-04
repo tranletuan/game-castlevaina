@@ -10,6 +10,7 @@ ScenePlay::ScenePlay()
 	_player1 = new CBill();
 	_player1->SetWeapon(_weapon_player1);
 
+	_weapon_enemy = new CEnemyWeapon();
 
 	init();
 }
@@ -41,7 +42,7 @@ void ScenePlay::update(float time)
 
 	_player1->Update(time);
 	_weapon_player1->Update(time);
-
+	_weapon_enemy->Update(time);
 	
 	m_cameraHUD->update(time);
 	m_camera->Update();
@@ -53,8 +54,11 @@ void ScenePlay::draw()
 {
 	m_background->draw();
 	m_tree->draw();
+
+	_weapon_enemy->Draw();
 	_weapon_player1->Draw();
 	_player1->Draw();
+
 	m_cameraHUD->draw();
 }
 
@@ -82,7 +86,7 @@ void ScenePlay::UpdateFullListObjetcInView()
 				_grounds[ob->_id] = ob;
 				break;
 			case Enemy:
-				if (ob->_hp > 0)
+				if (ob->_enable)
 					_enemies[ob->_id] = ob;
 				break;
 			case Item:
@@ -150,7 +154,15 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 
 			//Va chạm với người chơi 2
 
-			//Va chạm với đạn người chơi
+			//Va chạm với đạn người chơi 1
+			if (_weapon_player1->CheckCollision(enemy) != NoCollision)
+			{
+				enemy->_hp--;
+			}
+
+			//Va chạm với đạn người chơi 2
+			
+
 		}
 	}
 }
@@ -162,4 +174,5 @@ void ScenePlay::UpdateGlobalVariable()
 {
 	CResourcesManager* rs = CResourcesManager::GetInstance();
 	rs->_grounds = _grounds;
+	rs->_weapon_enemy = _weapon_enemy;
 }

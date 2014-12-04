@@ -27,16 +27,12 @@ void CWeapon::Update(int delta_time)
 			int id = (*i).first;
 			CBullet* bullet = (*i).second;
 
-			//Bỏ qua những viên đạn vô hiệu
-			if (!bullet->_enable) continue;
-
 			//Cập nhật vật lý của đạn
 			bullet->Update(delta_time);
 
 			//Kiểm tra đạn có nằm trong màn hình không
-			if (!CheckBulletInView(bullet->_physical.x, bullet->_physical.y))
+			if (!CheckBulletInView(bullet->_physical.x, bullet->_physical.y) || !bullet->_enable)
 			{
-				bullet->OnTarget();
 				_queue_id_remove.push(bullet->_id);
 			}
 		}

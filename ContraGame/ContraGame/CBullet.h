@@ -24,8 +24,5 @@ public:
 	virtual void Moving(float v_max) ;
 	virtual void Shoot(D3DXVECTOR3 pos, int angle, float v_max, float vo = 0);
 	void OnTarget();
-
-	bool _enable;
-
 };
 #endif // !_CBULLET_H_

@@ -27,6 +27,10 @@ void CSniperStand::LoadResources()
 
 void CSniperStand::Update(int delta_time)
 {
+	//Target mục tiêu
+	D3DXVECTOR2 pos_target = CResourcesManager::GetInstance()->m_posBill;
+	SetTarget(pos_target.x, pos_target.y);
+
 	//Cập nhật lại những viên đạn có thể bắn trong list của enemy
 	_weapon->UpdateQueueIdBullet(_queue_id_bullet);
 
@@ -157,6 +161,10 @@ void CSniperStand::DrawWhenDie(D3DXVECTOR3 pos)
 	if (_current_sprite->index != _current_sprite->sprite_texture->count - 1)
 	{
 		_current_sprite->DrawWithDirection(pos, _physical.vx_last, 0, 2);
+	}
+	else
+	{
+		_enable = false;
 	}
 }
 

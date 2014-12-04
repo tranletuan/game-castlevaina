@@ -11,6 +11,9 @@ CEnemyUseGun::~CEnemyUseGun()
 
 void CEnemyUseGun::SetTarget(float x, float y)
 {
+	CEnemyWeapon* wp = CResourcesManager::GetInstance()->_weapon_enemy;
+	SetWeapon(wp);
+
 	_target.x = x;
 	_target.y = y;
 
