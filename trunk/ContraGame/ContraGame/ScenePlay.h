@@ -1,6 +1,7 @@
 #ifndef SCENEPLAY_H
 #define SCENEPLAY_H
 
+#include <map>
 #include "BaseScene.h"
 #include "Background.h"
 #include "CameraHUD.h"
@@ -25,14 +26,19 @@ private:
 	CameraHUD *m_cameraHUD;
 	CCamera *m_camera;
 	QTTree *m_tree;
-	CBill *m_bill;
-	CPlayerWeapon *m_playerWeapon;
-	CEnemyWeapon *m_enemyWeapon;
-	CEnemy *m_enemy_test;
+
+	CBill* _player1;
+	CBill* _player2;
+
+	CPlayerWeapon* _weapon_player1;
+	CPlayerWeapon* _weapon_player2;
+	CEnemyWeapon* _weapon_enemy;
+
+	map<int, CObject*> _grounds;
+	map<int, CObject*> _enemies;
+	map<int, CObject*> _items;
 
 	CListNoTree *m_listNoTree;
-	CBoss1 *m_boss;
-	CGroundEffect *m_ground;
 
 public:
 	ScenePlay();
@@ -43,8 +49,14 @@ public:
 	void draw();
 	void update(float time);
 	void destroy();
-	// xu ly va cham cac doi tuong
+
 	SceneType getSceneID(){ return SCENE_PLAY; }
+
+	void UpdateFullListObjetcInView();
+	void ProcessGroundsWithOneAnother();
+	void ProcessEnemiesWithOneAnother();
+	void ProcessItemsWithOneAnother();
+	void UpdateGlobalVariable();
 };
 
 

@@ -1,7 +1,7 @@
 ﻿#include "CItemStand.h"
 
 CItemStand::CItemStand(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
-	:CObject(id, specific_type, pos, width, height)
+	:CObject(id, specific_type, Item, pos, width, height)
 {
 	_hp = 1;
 	LoadResources();

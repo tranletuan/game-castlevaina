@@ -3,6 +3,7 @@
 CPlayerWeapon::CPlayerWeapon()
 {
 	SetWaeponType(WPN);
+	LoadResources();
 }
 
 CPlayerWeapon::~CPlayerWeapon()
@@ -76,25 +77,20 @@ void CPlayerWeapon::SetVelocityPowerful(float vp)
 	this->_v_powerful = vp;
 }
 
-void CPlayerWeapon::Shooting(D3DXVECTOR3 pos, int angle, float vo)
+bool CPlayerWeapon::Shooting(D3DXVECTOR3 pos, int angle, float vo)
 {
 	switch (_player_waepon_type)
 	{
 	case WPN:
-		ShootingNBullet(pos, angle, vo);
-		break;
+		return ShootingNBullet(pos, angle, vo);
 	case WPM:
-		ShootingMBullet(pos, angle, vo);
-		break;
+		return ShootingMBullet(pos, angle, vo);
 	case WPS:
-		ShootingSBullet(pos, angle, vo);
-		break;
+		return ShootingSBullet(pos, angle, vo);
 	case WPF:
-		ShootingFBullet(pos, angle, vo);
-		break;
+		return ShootingFBullet(pos, angle, vo);
 	case WPL:
-		ShootingLBullet(pos, angle, vo);
-		break;
+		return ShootingLBullet(pos, angle, vo);
 	}
 }
 
@@ -161,7 +157,7 @@ void CPlayerWeapon::LoadResources()
 }
 
 //Support
-void CPlayerWeapon::ShootingNBullet(D3DXVECTOR3 pos, int angle, float vo)
+bool CPlayerWeapon::ShootingNBullet(D3DXVECTOR3 pos, int angle, float vo)
 {
 	if (!_queue_bullet_n.empty())
 	{
@@ -170,10 +166,14 @@ void CPlayerWeapon::ShootingNBullet(D3DXVECTOR3 pos, int angle, float vo)
 
 		_queue_bullet_n.pop();
 		_list_bullet[bullet->_id] = bullet;
+
+		return true;
 	}
+
+	return false;
 }
 
-void CPlayerWeapon::ShootingMBullet(D3DXVECTOR3 pos, int angle, float vo)
+bool CPlayerWeapon::ShootingMBullet(D3DXVECTOR3 pos, int angle, float vo)
 {
 	if (!_queue_bullet_m.empty())
 	{
@@ -182,10 +182,14 @@ void CPlayerWeapon::ShootingMBullet(D3DXVECTOR3 pos, int angle, float vo)
 
 		_queue_bullet_m.pop();
 		_list_bullet[bullet->_id] = bullet;
+
+		return true;
 	}
+
+	return false;
 }
 
-void CPlayerWeapon::ShootingFBullet(D3DXVECTOR3 pos, int angle, float vo)
+bool CPlayerWeapon::ShootingFBullet(D3DXVECTOR3 pos, int angle, float vo)
 {
 	if (!_queue_bullet_f.empty())
 	{
@@ -194,10 +198,14 @@ void CPlayerWeapon::ShootingFBullet(D3DXVECTOR3 pos, int angle, float vo)
 
 		_queue_bullet_f.pop();
 		_list_bullet[bullet->_id] = bullet;
+
+		return true;
 	}
+
+	return false;
 }
 
-void CPlayerWeapon::ShootingLBullet(D3DXVECTOR3 pos, int angle, float vo)
+bool CPlayerWeapon::ShootingLBullet(D3DXVECTOR3 pos, int angle, float vo)
 {
 	//Xóa tất cả đạn trong list
 	if (_list_bullet.size() > 0)
@@ -230,12 +238,16 @@ void CPlayerWeapon::ShootingLBullet(D3DXVECTOR3 pos, int angle, float vo)
 		_list_bullet[bullet->_id] = bullet;
 		_count++;
 	}
+
+	return true;
 }
 
-void CPlayerWeapon::ShootingSBullet(D3DXVECTOR3 pos, int angle, float vo)
+bool CPlayerWeapon::ShootingSBullet(D3DXVECTOR3 pos, int angle, float vo)
 {
 	int _count = 0;
 	int _angle = angle;
+
+	if (_queue_bullet_s.empty()) return false;
 
 	while (!_queue_bullet_s.empty())
 	{
@@ -252,6 +264,8 @@ void CPlayerWeapon::ShootingSBullet(D3DXVECTOR3 pos, int angle, float vo)
 		_list_bullet[bullet->_id] = bullet;
 		_count++;
 	}
+
+	return true;
 }
 
 void CPlayerWeapon::RemoveDisabledBullet()

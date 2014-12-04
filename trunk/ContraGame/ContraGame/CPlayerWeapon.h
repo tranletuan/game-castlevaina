@@ -19,11 +19,11 @@ private:
 	float _v_powerful;
 	PlayerWeaponType _player_waepon_type;
 
-	void ShootingNBullet(D3DXVECTOR3 pos, int angle, float vo);
-	void ShootingMBullet(D3DXVECTOR3 pos, int angle, float vo);
-	void ShootingLBullet(D3DXVECTOR3 pos, int angle, float vo);
-	void ShootingFBullet(D3DXVECTOR3 pos, int angle, float vo);
-	void ShootingSBullet(D3DXVECTOR3 pos, int angle, float vo);
+	bool ShootingNBullet(D3DXVECTOR3 pos, int angle, float vo);
+	bool ShootingMBullet(D3DXVECTOR3 pos, int angle, float vo);
+	bool ShootingLBullet(D3DXVECTOR3 pos, int angle, float vo);
+	bool ShootingFBullet(D3DXVECTOR3 pos, int angle, float vo);
+	bool ShootingSBullet(D3DXVECTOR3 pos, int angle, float vo);
 
 	queue<CBullet*> _queue_bullet_n;
 	queue<CBullet*> _queue_bullet_m;
@@ -39,7 +39,7 @@ public:
 	void SetWaeponType(PlayerWeaponType type);
 	void SetVelocityPowerful(float vp);
 
-	void Shooting(D3DXVECTOR3 pos, int angle, float vo);
+	bool Shooting(D3DXVECTOR3 pos, int angle, float vo);
 	void RemoveDisabledBullet();
 
 	CollisionDirection CheckCollision(CObject* obj);

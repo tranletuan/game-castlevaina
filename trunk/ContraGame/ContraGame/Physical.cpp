@@ -65,6 +65,8 @@ void CPhysical::CalcPositionWithoutGravitation(int time)
 
 CollisionDirection CPhysical::Collision(CPhysical* physical)
 {
+	if (!CheckBounds(physical)) return NoCollision;
+
 	float dx_entry, dx_exit, tx_entry, tx_exit;
 	float dy_exit, ty_entry, ty_exit, dy_entry;
 
@@ -121,6 +123,39 @@ CollisionDirection CPhysical::Collision(CPhysical* physical)
 }
 
 //SUPPORT METHOD
+bool CPhysical::CheckBounds(CPhysical* physical)
+{
+	BOUNDS rect = this->bounds;
+
+	//Thiết lập hình chữ nhật bao vùng di chuyển của đối tượng
+	if (current_vx > 0)
+	{
+		rect.right += current_vx;
+	}
+	else if (current_vx < 0)
+	{	
+		rect.left += current_vx;
+	}
+
+	if (current_vy > 0)
+	{
+		rect.top += current_vy;
+	}
+	else if (current_vy < 0)
+	{
+		rect.bottom += current_vy;
+	}
+
+	//Kiểm tra vật cần xét va chạm có nằm trong vùng di chuyển k
+	if ((rect.right >= physical->bounds.left && rect.left <= physical->bounds.right) ||
+		(rect.top >= physical->bounds.bottom && rect.bottom <= physical->bounds.top))
+	{
+		return true;
+	}
+
+	return false;
+}
+
 void CPhysical::Swap(float &Dentry, float &Dexit)
 {
 	float temp = Dentry;

@@ -113,11 +113,11 @@ void CResourcesManager::loadPlayGraphics()
 	HUD_badge = new CTexture(PATH_HUD_BADGE); // huy chuong
 
 	//Player
-	_bill_stand = new CTexture(PATH_PLAYER_STAND, 5);
+	_bill_stand = new CTexture(PATH_PLAYER_STAND, 6);
 	_bill_jump = new CTexture(PATH_PLAYER_JUMP, 4);
 	_bill_die = new CTexture(PATH_PLAYER_DIE, 5);
 	_bill_move = new CTexture(PATH_PLAYER_MOVE, 5, 4);
-	_bill_in_water = new CTexture(PATH_PLAYER_IN_WATER, 5);
+	_bill_in_water = new CTexture(PATH_PLAYER_IN_WATER, 10);
 
 }
 
