@@ -2,7 +2,9 @@
 
 CGroundEffect::CGroundEffect(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
 	:CGround(id, specific_type, pos, width, height)
+
 {
+	_basic_type = Effect;
 	_count = width / GROUND_SIZE_NORMAL;
 	_time_count = 0;
 	_isDraw = false;

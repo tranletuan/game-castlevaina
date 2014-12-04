@@ -184,7 +184,7 @@ void CBill::Attacking()
 		if (_enviroment == Land)
 			y = _physical.y + 1;
 		else
-			y = _physical.y - 8;
+			y = _physical.y - 24;
 
 		angle = _physical.vx_last > 0 ? angle : angle + 180;
 		break;
@@ -194,7 +194,7 @@ void CBill::Attacking()
 			if (_enviroment == Land)
 				y = _physical.y + 19;
 			else
-				y = _physical.y + 6;
+				y = _physical.y - 12;
 
 			angle = 45;
 			angle = _physical.vx_last > 0 ? angle : 180 - angle;
@@ -317,21 +317,22 @@ void CBill::DrawWhenAttack(D3DXVECTOR3 pos)
 	if (_enviroment == Water)
 	{
 		_current_sprite = _bill_in_water;
+		D3DXVECTOR3 position = D3DXVECTOR3(pos.x, pos.y + 16, 0);
 		switch (_gun_direction)
 		{
 		case Normal:
-			done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 4, 5, 500);
+			done = _current_sprite->DrawWithDirectionAndOneTimeEffect(position, _physical.vx_last, 4, 5, 500);
 			break;
 		case Up:
 			//Khi nhắm lên bắn có 2 kiểu, khi di chuyển hướng sung xéo
 			//còn khi đứng yên hướng súng 90 độ
 			if (_physical.vx != 0)
 			{
-				done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 6, 7, 500);
+				done = _current_sprite->DrawWithDirectionAndOneTimeEffect(position, _physical.vx_last, 6, 7, 500);
 			}
 			else
 			{
-				done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 8, 9, 500);
+				done = _current_sprite->DrawWithDirectionAndOneTimeEffect(position, _physical.vx_last, 8, 9, 500);
 			}
 			break;
 		}
@@ -398,7 +399,8 @@ void CBill::DrawWhenMove(D3DXVECTOR3 pos)
 	if (_enviroment == Water)
 	{
 		_current_sprite = _bill_in_water;
-		_current_sprite->DrawWithDirection(pos, _physical.vx_last, 2, 3, 300);
+		D3DXVECTOR3 position = D3DXVECTOR3(pos.x, pos.y + 16, 0);
+		_current_sprite->DrawWithDirection(position, _physical.vx_last, 2, 3, 300);
 	}
 	else
 	{
@@ -424,14 +426,15 @@ void CBill::DrawWhenStand(D3DXVECTOR3 pos)
 	if (_enviroment == Water)
 	{
 		_current_sprite = _bill_in_water;
+		D3DXVECTOR3 position = D3DXVECTOR3(pos.x, pos.y + 16, 0);
 		switch (_gun_direction)
 		{
 		case Normal:
 		case Up:
-			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 2, 3, 300);
+			_current_sprite->DrawWithDirection(position, _physical.vx_last, 2, 3, 300);
 			break;
 		case Down:
-			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 0, 1, 300);
+			_current_sprite->DrawWithDirection(position, _physical.vx_last, 0, 1, 300);
 			break;
 		}
 	}
@@ -481,6 +484,12 @@ void CBill::UpdateBounds()
 				BILL_BOUNDS_HEIGHT);
 			break;
 		case Jump:
+			_physical.SetBounds(
+				_physical.x,
+				_physical.y - 10,
+				_current_sprite->sprite_texture->frame_width,
+				_current_sprite->sprite_texture->frame_height);
+			break;
 		case Die:
 			_physical.SetBounds(
 				_physical.x,
