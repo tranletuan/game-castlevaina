@@ -85,11 +85,12 @@ void CSprite::PerformAllEffect(int time)
 
 void CSprite::PerformEffect(int start, int end, int time, int step)
 {
-	if (start == end) return;
 	if (index < start || index > end)
 	{
 		index = start < end ? start : end;
 	}
+
+	if (start == end) return;
 
 	this->start = start;
 	this->end = end;
@@ -119,12 +120,13 @@ void CSprite::PerformEffect(int start, int end, int time, int step)
 
 bool CSprite::PerformEffectOneTime(int start, int end, int time, int step)
 {
-	if (start == end) return true;
 	if (((start < end) && (index < start || index > end)) ||
 		((start > end) && (index > start || index < end)))
 	{
 		index = start;
 	}
+
+	if (start == end) return true;
 
 	this->start = start;
 	this->end = end;

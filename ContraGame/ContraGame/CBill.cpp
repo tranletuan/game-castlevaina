@@ -10,6 +10,7 @@ CBill::CBill(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int
 	_physical.time_in_space = 0;
 	_physical.vx = 0;
 	_id_ground_stand = -1;
+	LoadResources();
 }
 
 CBill::CBill()
@@ -21,7 +22,6 @@ CBill::CBill()
 	_physical.time_in_space = 0;
 	_physical.vx = 0;
 	_id_ground_stand = -1;
-
 	LoadResources();
 }
 
@@ -135,14 +135,14 @@ bool CBill::Falling(CObject* ground)
 	if (_physical.x >= ground->_physical.bounds.left &&
 		_physical.x <= ground->_physical.bounds.right &&
 		_id_ground_stand != ground->_id &&
-		_physical.y - BILL_BOUNDS_HEIGHT / 2 - 1 > ground->_physical.bounds.top)
+		_physical.y - BILL_BOUNDS_HEIGHT / 2 - 0.5f > ground->_physical.bounds.top)
 	{
 		//Nếu có khả năng tiếp đất, kiểm tra trạng thái hiện tại 
 		if (_player_status == Fall || _player_status == Jump) return false;
 		if (!SetStatus(Fall)) return false;
 
 		//Đã chuyển được trạng thái, bắt đầu rơi
-		_physical.vx = 0;
+		//_physical.vx = 0;
 		_physical.time_in_space = GetTickCount();
 		return true;
 	}
@@ -164,7 +164,7 @@ void CBill::Attacking()
 {
 	//Hàm này chủ yếu để tính toán góc bắn của player
 	//k đưa các thông số constant vào config.h vì quá nhiều quá đặc biệt
-	SetStatus(Attack);
+	
 	//Không bắn khi trạng thái nhân vật là Die
 	if (_player_status == Die) return;
 
@@ -230,7 +230,7 @@ void CBill::Attacking()
 			}
 			else
 			{
-				y = _physical.y - 14;
+				y = _physical.y - 12;
 				angle = _physical.vx_last > 0 ? 0 : 180;
 			}
 		}
@@ -238,7 +238,8 @@ void CBill::Attacking()
 	}
 
 	pos = D3DXVECTOR3(x, y, 0);
-	_weapon->Shooting(pos, angle, _physical.vx);
+	bool is_shot = _weapon->Shooting(pos, angle, _physical.vx);
+	if (is_shot)SetStatus(Attack);
 }
 
 void CBill::Moving(float vx)
@@ -246,7 +247,7 @@ void CBill::Moving(float vx)
 	SetStatus(Move);
 
 	//Khi trạng thái hiện tại != die và fall mới được phép thay đổi vx
-	if (_player_status != Die && _player_status != Fall)
+	if (_player_status != Die)
 	{
 		//Ngoài trạng thái Die ra thì mọi trạng thái còn lại
 		//đều cần set vx
@@ -315,23 +316,19 @@ void CBill::DrawWhenAttack(D3DXVECTOR3 pos)
 		switch (_gun_direction)
 		{
 		case Normal:
-			done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 2, 2, 400);
+			done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 4, 5, 500);
 			break;
 		case Up:
 			//Khi nhắm lên bắn có 2 kiểu, khi di chuyển hướng sung xéo
 			//còn khi đứng yên hướng súng 90 độ
 			if (_physical.vx != 0)
 			{
-				done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 3, 3, 400);
+				done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 6, 7, 500);
 			}
 			else
 			{
-				done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 4, 4, 400);
+				done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 8, 9, 500);
 			}
-			break;
-
-		case Down:
-			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 1, 1);
 			break;
 		}
 	}
@@ -371,7 +368,7 @@ void CBill::DrawWhenAttack(D3DXVECTOR3 pos)
 				}
 				break;
 			case Down:
-				_current_sprite->DrawWithDirection(pos, _physical.vx_last, 4, 4);
+				done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 4, 5);
 				break;
 			}
 		}
@@ -397,7 +394,7 @@ void CBill::DrawWhenMove(D3DXVECTOR3 pos)
 	if (_enviroment == Water)
 	{
 		_current_sprite = _bill_in_water;
-		_current_sprite->DrawWithDirection(pos, _physical.vx_last, 1, 1);
+		_current_sprite->DrawWithDirection(pos, _physical.vx_last, 2, 3, 300);
 	}
 	else
 	{
@@ -427,10 +424,10 @@ void CBill::DrawWhenStand(D3DXVECTOR3 pos)
 		{
 		case Normal:
 		case Up:
-			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 1, 1);
+			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 2, 3, 300);
 			break;
 		case Down:
-			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 0, 0);
+			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 0, 1, 300);
 			break;
 		}
 	}
@@ -527,15 +524,27 @@ void CBill::ProcessInput()
 
 void CBill::OnKeyDown()
 {
-	
-	if (_input->KeyDown(DIK_L))
+	if (_input->onKeyDown(DIK_L))
 	{
 		if (GetGunDirection() != Down)
 		{
 			Jumping();
 		}
+		else
+		{
+			map<int, CObject*> list_grounds = CResourcesManager::GetInstance()->_grounds;
+			if (list_grounds.size() > 0)
+			{
+				for (map<int, CObject*>::iterator i = list_grounds.begin(); i != list_grounds.end(); i++)
+				{
+					CObject* ground = (*i).second;
+					if (Falling(ground) == true) return;
+				}
+			}
+		}
 	}
-	else if (_input->KeyDown(DIK_J))
+	
+	if (_input->onKeyDown(DIK_J))
 	{
 		Attacking();
 	}
@@ -549,8 +558,9 @@ void CBill::OnKeyUp()
 	{
 		Moving(0);
 	} 
+	
 	//Hướng súng trở về bình thường
-	else if (_input->onKeyUp(DIK_W) ||
+	if (_input->onKeyUp(DIK_W) ||
 		_input->onKeyUp(DIK_S))
 	{
 		SetGunDirection(Normal);
@@ -564,7 +574,8 @@ void CBill::IsKeyDown()
 	{
 		Moving(BILL_VX);
 	}
-	else if (_input->KeyDown(DIK_A))
+	
+	if (_input->KeyDown(DIK_A))
 	{
 		Moving(-BILL_VX);
 	}
@@ -574,7 +585,8 @@ void CBill::IsKeyDown()
 	{
 		SetGunDirection(Up);
 	}
-	else if (_input->KeyDown(DIK_S))
+	
+	if (_input->KeyDown(DIK_S))
 	{
 		SetGunDirection(Down);
 	}

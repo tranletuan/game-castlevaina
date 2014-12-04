@@ -4,13 +4,13 @@
 #define MAP_FOLDER L"resources/map/"
 
 //GRAVITY
-#define GRAVITY 0.025f
+#define GRAVITY 0.013f
 
 //BILL 
-#define BILL_VX 0.08f
-#define BILL_VY 9.5f
-#define BILL_VY_DIE 7.0f
-#define BILL_BOUNDS_WIDTH 8
+#define BILL_VX 0.065f
+#define BILL_VY 5.9f	
+#define BILL_VY_DIE 6.0f
+#define BILL_BOUNDS_WIDTH 10
 #define BILL_BOUNDS_HEIGHT 28
 
 //BULLET

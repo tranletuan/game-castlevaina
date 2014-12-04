@@ -42,6 +42,7 @@ public:
 	CollisionDirection Collision(CPhysical* physical);
 
 private:
+	bool CheckBounds(CPhysical* physical);
 	void Swap(float &Dentry, float &Dexit);
 	float Max(float a, float b);
 	float Min(float a, float b);

@@ -1,7 +1,7 @@
 ﻿#include "CItemFly.h"
 
 CItemFly::CItemFly(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
-	:CObject(id, specific_type, pos, width, height)
+	:CObject(id, specific_type, Item, pos, width, height)
 {
 	_hp = 1;
 	_state_item_fly = SIF_Move;
@@ -9,10 +9,12 @@ CItemFly::CItemFly(int id, SpecificType specific_type, D3DXVECTOR3 pos, int widt
 	_angle = 0;
 	LoadResources();
 }
+
 CItemFly::CItemFly(int id, SpecificType specific_type, D3DXVECTOR3 pos, TrackID track, int width, int height)
 	:CObject(id, specific_type, pos, track, width, height)
 {
 	_hp = 1;
+	_basic_type = Item;
 	_state_item_fly = SIF_Move;
 	if (_track == Track_LR)
 	{
@@ -126,6 +128,7 @@ void CItemFly::DrawWhenMove(D3DXVECTOR3 pos)
 	// Khi chưa hoạt động chỉ ở index = 0;	
 	_sprite_item->Draw(pos.x, pos.y);
 }
+
 void CItemFly::DrawWhenDie(D3DXVECTOR3 pos)
 {
 	// Khi bị bắt không vẽ _sprite_stand, _sprite_effect nổ theo _pos_stand , đồng thời vẻ _sprite_item vang lên

@@ -20,6 +20,7 @@ public:
 	CPhysical		_physical;
 	bool			_enable; // đang hoạt động, để xử lý update cho nhung ob o ngoai quad tree
 	TrackID			_track;
+	int				_hp;
 
 	CObject();
 	CObject(int id, SpecificType specific_type, BasicType basic_type,D3DXVECTOR3 pos, int width = 0, int height = 0);

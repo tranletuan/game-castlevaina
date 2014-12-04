@@ -58,7 +58,8 @@ enum BasicType
 	Bullet,
 	Ground,
 	Effect,
-	Enemy
+	Enemy,
+	Item
 };
 
 // đường đi của ob

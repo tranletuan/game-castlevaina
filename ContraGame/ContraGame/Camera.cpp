@@ -21,10 +21,6 @@ void CCamera::UpdateCameraX(float x)
 	{
 		view_port.x = 0;
 	}
-
-	
-//	view_port.x += 10;
-
 }
 
 void CCamera::UpdateCameraY(float y)
@@ -38,8 +34,8 @@ void CCamera::UpdateCameraY(float y)
 
 void CCamera::Update(float x, float y)
 {
-	CResourcesManager *rs = CResourcesManager::GetInstance();
-	/*switch (rs->m_levelMap)
+	CResourcesManager* rs = CResourcesManager::GetInstance();
+	switch (rs->m_levelMap)
 	{
 	case 1:
 		UpdateCameraX(x);
@@ -47,12 +43,8 @@ void CCamera::Update(float x, float y)
 	case 2:
 		UpdateCameraY(y);
 		break;
-	case 3:
-		break;
-	default:
-		break;
-	}*/
-	//rs->_camera = this;
+	}
+	rs->_camera = this;
 }
 
 //Hàm để chuyển tọa độ góc của đối tượng thành tọa đô tậm
@@ -97,8 +89,6 @@ void CCamera::processInput()
 	{
 		view_port.x += 0;
 	}
-	
-
 }
 
 D3DXVECTOR3 CCamera::Transform(D3DXVECTOR3 pos)

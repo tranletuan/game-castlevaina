@@ -23,7 +23,6 @@ private:
 	SItemStand _state_item_stand;
 
 public:
-	int _hp;
 	CItemStand(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
 	~CItemStand();
 

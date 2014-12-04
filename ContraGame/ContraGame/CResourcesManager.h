@@ -1,6 +1,7 @@
 #ifndef RESOURCEMANAGER_H
 #define RESOURCEMANAGER_H
 
+#include <map>
 #include <cstdio>
 #include <d3dx9.h>
 #include <d3d9.h>
@@ -44,6 +45,7 @@ public:
 	int m_widthMap;
 	vector<CObject*> listObinView;
 	vector<CObject*> listObNoTree; // list ob khong nam trong quad tree
+	map<int, CObject*> _grounds;
 
 	/*------    HUD Camera     -----*/
 	CTexture *HUD_badge;
