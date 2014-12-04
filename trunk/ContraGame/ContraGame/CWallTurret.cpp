@@ -39,31 +39,34 @@ void CWallTurret::Update(int delta_time)
 
 	//chuyển state
 	// Xét khoảng hoạt động của item stand the o level map
-	switch (levelMap)
+	if (_enemy_status != EDie)
 	{
-	case 1:
-	case 3:
-		if (_physical.x + _current_sprite->sprite_texture->frame_width / 2 < _cam->getPosX() + _cam->getWidth() &&
-			_physical.x - _current_sprite->sprite_texture->frame_width / 2 > _cam->getPosX())
+		switch (levelMap)
 		{
-			_enemy_status = EAttack;
+		case 1:
+		case 3:
+			if (_physical.x + _current_sprite->sprite_texture->frame_width / 2 < _cam->getPosX() + _cam->getWidth() &&
+				_physical.x - _current_sprite->sprite_texture->frame_width / 2 > _cam->getPosX())
+			{
+				_enemy_status = EAttack;
+			}
+			else
+			{
+				_enemy_status = EWait;
+			}
+			break;
+		case 2:
+			if (_physical.y + _current_sprite->sprite_texture->frame_height / 2 < _cam->getPosY()
+				&& _physical.y - _current_sprite->sprite_texture->frame_height / 2 > 0)
+			{
+				_enemy_status = EAttack;
+			}
+			else
+			{
+				_enemy_status = EWait;
+			}
+			break;
 		}
-		else
-		{
-			_enemy_status = EWait;
-		}
-		break;
-	case 2:
-		if (_physical.y + _current_sprite->sprite_texture->frame_height / 2 < _cam->getPosY()
-			&& _physical.y - _current_sprite->sprite_texture->frame_height / 2 > 0)
-		{
-			_enemy_status = EAttack;
-		}
-		else
-		{
-			_enemy_status = EWait;
-		}
-		break;
 	}
 
 	if (_hp == 0)
@@ -101,12 +104,7 @@ void CWallTurret::SetTarget(float x, float y)
 void CWallTurret::Attacking()
 {
 	if (_hp == 0) return;
-
-	if (!CheckTarget())
-	{
-		_enemy_status = EWait;
-		return;
-	}
+	if (!CheckTarget()) return;
 
 	SetStatus(EAttack);
 	DWORD now = GetTickCount();

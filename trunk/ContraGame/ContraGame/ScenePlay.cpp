@@ -8,9 +8,11 @@ ScenePlay::ScenePlay()
 	
 	_weapon_player1 = new CPlayerWeapon();
 	_player1 = new CBill();
+	_player1->_physical.x = 1200;
 	_player1->SetWeapon(_weapon_player1);
 
 	_weapon_enemy = new CEnemyWeapon();
+
 
 	init();
 }
@@ -73,13 +75,15 @@ void ScenePlay::UpdateFullListObjetcInView()
 
 	if (objects.size() > 0)
 	{
-		_grounds.clear();
-		_enemies.clear();
-		_items.clear();
+		_grounds.erase(_grounds.begin(), _grounds.end());
+		_enemies.erase(_enemies.begin(), _enemies.end());
+		_items.erase(_items.begin(), _items.end());
 
-		for (vector<CObject*>::iterator i = objects.begin(); i != objects.end(); i++)
+
+		for (int i = 0; i < objects.size(); i++)
 		{
-			CObject* ob = (*i);
+			CObject* ob = objects.at(i);
+
 			switch (ob->_basic_type)
 			{
 			case Ground:
@@ -87,7 +91,7 @@ void ScenePlay::UpdateFullListObjetcInView()
 				break;
 			case Enemy:
 				if (ob->_enable)
-					_enemies[ob->_id] = ob;
+					_enemies.push_back(ob);
 				break;
 			case Item:
 				if (ob->_hp > 0)
@@ -95,6 +99,8 @@ void ScenePlay::UpdateFullListObjetcInView()
 				break;
 			}
 		}
+
+		objects.erase(objects.begin(), objects.end());
 	}
 }
 
@@ -146,9 +152,9 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 {
 	if (_enemies.size() > 0)
 	{
-		for (map<int, CObject*>::iterator i = _enemies.begin(); i != _enemies.end(); i++)
+		for (vector<CObject*>::iterator i = _enemies.begin(); i != _enemies.end(); i++)
 		{
-			CObject* enemy = (*i).second;
+			CObject* enemy = (*i);
 
 			//Va chạm với người chơi 1
 
