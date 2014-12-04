@@ -55,6 +55,8 @@ void CAutoDestroyBridge::Draw()
 			_effect_destroy_sprite->Draw(pos_effect.x, pos_effect.y);
 		}
 
+		_current_sprite->PerformEffectOneTime(2, 5, GROUND_BRIDGE_DESTROY_TIME);
+
 		//Thay đổi effect theo hiệu ứng của sprite chính
 		if (_current_sprite->last_index != _current_sprite->index)
 		{
@@ -67,7 +69,7 @@ void CAutoDestroyBridge::Draw()
 			_physical.bounds.left += GROUND_BRIDGE_DISTANCE_DESTROY;
 		}
 
-		_current_sprite->PerformEffectOneTime(1, 5, GROUND_BRIDGE_DESTROY_TIME);
+		
 	}
 	else if (!_is_destroy)
 	{
@@ -84,7 +86,7 @@ void CAutoDestroyBridge::SetTarget(float x)
 	if (x >= _physical.bounds.left && !_is_destroy)
 	{
 		_is_destroy = true;
-		_current_sprite->index = 1;
+		_current_sprite->index = 2;
 		_current_sprite->last_index = _current_sprite->index;
 		_physical.bounds.left += GROUND_BRIDGE_DISTANCE_DESTROY;
 	}

@@ -7,7 +7,7 @@ ScenePlay::ScenePlay()
 	m_tree = new QTTree();
 	
 	_weapon_player1 = new CPlayerWeapon();
-	_player1 = new CBill(1231, Player1, D3DXVECTOR3(0, 200, 0), 32, 32);
+	_player1 = new CBill();
 	_player1->SetWeapon(_weapon_player1);
 
 
@@ -44,14 +44,14 @@ void ScenePlay::update(float time)
 
 	
 	m_cameraHUD->update(time);
-	m_camera->Update(_player1->getPosX(), _player1->getPosY());
+	m_camera->Update();
 
 	UpdateGlobalVariable();
 }
 
 void ScenePlay::draw()
 {
-	//m_background->draw();
+	m_background->draw();
 	m_tree->draw();
 	_weapon_player1->Draw();
 	_player1->Draw();
@@ -98,8 +98,8 @@ void ScenePlay::ProcessGroundsWithOneAnother()
 {
 	if (_grounds.size() > 0)
 	{
-		CollisionDirection collision_player1 = Undefined;
-		CollisionDirection collision_player2 = Undefined;
+		CollisionDirection collision_player1 = NoCollision;
+		CollisionDirection collision_player2 = NoCollision;
 		for (map<int, CObject*>::iterator i = _grounds.begin(); i != _grounds.end(); i++)
 		{
 			CObject* ground = (*i).second;
@@ -126,6 +126,7 @@ void ScenePlay::ProcessGroundsWithOneAnother()
 			//Xét va chạm với items
 
 			//Xét va chạm với các đối tượng k có trong quadtree
+			
 		}
 
 		if (collision_player1 != TopCollision)
@@ -138,7 +139,21 @@ void ScenePlay::ProcessGroundsWithOneAnother()
 }
 
 void ScenePlay::ProcessEnemiesWithOneAnother()
-{}
+{
+	if (_enemies.size() > 0)
+	{
+		for (map<int, CObject*>::iterator i = _enemies.begin(); i != _enemies.end(); i++)
+		{
+			CObject* enemy = (*i).second;
+
+			//Va chạm với người chơi 1
+
+			//Va chạm với người chơi 2
+
+			//Va chạm với đạn người chơi
+		}
+	}
+}
 
 void ScenePlay::ProcessItemsWithOneAnother()
 {}
@@ -146,7 +161,5 @@ void ScenePlay::ProcessItemsWithOneAnother()
 void ScenePlay::UpdateGlobalVariable()
 {
 	CResourcesManager* rs = CResourcesManager::GetInstance();
-	rs->m_posBill.x = _player1->_physical.x;
-	rs->m_posBill.y = _player1->_physical.y;
 	rs->_grounds = _grounds;
 }

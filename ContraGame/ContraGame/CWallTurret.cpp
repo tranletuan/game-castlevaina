@@ -30,6 +30,38 @@ void CWallTurret::Update(int delta_time)
 	//Cập nhật lại những viên đạn có thể bắn trong list của enemy
 	_weapon->UpdateQueueIdBullet(_queue_id_bullet);
 
+	CCamera *_cam = CResourcesManager::GetInstance()->_camera;
+	int levelMap = CResourcesManager::GetInstance()->m_levelMap;
+
+	//chuyển state
+	// Xét khoảng hoạt động của item stand the o level map
+	switch (levelMap)
+	{
+	case 1:
+	case 3:
+		if (_physical.x + _current_sprite->sprite_texture->frame_width / 2 < _cam->getPosX() + _cam->getWidth() &&
+			_physical.x - _current_sprite->sprite_texture->frame_width / 2 > _cam->getPosX())
+		{
+			_enemy_status = EAttack;
+		}
+		else
+		{
+			_enemy_status = EWait;
+		}
+		break;
+	case 2:
+		if (_physical.y + _current_sprite->sprite_texture->frame_height / 2 < _cam->getPosY()
+			&& _physical.y - _current_sprite->sprite_texture->frame_height / 2 > 0)
+		{
+			_enemy_status = EAttack;
+		}
+		else
+		{
+			_enemy_status = EWait;
+		}
+		break;
+	}
+
 	if (_hp == 0)
 	{
 		SetStatus(EDie);
@@ -102,7 +134,7 @@ void CWallTurret::DrawWhenAttack(D3DXVECTOR3 pos)
 {
 	if (!_ready_shoot)
 	{
-		_ready_shoot = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 0, 6, 20);
+		_ready_shoot = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 0, 5, 20);
 	}
 	else
 	{
