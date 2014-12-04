@@ -98,15 +98,23 @@ CollisionDirection CPlayerWeapon::CheckCollision(CObject* obj)
 {
 	if (_list_bullet.size() > 0)
 	{
+		CollisionDirection collision = NoCollision;
 		for (map<int, CBullet*>::iterator i = _list_bullet.begin(); i != _list_bullet.end(); i++)
 		{
-			//Kiểm tra va chạm với 1 đối tượng
+			CBullet* bullet = (*i).second;
 
-			//Xử lý va chạm
+			if (!bullet->_enable) continue;
+
+			//Kiểm tra va chạm với 1 đối tượng
+			collision = bullet->_physical.Collision(&obj->_physical);
+			if (collision != NoCollision)
+			{
+				bullet->OnTarget();
+				break;
+			}
 		}
 
-		//Loại bỏ những viên đạn đã va chạm với đối tượng
-		RemoveDisabledBullet();
+		return collision;
 	}
 
 	return NoCollision;

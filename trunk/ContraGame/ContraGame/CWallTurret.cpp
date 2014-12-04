@@ -27,6 +27,10 @@ void CWallTurret::LoadResources()
 
 void CWallTurret::Update(int delta_time)
 {
+	//Target mục tiêu
+	D3DXVECTOR2 pos_target = CResourcesManager::GetInstance()->m_posBill;
+	SetTarget(pos_target.x, pos_target.y);
+
 	//Cập nhật lại những viên đạn có thể bắn trong list của enemy
 	_weapon->UpdateQueueIdBullet(_queue_id_bullet);
 
@@ -173,6 +177,10 @@ void CWallTurret::DrawWhenDie(D3DXVECTOR3 pos)
 	if (_current_sprite->index != 2)
 	{
 		_current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 0, 2);
+	}
+	else
+	{
+		_enable = false;
 	}
 }
 

@@ -4,6 +4,7 @@ CEnemy::CEnemy(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, i
 	:CObject(id, specific_type, Enemy, pos, width, height)
 {
 	_enemy_status = EWait;
+	_enable = true;
 	_physical.vx_last = -1;
 }
 

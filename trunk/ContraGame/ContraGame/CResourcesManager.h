@@ -23,6 +23,8 @@ using namespace std;
 class QTNode;
 class CObject;
 class CCamera;
+class CEnemyWeapon;
+class CPlayerWeapon;
 class CResourcesManager
 {
 
@@ -46,6 +48,9 @@ public:
 	vector<CObject*> listObinView;
 	vector<CObject*> listObNoTree; // list ob khong nam trong quad tree
 	map<int, CObject*> _grounds;
+	CPlayerWeapon* _weapon_player1;
+	CPlayerWeapon* _weapon_player2;
+	CEnemyWeapon* _weapon_enemy;
 
 	/*------    HUD Camera     -----*/
 	CTexture *HUD_badge;
