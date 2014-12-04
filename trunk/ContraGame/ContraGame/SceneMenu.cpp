@@ -7,7 +7,7 @@ SceneMenu::SceneMenu()
 	m_runBG = true;
 	m_curItem = Item1;
 	m_checkItem = false;
-	m_timeDuring = 20;
+	m_timeDuring = 100;
 	init();
 }
 
@@ -48,7 +48,7 @@ void SceneMenu::draw()
 		//xu ly item nhap nhay
 		if (m_curItem == Item1)
 		{
-			if (m_timeDuring % 4 == 0)
+			if (m_timeDuring % 15 > 5 && m_timeDuring % 15 < 12)
 			{
 				m_spItem1->Draw(m_spItem1->_pos);
 			}
@@ -56,7 +56,7 @@ void SceneMenu::draw()
 		}
 		else
 		{
-			if (m_timeDuring % 4 == 0)
+			if (m_timeDuring % 15 > 5 && m_timeDuring % 15 < 12)
 			{
 				m_spItem2->Draw(m_spItem2->_pos);
 			}

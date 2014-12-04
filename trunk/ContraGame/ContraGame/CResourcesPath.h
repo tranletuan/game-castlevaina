@@ -25,9 +25,9 @@
 #pragma endregion MusicPath
 
 #pragma region BackgrounPath
-#define PATH_MAP_BG1_PIC ".//DataGame//Images//Game//Background//bg1.png"
+#define PATH_MAP_BG1_PIC ".//DataGame//Images//Game//Background//1.png"
 #define PATH_MAP_BG1_TEXT ".//DataGame//Map//1_bg.txt"
-#define PATH_MAP_BG2_PIC ".//DataGame//Images//Background//bg2.png"
+#define PATH_MAP_BG2_PIC ".//DataGame//Images//Background//2.png"
 #define PATH_MAP_BG2_TEXT ".//DataGame//Map//2_bg.txt"
 #pragma endregion BackgrounPath
 
