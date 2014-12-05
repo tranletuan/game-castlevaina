@@ -125,6 +125,11 @@ CollisionDirection CPhysical::Collision(CPhysical* physical)
 //SUPPORT METHOD
 bool CPhysical::CheckBounds(CPhysical* physical)
 {
+	if (physical->bounds.left == 0 &&
+		physical->bounds.top == 0 &&
+		physical->bounds.right == 0 &&
+		physical->bounds.bottom == 0) return false;
+
 	BOUNDS rect = this->bounds;
 
 	//Thiết lập hình chữ nhật bao vùng di chuyển của đối tượng

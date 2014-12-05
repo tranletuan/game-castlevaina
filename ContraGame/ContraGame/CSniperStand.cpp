@@ -4,6 +4,7 @@ CSniperStand::CSniperStand(int id, SpecificType specific_type, D3DXVECTOR3 pos, 
 	:CEnemyUseGun(id, specific_type, pos, width, height)
 {
 	_hp = 1;
+	_can_impact = true;
 	LoadResources();
 }
 

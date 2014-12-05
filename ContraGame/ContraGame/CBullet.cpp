@@ -11,6 +11,7 @@ CBullet::CBullet(int id, SpecificType specific_type)
 	:CObject(id, specific_type, Bullet, D3DXVECTOR3(0, 0, 0))
 {
 	_enable = false;
+	_can_impact = true;
 }
 
 void CBullet::LoadResources()

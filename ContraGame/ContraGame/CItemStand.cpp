@@ -6,6 +6,7 @@ CItemStand::CItemStand(int id, SpecificType specific_type, D3DXVECTOR3 pos, int 
 	_hp = 1;
 	LoadResources();
 	_state_item_stand = SIS_Close;
+	_physical.SetBounds(pos.x, pos.y, 20, 20);
 }
 
 void CItemStand::LoadResources()
@@ -20,8 +21,10 @@ void CItemStand::LoadResources()
 	{
 	case ItemM_Stand:		
 		_sprite_item->SelectFrameOf(1);
-		break;
-	default:
+	case ItemS_Stand:
+		_sprite_item->SelectFrameOf(4);
+	case ItemF_Stand:
+		_sprite_item->SelectFrameOf(3);
 		break;
 	}
 }
@@ -88,8 +91,6 @@ void CItemStand::Update(int delta_time)
 			_state_item_stand = SIS_Close;
 		}
 		break;
-	default:
-		break;
 	}
 
 	if (_state_item_stand == SIS_Open)
@@ -100,7 +101,6 @@ void CItemStand::Update(int delta_time)
 		}
 	}
 	
-
 	// set vx & vy item văng lên
 	if (_hp == 0 )
 	{
@@ -108,6 +108,18 @@ void CItemStand::Update(int delta_time)
 		_physical.vx = ITEM_STAND_VX_ENABLE;
 		_physical.vy = ITEM_STAND_VY_ENABLE;
 		_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
+	}
+
+	switch (_state_item_stand)
+	{
+	case SIS_Close:
+	case SIS_Open:
+		_can_impact = false;
+		break;
+	case SIS_Enable:
+	case SIS_Spatter:
+		_can_impact = true;
+		break;
 	}
 }
 
