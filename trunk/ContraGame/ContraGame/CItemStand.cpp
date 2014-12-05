@@ -62,8 +62,9 @@ void CItemStand::Draw()
 
 void CItemStand::Update(int delta_time)
 {
-	CCamera *_cam = CResourcesManager::GetInstance()->_camera;
-	int levelMap = CResourcesManager::GetInstance()->m_levelMap;
+	CResourcesManager* rs = CResourcesManager::GetInstance();
+	CCamera *_cam = rs->_camera;
+	int levelMap = rs->m_levelMap;
 	// chuyển state item
 	// Xét khoảng hoạt động của item stand the o level map
 	switch (levelMap)
@@ -102,12 +103,12 @@ void CItemStand::Update(int delta_time)
 	}
 	
 	// set vx & vy item văng lên
-	if (_hp == 0 )
+	if (_hp == 0 && _state_item_stand != SIS_EAT)
 	{
 		_state_item_stand = SIS_Spatter;
 		_physical.vx = ITEM_STAND_VX_ENABLE;
-		_physical.vy = ITEM_STAND_VY_ENABLE;
-		_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
+		_physical.vy = ITEM_STAND_VY_ENABLE;		
+		_physical.CalcPositionWithGravitation(delta_time, GRAVITY);			
 	}
 
 	switch (_state_item_stand)
@@ -117,8 +118,29 @@ void CItemStand::Update(int delta_time)
 		_can_impact = false;
 		break;
 	case SIS_Enable:
-	case SIS_Spatter:
 		_can_impact = true;
+		break;
+	case SIS_Spatter:
+		_physical.SetBounds(_physical.x, _physical.y, 20, 20);
+		_can_impact = true;
+		for (int i = 0; rs->_grounds.size() < i; i++)
+		{
+			if (rs->_grounds.at(i)->getSpecificType() == Ground_Grass)
+			{
+				CollisionDirection collision = NoCollision;
+				collision = _physical.Collision(&rs->_grounds.at(i)->_physical);
+				if (collision == TopCollision)
+				{
+					_physical.vx = 0;
+					_physical.vy = 0;
+					_state_item_stand = SIS_EAT;
+					break;
+				}
+
+			}
+		}
+		break;
+	case SIS_EAT:
 		break;
 	}
 }
