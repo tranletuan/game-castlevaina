@@ -34,9 +34,9 @@ private:
 	CPlayerWeapon* _weapon_player2;
 	CEnemyWeapon* _weapon_enemy;
 
-	map<int, CObject*> _grounds;
+	vector<CObject*> _grounds;
 	vector<CObject*> _enemies;
-	map<int, CObject*> _items;
+	vector<CObject*> _items;
 
 	CListNoTree *m_listNoTree;
 

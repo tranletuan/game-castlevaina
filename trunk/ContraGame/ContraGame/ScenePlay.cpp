@@ -79,7 +79,6 @@ void ScenePlay::UpdateFullListObjetcInView()
 		_enemies.erase(_enemies.begin(), _enemies.end());
 		_items.erase(_items.begin(), _items.end());
 
-
 		for (int i = 0; i < objects.size(); i++)
 		{
 			CObject* ob = objects.at(i);
@@ -87,15 +86,14 @@ void ScenePlay::UpdateFullListObjetcInView()
 			switch (ob->_basic_type)
 			{
 			case Ground:
-				_grounds[ob->_id] = ob;
+				_grounds.push_back(ob);
 				break;
 			case Enemy:
 				if (ob->_enable)
 					_enemies.push_back(ob);
 				break;
 			case Item:
-				if (ob->_hp > 0)
-					_items[ob->_id] = ob;
+				_items.push_back(ob);
 				break;
 			}
 		}
@@ -110,9 +108,9 @@ void ScenePlay::ProcessGroundsWithOneAnother()
 	{
 		CollisionDirection collision_player1 = NoCollision;
 		CollisionDirection collision_player2 = NoCollision;
-		for (map<int, CObject*>::iterator i = _grounds.begin(); i != _grounds.end(); i++)
+		for (vector<CObject*>::iterator i = _grounds.begin(); i != _grounds.end(); i++)
 		{
-			CObject* ground = (*i).second;
+			CObject* ground = (*i);
 			//Xét va chạm với người chơi 1
 			if (_player1->GetIdGroundIgnore() != ground->_id && collision_player1 != TopCollision)
 			{
@@ -161,7 +159,7 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 			//Va chạm với người chơi 2
 
 			//Va chạm với đạn người chơi 1
-			if (_weapon_player1->CheckCollision(enemy) != NoCollision)
+			if (_weapon_player1->CheckCollision(enemy) != NoCollision && enemy->_hp > 0 && enemy->_can_impact)
 			{
 				enemy->_hp--;
 			}
@@ -174,7 +172,24 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 }
 
 void ScenePlay::ProcessItemsWithOneAnother()
-{}
+{
+	if (_items.size() > 0)
+	{
+		for (vector<CObject*>::iterator i = _items.begin(); i != _items.end(); i++)
+		{
+			CObject* item = (*i);
+
+			//Xét va chạm với đạn
+			if (_weapon_player1->CheckCollision(item) != NoCollision && item->_hp > 0 && item->_can_impact)
+			{
+				item->_hp--;
+			}
+
+			//Xét va chạm với người chơi
+
+		}
+	}
+}
 
 void ScenePlay::UpdateGlobalVariable()
 {

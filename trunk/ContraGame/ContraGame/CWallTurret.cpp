@@ -8,6 +8,7 @@ CWallTurret::CWallTurret(int id, SpecificType specific_type, D3DXVECTOR3 pos, in
 	_real_angle = 180;
 	_can_shoot = true;
 	_physical.vx_last = -1;
+	_physical.SetBounds(pos.x, pos.y, 20, 28);
 	LoadResources();
 }
 
@@ -73,6 +74,17 @@ void CWallTurret::Update(int delta_time)
 	{
 		SetStatus(EDie);
 	}
+
+	switch (_enemy_status)
+	{
+	case EWait:
+	case EDie:
+		_can_impact = false;
+		break;
+	case EAttack:
+		_can_impact = true;
+		break;
+	}
 }
 
 void CWallTurret::Draw()
@@ -129,7 +141,6 @@ void CWallTurret::Attacking()
 			_last_time_shoot = now;
 		}
 	}
-
 }
 
 void CWallTurret::DrawWhenAttack(D3DXVECTOR3 pos)
@@ -174,11 +185,7 @@ void CWallTurret::DrawWhenDie(D3DXVECTOR3 pos)
 	_current_sprite = _die_sprite;
 	if (_current_sprite->index != 2)
 	{
-		_current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 0, 2);
-	}
-	else
-	{
-		_enable = false;
+		_enable = !_current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 0, 2);
 	}
 }
 

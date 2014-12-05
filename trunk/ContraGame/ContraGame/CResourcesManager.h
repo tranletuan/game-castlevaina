@@ -47,7 +47,7 @@ public:
 	int m_widthMap;
 	vector<CObject*> listObinView;
 	vector<CObject*> listObNoTree; // list ob khong nam trong quad tree
-	map<int, CObject*> _grounds;
+	vector<CObject*> _grounds;
 	CPlayerWeapon* _weapon_player1;
 	CPlayerWeapon* _weapon_player2;
 	CEnemyWeapon* _weapon_enemy;

@@ -79,6 +79,17 @@ void CSniperHide::Update(int delta_time)
 			}
 		}
 	}
+
+	switch (_enemy_status)
+	{
+	case EWait:
+	case EDie:
+		_can_impact = false;
+		break;
+	case EAttack:
+		_can_impact = true;
+		break;
+	}
 }
 
 void CSniperHide::Draw()

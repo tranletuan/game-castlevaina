@@ -15,6 +15,7 @@ CObject::CObject(int id, SpecificType specific_type, BasicType basic_type, D3DXV
 	this->_physical.SetBounds((float)pos.x, (float)pos.y, width, height);
 	this->_track = Track_LR;
 	this->_enable = false;
+	this->_can_impact = false;
 }
 
 CObject::CObject(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
@@ -26,6 +27,7 @@ CObject::CObject(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width,
 	this->_physical.SetBounds((float)pos.x, (float)pos.y, width, height);
 	this->_track = Track_LR;
 	this->_enable = false;
+	this->_can_impact = false;
 }
 
 CObject::CObject(int id, SpecificType specific_type, D3DXVECTOR3 pos, TrackID track, int width, int height)
@@ -37,6 +39,7 @@ CObject::CObject(int id, SpecificType specific_type, D3DXVECTOR3 pos, TrackID tr
 	this->_physical.SetBounds((float)pos.x, (float)pos.y, width, height);
 	this->_track = track;
 	this->_enable = false;
+	this->_can_impact = false;
 }
 
 void CObject::setSpecificType(string x)

@@ -87,6 +87,12 @@ void CBill::Draw()
 
 void CBill::Update(int delta_time)
 {
+	_can_impact = true;
+	if (_gun_direction == Down && _enviroment == Water)
+	{
+		_can_impact = false; //không va chạm với quái
+	}
+	
 	_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
 	UpdateBounds();
 
@@ -545,12 +551,12 @@ void CBill::OnKeyDown()
 		}
 		else
 		{
-			map<int, CObject*> list_grounds = CResourcesManager::GetInstance()->_grounds;
+			vector<CObject*> list_grounds = CResourcesManager::GetInstance()->_grounds;
 			if (list_grounds.size() > 0)
 			{
-				for (map<int, CObject*>::iterator i = list_grounds.begin(); i != list_grounds.end(); i++)
+				for (vector<CObject*>::iterator i = list_grounds.begin(); i != list_grounds.end(); i++)
 				{
-					CObject* ground = (*i).second;
+					CObject* ground = (*i);
 					if (Falling(ground) == true) return;
 				}
 			}

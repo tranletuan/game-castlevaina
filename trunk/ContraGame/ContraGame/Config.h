@@ -9,8 +9,8 @@
 //BILL 
 #define BILL_VX 0.06f
 #define BILL_VY 5.9f	
-#define BILL_VY_DIE 6.0f
-#define BILL_BOUNDS_WIDTH 10
+#define BILL_VY_DIE  5.0f
+#define BILL_BOUNDS_WIDTH 6
 #define BILL_BOUNDS_HEIGHT 28
 
 //BULLET
@@ -37,7 +37,7 @@
 #define BULLET_M_V 0.25f
 #define BULLET_M_TOTAL 4
 
-#define BULLET_NE_V 0.06f
+#define BULLET_NE_V 0.07f
 #define BULLET_NE_TOTAL 30
 
 #define BULLET_B_VX 0.05f
@@ -60,7 +60,7 @@
 //ENEMY
 #define ENEMY_ATTACK_DISTANCE 150
 #define ENEMY_ATTACK_DEGREES 30
-#define ENEMY_VY_DIE 7.0f
+#define ENEMY_VY_DIE 4.5f
 
 #define ENEMY_SNIPER_STAND_MAX_BULLET 3
 #define ENEMY_SNIPER_STAND_ELAPSED_SHOOT 300
@@ -85,8 +85,8 @@
 #define BG_TILED_HEIGTH 16
 
 // ITEM
-#define ITEM_STAND_VY_ENABLE 13.0f
-#define ITEM_STAND_VX_ENABLE 0.05f
+#define ITEM_STAND_VY_ENABLE 6.6f
+#define ITEM_STAND_VX_ENABLE 0.03f
 #define ITEM_FLY_VX_MOVE 0.08f
 #define ITEM_FLY_VY_MOVE 0.08f
 #define ITEM_FLY_ANGLE 5 
