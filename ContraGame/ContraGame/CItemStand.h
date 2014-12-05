@@ -8,7 +8,8 @@ enum SItemStand
 	SIS_Close, // Sate Item Stand đóng
 	SIS_Open, // chưa có thể bắn
 	SIS_Enable, // có thể bắn
-	SIS_Spatter // Bị pá hiểu và văng
+	SIS_Spatter ,// Bị pá hiểu và văng
+	SIS_EAT, // co the an
 };
 
 class CItemStand :
