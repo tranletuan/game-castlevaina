@@ -8,7 +8,7 @@ ScenePlay::ScenePlay()
 	
 	_weapon_player1 = new CPlayerWeapon();
 	_player1 = new CBill();
-	_player1->_physical.x = 1200;
+	_player1->_physical.x = 1300;
 	_player1->SetWeapon(_weapon_player1);
 
 	_weapon_enemy = new CEnemyWeapon();
@@ -75,9 +75,9 @@ void ScenePlay::UpdateFullListObjetcInView()
 
 	if (objects.size() > 0)
 	{
-		_grounds.erase(_grounds.begin(), _grounds.end());
-		_enemies.erase(_enemies.begin(), _enemies.end());
-		_items.erase(_items.begin(), _items.end());
+		_grounds.clear();
+		_enemies.clear();
+		_items.clear();
 
 		for (int i = 0; i < objects.size(); i++)
 		{
@@ -98,7 +98,7 @@ void ScenePlay::UpdateFullListObjetcInView()
 			}
 		}
 
-		objects.erase(objects.begin(), objects.end());
+		objects.clear();
 	}
 }
 
@@ -131,10 +131,7 @@ void ScenePlay::ProcessGroundsWithOneAnother()
 
 			//Xét va chạm với người chơi 2
 
-			//Xét va chạm với items
-
 			//Xét va chạm với các đối tượng k có trong quadtree
-			
 		}
 
 		if (collision_player1 != TopCollision)
@@ -159,11 +156,13 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 			//Va chạm với người chơi 2
 
 			//Va chạm với đạn người chơi 1
-			if (_weapon_player1->CheckCollision(enemy) != NoCollision && enemy->_hp > 0 && enemy->_can_impact)
+			if (enemy->_hp > 0)
 			{
-				enemy->_hp--;
+				if (_weapon_player1->CheckCollision(enemy) != NoCollision && enemy->_can_impact)
+				{
+					enemy->_hp--;
+				}
 			}
-
 			//Va chạm với đạn người chơi 2
 			
 
@@ -180,12 +179,18 @@ void ScenePlay::ProcessItemsWithOneAnother()
 			CObject* item = (*i);
 
 			//Xét va chạm với đạn
-			if (_weapon_player1->CheckCollision(item) != NoCollision && item->_hp > 0 && item->_can_impact)
+			if (item->_hp > 0)
 			{
-				item->_hp--;
+				if (_weapon_player1->CheckCollision(item) != NoCollision && item->_can_impact)
+				{
+					item->_hp--;
+				}
 			}
 
 			//Xét va chạm với người chơi
+			if (item->_hp == 0)
+			{
+			}
 
 		}
 	}

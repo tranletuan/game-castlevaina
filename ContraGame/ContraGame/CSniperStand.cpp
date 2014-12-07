@@ -1,7 +1,7 @@
 ﻿#include "CSniperStand.h"
 
 CSniperStand::CSniperStand(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
-	:CEnemyUseGun(id, specific_type, pos, width, height)
+	:CEnemyUseGun(id, specific_type, pos, width - 8, height)
 {
 	_hp = 1;
 	_can_impact = true;
@@ -38,6 +38,7 @@ void CSniperStand::Update(int delta_time)
 	//Khi hp = 0 cho lính nhảy lên
 	if (_hp == 0 && _physical.current_vy >= 0)
 	{
+		_physical.SetBounds(0, 0, 0, 0);
 		_physical.vx = 0.01f;
 		_physical.vy = ENEMY_VY_DIE;
 		_physical.CalcPositionWithGravitation(delta_time, GRAVITY);

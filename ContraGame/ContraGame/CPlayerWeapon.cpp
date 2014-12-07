@@ -109,6 +109,7 @@ CollisionDirection CPlayerWeapon::CheckCollision(CObject* obj)
 			collision = bullet->_physical.Collision(&obj->_physical);
 			if (collision != NoCollision)
 			{
+				collision = bullet->_physical.Collision(&obj->_physical);
 				bullet->OnTarget();
 				break;
 			}

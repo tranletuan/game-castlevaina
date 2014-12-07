@@ -125,10 +125,14 @@ CollisionDirection CPhysical::Collision(CPhysical* physical)
 //SUPPORT METHOD
 bool CPhysical::CheckBounds(CPhysical* physical)
 {
-	if (physical->bounds.left == 0 &&
+	if ((physical->bounds.left == 0 &&
 		physical->bounds.top == 0 &&
 		physical->bounds.right == 0 &&
-		physical->bounds.bottom == 0) return false;
+		physical->bounds.bottom == 0) || 
+		(bounds.left == 0 &&
+		bounds.top == 0 &&
+		bounds.right == 0 &&
+		bounds.bottom == 0)) return false;
 
 	BOUNDS rect = this->bounds;
 
