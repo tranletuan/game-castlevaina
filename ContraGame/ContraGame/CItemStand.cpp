@@ -21,8 +21,10 @@ void CItemStand::LoadResources()
 	{
 	case ItemM_Stand:		
 		_sprite_item->SelectFrameOf(1);
+		break;
 	case ItemS_Stand:
 		_sprite_item->SelectFrameOf(4);
+		break;
 	case ItemF_Stand:
 		_sprite_item->SelectFrameOf(3);
 		break;
@@ -167,12 +169,16 @@ void CItemStand::DrawWhenActivity(D3DXVECTOR3 pos)
 void CItemStand::DrawWhenAttack(D3DXVECTOR3 pos)
 {	
 	// Khi bị bắt không vẽ _sprite_stand, _sprite_effect nổ theo _pos_stand , đồng thời vẻ _sprite_item văng lên
-	if (_sprite_effect->index != 2 )
+	if (_sprite_effect->index != 2)
 	{
-		 _sprite_effect->DrawWithDirectionAndOneTimeEffect(_pos_stand, _physical.vx_last, 0, 2,200);
+		_sprite_effect->DrawWithDirectionAndOneTimeEffect(_pos_stand, _physical.vx_last, 0, 2, 200);
 	}
 	// Vẽ item văng lên	
-	_sprite_item->Draw(pos.x, pos.y);
+	if (_physical.bounds.left != 0 && _physical.bounds.top != 0 &&
+		_physical.bounds.right != 0 && _physical.bounds.bottom != 0)
+	{
+		_sprite_item->Draw(pos.x, pos.y);
+	}
 }
 
 CItemStand::~CItemStand()

@@ -24,7 +24,6 @@ void CWeapon::Update(int delta_time)
 	{
 		for (map<int, CBullet*>::iterator i = _list_bullet.begin(); i != _list_bullet.end(); i++)
 		{
-			int id = (*i).first;
 			CBullet* bullet = (*i).second;
 
 			//Cập nhật vật lý của đạn

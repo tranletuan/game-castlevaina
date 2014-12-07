@@ -49,6 +49,7 @@ void ScenePlay::update(float time)
 	m_cameraHUD->update(time);
 	m_camera->Update();
 
+	
 	UpdateGlobalVariable();
 }
 
@@ -178,7 +179,29 @@ void ScenePlay::ProcessItemsWithOneAnother()
 		{
 			CObject* item = (*i);
 
-			//Xét va chạm với đạn
+			//Xét va chạm với người chơi 1
+			if (item->_hp == 0)
+			{
+				if (_player1->_physical.Collision(&item->_physical) != NoCollision)
+				{
+					switch (item->_specific_type)
+					{
+					case ItemM_Stand:
+						_weapon_player1->SetWaeponType(WPM);
+						break;
+					case ItemF_Stand:
+						_weapon_player1->SetWaeponType(WPF);
+						break;
+					case ItemS_Stand:
+						_weapon_player1->SetWaeponType(WPS);
+						break;
+					}
+
+					item->_physical.SetBounds(0, 0, 0, 0);
+				}
+			}
+
+			//Xét va chạm với đạn người chơi 1
 			if (item->_hp > 0)
 			{
 				if (_weapon_player1->CheckCollision(item) != NoCollision && item->_can_impact)
@@ -187,10 +210,7 @@ void ScenePlay::ProcessItemsWithOneAnother()
 				}
 			}
 
-			//Xét va chạm với người chơi
-			if (item->_hp == 0)
-			{
-			}
+			
 
 		}
 	}
