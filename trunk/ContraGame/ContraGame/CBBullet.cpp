@@ -20,12 +20,19 @@ void CBBullet::LoadResources()
 
 void CBBullet::Update(int delta_time)
 {
-	_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
-	_physical.SetBounds(
-		_physical.x,
-		_physical.y,
-		_current_sprite->sprite_texture->frame_width,
-		_current_sprite->sprite_texture->frame_height);
+	if (_physical.x > 32)
+	{
+		_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
+		_physical.SetBounds(
+			_physical.x,
+			_physical.y,
+			_current_sprite->sprite_texture->frame_width,
+			_current_sprite->sprite_texture->frame_height);
+	}
+	else
+	{
+		OnTarget();
+	}
 }
 
 void CBBullet::Draw()

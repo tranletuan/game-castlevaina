@@ -80,4 +80,5 @@ void CFBullet::Shoot(D3DXVECTOR3 pos, int angle, float v_max, float vo)
 
 	_degrees = _physical.vx_last > 0 ? 180 : 0;
 	_physical.x = _physical.vx_last > 0 ? pos.x + 20 : pos.x - 20;
+	_x_circle = _y_circle = 0;
 }
