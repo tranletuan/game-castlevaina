@@ -1,14 +1,13 @@
 ﻿#include "CGroundCanon.h"
 
 CGroundCanon::CGroundCanon(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
-	:CEnemyUseGun(id, specific_type, pos, width, height)
+	:CEnemyUseGun(id, specific_type, pos, width - 12, height - 4)
 {
-	_hp = 5;
+	_hp =10;
 	_attack_angle = 180;
 	_real_angle = 180;
 	_can_shoot = true;
 	_physical.vx_last = -1;
-	_physical.SetBounds(pos.x, pos.y, 20, 28);
 	LoadResources();
 }
 
@@ -69,6 +68,7 @@ void CGroundCanon::Update(int delta_time)
 
 	if (_hp == 0)
 	{
+		_physical.SetBounds(0, 0, 0, 0);
 		SetStatus(EDie);
 	}
 

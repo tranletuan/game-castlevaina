@@ -32,6 +32,7 @@ void CBullet::OnTarget()
 	_physical.n = GRAVITY; //Đặc biệt dành cho đạn có gia tốc trọng trường
 	_current_sprite = _ontarget_sprite;
 	_current_sprite->Reset();
+	_physical.SetBounds(0, 0, 0, 0);
 }
 
 //SUPPORT
@@ -104,6 +105,11 @@ void CBullet::Shoot(D3DXVECTOR3 pos, int angle, float v_max, float vo)
 {
 	_physical.x = pos.x;
 	_physical.y = pos.y;
+	_physical.SetBounds(
+		_physical.x,
+		_physical.y,
+		_current_sprite->sprite_texture->frame_width,
+		_current_sprite->sprite_texture->frame_height);
 	_physical.n = 0;
 	_vo = vo;
 	_enable = true;

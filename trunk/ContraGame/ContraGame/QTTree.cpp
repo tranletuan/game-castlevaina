@@ -29,7 +29,8 @@ void QTTree::init()
 		break;
 	}
 
-	m_numSub = m_listNode.at(m_listNode.size() - 1)->getID().length() / 2;
+	m_numSub = m_listNode.at(m_listNode.size() - 1)->getID().length() / 2; 
+	map<int, CObject*> map_objects;
 	// cap nhat lai list doi tuong trong node
 	for (int i = 0; i < m_listNode.size();i ++)
 	{
@@ -39,11 +40,21 @@ void QTTree::init()
 			vector<CObject*> listObX = m_listNode.at(i)->getListOb();
 			for (int j = 0; j < listObX.size(); j++)
 			{	
-				listOb.push_back(getObjectTrust(listObX.at(j)));
+				CObject* ob = listObX.at(j);
+
+				if (map_objects[ob->_id] == NULL)
+				{
+					map_objects[ob->_id] = getObjectTrust(ob);
+				}
+				
+				ob = map_objects[ob->_id];
+				listOb.push_back(ob);
 			}
+
 			m_listNode.at(i)->setListOb(listOb);
 		}
 	}
+
 	CResourcesManager::GetInstance()->map1_listNode = m_listNode;
 
 	// cap nhat lai node da add cac node con	
@@ -153,10 +164,21 @@ void QTTree::getObjectInView()
 	}
 
 	// lay cac node nam trong node giao voi camera
-	m_listObInView.erase(m_listObInView.begin(), m_listObInView.end());
+	m_listObInView.clear();
+	map<int, bool> check_id;
 	for (int i = 0; i < node.size(); i++)
 	{
-		m_listObInView.insert(m_listObInView.end(), node.at(i)->getListOb().begin(), node.at(i)->getListOb().end());
+		vector<CObject*> ob_in_node = node.at(i)->getListOb();
+	
+		for (vector<CObject*>::iterator j = ob_in_node.begin(); j != ob_in_node.end(); j++)
+		{
+			CObject* ob = (*j);
+			if (!check_id[ob->_id])
+			{
+				m_listObInView.push_back(ob);
+				check_id[ob->_id] = true;
+			}
+		}
 	}
 
 	CResourcesManager::GetInstance()->listObinView = m_listObInView;
@@ -173,6 +195,7 @@ void QTTree::update(int time)
 		m_listObInView.at(i)->Update(time);		
 	}
 }
+
 void QTTree::draw()
 {
 	for (int i = 0; i < m_listObInView.size(); i++)

@@ -53,6 +53,7 @@ void CItemStand::Draw()
 		DrawWhenActivity(_pos_stand);
 		break;
 	case SIS_Spatter:
+	case SIS_EAT:
 		DrawWhenAttack(pos);
 		break;
 	default:
@@ -67,31 +68,34 @@ void CItemStand::Update(int delta_time)
 	int levelMap = rs->m_levelMap;
 	// chuyển state item
 	// Xét khoảng hoạt động của item stand the o level map
-	switch (levelMap)
+	if (_state_item_stand == SIS_Close || _state_item_stand == SIS_Open)
 	{
-	case 1:
-	case 3:
-		if (_physical.x + _sprite_stand->sprite_texture->frame_width / 2 < _cam->getPosX() + _cam->getWidth() && 
-			_physical.x - _sprite_stand->sprite_texture->frame_width / 2 > _cam->getPosX())
+		switch (levelMap)
 		{
-			_state_item_stand = SIS_Open;
+		case 1:
+		case 3:
+			if (_physical.x + _sprite_stand->sprite_texture->frame_width / 2 < _cam->getPosX() + _cam->getWidth() &&
+				_physical.x - _sprite_stand->sprite_texture->frame_width / 2 > _cam->getPosX())
+			{
+				_state_item_stand = SIS_Open;
+			}
+			else
+			{
+				_state_item_stand = SIS_Close;
+			}
+			break;
+		case 2:
+			if (_physical.y + _sprite_stand->sprite_texture->frame_height / 2 < _cam->getPosY()
+				&& _physical.y - _sprite_stand->sprite_texture->frame_height / 2 > 0)
+			{
+				_state_item_stand = SIS_Open;
+			}
+			else
+			{
+				_state_item_stand = SIS_Close;
+			}
+			break;
 		}
-		else
-		{
-			_state_item_stand = SIS_Close;
-		}
-		break;
-	case 2:
-		if (_physical.y + _sprite_stand->sprite_texture->frame_height / 2 < _cam->getPosY()
-			&& _physical.y - _sprite_stand->sprite_texture->frame_height / 2 > 0)
-		{
-			_state_item_stand = SIS_Open;
-		}
-		else
-		{
-			_state_item_stand = SIS_Close;
-		}
-		break;
 	}
 
 	if (_state_item_stand == SIS_Open)
@@ -103,7 +107,7 @@ void CItemStand::Update(int delta_time)
 	}
 	
 	// set vx & vy item văng lên
-	if (_hp == 0 && _state_item_stand != SIS_EAT)
+	if (_hp == 0 && _physical.n == 0)
 	{
 		_state_item_stand = SIS_Spatter;
 		_physical.vx = ITEM_STAND_VX_ENABLE;
@@ -117,30 +121,32 @@ void CItemStand::Update(int delta_time)
 	case SIS_Open:
 		_can_impact = false;
 		break;
+	case SIS_EAT:
 	case SIS_Enable:
 		_can_impact = true;
 		break;
 	case SIS_Spatter:
 		_physical.SetBounds(_physical.x, _physical.y, 20, 20);
 		_can_impact = true;
-		for (int i = 0; rs->_grounds.size() < i; i++)
+		vector<CObject*> grounds = rs->_grounds;
+		for (vector<CObject*>::iterator i = grounds.begin(); i != grounds.end(); i++)
 		{
-			if (rs->_grounds.at(i)->getSpecificType() == Ground_Grass)
+			CObject* ground = (*i);
+			if (ground->_specific_type == Ground_Grass)
 			{
 				CollisionDirection collision = NoCollision;
-				collision = _physical.Collision(&rs->_grounds.at(i)->_physical);
-				if (collision == TopCollision)
+				collision = _physical.Collision(&ground->_physical);
+				if (collision == TopCollision && _physical.current_vy < 0)
 				{
+					_physical.n = GRAVITY;
+					_physical.y = ground->_physical.bounds.top + 2;
 					_physical.vx = 0;
 					_physical.vy = 0;
 					_state_item_stand = SIS_EAT;
 					break;
 				}
-
 			}
 		}
-		break;
-	case SIS_EAT:
 		break;
 	}
 }
@@ -160,7 +166,7 @@ void CItemStand::DrawWhenActivity(D3DXVECTOR3 pos)
 
 void CItemStand::DrawWhenAttack(D3DXVECTOR3 pos)
 {	
-	// Khi bị bắt không vẽ _sprite_stand, _sprite_effect nổ theo _pos_stand , đồng thời vẻ _sprite_item vang lên
+	// Khi bị bắt không vẽ _sprite_stand, _sprite_effect nổ theo _pos_stand , đồng thời vẻ _sprite_item văng lên
 	if (_sprite_effect->index != 2 )
 	{
 		 _sprite_effect->DrawWithDirectionAndOneTimeEffect(_pos_stand, _physical.vx_last, 0, 2,200);

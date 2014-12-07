@@ -1,14 +1,13 @@
 ﻿#include "CWallTurret.h"
 
 CWallTurret::CWallTurret(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
-	:CEnemyUseGun(id, specific_type, pos, width, height)
+	:CEnemyUseGun(id, specific_type, pos, width - 12, height - 4)
 {
-	_hp = 5;
+	_hp = 10;
 	_attack_angle = 180;
 	_real_angle = 180;
 	_can_shoot = true;
 	_physical.vx_last = -1;
-	_physical.SetBounds(pos.x, pos.y, 20, 28);
 	LoadResources();
 }
 
@@ -72,6 +71,7 @@ void CWallTurret::Update(int delta_time)
 
 	if (_hp == 0)
 	{
+		_physical.SetBounds(0, 0, 0, 0);
 		SetStatus(EDie);
 	}
 
@@ -147,7 +147,7 @@ void CWallTurret::DrawWhenAttack(D3DXVECTOR3 pos)
 {
 	if (!_ready_shoot)
 	{
-		_ready_shoot = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 0, 5, 20);
+		_ready_shoot = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 0, 5, 100);
 	}
 	else
 	{
@@ -157,7 +157,7 @@ void CWallTurret::DrawWhenAttack(D3DXVECTOR3 pos)
 		//Nếu góc bắn chưa đúng
 		if (!_can_shoot)
 		{
-			bool done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, 1, start, end, 250);
+			bool done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, 1, start, end, 400);
 			if (done) ChangeRealAngle();
 		}
 		//Góc bắn đã chính xác

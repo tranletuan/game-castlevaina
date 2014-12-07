@@ -35,6 +35,24 @@ void CAutoDestroyBridge::Update(int delta_time)
 	//Cần so sánh x của bill và lance
 
 	SetTarget(x_target);
+
+	if (_is_destroy && _current_sprite->index < 5)
+	{
+		if (_current_sprite->last_index != _current_sprite->index)
+		{
+			for (int i = 0; i < GROUND_BRIDGE_DESTROY_EFFECT_COUNT; i++)
+			{
+				_position_effect_destroy[i].x += GROUND_BRIDGE_DISTANCE_DESTROY;
+			}
+
+			_current_sprite->last_index = _current_sprite->index;
+			_physical.bounds.left += GROUND_BRIDGE_DISTANCE_DESTROY;
+		}
+	}
+	else if (_current_sprite->index == 5)
+	{
+		_physical.SetBounds(0, 0, 0, 0);
+	}
 }
 
 void CAutoDestroyBridge::Draw()
@@ -46,6 +64,7 @@ void CAutoDestroyBridge::Draw()
 	//Cầu tự phá hủy
 	if (_is_destroy && _current_sprite->index < 5)
 	{
+		//Thay đổi effect theo hiệu ứng của sprite chính
 		_effect_destroy_sprite->PerformAllEffect(EFFECT_DESTROY_TIME);
 
 		//Vẽ hiệu ứng phá cầu
@@ -57,28 +76,12 @@ void CAutoDestroyBridge::Draw()
 
 		_current_sprite->PerformEffectOneTime(2, 5, GROUND_BRIDGE_DESTROY_TIME);
 
-		//Thay đổi effect theo hiệu ứng của sprite chính
-		if (_current_sprite->last_index != _current_sprite->index)
-		{
-			for (int i = 0; i < GROUND_BRIDGE_DESTROY_EFFECT_COUNT; i++)
-			{
-				_position_effect_destroy[i].x += GROUND_BRIDGE_DISTANCE_DESTROY;
-			}
-
-			_current_sprite->last_index = _current_sprite->index;
-			_physical.bounds.left += GROUND_BRIDGE_DISTANCE_DESTROY;
-		}
-
-		
 	}
 	else if (!_is_destroy)
 	{
 		_current_sprite->PerformEffect(0, 1, GROUND_TIME_EFFECT);
 	}
-	else
-	{
-		_physical.SetBounds(0, 0, 0, 0);
-	}
+
 }
 
 void CAutoDestroyBridge::SetTarget(float x)
@@ -88,6 +91,6 @@ void CAutoDestroyBridge::SetTarget(float x)
 		_is_destroy = true;
 		_current_sprite->index = 2;
 		_current_sprite->last_index = _current_sprite->index;
-		_physical.bounds.left += GROUND_BRIDGE_DISTANCE_DESTROY;
+		_physical.bounds.left += (GROUND_BRIDGE_DISTANCE_DESTROY - 5);
 	}
 }
