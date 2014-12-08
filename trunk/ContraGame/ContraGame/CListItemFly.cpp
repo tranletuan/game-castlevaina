@@ -51,6 +51,57 @@ void CListItemFly::Update(int delta_time)
 	}
 }
 
+void CListItemFly::CheckCollisionWithPlayerAndWeapon(CPlayerWeapon* weapon, CBill* player)
+{
+	for (int i = 0; i < _listItems.size(); i++)
+	{
+		CObject* item = _listItems.at(i);
+		if (!item->getEnable()) continue;
+
+		//Xét va chạm với người chơi
+		if (item->_hp == 0)
+		{
+			if (player->_physical.Collision(&item->_physical) != NoCollision)
+			{
+				switch (item->_specific_type)
+				{
+				case ItemM:
+					weapon->SetWaeponType(WPM);
+					break;
+				case ItemR:
+					weapon->SetVelocityPowerful(BULLET_REINFORCE);
+					break;
+				case ItemF:
+					weapon->SetWaeponType(WPF);
+					break;
+				case ItemL:
+					weapon->SetWaeponType(WPL);
+					break;
+				case ItemB:
+					break;
+				case ItemS:
+					weapon->SetWaeponType(WPS);
+					break;
+				}
+
+				item->_physical.SetBounds(0, 0, 0, 0);
+				item->_enable = false;
+			}
+		}
+
+		//Xét va chạm với đạn người chơi
+		if (item->_hp > 0)
+		{
+			if (weapon->CheckCollision(item) != NoCollision)
+			{
+				item->_hp--;
+			}
+		}
+
+
+	}
+}
+
 CObject *CListItemFly::getObjectTrust(CObject *x)
 {
 	float posX = x->getPosX() + x->getWidth() / 2;
@@ -64,9 +115,7 @@ CObject *CListItemFly::getObjectTrust(CObject *x)
 		case ItemL:
 		case ItemR:
 		case ItemS:
-			return new CItemFly(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getTrack(), x->getWidth(), x->getHeight());		
-		default:
-			break;
+			return new CItemFly(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getTrack(), x->getWidth(), x->getHeight());
 	}
 }
 

@@ -4,6 +4,7 @@
 #include "CObject.h"
 #include "CItemFly.h"
 #include "CRunman.h"
+#include "CBill.h"
 
 class CListItemFly
 {
@@ -18,6 +19,8 @@ public:
 	void LoadResources();
 	void Draw();
 	void Update(int delta_time);
+
+	void CheckCollisionWithPlayerAndWeapon(CPlayerWeapon* weapon, CBill* player);
 
 	// get doi tuong chinh xac
 	CObject* getObjectTrust(CObject *x);
