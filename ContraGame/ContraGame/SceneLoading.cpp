@@ -3,7 +3,7 @@
 SceneLoading::SceneLoading()
 	:BaseScene()
 {
-	m_timeDuring = 150;
+	m_timeDuring = 120;
 	init();
 
 }
@@ -48,9 +48,11 @@ void SceneLoading::draw()
 	m_spNameStage->Draw(m_spNameStage->_pos);
 
 	int delta = m_timeDuring % 15;
-	if (delta > 4 && delta <10)
+	if (m_timeDuring % 15 > 4 && m_timeDuring % 15 < 15)
 	{
-		drawNumber("10000", 110, 90);
+		drawNumber(to_string(m_resource->m_numScore), 100, 45);
+		drawNumber(to_string(m_resource->m_highScore), 110, 95);
+		drawNumber(to_string(m_resource->m_life), 70, 65);
 	}
 
 	

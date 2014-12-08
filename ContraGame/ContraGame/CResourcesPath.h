@@ -91,4 +91,10 @@
 #define PATH_BOSS1_BAGDE ".//DataGame//Images//Game//Object//boss//boss1_badge.png"
 #pragma endregion BossPath
 
+#pragma region DataPath
+#define PATH_HIGHSCORE_1 ".//DataGame//HighScore//highscore_1.txt"
+#define PATH_HIGHSCORE_2 ".//DataGame//HighScore//highscore_2.txt"
+#define PATH_HIGHSCORE_3 ".//DataGame//HighScore//highscore_3.txt"
+#pragma endregion DataPath
+
 #endif
