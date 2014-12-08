@@ -77,5 +77,16 @@
 77 Ground 3039 80 96 16 
 78 Ground 3007 127 128 16 
 79 Boss1 3216 185 112 184 
+80 ItemStandM 320 96 32 32 
+81 StarEffect 37 226 736 16 
+82 StarEffect 254 208 64 16 
+83 StarEffect 8 201 96 16 
+84 StarEffect 669 190 96 16 
+85 StarEffect 785 224 512 16 
+86 StarEffect 818 200 320 16 
+87 StarEffect 813 181 320 16 
+88 StarEffect 1174 201 64 16 
+89 StarEffect 1337 206 32 16 
+90 StarEffect 1342 179 32 16 
 0 Camera 0 240 256 240 
 0 Character 40 240 36 46 

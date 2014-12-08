@@ -145,7 +145,7 @@ void CResourcesManager::loadMap1()
 	_ground_water = new CTexture(PATH_GROUND_WATER);
 	_ground_effect1 = new CTexture(PATH_GROUND_EFFECT1);
 	_ground_auto_destroy_bridge = new CTexture(PATH_GROUND_AUTO_DETROY, 1, 6);
-	_ground_star = new CTexture(PATH_GROUND_STAR, 3);
+	_ground_star = new CTexture(PATH_GROUND_STAR, 6);
 
 	//Effect
 	_effect_destroy = new CTexture(PATH_EFFECT_DESTROY, 3);
