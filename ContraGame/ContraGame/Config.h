@@ -88,12 +88,12 @@
 #define ITEM_STAND_VY_ENABLE 6.7f
 #define ITEM_STAND_VX_ENABLE 0.044f
 
-#define ITEM_FLY_VX_MOVE 0.08f
+#define ITEM_FLY_VX_MOVE 0.1f
 #define ITEM_FLY_VY_MOVE 0.08f
 #define ITEM_FLY_ANGLE 5 
 #define ITEM_FLY_BOUND_COS 2
 #define ITEM_FLY_VX_DIE 0.05f
-#define ITEM_FLY_VY_DIE 10.0f
+#define ITEM_FLY_VY_DIE 5.0f
 
 // BOSS
 #define BOSS1_SPACE_X 36

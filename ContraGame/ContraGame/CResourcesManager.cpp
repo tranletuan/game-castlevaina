@@ -134,7 +134,7 @@ void CResourcesManager::loadMap1()
 	//Bullet
 	_bullet_n = new CTexture(PATH_BULLET_N);
 	_bullet_s = new CTexture(PATH_BULLET_S, 3);
-	_bullet_l = new CTexture(PATH_BULLET_S);
+	_bullet_l = new CTexture(PATH_BULLET_L);
 	_bullet_f = new CTexture(PATH_BULLET_F);
 	_bullet_m = new CTexture(PATH_BULLET_M);
 	_bullet_ne = new CTexture(PATH_BULLET_NE);

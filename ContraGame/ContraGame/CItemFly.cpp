@@ -41,23 +41,41 @@ void CItemFly::LoadResources()
 	CResourcesManager* rs = CResourcesManager::GetInstance();
 	_sprite_effect = new CSprite(rs->_effect_destroy);
 	_sprite_item = new CSprite(rs->_item);
-	_sprite_item->SelectFrameOf(0);
+	_current_sprite = new CSprite(rs->_item);
+	_current_sprite->SelectFrameOf(0);
+	switch (_specific_type)
+	{
+	case ItemM:
+		_sprite_item->SelectFrameOf(1);
+		break;
+	case ItemB:
+		_sprite_item->SelectFrameOf(2);
+		break;
+	case ItemF:
+		_sprite_item->SelectFrameOf(3);
+		break;
+	case ItemS:
+		_sprite_item->SelectFrameOf(4);
+		break;
+	case ItemL:
+		_sprite_item->SelectFrameOf(5);
+		break;
+	case  ItemR:
+		_sprite_item->SelectFrameOf(6);
+		break;
+	}
+
+	
 }
 
 void CItemFly::Draw()
 {
 	CCamera *_cam = CResourcesManager::GetInstance()->_camera;
-	D3DXVECTOR3 pos;
+	D3DXVECTOR3 pos = _cam->Transform(_physical.x, _physical.y);
 
-	// lấy tọa độ effect nổ
-	if (_hp == 0)
+	if (_hp == 0 && _pos_effect.x == 0 && _pos_effect.y == 0)
 	{
 		_pos_effect = _cam->Transform(_physical.x, _physical.y);
-		_hp--;
-	}
-	else
-	{
-		pos = _cam->Transform(_physical.x, _physical.y);
 	}
 
 	switch (_state_item_fly)
@@ -68,17 +86,23 @@ void CItemFly::Draw()
 	case SIF_Die:
 		DrawWhenDie(pos);
 		break;
-	default:
-		break;
 	}
 }
 
 void CItemFly::Update(int delta_time)
 {
+	CResourcesManager* rs = CResourcesManager::GetInstance();
+	_physical.SetBounds(
+		_physical.x,
+		_physical.y,
+		_sprite_item->sprite_texture->frame_width,
+		_sprite_item->sprite_texture->frame_height);
+
 	if (_hp == 0)
 	{
 		_state_item_fly = SIF_Die;
 	}
+
 	switch (_state_item_fly)
 	{
 	case SIF_Move:
@@ -86,8 +110,24 @@ void CItemFly::Update(int delta_time)
 		break;
 	case SIF_Die:
 		MoveWhenDie(delta_time);
-		break;
-	default:
+		vector<CObject*> grounds = rs->_grounds;
+		for (vector<CObject*>::iterator i = grounds.begin(); i != grounds.end(); i++)
+		{
+			CObject* ground = (*i);
+			if (ground->_specific_type == Ground_Grass)
+			{
+				CollisionDirection collision = NoCollision;
+				collision = _physical.Collision(&ground->_physical);
+				if (collision == TopCollision && _physical.current_vy < 0)
+				{
+					_physical.n = GRAVITY;
+					_physical.y = ground->_physical.bounds.top + 2;
+					_physical.vx = 0;
+					_physical.vy = 0;
+					break;
+				}
+			}
+		}
 		break;
 	}
 
@@ -105,7 +145,7 @@ void CItemFly::MoveFollowCos(int delta_time)
 		_physical.vy = 0;
 		_physical.CalcPositionWithoutGravitation(delta_time);
 	}
-	else 
+	else
 	{
 		_physical.x += ITEM_FLY_BOUND_COS * cos(D3DXToRadian(_angle));
 		_physical.vx = 0;
@@ -118,15 +158,18 @@ void CItemFly::MoveFollowCos(int delta_time)
 
 void CItemFly::MoveWhenDie(int delta_time)
 {
-	_physical.vx = ITEM_FLY_VX_DIE;
-	_physical.vy = ITEM_FLY_VY_DIE;
-	_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
+	if (_hp == 0 && _physical.n == 0)
+	{
+		_physical.vx = ITEM_FLY_VX_DIE;
+		_physical.vy = ITEM_FLY_VY_DIE;
+		_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
+	}
 }
 
 void CItemFly::DrawWhenMove(D3DXVECTOR3 pos)
 {
 	// Khi chưa hoạt động chỉ ở index = 0;	
-	_sprite_item->Draw(pos.x, pos.y);
+	_current_sprite->Draw(pos.x, pos.y);
 }
 
 void CItemFly::DrawWhenDie(D3DXVECTOR3 pos)
@@ -136,30 +179,6 @@ void CItemFly::DrawWhenDie(D3DXVECTOR3 pos)
 	{
 		_sprite_effect->DrawWithDirectionAndOneTimeEffect(_pos_effect, _physical.vx_last, 0, 2, 200);
 	}
-
-	switch (_specific_type)
-	{
-	case ItemM:
-		_sprite_item->SelectFrameOf(1);
-		break;
-	case  ItemR:
-		_sprite_item->SelectFrameOf(6);
-	case ItemF:
-		_sprite_item->SelectFrameOf(3);
-		break;
-	case ItemL:
-		_sprite_item->SelectFrameOf(5);
-		break;
-	case ItemB:
-		_sprite_item->SelectFrameOf(2);
-		break;
-	case ItemS:
-		_sprite_item->SelectFrameOf(4);
-		break;
-	default:
-		break;
-	}
-
 	// Vẽ item văng lên	
 	_sprite_item->Draw(pos.x, pos.y);
 }

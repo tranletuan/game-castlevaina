@@ -9,7 +9,7 @@ ScenePlay::ScenePlay()
 	
 	_weapon_player1 = new CPlayerWeapon();
 	_player1 = new CBill();
-	//_player1->_physical.x = 1300;
+	_player1->_physical.x = 2400;
 	_player1->SetWeapon(_weapon_player1);
 
 	_weapon_enemy = new CEnemyWeapon();
@@ -175,6 +175,7 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 
 void ScenePlay::ProcessItemsWithOneAnother()
 {
+	//List Item Trong Quadtree
 	if (_items.size() > 0)
 	{
 		for (vector<CObject*>::iterator i = _items.begin(); i != _items.end(); i++)
@@ -211,11 +212,12 @@ void ScenePlay::ProcessItemsWithOneAnother()
 					item->_hp--;
 				}
 			}
-
-			
-
 		}
 	}
+
+	//List Item Ngoài Quadtree
+	m_listItemFLy->CheckCollisionWithPlayerAndWeapon(_weapon_player1, _player1);
+
 }
 
 void ScenePlay::UpdateGlobalVariable()
