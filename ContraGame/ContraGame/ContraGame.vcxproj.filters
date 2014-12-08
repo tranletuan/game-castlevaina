@@ -213,11 +213,14 @@
     <Filter Include="Contra Game\Object\Ground Game\GroundEffect">
       <UniqueIdentifier>{77fb6fb0-e8e5-470d-9539-2727ca04d129}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contra Game\ListNoTree">
-      <UniqueIdentifier>{089bdab2-c230-4751-9374-0785ed1ecf6f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contra Game\Scene\SceneGameOver">
       <UniqueIdentifier>{959eb80f-8f21-40ce-a12f-59db09c30725}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Ground Game\GroundStar">
+      <UniqueIdentifier>{09e37ead-bd6f-40d1-aac4-2dbef133e548}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Item\ListItemFly">
+      <UniqueIdentifier>{089bdab2-c230-4751-9374-0785ed1ecf6f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -386,9 +389,6 @@
     <ClCompile Include="CGroundEffect.cpp">
       <Filter>Contra Game\Object\Ground Game\GroundEffect</Filter>
     </ClCompile>
-    <ClCompile Include="CListNoTree.cpp">
-      <Filter>Contra Game\ListNoTree</Filter>
-    </ClCompile>
     <ClCompile Include="SceneGameOver.cpp">
       <Filter>Contra Game\Scene\SceneGameOver</Filter>
     </ClCompile>
@@ -397,6 +397,12 @@
     </ClCompile>
     <ClCompile Include="ScenePlay.cpp">
       <Filter>Contra Game\Scene\ScenePlay</Filter>
+    </ClCompile>
+    <ClCompile Include="CGroundStar.cpp">
+      <Filter>Contra Game\Object\Ground Game\GroundStar</Filter>
+    </ClCompile>
+    <ClCompile Include="CListItemFly.cpp">
+      <Filter>Contra Game\Object\Item\ListItemFly</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -583,14 +589,17 @@
     <ClInclude Include="CGroundEffect.h">
       <Filter>Contra Game\Object\Ground Game\GroundEffect</Filter>
     </ClInclude>
-    <ClInclude Include="CListNoTree.h">
-      <Filter>Contra Game\ListNoTree</Filter>
-    </ClInclude>
     <ClInclude Include="SceneGameOver.h">
       <Filter>Contra Game\Scene\SceneGameOver</Filter>
     </ClInclude>
     <ClInclude Include="CGround.h">
       <Filter>Contra Game\Object\Ground Game\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="CGroundStar.h">
+      <Filter>Contra Game\Object\Ground Game\GroundStar</Filter>
+    </ClInclude>
+    <ClInclude Include="CListItemFly.h">
+      <Filter>Contra Game\Object\Item\ListItemFly</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

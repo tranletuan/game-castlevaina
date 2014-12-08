@@ -32,7 +32,7 @@
     <ClCompile Include="CItemFly.cpp" />
     <ClCompile Include="CItemStand.cpp" />
     <ClCompile Include="CLBullet.cpp" />
-    <ClCompile Include="CListNoTree.cpp" />
+    <ClCompile Include="CListItemFly.cpp" />
     <ClCompile Include="CMBullet.cpp" />
     <ClCompile Include="CNBullet.cpp" />
     <ClCompile Include="CNEBullet.cpp" />
@@ -50,6 +50,7 @@
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="CameraHUD.cpp" />
+    <ClCompile Include="CGroundStar.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Physical.cpp" />
     <ClCompile Include="QTNode.cpp" />
@@ -93,7 +94,7 @@
     <ClInclude Include="CItemFly.h" />
     <ClInclude Include="CItemStand.h" />
     <ClInclude Include="CLBullet.h" />
-    <ClInclude Include="CListNoTree.h" />
+    <ClInclude Include="CListItemFly.h" />
     <ClInclude Include="CMBullet.h" />
     <ClInclude Include="CNBullet.h" />
     <ClInclude Include="CNEBullet.h" />
@@ -113,6 +114,7 @@
     <ClInclude Include="Global.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="CameraHUD.h" />
+    <ClInclude Include="CGroundStar.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="MenuID.h" />
     <ClInclude Include="Physical.h" />
@@ -166,8 +168,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

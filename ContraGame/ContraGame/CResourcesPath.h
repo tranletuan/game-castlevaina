@@ -42,9 +42,9 @@
 #pragma endregion MapPath
 
 #pragma region GroundtPath
-#define PATH_GROUND_1 ".//DataGame//Images//Game//Object//ground//ground1.png"
-#define PATH_GROUND_2 ".//DataGame//Images//Game//Object//ground//ground2.png"
-#define PATH_GROUND_3 ".//DataGame//Images//Game//Object//ground//ground1.png"
+#define PATH_GROUND_GRASS ".//DataGame//Images//Game//Object//ground//grass.png"
+#define PATH_GROUND_WATER ".//DataGame//Images//Game//Object//ground//water.png"
+#define PATH_GROUND_STAR ".//DataGame//Images//Game//Object//ground//ground_star.png"
 #define PATH_GROUND_EFFECT1 ".//DataGame//Images//Game//Object//ground//ground_effect1.png"
 #define PATH_GROUND_AUTO_DETROY ".//DataGame//Images//Game//Object//ground//ground_bridge.png"
 #pragma endregion GroundtPath

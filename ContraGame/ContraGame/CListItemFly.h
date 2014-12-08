@@ -1,19 +1,19 @@
-#ifndef CLISTNOTREE_H
-#define CLISTNOTREE_H
+#ifndef CLISTITEMFLY_H
+#define CLISTITEMFLY_H
 
 #include "CObject.h"
 #include "CItemFly.h"
 #include "CRunman.h"
 
-class CListNoTree
+class CListItemFly
 {
 
 private:
-	vector<CObject*> _listObNoTree;
+	vector<CObject*> _listItems;
 
 public:
-	CListNoTree();
-	~CListNoTree();
+	CListItemFly();
+	~CListItemFly();
 
 	void LoadResources();
 	void Draw();
@@ -24,7 +24,7 @@ public:
 	// kich hoat object hoat dong, Co draw hay update hay k
 	void setActivity(CObject *x);
 	//Lay list ob
-	vector<CObject*> &getListOb(){ return _listObNoTree; }
+	vector<CObject*> &getListOb(){ return _listItems; }
 };
 
 #endif

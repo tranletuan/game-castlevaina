@@ -141,10 +141,11 @@ void CResourcesManager::loadMap1()
 	_bullet_b = new CTexture(PATH_BULLET_B);
 
 	//Ground
-	_ground_grass = new CTexture(PATH_GROUND_1);
-	_ground_water = new CTexture(PATH_GROUND_2, 2);
+	_ground_grass = new CTexture(PATH_GROUND_GRASS);
+	_ground_water = new CTexture(PATH_GROUND_WATER);
 	_ground_effect1 = new CTexture(PATH_GROUND_EFFECT1);
 	_ground_auto_destroy_bridge = new CTexture(PATH_GROUND_AUTO_DETROY, 1, 6);
+	_ground_star = new CTexture(PATH_GROUND_STAR, 3);
 
 	//Effect
 	_effect_destroy = new CTexture(PATH_EFFECT_DESTROY, 3);
