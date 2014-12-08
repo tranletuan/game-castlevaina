@@ -14,7 +14,7 @@ ScenePlay::ScenePlay()
 
 	_weapon_enemy = new CEnemyWeapon();
 
-
+	m_star = new CGroundStar(123, Ground_Star, D3DXVECTOR3(0, 200, 0), 128, 16);
 	init();
 }
 
@@ -50,7 +50,7 @@ void ScenePlay::update(float time)
 	m_cameraHUD->update(time);
 	m_camera->Update();
 
-	
+	m_star->Update(time);
 	UpdateGlobalVariable();
 }
 
@@ -62,8 +62,9 @@ void ScenePlay::draw()
 	_weapon_enemy->Draw();
 	_weapon_player1->Draw();
 	_player1->Draw();
-
+	
 	m_cameraHUD->draw();
+	m_star->Draw();
 }
 
 void ScenePlay::destroy()

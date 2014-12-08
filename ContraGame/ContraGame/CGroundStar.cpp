@@ -9,8 +9,7 @@ CGroundStar::CGroundStar(int id, SpecificType specific_type, D3DXVECTOR3 pos, in
 	_time_count = 0;
 	_isDraw = false;
 	_basic_type = Effect;
-	_numSub = rand() % 10 + 10;
-	
+	_indexSprite = rand() % 6;
 	LoadResources();
 }
 
@@ -47,7 +46,7 @@ void CGroundStar::Update(int delta_time)
 		{
 			_time_count = 0;
 		}
-		if (_time_count % _numSub > 5 && _time_count % _numSub < 20)
+		if (_time_count % 20 > 5 && _time_count % 20 < 20)
 		{
 			_isDraw = true;
 		}

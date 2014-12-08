@@ -77,6 +77,7 @@ namespace MapEditor
             listViewBG.Items.Add("WaterEffect1", 3);
             listViewBG.Items.Add("WaterEffect2", 4);
             listViewBG.Items.Add("WaterEffect3", 5);
+            listViewBG.Items.Add("StarEffect", 5);
 
             // other
             CurrentCursor = CursorCur.NONE;
@@ -449,6 +450,10 @@ namespace MapEditor
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 32 * Xwidth, 16);
                     }
+                    else if (imgIndex == 6)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 32 * Xwidth, 16);
+                    }
 
 
                 }
@@ -589,6 +594,11 @@ namespace MapEditor
         private void PictureBoxes_MouseLeave(object sender, EventArgs e)
         {
             this.Cursor = new Cursor(((Bitmap)imageCursor).GetHicon());
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            pictureBoxBG.Visible = !pictureBoxBG.Visible;
         }
     }
 

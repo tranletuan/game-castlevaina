@@ -241,6 +241,8 @@ CObject * QTTree::getObjectTrust(CObject *x)
 		return new CSniperHide(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());		
 	case Ground_Bridge:
 		return new CAutoDestroyBridge(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
+	case Ground_Star:
+		return new CGroundStar(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	default:
 		break;
 	}

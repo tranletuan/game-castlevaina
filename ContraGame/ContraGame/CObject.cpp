@@ -116,6 +116,10 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(Ground_Water);
 	}
+	else if (x == "StarEffect")
+	{
+		setSpecificType(Ground_Star);
+	}
 }
 
 void CObject::setTrack(string x)

@@ -83,6 +83,7 @@
             this.textBoxCamX = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBG)).BeginInit();
             this.panel2.SuspendLayout();
@@ -499,6 +500,7 @@
             this.imageListBG.Images.SetKeyName(3, "WaterEffect1.png");
             this.imageListBG.Images.SetKeyName(4, "WaterEffect2.png");
             this.imageListBG.Images.SetKeyName(5, "WaterEffect3.png");
+            this.imageListBG.Images.SetKeyName(6, "Star.png");
             // 
             // buttonSave
             // 
@@ -623,11 +625,23 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "Camera : ";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(721, 138);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(109, 17);
+            this.checkBox1.TabIndex = 16;
+            this.checkBox1.Text = "Hide Background";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // MapEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1201, 616);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.buttonRest);
             this.Controls.Add(this.buttonSave);
@@ -658,6 +672,7 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -716,6 +731,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox comboBoxDir;
         private System.Windows.Forms.ComboBox comboBoxNameItem;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 
