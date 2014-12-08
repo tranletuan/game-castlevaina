@@ -2,6 +2,8 @@
 
 CRunmanManager::CRunmanManager()
 {
+	LoadResources();
+	_position_active.push_back(D3DXVECTOR3(286, 50, 0));
 }
 
 CRunmanManager::~CRunmanManager()
@@ -27,6 +29,8 @@ void CRunmanManager::LoadResources()
 
 void CRunmanManager::Update(int delta_time)
 {
+	CheckActive();
+
 	if (_list_runman.size() > 0)
 	{
 		for (map<int, CRunman*>::iterator i = _list_runman.begin(); i != _list_runman.end(); i++)
@@ -60,9 +64,95 @@ void CRunmanManager::Draw()
 	}
 }
 
-CollisionDirection CRunmanManager::CheckCollision(vector<CObject*>* list_ground, CObject* player)
+void CRunmanManager::CheckActive()
 {
-	return LeftCollision;
+	CCamera* cam = CResourcesManager::GetInstance()->_camera;
+
+	for (int i = 0; i < _position_active.size(); i++)
+	{
+		D3DXVECTOR3 pos = _position_active.at(i);
+		pos = cam->Transform(pos);
+
+		int levelMap = CResourcesManager::GetInstance()->m_levelMap;
+
+		switch (levelMap)
+		{
+		case 1:
+		case 3:
+			if ((pos.x > cam->view_port.x - ENEMY_RUN_MAN_DISTANCE_ACTIVE && pos.x < cam->view_port.x) ||
+				(pos.x < cam->view_port.x + kScreenWidth + ENEMY_RUN_MAN_DISTANCE_ACTIVE && pos.x > cam->view_port.x + kScreenWidth))
+			{
+				Attacking(pos);
+			}
+			break;
+		case 2:
+			break;
+		}
+	}
+}
+
+void CRunmanManager::Attacking(D3DXVECTOR3 pos)
+{
+	while (!_queue_runman.empty())
+	{
+		DWORD now = GetTickCount();
+
+		if (now - _last_time >= ENEMY_RUN_MAN_ELAPSED_TIME_ATTACK)
+		{
+			CRunman* runman = _queue_runman.front();
+			runman->SetTarget(pos, CResourcesManager::GetInstance()->m_posBill);
+
+			_queue_runman.pop();
+			_list_runman[runman->_id] = runman;
+		}
+	}
+}
+
+void CRunmanManager::CheckCollisionWithGround(CObject* ground)
+{
+	if (_list_runman.size() > 0)
+	{
+		for (map<int, CRunman*>::iterator i = _list_runman.begin(); i != _list_runman.end(); i++)
+		{
+			CRunman* runman = (*i).second;
+
+			//Kiểm tra va chạm với mặt đất
+			CollisionDirection cd = runman->_physical.Collision(&ground->_physical);
+			if (cd == TopCollision)
+			{
+				runman->Standing(ground->_physical.bounds.top + ENEMY_RUN_MAN_BOUNDS_HEIGHT / 2 + 0.5f, 
+					ground->_specific_type);
+
+				//Khi runman chạy hết đường thì hoặc là quay đầu, hoặc là nhảy
+				if (runman->_physical.bounds.left <= ground->_physical.bounds.left ||
+					runman->_physical.bounds.right >= ground->_physical.bounds.right)
+				{
+					int ran = rand() % 2;
+					if (ran == 1)
+					{
+						runman->Jumping();
+					}
+					else
+					{
+						runman->_physical.vx_last *= -1;
+						runman->_physical.vx *= -1;
+					}
+				}
+			}
+		}
+	}
+}
+
+void CRunmanManager::CheckCollisionWithPlayer(CPlayerWeapon* weapon, CBill* player)
+{
+	if (_list_runman.size() > 0)
+	{
+		for (map<int, CRunman*>::iterator i = _list_runman.begin(); i != _list_runman.end(); i++)
+		{
+			//Kiểm tra va chạm với người chơi 1
+
+		}
+	}
 }
 
 void CRunmanManager::RemoveDisableRunman()
@@ -89,8 +179,11 @@ bool CRunmanManager::CheckRunManInView(float x, float y)
 {
 	CCamera* c = CResourcesManager::GetInstance()->_camera;
 
-	if (x < c->view_port.x || x > c->view_port.x + kScreenWidth) return false;
-	if (y > c->view_port.y || y < c->view_port.y - kScreenHeight) return false;
+	if (x < c->view_port.x - ENEMY_RUN_MAN_DISTANCE_ACTIVE ||
+		x > c->view_port.x + kScreenWidth + ENEMY_RUN_MAN_DISTANCE_ACTIVE) return false;
+
+	if (y > c->view_port.y + ENEMY_RUN_MAN_DISTANCE_ACTIVE || 
+		y < c->view_port.y - kScreenHeight - ENEMY_RUN_MAN_DISTANCE_ACTIVE) return false;
 
 	return true;
 }

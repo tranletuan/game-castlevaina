@@ -70,7 +70,7 @@
 #define PATH_ENEMY_SNIPER_HIDE ".//DataGame//Images//Game//Object//enemy//sniper_hide.png"
 #define PATH_ENEMY_WALL_TURRET ".//DataGame//Images//Game//Object//enemy//wall_turret.png"
 #define PATH_ENEMY_GROUND_CANON ".//DataGame//Images//Game//Object//enemy//ground_canon.png"
-#define PATH_ENEMY_RUN_MAN ".//DataGame//Images//Game//Object//enemy//ground_canon.png"
+#define PATH_ENEMY_RUN_MAN ".//DataGame//Images//Game//Object//enemy//run_man.png"
 #pragma endregion EnemyPath
 
 #pragma region PlayerPath

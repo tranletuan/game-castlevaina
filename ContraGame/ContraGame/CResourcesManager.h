@@ -17,7 +17,6 @@
 #include <vector>
 #include "QTNode.h"
 #include "CObject.h"
-#include "CDatabase.h"
 
 using namespace std;
 
@@ -40,16 +39,12 @@ public:
 	CInput *m_input;	
 	CAudio *m_audio;
 	CCamera *_camera;
-	CDatabase *m_data;
-	D3DXVECTOR2 m_posBill;
+	D3DXVECTOR3 m_posBill;
 
 	int m_levelMap;
 	int m_life;	
 	int m_heightMap;
 	int m_widthMap;
-	int m_numScore;
-	int m_highScore;
-
 	vector<CObject*> listObinView;
 	vector<CObject*> listObNoTree; // list ob khong nam trong quad tree
 	vector<CObject*> _grounds;

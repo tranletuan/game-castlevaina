@@ -30,7 +30,7 @@ public:
 	virtual void Draw();
 	virtual void LoadResources();
 	virtual void Update(int delta_time);
-	virtual void SetTarget(float x, float y, float x_target);
+	virtual void SetTarget(D3DXVECTOR3 pos, D3DXVECTOR3 target);
 	bool Jumping();
 	void Standing(float y_ground, SpecificType ground_type);
 };

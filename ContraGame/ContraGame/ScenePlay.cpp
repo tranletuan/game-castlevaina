@@ -9,10 +9,10 @@ ScenePlay::ScenePlay()
 	
 	_weapon_player1 = new CPlayerWeapon();
 	_player1 = new CBill();
-	_player1->_physical.x = 2400;
 	_player1->SetWeapon(_weapon_player1);
 
 	_weapon_enemy = new CEnemyWeapon();
+	_runmans = new CRunmanManager();
 
 	m_star = new CGroundStar(123, Ground_Star, D3DXVECTOR3(0, 200, 0), 128, 16);
 	init();
@@ -46,7 +46,8 @@ void ScenePlay::update(float time)
 	_player1->Update(time);
 	_weapon_player1->Update(time);
 	_weapon_enemy->Update(time);
-	
+	_runmans->Update(time);
+
 	m_cameraHUD->update(time);
 	m_camera->Update();
 
@@ -62,6 +63,7 @@ void ScenePlay::draw()
 	_weapon_enemy->Draw();
 	_weapon_player1->Draw();
 	_player1->Draw();
+	_runmans->Draw();
 	
 	m_cameraHUD->draw();
 	m_star->Draw();
@@ -135,6 +137,7 @@ void ScenePlay::ProcessGroundsWithOneAnother()
 			//Xét va chạm với người chơi 2
 
 			//Xét va chạm với các đối tượng k có trong quadtree
+			_runmans->CheckCollisionWithGround(ground);
 		}
 
 		if (collision_player1 != TopCollision)

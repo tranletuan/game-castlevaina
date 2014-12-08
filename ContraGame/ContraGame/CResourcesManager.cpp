@@ -200,7 +200,7 @@ void CResourcesManager::loadMap1()
 	posY = map1_listOb.at(map1_listOb.size() - 1)->getPosY();
 
 	// xoa ob cuoi cua list
-	m_posBill = D3DXVECTOR2(posX, posY);
+	m_posBill = D3DXVECTOR3(posX, posY, 0);
 	map1_listOb.erase(map1_listOb.end() - 2, map1_listOb.end());
 
 	// load quadtree
