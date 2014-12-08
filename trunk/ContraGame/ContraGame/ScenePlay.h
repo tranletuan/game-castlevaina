@@ -13,9 +13,10 @@
 #include "CSniperHide.h"
 #include "CGroundCanon.h"
 #include "CWallTurret.h"
-#include "CListNoTree.h"
+#include "CListItemFly.h"
 #include "CBoss1.h"
 #include "CGroundEffect.h"
+#include "CGroundStar.h"
 
 class Background;
 class ScenePlay:
@@ -38,7 +39,9 @@ private:
 	vector<CObject*> _enemies;
 	vector<CObject*> _items;
 
-	CListNoTree *m_listNoTree;
+	CListItemFly *m_listItemFLy;
+
+	CGroundStar	*m_star;
 
 public:
 	ScenePlay();

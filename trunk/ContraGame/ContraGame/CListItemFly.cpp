@@ -1,74 +1,76 @@
-﻿#include "CListNoTree.h"
+﻿#include "CListItemFly.h"
 
-CListNoTree::CListNoTree()
+CListItemFly::CListItemFly()
 {
 	LoadResources();
 }
 
-CListNoTree::~CListNoTree()
+CListItemFly::~CListItemFly()
 {
 
 }
 
-void CListNoTree::LoadResources()
+void CListItemFly::LoadResources()
 {
-	_listObNoTree = CResourcesManager::GetInstance()->listObNoTree;
+	_listItems = CResourcesManager::GetInstance()->listObNoTree;
+
 
 	vector<CObject*> listObNoneTreeX;
-	for (int i = 0; i < _listObNoTree.size(); i++)
+	for (int i = 0; i < _listItems.size(); i++)
 	{
-		CObject *ob = getObjectTrust(_listObNoTree.at(i));
-		listObNoneTreeX.push_back(ob);
+		if (_listItems.at(i)->getSpecificType() != RunMan)
+		{
+			CObject *ob = getObjectTrust(_listItems.at(i));
+			listObNoneTreeX.push_back(ob);
+		}		
 	}
-	_listObNoTree = listObNoneTreeX;
+	_listItems = listObNoneTreeX;
 }
 
-void CListNoTree::Draw()
+void CListItemFly::Draw()
 {
-	for (int i = 0; i < _listObNoTree.size(); i++)
+	for (int i = 0; i < _listItems.size(); i++)
 	{
-		if (_listObNoTree.at(i)->getEnable())
+		if (_listItems.at(i)->getEnable())
 		{
-			_listObNoTree.at(i)->Draw();
+			_listItems.at(i)->Draw();
 		}
 	}
 }
 
-void CListNoTree::Update(int delta_time)
+void CListItemFly::Update(int delta_time)
 {
-	for (int i = 0; i < _listObNoTree.size(); i++)
+	for (int i = 0; i < _listItems.size(); i++)
 	{
-		setActivity(_listObNoTree.at(i));
+		setActivity(_listItems.at(i));
 
-		if (_listObNoTree.at(i)->getEnable())
+		if (_listItems.at(i)->getEnable())
 		{
-			_listObNoTree.at(i)->Update(delta_time);
+			_listItems.at(i)->Update(delta_time);
 		}
 	}
 }
 
-CObject *CListNoTree::getObjectTrust(CObject *x)
+CObject *CListItemFly::getObjectTrust(CObject *x)
 {
 	float posX = x->getPosX() + x->getWidth() / 2;
 	float posY = x->getPosY() - x->getHeight() / 2;
 	
 	switch (x->getSpecificType())
 	{
-	case ItemM:
-	case ItemF:
-	case ItemB:
-	case ItemL:
-	case ItemR:
-	case ItemS:
-		return new CItemFly(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getTrack(), x->getWidth(), x->getHeight());		
-	case RunMan:
-		return new CRunman(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());		
-	default:
-		break;
+		case ItemM:
+		case ItemF:
+		case ItemB:
+		case ItemL:
+		case ItemR:
+		case ItemS:
+			return new CItemFly(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getTrack(), x->getWidth(), x->getHeight());		
+		default:
+			break;
 	}
 }
 
-void CListNoTree::setActivity(CObject *x)
+void CListItemFly::setActivity(CObject *x)
 {
 	CCamera *cam = CResourcesManager::GetInstance()->_camera;
 	float posX = x->getPosX();

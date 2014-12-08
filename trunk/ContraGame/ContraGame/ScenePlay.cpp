@@ -5,10 +5,11 @@ ScenePlay::ScenePlay()
 	m_background = new Background();
 	m_cameraHUD = new CameraHUD(3);
 	m_tree = new QTTree();
+	m_listItemFLy = new CListItemFly();
 	
 	_weapon_player1 = new CPlayerWeapon();
 	_player1 = new CBill();
-	_player1->_physical.x = 1300;
+	//_player1->_physical.x = 1300;
 	_player1->SetWeapon(_weapon_player1);
 
 	_weapon_enemy = new CEnemyWeapon();
@@ -41,7 +42,7 @@ void ScenePlay::update(float time)
 
 	m_background->update(time);
 	m_tree->update(time);
-
+	m_listItemFLy->Update(time);
 	_player1->Update(time);
 	_weapon_player1->Update(time);
 	_weapon_enemy->Update(time);
@@ -57,7 +58,7 @@ void ScenePlay::draw()
 {
 	m_background->draw();
 	m_tree->draw();
-
+	m_listItemFLy->Draw();
 	_weapon_enemy->Draw();
 	_weapon_player1->Draw();
 	_player1->Draw();

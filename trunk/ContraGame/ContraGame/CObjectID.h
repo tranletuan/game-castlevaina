@@ -22,6 +22,7 @@ enum  SpecificType
 	Ground_Water,
 	Ground_Effect1,
 	Ground_Bridge,
+	Ground_Star, //sao map 1
 
 	// Effect
 	EffectDestroy,
