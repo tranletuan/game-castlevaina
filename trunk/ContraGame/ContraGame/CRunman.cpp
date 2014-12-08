@@ -41,6 +41,7 @@ void CRunman::Update(int delta_time)
 	else
 	{
 		_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
+		_physical.SetBounds(_physical.x, _physical.y, ENEMY_RUN_MAN_BOUNDS_WIDTH, ENEMY_RUN_MAN_BOUNDS_HEIGHT);
 	}
 }
 
@@ -69,14 +70,15 @@ void CRunman::Draw()
 	}
 }
 
-void CRunman::SetTarget(float x, float y, float x_target)
+void CRunman::SetTarget(D3DXVECTOR3 pos, D3DXVECTOR3 target)
 {
-	_physical.x = x;
-	_physical.y = y;
+	_physical.x = pos.x;
+	_physical.y = pos.y;
+	_physical.n = 0;
 	_hp = 1;
 	_rm_status = RMRun;
 
-	if (x < x_target)
+	if (pos.x < target.x)
 	{
 		_physical.vx_last = 1;
 		_physical.vx = ENEMY_RUN_MAN_VX;
@@ -135,8 +137,10 @@ bool CRunman::Jumping()
 	if (!SetStatus(RMJump)) return false;
 
 	//Nếu chuyển thành công thì thực hiện nhảy
-	_physical.vy = BILL_VY;
-	
+	float rate = rand() % 10 / (float)10;
+	_physical.vy = ENEMY_RUN_MAN_VY + rate;
+	_physical.n = 0;
+
 	return true;
 }
 
@@ -144,10 +148,20 @@ void CRunman::Standing(float y_ground, SpecificType ground_type)
 {
 	if (_physical.n == 0)
 	{
-		if (_hp > 0 && ground_type == Ground_Water)
+		if (_hp > 0)
 		{
-			_rm_status = RMStand;
+			if (ground_type == Ground_Water)
+			{
+				_rm_status = RMStand;
+				_physical.SetBounds(0, 0, 0, 0);
+			}
+			else
+			{
+				_rm_status = RMRun;
+			}
 		}
+
+		_physical.vy = 0;
 	}
 
 	//Chạm đất thì vector phản lực n phải có 1 lực tương đương với vector trọng trường

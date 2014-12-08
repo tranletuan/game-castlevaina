@@ -17,6 +17,7 @@
 #include "CBoss1.h"
 #include "CGroundEffect.h"
 #include "CGroundStar.h"
+#include "CRunManManager.h"
 
 class Background;
 class ScenePlay:
@@ -40,6 +41,7 @@ private:
 	vector<CObject*> _items;
 
 	CListItemFly *m_listItemFLy;
+	CRunmanManager* _runmans;
 
 	CGroundStar	*m_star;
 
