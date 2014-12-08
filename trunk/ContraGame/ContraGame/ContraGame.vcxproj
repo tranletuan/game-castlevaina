@@ -21,6 +21,7 @@
     <ClCompile Include="CBoss1.cpp" />
     <ClCompile Include="CBossGun.cpp" />
     <ClCompile Include="CBullet.cpp" />
+    <ClCompile Include="CDatabase.cpp" />
     <ClCompile Include="CEffectObject.cpp" />
     <ClCompile Include="CEnemy.cpp" />
     <ClCompile Include="CEnemyUseGun.cpp" />
@@ -83,6 +84,7 @@
     <ClInclude Include="CBoss1.h" />
     <ClInclude Include="CBossGun.h" />
     <ClInclude Include="CBullet.h" />
+    <ClInclude Include="CDatabase.h" />
     <ClInclude Include="CEffectObject.h" />
     <ClInclude Include="CEnemy.h" />
     <ClInclude Include="CEnemyUseGun.h" />
@@ -168,8 +170,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

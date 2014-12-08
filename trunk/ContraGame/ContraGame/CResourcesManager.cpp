@@ -20,6 +20,11 @@ void CResourcesManager::prepareManager(LPD3DXSPRITE sp, LPDIRECT3DDEVICE9 pd3Dev
 	GetInstance()->m_input = input;
 	kSpriteHandler = sp;
 	GetInstance()->m_audio = audio;
+
+	// init var default
+	GetInstance()->m_life = 3;
+	GetInstance()->m_numScore = 0;
+	GetInstance()->m_levelMap = 1;
 }
 
 
@@ -75,6 +80,10 @@ void CResourcesManager::loadLoadingGraphics()
 	load_stage = new CTexture(PATH_LOAD_STAGE, D3DCOLOR_XRGB(0, 0, 0));
 	load_nameStage = new CTexture(PATH_LOAD_NAMESTAGE, D3DCOLOR_XRGB(0, 0, 0));
 	load_number = new CTexture(PATH_LOAD_NUMBER, 10);
+
+	//high sorce map 1
+	m_data = new CDatabase();	
+	m_highScore = m_data->readHighScore(PATH_HIGHSCORE_1);
 }
 
 void CResourcesManager::loadLoadingAudio()
@@ -119,6 +128,16 @@ void CResourcesManager::loadPlayGraphics()
 	_bill_move = new CTexture(PATH_PLAYER_MOVE, 5, 4);
 	_bill_in_water = new CTexture(PATH_PLAYER_IN_WATER, 10);
 
+
+	//Bullet
+	_bullet_n = new CTexture(PATH_BULLET_N);
+	_bullet_s = new CTexture(PATH_BULLET_S, 3);
+	_bullet_l = new CTexture(PATH_BULLET_L);
+	_bullet_f = new CTexture(PATH_BULLET_F);
+	_bullet_m = new CTexture(PATH_BULLET_M);
+	_bullet_ne = new CTexture(PATH_BULLET_NE);
+	_bullet_b = new CTexture(PATH_BULLET_B);
+
 }
 
 
@@ -131,21 +150,12 @@ void CResourcesManager::loadMap1()
 {
 	/* --- Object ---*/
 
-	//Bullet
-	_bullet_n = new CTexture(PATH_BULLET_N);
-	_bullet_s = new CTexture(PATH_BULLET_S, 3);
-	_bullet_l = new CTexture(PATH_BULLET_L);
-	_bullet_f = new CTexture(PATH_BULLET_F);
-	_bullet_m = new CTexture(PATH_BULLET_M);
-	_bullet_ne = new CTexture(PATH_BULLET_NE);
-	_bullet_b = new CTexture(PATH_BULLET_B);
-
 	//Ground
 	_ground_grass = new CTexture(PATH_GROUND_GRASS);
 	_ground_water = new CTexture(PATH_GROUND_WATER);
 	_ground_effect1 = new CTexture(PATH_GROUND_EFFECT1);
 	_ground_auto_destroy_bridge = new CTexture(PATH_GROUND_AUTO_DETROY, 1, 6);
-	_ground_star = new CTexture(PATH_GROUND_STAR, 6);
+	_ground_star = new CTexture(PATH_GROUND_STAR, 6, 2);
 
 	//Effect
 	_effect_destroy = new CTexture(PATH_EFFECT_DESTROY, 3);
@@ -196,8 +206,9 @@ void CResourcesManager::loadMap1()
 	// load quadtree
 	map1_listNode = loadFileTextNode(PATH_QT_MAP1);
 	
-	
+	//high sorce map 2
 
+	 
 }
 
 void CResourcesManager::loadMap2()

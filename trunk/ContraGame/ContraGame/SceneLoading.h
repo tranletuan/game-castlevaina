@@ -1,6 +1,6 @@
-
 #ifndef SCENELOADING_H
 #define SCENELOADING_H
+
 #include "BaseScene.h"
 #include "SceneManager.h"
 
@@ -15,6 +15,9 @@ private:
 	CSprite *m_spStage;
 	CSprite *m_spNumber;
 	CSprite *m_spNameStage;
+
+	int _highScore;
+	
 
 public:
 	SceneLoading();

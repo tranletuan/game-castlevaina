@@ -222,6 +222,9 @@
     <Filter Include="Contra Game\Object\Item\ListItemFly">
       <UniqueIdentifier>{089bdab2-c230-4751-9374-0785ed1ecf6f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contra Game\Other\Database">
+      <UniqueIdentifier>{7c20c644-5f01-48c4-aa23-f828b3649f36}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -403,6 +406,9 @@
     </ClCompile>
     <ClCompile Include="CListItemFly.cpp">
       <Filter>Contra Game\Object\Item\ListItemFly</Filter>
+    </ClCompile>
+    <ClCompile Include="CDatabase.cpp">
+      <Filter>Contra Game\Other\Database</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -600,6 +606,9 @@
     </ClInclude>
     <ClInclude Include="CListItemFly.h">
       <Filter>Contra Game\Object\Item\ListItemFly</Filter>
+    </ClInclude>
+    <ClInclude Include="CDatabase.h">
+      <Filter>Contra Game\Other\Database</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
