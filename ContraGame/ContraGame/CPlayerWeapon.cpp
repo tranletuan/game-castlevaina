@@ -202,7 +202,7 @@ bool CPlayerWeapon::ShootingFBullet(D3DXVECTOR3 pos, int angle, float vo)
 	if (!_queue_bullet_f.empty())
 	{
 		CBullet* bullet = _queue_bullet_f.front();
-		bullet->Shoot(pos, angle, BULLET_F_V + _v_powerful, 0);
+		bullet->Shoot(pos, angle, BULLET_F_V, 0);
 
 		_queue_bullet_f.pop();
 		_list_bullet[bullet->_id] = bullet;
