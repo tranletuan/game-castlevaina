@@ -155,6 +155,7 @@ void ScenePlay::ProcessGroundsWithOneAnother()
 
 void ScenePlay::ProcessEnemiesWithOneAnother()
 {
+	//Quái nằm trong quadtree
 	if (_enemies.size() > 0)
 	{
 		for (vector<CObject*>::iterator i = _enemies.begin(); i != _enemies.end(); i++)
@@ -178,6 +179,9 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 
 		}
 	}
+
+	//Runman nằm ngoài quadtree
+	_runmans->CheckCollisionWithPlayer(_weapon_player1, _player1);
 }
 
 void ScenePlay::ProcessItemsWithOneAnother()
