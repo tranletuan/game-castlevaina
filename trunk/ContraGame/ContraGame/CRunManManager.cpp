@@ -40,7 +40,7 @@ void CRunmanManager::Update(int delta_time)
 
 			runman->Update(delta_time);
 
-			if (!CheckRunManInView(runman->_physical.x, runman->_physical.y))
+			if (!CheckRunManInView(runman->_physical.x, runman->_physical.y) || !runman->_enable)
 			{
 				_queue_id_remove.push(runman->_id);
 			}
@@ -159,8 +159,19 @@ void CRunmanManager::CheckCollisionWithPlayer(CPlayerWeapon* weapon, CBill* play
 	{
 		for (map<int, CRunman*>::iterator i = _list_runman.begin(); i != _list_runman.end(); i++)
 		{
-			//Kiểm tra va chạm với người chơi 1
+			CRunman* runman = (*i).second;
 
+			//Kiểm tra va chạm với đạn người chơi 1
+			if (runman->_hp > 0)
+			{
+				if (weapon->CheckCollision(runman) != NoCollision)
+				{
+					runman->_hp--;
+					runman->Dying();
+				}
+			}
+
+			//Kiểm tra va chạm với người chơi
 		}
 	}
 }

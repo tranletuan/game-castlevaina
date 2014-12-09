@@ -32,6 +32,7 @@ void CBullet::OnTarget()
 	_physical.n = GRAVITY; //Đặc biệt dành cho đạn có gia tốc trọng trường
 	_current_sprite = _ontarget_sprite;
 	_current_sprite->Reset();
+	_physical.SetBounds(0, 0, 0, 0);
 	
 }
 

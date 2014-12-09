@@ -95,6 +95,11 @@ void CSprite::PerformEffect(int start, int end, int time, int step)
 	this->start = start;
 	this->end = end;
 	this->time_ani = time;
+	
+	if (last_time == 0)
+	{
+		last_time = GetTickCount();
+	}
 
 	if (start < end)
 	{

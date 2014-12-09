@@ -33,5 +33,6 @@ public:
 	virtual void SetTarget(D3DXVECTOR3 pos, D3DXVECTOR3 target);
 	bool Jumping();
 	void Standing(float y_ground, SpecificType ground_type);
+	void Dying();
 };
 #endif // !_CRUN_MAN_H_

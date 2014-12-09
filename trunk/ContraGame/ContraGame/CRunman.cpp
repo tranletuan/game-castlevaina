@@ -24,61 +24,66 @@ void CRunman::LoadResources()
 
 void CRunman::Update(int delta_time)
 {
-	if (_hp == 0)
+	if (_enable)
 	{
-		if (_physical.current_vy >= 0)
+		if (_hp == 0)
 		{
-			_physical.vx = 0.02f;
-			_physical.vy = ENEMY_VY_DIE;
-			_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
+			if (_physical.n == 0 && _physical.current_vy <= 0)
+			{
+				SetStatus(RMDie);
+			}
 		}
-		//Khi đạt độ cao cực đại thì trạng thái chuyển sang die
 		else
 		{
-			SetStatus(RMDie);
+			_physical.SetBounds(_physical.x, _physical.y, ENEMY_RUN_MAN_BOUNDS_WIDTH, ENEMY_RUN_MAN_BOUNDS_HEIGHT);
 		}
-	}
-	else
-	{
+
 		_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
-		_physical.SetBounds(_physical.x, _physical.y, ENEMY_RUN_MAN_BOUNDS_WIDTH, ENEMY_RUN_MAN_BOUNDS_HEIGHT);
 	}
 }
 
 void CRunman::Draw()
 {
-	CCamera* c = CResourcesManager::GetInstance()->_camera;
-	D3DXVECTOR3 pos = c->Transform(_physical.x, _physical.y);
-	
-	switch (_rm_status)
+	if (_enable)
 	{
-	case RMStand:
-		DrawWhenStand(pos);
-		break;
-	case RMRun:
-		DrawWhenRun(pos);
-		break;
-	case RMAttack:
-		DrawWhenAttack(pos);
-		break;
-	case RMJump:
-		DrawWhenJump(pos);
-		break;
-	case RMDie:
-		DrawWhenDie(pos);
-		break;
+		CCamera* c = CResourcesManager::GetInstance()->_camera;
+		D3DXVECTOR3 pos = c->Transform(_physical.x, _physical.y);
+
+		switch (_rm_status)
+		{
+		case RMStand:
+			DrawWhenStand(pos);
+			break;
+		case RMRun:
+			DrawWhenRun(pos);
+			break;
+		case RMAttack:
+			DrawWhenAttack(pos);
+			break;
+		case RMJump:
+			DrawWhenJump(pos);
+			break;
+		case RMDie:
+			DrawWhenDie(pos);
+			break;
+		}
 	}
 }
 
 void CRunman::SetTarget(D3DXVECTOR3 pos, D3DXVECTOR3 target)
 {
 	_physical.x = pos.x;
-	_physical.y = target.y + 50;
+	_physical.y = target.y + 35;
+	_physical.vy = 0;
 	_physical.n = 0;
 	_physical.time_in_space = 0;
 	_physical.SetBounds(_physical.x, _physical.y, ENEMY_RUN_MAN_BOUNDS_WIDTH, ENEMY_RUN_MAN_BOUNDS_HEIGHT);
+	
 	_hp = 1;
+	_enable = true;
 	_rm_status = RMRun;
+	_die_sprite->Reset();
+	_current_sprite = _live_sprite;
 
 	if (pos.x < target.x)
 	{
@@ -96,8 +101,12 @@ void CRunman::DrawWhenStand(D3DXVECTOR3 pos)
 {
 	if (_current_sprite->index != 7)
 	{
-		pos.y += ENEMY_RUN_MAN_BOUNDS_HEIGHT;
+		pos.y += (ENEMY_RUN_MAN_BOUNDS_HEIGHT - 5);
 		_current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 6, 7, 150);
+	}
+	else
+	{
+		_enable = false;
 	}
 }
 
@@ -117,10 +126,21 @@ void CRunman::DrawWhenJump(D3DXVECTOR3 pos)
 
 void CRunman::DrawWhenDie(D3DXVECTOR3 pos)
 {
-	_current_sprite = _die_sprite;
-	if (_current_sprite->index != _current_sprite->sprite_texture->count - 1)
+	if (_current_sprite == _live_sprite && _current_sprite->index != 5)
 	{
-		_current_sprite->DrawWithDirection(pos, _physical.vx_last, 0, 2);
+		_current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 3, 5);
+	}
+	else
+	{
+		_current_sprite = _die_sprite;
+		if (_current_sprite->index != 2)
+		{
+			_current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 0, 2, 150);
+		}
+		else
+		{
+			_enable = false;
+		}
 	}
 }
 
@@ -171,4 +191,17 @@ void CRunman::Standing(float y_ground, SpecificType ground_type)
 	//Chạm đất thì vector phản lực n phải có 1 lực tương đương với vector trọng trường
 	_physical.n = GRAVITY;
 	_physical.time_in_space = GetTickCount();
+}
+
+void CRunman::Dying()
+{
+	if (_hp <= 0)
+	{
+		_physical.vx = 0.02f;
+		_physical.vy = ENEMY_VY_DIE;
+		_physical.n = 0;
+		_physical.SetBounds(0, 0, 0, 0);
+		_physical.time_in_space = GetTickCount();
+	}
+
 }
