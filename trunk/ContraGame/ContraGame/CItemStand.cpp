@@ -7,6 +7,8 @@ CItemStand::CItemStand(int id, SpecificType specific_type, D3DXVECTOR3 pos, int 
 	LoadResources();
 	_state_item_stand = SIS_Close;
 	_physical.SetBounds(pos.x, pos.y, 20, 20);
+	_enable = true;
+	_pos_stand = pos;
 }
 
 void CItemStand::LoadResources()
@@ -33,33 +35,35 @@ void CItemStand::LoadResources()
 
 void CItemStand::Draw()
 {
-	CCamera *_cam = CResourcesManager::GetInstance()->_camera;
-	D3DXVECTOR3 pos;
-	if (_hp>0)
+	if (_enable)
 	{
-		_pos_stand = _cam->Transform(_physical.x, _physical.y);
-	}
-	else
-	{
-		pos = _cam->Transform(_physical.x, _physical.y);
-	}
+		CCamera *_cam = CResourcesManager::GetInstance()->_camera;
+		D3DXVECTOR3 pos;
 
-	// Xử lý vẽ theo state item
-	switch (_state_item_stand)
-	{
-	case SIS_Close:
-		DrawWhenStand(_pos_stand);
-		break;
-	case SIS_Open:
-	case SIS_Enable:
-		DrawWhenActivity(_pos_stand);
-		break;
-	case SIS_Spatter:
-	case SIS_EAT:
-		DrawWhenAttack(pos);
-		break;
-	default:
-		break;
+		if (_hp <= 0)
+		{
+			pos = _cam->Transform(_physical.x, _physical.y);;
+		}
+		else
+		{
+			pos = _cam->Transform(_pos_stand.x, _pos_stand.y);
+		}
+
+		// Xử lý vẽ theo state item
+		switch (_state_item_stand)
+		{
+		case SIS_Close:
+			DrawWhenStand(pos);
+			break;
+		case SIS_Open:
+		case SIS_Enable:
+			DrawWhenActivity(pos);
+			break;
+		case SIS_Spatter:
+		case SIS_EAT:
+			DrawWhenAttack(pos);
+			break;
+		}
 	}
 }
 
@@ -163,7 +167,7 @@ void CItemStand::DrawWhenStand(D3DXVECTOR3 pos)
 void CItemStand::DrawWhenActivity(D3DXVECTOR3 pos)
 {
 	// Khi hoạt động gán vô 1 animation cho nó
-	_sprite_stand->DrawWithDirection(_pos_stand, _physical.vx_last, 0, 6,200);
+	_sprite_stand->DrawWithDirection(pos, _physical.vx_last, 0, 6,200);
 }
 
 void CItemStand::DrawWhenAttack(D3DXVECTOR3 pos)
@@ -171,8 +175,10 @@ void CItemStand::DrawWhenAttack(D3DXVECTOR3 pos)
 	// Khi bị bắt không vẽ _sprite_stand, _sprite_effect nổ theo _pos_stand , đồng thời vẻ _sprite_item văng lên
 	if (_sprite_effect->index != 2)
 	{
-		_sprite_effect->DrawWithDirectionAndOneTimeEffect(_pos_stand, _physical.vx_last, 0, 2, 200);
+		D3DXVECTOR3 pos_stand = CResourcesManager::GetInstance()->_camera->Transform(_pos_stand.x, _pos_stand.y);
+		_sprite_effect->DrawWithDirectionAndOneTimeEffect(pos_stand, _physical.vx_last, 0, 2, 200);
 	}
+
 	// Vẽ item văng lên	
 	if (_physical.bounds.left != 0 && _physical.bounds.top != 0 &&
 		_physical.bounds.right != 0 && _physical.bounds.bottom != 0)

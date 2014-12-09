@@ -121,6 +121,11 @@ CObject *CListItemFly::getObjectTrust(CObject *x)
 
 void CListItemFly::setActivity(CObject *x)
 {
+	if (x->_physical.bounds.left == 0 &&
+		x->_physical.bounds.right == 0 &&
+		x->_physical.bounds.top == 0 &&
+		x->_physical.bounds.bottom == 0) return;
+
 	CCamera *cam = CResourcesManager::GetInstance()->_camera;
 	float posX = x->getPosX();
 	float posY = x->getPosY();

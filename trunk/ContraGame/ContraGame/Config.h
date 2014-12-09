@@ -92,10 +92,10 @@
 
 #define ITEM_FLY_VX_MOVE 0.1f
 #define ITEM_FLY_VY_MOVE 0.08f
-#define ITEM_FLY_ANGLE 5 
-#define ITEM_FLY_BOUND_COS 2
+#define ITEM_FLY_ANGLE 10 
+#define ITEM_FLY_BOUND_COS 3
 #define ITEM_FLY_VX_DIE 0.05f
-#define ITEM_FLY_VY_DIE 5.0f
+#define ITEM_FLY_VY_DIE 5.5f
 
 // BOSS
 #define BOSS1_SPACE_X 36

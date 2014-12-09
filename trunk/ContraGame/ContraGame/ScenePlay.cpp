@@ -98,7 +98,10 @@ void ScenePlay::UpdateFullListObjetcInView()
 					_enemies.push_back(ob);
 				break;
 			case Item:
-				_items.push_back(ob);
+				if (ob->_enable)
+				{
+					_items.push_back(ob);
+				}
 				break;
 			}
 		}
@@ -122,14 +125,15 @@ void ScenePlay::ProcessGroundsWithOneAnother()
 				collision_player1 = _player1->_physical.Collision(&ground->_physical);
 				if (collision_player1 == TopCollision && _player1->_physical.current_vy < 0)
 				{
-					_player1->Standing(ground->_physical.bounds.top + BILL_BOUNDS_HEIGHT / 2 + 0.5f, ground->_id);
 					if (ground->_specific_type == Ground_Water)
 					{
 						_player1->SetEnviroment(Water);
+						_player1->Standing(ground->_physical.bounds.top + BILL_BOUNDS_WIDTH / 2 + 0.5f, ground->_id);
 					}
 					else
 					{
 						_player1->SetEnviroment(Land);
+						_player1->Standing(ground->_physical.bounds.top + BILL_BOUNDS_HEIGHT / 2 + 0.5f, ground->_id);
 					}
 				}
 			}
@@ -204,6 +208,7 @@ void ScenePlay::ProcessItemsWithOneAnother()
 					}
 
 					item->_physical.SetBounds(0, 0, 0, 0);
+					item->_enable = false;
 				}
 			}
 
