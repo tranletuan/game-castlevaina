@@ -3,7 +3,7 @@
 CRunmanManager::CRunmanManager()
 {
 	LoadResources();
-	_position_active.push_back(D3DXVECTOR3(286, 50, 0));
+	_position_active.push_back(D3DXVECTOR3(700, 145, 0));
 }
 
 CRunmanManager::~CRunmanManager()
@@ -71,7 +71,7 @@ void CRunmanManager::CheckActive()
 	for (int i = 0; i < _position_active.size(); i++)
 	{
 		D3DXVECTOR3 pos = _position_active.at(i);
-		pos = cam->Transform(pos);
+		D3DXVECTOR3 pos_check_active = cam->Transform(pos);
 
 		int levelMap = CResourcesManager::GetInstance()->m_levelMap;
 
@@ -79,8 +79,8 @@ void CRunmanManager::CheckActive()
 		{
 		case 1:
 		case 3:
-			if ((pos.x > cam->view_port.x - ENEMY_RUN_MAN_DISTANCE_ACTIVE && pos.x < cam->view_port.x) ||
-				(pos.x < cam->view_port.x + kScreenWidth + ENEMY_RUN_MAN_DISTANCE_ACTIVE && pos.x > cam->view_port.x + kScreenWidth))
+			if ((pos_check_active.x < 0 && pos.x > -ENEMY_RUN_MAN_DISTANCE_ACTIVE) ||
+				(pos_check_active.x < kScreenWidth + ENEMY_RUN_MAN_DISTANCE_ACTIVE && pos_check_active.x > kScreenWidth))
 			{
 				Attacking(pos);
 			}
@@ -93,10 +93,9 @@ void CRunmanManager::CheckActive()
 
 void CRunmanManager::Attacking(D3DXVECTOR3 pos)
 {
-	while (!_queue_runman.empty())
+	if(!_queue_runman.empty())
 	{
 		DWORD now = GetTickCount();
-
 		if (now - _last_time >= ENEMY_RUN_MAN_ELAPSED_TIME_ATTACK)
 		{
 			CRunman* runman = _queue_runman.front();
@@ -104,6 +103,7 @@ void CRunmanManager::Attacking(D3DXVECTOR3 pos)
 
 			_queue_runman.pop();
 			_list_runman[runman->_id] = runman;
+			_last_time = now;
 		}
 	}
 }
@@ -124,18 +124,28 @@ void CRunmanManager::CheckCollisionWithGround(CObject* ground)
 					ground->_specific_type);
 
 				//Khi runman chạy hết đường thì hoặc là quay đầu, hoặc là nhảy
-				if (runman->_physical.bounds.left <= ground->_physical.bounds.left ||
-					runman->_physical.bounds.right >= ground->_physical.bounds.right)
+				if ((runman->_physical.bounds.left <= ground->_physical.bounds.left ||
+					runman->_physical.bounds.right >= ground->_physical.bounds.right) &&
+					runman->_rm_status == RMRun)
 				{
-					int ran = rand() % 2;
-					if (ran == 1)
+					int ran = rand() % 10;
+					if (ran < 7)
 					{
 						runman->Jumping();
 					}
-					else
+					else if (runman->_rm_status != RMJump)
 					{
 						runman->_physical.vx_last *= -1;
 						runman->_physical.vx *= -1;
+
+						if (runman->_physical.vx_last > 0)
+						{
+							runman->_physical.x += 10;
+						}
+						else
+						{
+							runman->_physical.x -= 10;
+						}
 					}
 				}
 			}

@@ -73,8 +73,10 @@ void CRunman::Draw()
 void CRunman::SetTarget(D3DXVECTOR3 pos, D3DXVECTOR3 target)
 {
 	_physical.x = pos.x;
-	_physical.y = pos.y;
+	_physical.y = target.y + 50;
 	_physical.n = 0;
+	_physical.time_in_space = 0;
+	_physical.SetBounds(_physical.x, _physical.y, ENEMY_RUN_MAN_BOUNDS_WIDTH, ENEMY_RUN_MAN_BOUNDS_HEIGHT);
 	_hp = 1;
 	_rm_status = RMRun;
 
@@ -94,6 +96,7 @@ void CRunman::DrawWhenStand(D3DXVECTOR3 pos)
 {
 	if (_current_sprite->index != 7)
 	{
+		pos.y += ENEMY_RUN_MAN_BOUNDS_HEIGHT;
 		_current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 6, 7, 150);
 	}
 }
@@ -158,6 +161,7 @@ void CRunman::Standing(float y_ground, SpecificType ground_type)
 			else
 			{
 				_rm_status = RMRun;
+				_physical.y = y_ground;
 			}
 		}
 
@@ -167,5 +171,4 @@ void CRunman::Standing(float y_ground, SpecificType ground_type)
 	//Chạm đất thì vector phản lực n phải có 1 lực tương đương với vector trọng trường
 	_physical.n = GRAVITY;
 	_physical.time_in_space = GetTickCount();
-	_physical.y = y_ground;
 }
