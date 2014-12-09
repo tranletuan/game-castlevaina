@@ -70,22 +70,25 @@ void CItemFly::LoadResources()
 
 void CItemFly::Draw()
 {
-	CCamera *_cam = CResourcesManager::GetInstance()->_camera;
-	D3DXVECTOR3 pos = _cam->Transform(_physical.x, _physical.y);
-
-	if (_hp == 0 && _pos_effect.x == 0 && _pos_effect.y == 0)
+	if (_enable)
 	{
-		_pos_effect = _cam->Transform(_physical.x, _physical.y);
-	}
+		CCamera *_cam = CResourcesManager::GetInstance()->_camera;
+		D3DXVECTOR3 pos = _cam->Transform(_physical.x, _physical.y);
 
-	switch (_state_item_fly)
-	{
-	case SIF_Move:
-		DrawWhenMove(pos);
-		break;
-	case SIF_Die:
-		DrawWhenDie(pos);
-		break;
+		if (_hp == 0 && _pos_effect.x == 0 && _pos_effect.y == 0)
+		{
+			_pos_effect = _cam->Transform(_physical.x, _physical.y);
+		}
+
+		switch (_state_item_fly)
+		{
+		case SIF_Move:
+			DrawWhenMove(pos);
+			break;
+		case SIF_Die:
+			DrawWhenDie(pos);
+			break;
+		}
 	}
 }
 

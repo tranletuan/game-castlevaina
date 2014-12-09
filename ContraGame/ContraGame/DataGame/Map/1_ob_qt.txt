@@ -6,8 +6,8 @@
 6 Ground 352 63 32 16 
 7 Ground 606 32 64 16 
 8 Ground 288 31 64 16 
-9 Sniper 305 59 24 32 
-10 Sniper 627 59 24 32 
+9 Sniper 305 61 24 32 
+10 Sniper 627 61 24 32 
 11 WaterEffect1 28 47 128 16 
 12 WaterEffect1 157 32 128 16 
 13 WaterEffect1 353 31 32 16 
@@ -32,9 +32,9 @@
 32 Ground 1409 31 96 16 
 33 Ground 1502 80 64 16 
 34 Ground 1600 96 224 16 
-35 Sniper 1263 152 24 32 
-36 SniperHide 1323 161 24 32 
-37 SniperHide 1531 193 24 32 
+35 Sniper 1263 154 24 32 
+36 SniperHide 1323 158 24 32 
+37 SniperHide 1531 190 24 32 
 38 ItemStandF 1568 97 32 32 
 39 BlockHouse 1247 96 32 32 
 40 WaterEffect1 1406 17 96 16 
@@ -67,7 +67,7 @@
 67 Ground 2719 31 96 16 
 68 Ground 2623 95 160 16 
 69 Obstacle 2751 128 32 32 
-70 Sniper 2352 123 24 32 
+70 Sniper 2352 122 24 32 
 71 BlockHouse 2975 63 32 32 
 72 BlockHouse 3105 64 32 32 
 73 Ground 3137 95 32 16 
