@@ -118,12 +118,12 @@ int CEnemyWeapon::ShootingBulletNE(D3DXVECTOR3 pos, int angle, float vo)
 	return -1;
 }
 
-int CEnemyWeapon::ShootingBulletB(D3DXVECTOR3 pos, int angle, float vo)
+int CEnemyWeapon::ShootingBulletB(D3DXVECTOR3 pos)
 {
 	if (!_queue_bullet_b.empty())
 	{
 		CBullet* bullet = _queue_bullet_b.front();
-		bullet->Shoot(pos, angle, BULLET_B_VX, vo);
+		bullet->Shoot(pos, 180, BULLET_B_VX, 0);
 
 		_queue_bullet_b.pop();
 		_list_bullet[bullet->_id] = bullet;

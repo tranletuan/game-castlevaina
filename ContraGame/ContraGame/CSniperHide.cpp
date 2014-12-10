@@ -19,12 +19,11 @@ void CSniperHide::LoadResources()
 	if (_specific_type == Sniper_Hide)
 	{
 		_live_sprite = new CSprite(rs->_enemy_sniper_hide);
+		_die_sprite = new CSprite(rs->_effect_die);
+		_current_sprite = _live_sprite;
+		_current_sprite->index = 1;
 		_max_bullet = ENEMY_SNIPER_HIDE_MAX_BULLET;
 	}
-
-	_die_sprite = new CSprite(rs->_effect_die);
-	_current_sprite = _live_sprite;
-	_current_sprite->index = 1;
 }
 
 void CSniperHide::Update(int delta_time)

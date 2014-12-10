@@ -247,8 +247,8 @@ CObject * QTTree::getObjectTrust(CObject *x)
 		return new CGroundElectron(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());		
 	case Fire_Run:
 		return new CFire(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
-	default:
-		break;
+	case Boss_Gun:
+		return new CBossGun(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	}
 }
 

@@ -87,6 +87,8 @@
 87 StarEffect 813 181 320 16 
 88 StarEffect 1174 201 64 16 
 89 StarEffect 1337 206 32 16 
-90 StarEffect 1342 179 32 16 
+90 StarEffect 1342 179 32 16
+91 BossGun 3210 93 32 32
+92 BossGun 3226 93 32 32
 0 Camera 0 240 256 240 
 0 Character 40 240 36 46 
