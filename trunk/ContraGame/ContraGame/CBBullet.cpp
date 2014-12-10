@@ -20,7 +20,14 @@ void CBBullet::LoadResources()
 
 void CBBullet::Update(int delta_time)
 {
-	if (_physical.x > 32)
+	if (_physical.y < 32)
+	{
+		if (_current_sprite != _ontarget_sprite)
+		{
+			OnTarget();
+		}
+	}
+	else
 	{
 		_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
 		_physical.SetBounds(
@@ -28,10 +35,6 @@ void CBBullet::Update(int delta_time)
 			_physical.y,
 			_current_sprite->sprite_texture->frame_width,
 			_current_sprite->sprite_texture->frame_height);
-	}
-	else
-	{
-		OnTarget();
 	}
 }
 
@@ -56,6 +59,7 @@ void CBBullet::Draw()
 void CBBullet::CalcVelocity(float v_max)
 {
 	_physical.vx = rand() % BULLET_B_RANDOM_VX / 1000.0f + v_max;
+	_physical.vx *= _physical.vx_last;
 	_physical.vy = BULLET_B_VY;
 }
 

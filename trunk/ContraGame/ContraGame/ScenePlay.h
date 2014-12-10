@@ -18,6 +18,7 @@
 #include "CGroundEffect.h"
 #include "CGroundStar.h"
 #include "CRunManManager.h"
+#include "CBossGun.h"
 
 class Background;
 class ScenePlay:

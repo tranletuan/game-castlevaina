@@ -108,6 +108,7 @@
 #pragma region BossPath
 #define PATH_BOSS1_BG ".//DataGame//Images//Game//Object//boss//boss1_bg.png"
 #define PATH_BOSS1_BAGDE ".//DataGame//Images//Game//Object//boss//boss1_badge.png"
+#define PATH_BOSS_GUN ".//DataGame//Images//Game//Object//boss//boss_gun.png"
 #pragma endregion BossPath
 
 #pragma region DataPath

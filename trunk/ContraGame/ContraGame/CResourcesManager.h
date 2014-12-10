@@ -141,6 +141,7 @@ public:
 	// Boss
 	CTexture* _boss1_bg;
 	CTexture* _boss1_badge;
+	CTexture* _boss_gun;
 
 	/*-------- Background -------*/
 	vector<int> map1_bg_listTile; // danh sach list file text background

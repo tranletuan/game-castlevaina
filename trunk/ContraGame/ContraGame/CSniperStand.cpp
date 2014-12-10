@@ -19,11 +19,10 @@ void CSniperStand::LoadResources()
 	if (_specific_type == Sniper_Stand)
 	{
 		_live_sprite = new CSprite(rs->_enemy_sniper_stand);
+		_die_sprite = new CSprite(rs->_effect_die);
+		_current_sprite = _live_sprite;
 		_max_bullet = ENEMY_SNIPER_STAND_MAX_BULLET;
 	}
-
-	_die_sprite = new CSprite(rs->_effect_die);
-	_current_sprite = _live_sprite;
 }
 
 void CSniperStand::Update(int delta_time)

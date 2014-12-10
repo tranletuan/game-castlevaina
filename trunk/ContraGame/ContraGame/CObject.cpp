@@ -128,6 +128,10 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(Fire_Run);
 	}
+	else if (x == "BossGun")
+	{
+		setSpecificType(Boss_Gun);
+	}
 }
 
 void CObject::setTrack(string x)

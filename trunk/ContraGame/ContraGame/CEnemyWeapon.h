@@ -21,6 +21,6 @@ public:
 	void UpdateQueueIdBullet(queue<int> &queue_id_bullet);
 
 	int ShootingBulletNE(D3DXVECTOR3 pos, int angle, float vo);
-	int ShootingBulletB(D3DXVECTOR3 pos, int angle, float vo);
+	int ShootingBulletB(D3DXVECTOR3 pos);
 };
 #endif // !_CENEMY_WAEPON_H_

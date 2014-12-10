@@ -180,8 +180,9 @@ void CResourcesManager::loadMap1()
 	_enemy_run_man = new CTexture(PATH_ENEMY_RUN_MAN, 8);	
 
 	// Boss
-	_boss1_bg = new CTexture(PATH_BOSS1_BG, 2);;
-	_boss1_badge = new CTexture(PATH_BOSS1_BAGDE, 3);;
+	_boss1_bg = new CTexture(PATH_BOSS1_BG, 2);
+	_boss1_badge = new CTexture(PATH_BOSS1_BAGDE, 3);
+	_boss_gun = new CTexture(PATH_BOSS_GUN, 3);
 
 	/*-----------------------------------------------------------*/
 	/* --- Background ---*/
