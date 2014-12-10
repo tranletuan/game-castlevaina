@@ -170,8 +170,8 @@ void CResourcesManager::loadMap1()
 	_enemy_run_man = new CTexture(PATH_ENEMY_RUN_MAN, 8);
 
 	// Item
-	_item = new CTexture(PATH_ITEM,10);
-	_item_stand = new CTexture(PATH_ITEM_STAND,7);
+	_item = new CTexture(PATH_ITEM, 10);
+	_item_stand = new CTexture(PATH_ITEM_STAND, 10);
 
 	// Boss
 	_boss1_bg = new CTexture(PATH_BOSS1_BG, 2);;
@@ -205,10 +205,8 @@ void CResourcesManager::loadMap1()
 
 	// load quadtree
 	map1_listNode = loadFileTextNode(PATH_QT_MAP1);
-	
-	//high sorce map 2
 
-	 
+	//high sorce map 2
 }
 
 void CResourcesManager::loadMap2()

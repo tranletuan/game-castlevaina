@@ -111,7 +111,16 @@ void CItemStand::Update(int delta_time)
 			_state_item_stand = SIS_Enable;
 		}
 	}
+
+	if (_state_item_stand == SIS_Enable)
+	{
+		if (_sprite_stand->index <= 3 && _hp > 0)
+		{
+			_state_item_stand = SIS_Open;
+		}
+	}
 	
+
 	// set vx & vy item văng lên
 	if (_hp == 0 && _physical.n == 0)
 	{
@@ -167,7 +176,7 @@ void CItemStand::DrawWhenStand(D3DXVECTOR3 pos)
 void CItemStand::DrawWhenActivity(D3DXVECTOR3 pos)
 {
 	// Khi hoạt động gán vô 1 animation cho nó
-	_sprite_stand->DrawWithDirection(pos, _physical.vx_last, 0, 6,200);
+	_sprite_stand->DrawWithDirection(pos, _physical.vx_last, 0, 9, 200);
 }
 
 void CItemStand::DrawWhenAttack(D3DXVECTOR3 pos)
