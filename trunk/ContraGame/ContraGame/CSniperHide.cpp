@@ -1,7 +1,7 @@
 ﻿#include "CSniperHide.h"
 
 CSniperHide::CSniperHide(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
-	:CEnemyUseGun(id, specific_type, pos, width - 8, height)
+	:CEnemyUseGun(id, specific_type, pos, width, height)
 {
 	_hp = 1;
 	_last_time_shoot = 0;
@@ -60,7 +60,6 @@ void CSniperHide::Update(int delta_time)
 			_is_shot = false;
 			_ready_shoot = false;
 			_enemy_status = EWait;
-			_physical.SetBounds(0, 0, 0, 0);
 
 		}
 
@@ -76,7 +75,6 @@ void CSniperHide::Update(int delta_time)
 			if (now - _last_time_shoot >= ENEMT_SNIPER_HIDE_TIME_WAIT)
 			{
 				SetStatus(EAttack);
-				_physical.SetBounds(_physical.x, _physical.y, 15, 15);
 				_last_time_shoot = 0;
 			}
 		}
@@ -86,11 +84,15 @@ void CSniperHide::Update(int delta_time)
 	{
 	case EWait:
 	case EDie:
+		_physical.SetBounds(0, 0, 0, 0);
 		_can_impact = false;
 		break;
 	case EAttack:
 		if (_current_sprite->index > 1)
+		{
 			_can_impact = true;
+			_physical.SetBounds(_physical.x, _physical.y, 15, 32);
+		}
 		break;
 	}
 }

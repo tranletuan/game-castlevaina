@@ -3,7 +3,6 @@
 CRunmanManager::CRunmanManager()
 {
 	LoadResources();
-	_position_active.push_back(D3DXVECTOR3(700, 145, 0));
 }
 
 CRunmanManager::~CRunmanManager()
@@ -24,6 +23,16 @@ void CRunmanManager::LoadResources()
 
 		runman->LoadResources();
 		_queue_runman.push(runman);
+	}
+
+	vector<CObject*> list_notree = CResourcesManager::GetInstance()->listObNoTree;
+	for (vector<CObject*>::iterator i = list_notree.begin(); i != list_notree.end(); i++)
+	{
+		CObject* ob = (*i);
+		if (ob->_specific_type != RunMan) continue;
+
+		D3DXVECTOR3 pos = D3DXVECTOR3(ob->_physical.x, ob->_physical.y, 0);
+		_position_active.push_back(pos);
 	}
 }
 

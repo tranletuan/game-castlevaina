@@ -180,7 +180,7 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 		}
 	}
 
-	//Runman nằm ngoài quadtree
+	//Quái nằm ngoài quadtree
 	_runmans->CheckCollisionWithPlayer(_weapon_player1, _player1);
 }
 

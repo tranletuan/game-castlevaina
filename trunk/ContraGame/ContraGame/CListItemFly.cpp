@@ -14,7 +14,6 @@ void CListItemFly::LoadResources()
 {
 	_listItems = CResourcesManager::GetInstance()->listObNoTree;
 
-
 	vector<CObject*> listObNoneTreeX;
 	for (int i = 0; i < _listItems.size(); i++)
 	{

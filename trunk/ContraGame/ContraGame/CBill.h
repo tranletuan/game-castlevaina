@@ -18,7 +18,7 @@ enum GunDirection
 
 enum PlayerStatus
 {
-	Stand, Move, Attack, Jump, Fall, Die
+	Stand, Move, Attack, Jump, Fall, Die, Revival
 };
 
 class CBill : public CObject

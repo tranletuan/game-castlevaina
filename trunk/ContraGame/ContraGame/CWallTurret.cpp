@@ -1,7 +1,7 @@
 ﻿#include "CWallTurret.h"
 
 CWallTurret::CWallTurret(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
-	:CEnemyUseGun(id, specific_type, pos, width - 12, height - 8)
+	:CEnemyUseGun(id, specific_type, pos, width - 14, height - 14)
 {
 	_hp = 10;
 	_attack_angle = 180;
@@ -71,14 +71,16 @@ void CWallTurret::Update(int delta_time)
 
 	if (_hp == 0)
 	{
-		_physical.SetBounds(0, 0, 0, 0);
 		SetStatus(EDie);
 	}
 
 	switch (_enemy_status)
 	{
 	case EWait:
+		_can_impact = false;
+		break;
 	case EDie:
+		_physical.SetBounds(0, 0, 0, 0);
 		_can_impact = false;
 		break;
 	case EAttack:

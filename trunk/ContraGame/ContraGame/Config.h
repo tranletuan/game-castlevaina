@@ -12,6 +12,7 @@
 #define BILL_VY_DIE  5.0f
 #define BILL_BOUNDS_WIDTH 8
 #define BILL_BOUNDS_HEIGHT 28
+#define BILL_REVIVAL_TIME 3000
 
 //BULLET
 #define BULLET_REINFORCE 0.05f
@@ -25,7 +26,7 @@
 #define BULLET_S_V 0.2f
 #define BULLET_S_ELAPSED_TIME 100
 
-#define BULLET_F_V 0.1f
+#define BULLET_F_V 0.105f
 #define BULLET_F_R 18
 #define BULLET_F_ELAPSED_DEGREES 20
 #define BULLET_F_TOTAL 4
