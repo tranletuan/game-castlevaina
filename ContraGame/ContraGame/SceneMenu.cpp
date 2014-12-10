@@ -48,7 +48,7 @@ void SceneMenu::draw()
 		//xu ly item nhap nhay
 		if (m_curItem == Item1)
 		{
-			if (m_timeDuring % 15 > 5 && m_timeDuring % 15 < 12)
+			if (m_timeDuring % 15 > 5 && m_timeDuring % 15 < 10)
 			{
 				m_spItem1->Draw(m_spItem1->_pos);
 			}
@@ -56,30 +56,15 @@ void SceneMenu::draw()
 		}
 		else
 		{
-			if (m_timeDuring % 15 > 5 && m_timeDuring % 15 < 12)
+			if (m_timeDuring % 15 > 5 && m_timeDuring % 15 < 10)
 			{
 				m_spItem2->Draw(m_spItem2->_pos);
 			}
 			m_spItem1->Draw(m_spItem1->_pos);
-		}
-
-		if (m_timeDuring>0)
-		{
-			m_timeDuring--;
-		}
-		else
-		{
-			m_nextScene = true;
-			m_checkItem = false;
-		}
+		}	
 
 	}
-
-	if (m_nextScene)
-	{
-		SceneManager::getInstance()->createLoadingScene();
-		m_nextScene = false;
-	}
+	
 }
 
 void SceneMenu::update(float time)
@@ -89,7 +74,6 @@ void SceneMenu::update(float time)
 	D3DXVECTOR2 posBadge = m_spBadge->_pos;
 	D3DXVECTOR2 posItem1 = m_spItem1->_pos;
 	D3DXVECTOR2 posItem2 = m_spItem2->_pos;
-
 
 	if (posBg.x < 30)
 	{
@@ -116,17 +100,28 @@ void SceneMenu::update(float time)
 			//m_audio->PlaySound(m_musicbg);			
 			m_onSound = true;
 		}
+		
+	}
 
-		// di chuyen huy hieu de chon
-		if (m_curItem == Item1)
+	// sau khi bam nut
+	if (m_checkItem)
+	{
+		if (m_timeDuring>0)
 		{
-			posBadge = D3DXVECTOR2(39, 155);
+			m_timeDuring--;
 		}
 		else
 		{
-			posBadge = D3DXVECTOR2(39, 170);
+			m_nextScene = true;
+			m_checkItem = false;
 		}
-		m_spBadge->setPostion(posBadge);
+	}
+
+	// next scene
+	if (m_nextScene)
+	{
+		SceneManager::getInstance()->createLoadingScene();		
+		m_nextScene = false;
 	}
 
 }
@@ -162,7 +157,6 @@ void SceneMenu::processInput()
 		{
 			clickMenuItem();
 		}
-
 	}
 
 	// phim down arrow
@@ -192,16 +186,24 @@ void SceneMenu::defaulPostionBG()
 
 void SceneMenu::clickMenuItem()
 {
-	// trang thai chon item
-	switch (m_curItem)
+	if (!m_checkItem)
 	{
-	case Item1:
-		m_curItem = Item2;
-		break;
-	case Item2:
-		m_curItem = Item1;
-		break;
-	default:
-		break;
+		D3DXVECTOR2 posBadge = m_spBadge->_pos;
+		// trang thai chon item
+		switch (m_curItem)
+		{
+		case Item1:
+			m_curItem = Item2;
+			posBadge = D3DXVECTOR2(39, 170);
+			break;
+		case Item2:
+			m_curItem = Item1;
+			posBadge = D3DXVECTOR2(39, 155);
+			break;
+		default:
+			break;
+		}
+		m_spBadge->setPostion(posBadge);
 	}
+	
 }

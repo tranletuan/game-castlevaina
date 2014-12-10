@@ -51,6 +51,7 @@ public:
 	bool getEnable(){ return _enable; }
 	void setTrack(TrackID x){ _track = x; }	
 	TrackID getTrack(){ return _track; }
+	CSprite *getSprite(){ return _current_sprite; }
 
 	D3DXVECTOR3 getPos(){ return D3DXVECTOR3(_physical.x, _physical.y, 0); }
 	void setPos(D3DXVECTOR3 x);

@@ -39,6 +39,8 @@
     <ClCompile Include="CNEBullet.cpp" />
     <ClCompile Include="CObject.cpp" />
     <ClCompile Include="CPlayerWeapon.cpp" />
+    <ClCompile Include="CRockFly.cpp" />
+    <ClCompile Include="CRockRoll.cpp" />
     <ClCompile Include="CRunman.cpp" />
     <ClCompile Include="CRunManManager.cpp" />
     <ClCompile Include="CSniperHide.cpp" />
@@ -47,11 +49,13 @@
     <ClCompile Include="CWallTurret.cpp" />
     <ClCompile Include="CWeapon.cpp" />
     <ClCompile Include="dsutil.cpp" />
+    <ClCompile Include="CFire.cpp" />
     <ClCompile Include="GameContra.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="CameraHUD.cpp" />
     <ClCompile Include="CGroundStar.cpp" />
+    <ClCompile Include="CGroundElectron.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Physical.cpp" />
     <ClCompile Include="QTNode.cpp" />
@@ -90,9 +94,11 @@
     <ClInclude Include="CEnemyUseGun.h" />
     <ClInclude Include="CEnemyWeapon.h" />
     <ClInclude Include="CFBullet.h" />
+    <ClInclude Include="CFire.h" />
     <ClInclude Include="CGround.h" />
     <ClInclude Include="CGroundCanon.h" />
     <ClInclude Include="CGroundEffect.h" />
+    <ClInclude Include="CGroundElectron.h" />
     <ClInclude Include="CItemFly.h" />
     <ClInclude Include="CItemStand.h" />
     <ClInclude Include="CLBullet.h" />
@@ -104,6 +110,7 @@
     <ClInclude Include="CObjectID.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="CPlayerWeapon.h" />
+    <ClInclude Include="CRockFly.h" />
     <ClInclude Include="CRunman.h" />
     <ClInclude Include="CRunManManager.h" />
     <ClInclude Include="CSniperHide.h" />
@@ -118,13 +125,13 @@
     <ClInclude Include="CameraHUD.h" />
     <ClInclude Include="CGroundStar.h" />
     <ClInclude Include="Input.h" />
-    <ClInclude Include="MenuID.h" />
     <ClInclude Include="Physical.h" />
     <ClInclude Include="QTNode.h" />
     <ClInclude Include="QTTree.h" />
     <ClInclude Include="Register.h" />
     <ClInclude Include="CResourcesManager.h" />
     <ClInclude Include="CResourcesPath.h" />
+    <ClInclude Include="CRockRoll.h" />
     <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneID.h" />
     <ClInclude Include="SceneLoading.h" />
@@ -170,8 +177,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

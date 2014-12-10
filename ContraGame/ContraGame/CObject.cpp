@@ -120,6 +120,14 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(Ground_Star);
 	}
+	else if (x == "GroundElectron")
+	{
+		setSpecificType(Ground_Electron);
+	}
+	else if (x == "FireRun")
+	{
+		setSpecificType(Fire_Run);
+	}
 }
 
 void CObject::setTrack(string x)

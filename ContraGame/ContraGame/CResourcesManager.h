@@ -59,6 +59,7 @@ public:
 
 	/*------    HUD Camera     -----*/
 	CTexture *HUD_badge;
+	CTexture *HUD_gameover;
 
 	/*--- Menu Resource ----*/
 	CTexture *menu_bg;
@@ -71,11 +72,21 @@ public:
 	/*--- Loading Resource ----*/
 	CTexture *load_1p;
 	CTexture *load_rest;
-	CTexture *load_hi;
-	CTexture *load_stage;
+	CTexture *load_hi;	
 	CTexture *load_number;
-	CTexture *load_nameStage;
+	CTexture *load_stage1;
+	CTexture *load_nameStage1;
+	CTexture *load_stage2;
+	CTexture *load_nameStage2;
+	CTexture *load_stage3;
+	CTexture *load_nameStage3;
 
+	/*--- Pause Resource ----*/
+	CTexture *pause_title;
+	CTexture *pause_continue;
+	CTexture *pause_end;
+	/*--- Game Over Resource ----*/
+	CTexture *over_title;
 	/*--- Play Resource ----*/
 	
 	// background
@@ -106,6 +117,8 @@ public:
 	CTexture* _ground_effect1;
 	CTexture* _ground_auto_destroy_bridge;
 	CTexture* _ground_star;
+	CTexture* _ground_rock_fly;
+	CTexture* _ground_electron;
 
 	//Effect
 	CTexture* _effect_destroy;
@@ -118,6 +131,8 @@ public:
 	CTexture* _enemy_wall_turret;
 	CTexture* _enemy_ground_canon;
 	CTexture* _enemy_run_man;
+	CTexture* _enemy_fire;
+	CTexture* _enemy_rock_roll;
 
 	// Item
 	CTexture* _item;
@@ -154,6 +169,10 @@ public:
 	void loadPlayResource();	
 	void loadMap1();
 	void loadMap2();
+	void loadMap3();
+	void unloadMap1();
+	void unlloadMap2();
+	void unloadMap3();
 	void loadPlayGraphics();
 	void loadPlayAudio();
 	void unloadPlayResource();

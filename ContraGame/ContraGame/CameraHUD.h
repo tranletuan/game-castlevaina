@@ -11,12 +11,13 @@ using namespace std;
 class CameraHUD
 {
 private:
-	CSprite *m_sprite;
+	CSprite *m_spriteBadge;
+	CSprite *m_spriteOver;
 	int m_life; // so mang 
 
 public:
 	CameraHUD();
-	CameraHUD(int life);
+	
 	~CameraHUD();
 
 	void draw();

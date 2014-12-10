@@ -7,7 +7,6 @@
 #include "Sprite.h"
 #include "Audio.h"
 
-
 class BaseScene
 {
 protected:

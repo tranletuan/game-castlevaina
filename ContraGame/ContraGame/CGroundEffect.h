@@ -9,6 +9,7 @@ private:
 	int _count;
 	int _time_count;
 	bool _isDraw;
+	
 
 public:
 	CGroundEffect(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
@@ -20,4 +21,4 @@ public:
 
 
 };
-#endif // !_CGROUND_H_
+#endif // !_CGROUNDFEFFECT_H_

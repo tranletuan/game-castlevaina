@@ -77,8 +77,12 @@ void CResourcesManager::loadLoadingGraphics()
 	load_1p = new CTexture(PATH_LOAD_1P, D3DCOLOR_XRGB(0, 0, 0));
 	load_rest = new CTexture(PATH_LOAD_REST, D3DCOLOR_XRGB(0, 0, 0));
 	load_hi = new CTexture(PATH_LOAD_HI, D3DCOLOR_XRGB(0, 0, 0));
-	load_stage = new CTexture(PATH_LOAD_STAGE, D3DCOLOR_XRGB(0, 0, 0));
-	load_nameStage = new CTexture(PATH_LOAD_NAMESTAGE, D3DCOLOR_XRGB(0, 0, 0));
+	load_stage1 = new CTexture(PATH_LOAD_STAGE1, D3DCOLOR_XRGB(0, 0, 0));
+	load_nameStage1 = new CTexture(PATH_LOAD_NAMESTAGE1, D3DCOLOR_XRGB(0, 0, 0));
+	load_stage2 = new CTexture(PATH_LOAD_STAGE2, D3DCOLOR_XRGB(0, 0, 0));
+	load_nameStage2 = new CTexture(PATH_LOAD_NAMESTAGE2, D3DCOLOR_XRGB(0, 0, 0));
+	load_stage3 = new CTexture(PATH_LOAD_STAGE3, D3DCOLOR_XRGB(0, 0, 0));
+	load_nameStage3 = new CTexture(PATH_LOAD_NAMESTAGE3, D3DCOLOR_XRGB(0, 0, 0));
 	load_number = new CTexture(PATH_LOAD_NUMBER, 10);
 
 	//high sorce map 1
@@ -105,6 +109,7 @@ void CResourcesManager::loadPlayResource()
 	{
 	case 1:
 		loadMap1();
+		loadMap2();
 		break;
 	case 2:
 		break;
@@ -120,6 +125,7 @@ void CResourcesManager::loadPlayGraphics()
 {
 	// Camera HUD
 	HUD_badge = new CTexture(PATH_HUD_BADGE); // huy chuong
+	HUD_gameover = new CTexture(PATH_HUD_GAMEOVER); //Game over
 
 	//Player
 	_bill_stand = new CTexture(PATH_PLAYER_STAND, 6);
@@ -138,6 +144,15 @@ void CResourcesManager::loadPlayGraphics()
 	_bullet_ne = new CTexture(PATH_BULLET_NE);
 	_bullet_b = new CTexture(PATH_BULLET_B);
 
+	//Effect
+	_effect_destroy = new CTexture(PATH_EFFECT_DESTROY, 3);
+	_effect_shoot = new CTexture(PATH_EFFECT_SHOOT);
+	_effect_die = new CTexture(PATH_EFFECT_DIE, 3);
+
+	// Item
+	_item = new CTexture(PATH_ITEM, 10);
+	_item_stand = new CTexture(PATH_ITEM_STAND, 10);
+
 }
 
 
@@ -155,23 +170,14 @@ void CResourcesManager::loadMap1()
 	_ground_water = new CTexture(PATH_GROUND_WATER);
 	_ground_effect1 = new CTexture(PATH_GROUND_EFFECT1);
 	_ground_auto_destroy_bridge = new CTexture(PATH_GROUND_AUTO_DETROY, 1, 6);
-	_ground_star = new CTexture(PATH_GROUND_STAR, 6, 2);
-
-	//Effect
-	_effect_destroy = new CTexture(PATH_EFFECT_DESTROY, 3);
-	_effect_shoot = new CTexture(PATH_EFFECT_SHOOT);
-	_effect_die = new CTexture(PATH_EFFECT_DIE, 3);
+	_ground_star = new CTexture(PATH_GROUND_STAR, 6, 2);	
 
 	//Enemy
 	_enemy_sniper_stand = new CTexture(PATH_ENEMY_SNIPER_STAND, 5);
 	_enemy_sniper_hide = new CTexture(PATH_ENEMY_SNIPER_HIDE, 4);
 	_enemy_wall_turret = new CTexture(PATH_ENEMY_WALL_TURRET, 3, 14);
 	_enemy_ground_canon = new CTexture(PATH_ENEMY_GROUND_CANON, 3, 5);
-	_enemy_run_man = new CTexture(PATH_ENEMY_RUN_MAN, 8);
-
-	// Item
-	_item = new CTexture(PATH_ITEM, 10);
-	_item_stand = new CTexture(PATH_ITEM_STAND, 10);
+	_enemy_run_man = new CTexture(PATH_ENEMY_RUN_MAN, 8);	
 
 	// Boss
 	_boss1_bg = new CTexture(PATH_BOSS1_BG, 2);;
@@ -207,13 +213,39 @@ void CResourcesManager::loadMap1()
 	map1_listNode = loadFileTextNode(PATH_QT_MAP1);
 
 	//high sorce map 2
+
 }
 
 void CResourcesManager::loadMap2()
 {
+	// ground
+	_ground_rock_fly = new CTexture(PATH_GROUND_ROCK_FLY);
+	_ground_electron = new CTexture(PATH_GROUND_ELECTRON, 1, 2);
+
+	// enemy
+	_enemy_fire = new CTexture(PATH_ENEMY_FIRE,3);
+	_enemy_rock_roll = new CTexture(PATH_ENEMY_ROCK_ROLL,3);
+}
+
+void CResourcesManager::loadMap3()
+{
 
 }
 
+void CResourcesManager::unloadMap1()
+{
+
+}
+
+void CResourcesManager::unlloadMap2()
+{
+
+}
+
+void CResourcesManager::unloadMap3()
+{
+
+}
 
 void CResourcesManager::unloadPlayResource()
 {
@@ -229,7 +261,9 @@ void CResourcesManager::loadPauseResource()
 
 void CResourcesManager::loadPauseGraphics()
 {
-
+	pause_title = new CTexture(PATH_PAUSE_TITLE);
+	pause_continue = new CTexture(PATH_PAUSE_CONTINUE);
+	pause_end = new CTexture(PATH_PAUSE_END);
 }
 
 void CResourcesManager::loadPauseAudio()
@@ -251,7 +285,7 @@ void CResourcesManager::loadOverResource()
 
 void CResourcesManager::loadOverGraphics()
 {
-
+	over_title = new CTexture(PATH_OVER_TITLE);
 }
 
 void CResourcesManager::loadOverAudio()

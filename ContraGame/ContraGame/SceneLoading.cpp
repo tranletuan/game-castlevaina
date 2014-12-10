@@ -31,11 +31,27 @@ void SceneLoading::init()
 
 	m_spNumber = new CSprite(m_resource->load_number);
 
-	m_spStage = new CSprite(m_resource->load_stage);
-	m_spStage->setPostion(D3DXVECTOR2(100, 130));
+	switch (CResourcesManager::GetInstance()->m_levelMap)
+	{
+	case 1:
+		m_spStage = new CSprite(m_resource->load_stage1);
+		m_spNameStage = new CSprite(m_resource->load_nameStage1);
+		break;
+	case 2:
+		m_spStage = new CSprite(m_resource->load_stage2);
+		m_spNameStage = new CSprite(m_resource->load_nameStage2);
+		break;
+	case 3:
+		m_spStage = new CSprite(m_resource->load_stage3);
+		m_spNameStage = new CSprite(m_resource->load_nameStage3);
+		break;
+	default:
+		break;
+	}
 
-	m_spNameStage = new CSprite(m_resource->load_nameStage);
+
 	m_spNameStage->setPostion(D3DXVECTOR2(100, 150));
+	m_spStage->setPostion(D3DXVECTOR2(100, 130));
 
 }
 
@@ -55,7 +71,8 @@ void SceneLoading::draw()
 		drawNumber(to_string(m_resource->m_life), 70, 65);
 	}
 
-	
+
+
 }
 
 void SceneLoading::update(float time)
