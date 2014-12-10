@@ -3,7 +3,8 @@
 
 #include "CGround.h"
 
-class CGroundStar : public CGround
+class CGroundStar : 
+	public CGround
 {
 private:
 	int _count;

@@ -22,7 +22,9 @@ enum  SpecificType
 	Ground_Water,
 	Ground_Effect1,
 	Ground_Bridge,
-	Ground_Star, //sao map 1
+	Ground_Star, //ngôi sao ở map 1
+	Ground_RockFly, // hòn đá bay qua lại
+	Ground_Electron, // cầu điện ở map 2 để fire di chuyển lên
 
 	// Effect
 	EffectDestroy,
@@ -34,7 +36,7 @@ enum  SpecificType
 	Sniper_Hide,
 	Ground_Canon,
 	Wall_Turret,
-
+	Fire_Run,
 
 	// Item
 	ItemM,

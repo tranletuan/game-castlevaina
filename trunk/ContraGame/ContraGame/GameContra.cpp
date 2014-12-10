@@ -69,15 +69,13 @@ int GameContra::initGame(HINSTANCE hIstance)
 	// resource manager
 	CResourcesManager::prepareManager(m_spriteHandler, m_graphic->getPd3Device(), m_register->gethInstance(), 
 		m_register->getHandle(), m_input, m_audio);
-	CResourcesManager::GetInstance()->m_levelMap = 1;
-	CResourcesManager::GetInstance()->m_life = 3;
-
-	// scene manager
 	
+	// scene manager	
 	m_sceneManager = SceneManager::getInstance();
-	//SceneManager::getInstance()->createMenuScene();
-	SceneManager::getInstance()->createPlayScene();
-	
+	m_sceneManager->createMenuScene();
+	//SceneManager::getInstance()->createPlayScene();
+	//SceneManager::getInstance()->createLoadingScene();
+
 	return 1;
 
 }

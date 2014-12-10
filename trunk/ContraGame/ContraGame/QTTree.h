@@ -13,6 +13,8 @@
 #include "CSniperHide.h"
 #include "CAutoDestroyBridge.h"
 #include "CGroundStar.h"
+#include "CGroundElectron.h"
+#include "CFire.h"
 
 class QTTree
 {

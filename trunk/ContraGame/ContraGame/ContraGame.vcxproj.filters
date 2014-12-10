@@ -225,6 +225,18 @@
     <Filter Include="Contra Game\Other\Database">
       <UniqueIdentifier>{7c20c644-5f01-48c4-aa23-f828b3649f36}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contra Game\Object\Ground Game\RockFly">
+      <UniqueIdentifier>{ce2f80c9-eabe-4213-b4fe-cb7c238a2856}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Ground Game\GroundElectron">
+      <UniqueIdentifier>{af74b0f7-2da3-43e4-aa08-be019232b2a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Enemy Game\Fire">
+      <UniqueIdentifier>{69116f60-e961-4f4e-bfa9-204957ac3507}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Enemy Game\RockRoll">
+      <UniqueIdentifier>{19c63ff6-e7ab-4e40-b424-ae7f311b8b45}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -410,6 +422,18 @@
     <ClCompile Include="CDatabase.cpp">
       <Filter>Contra Game\Other\Database</Filter>
     </ClCompile>
+    <ClCompile Include="CRockFly.cpp">
+      <Filter>Contra Game\Object\Ground Game\RockFly</Filter>
+    </ClCompile>
+    <ClCompile Include="CFire.cpp">
+      <Filter>Contra Game\Object\Enemy Game\Fire</Filter>
+    </ClCompile>
+    <ClCompile Include="CRockRoll.cpp">
+      <Filter>Contra Game\Object\Enemy Game\RockRoll</Filter>
+    </ClCompile>
+    <ClCompile Include="CGroundElectron.cpp">
+      <Filter>Contra Game\Object\Ground Game\GroundElectron</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Register.h">
@@ -456,9 +480,6 @@
     </ClInclude>
     <ClInclude Include="SceneID.h">
       <Filter>Contra Game\Scene\BaseScene</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuID.h">
-      <Filter>Contra Game\Scene\SceneMenu</Filter>
     </ClInclude>
     <ClInclude Include="Audio.h">
       <Filter>Game Engine\Audio</Filter>
@@ -609,6 +630,18 @@
     </ClInclude>
     <ClInclude Include="CDatabase.h">
       <Filter>Contra Game\Other\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="CRockFly.h">
+      <Filter>Contra Game\Object\Ground Game\RockFly</Filter>
+    </ClInclude>
+    <ClInclude Include="CFire.h">
+      <Filter>Contra Game\Object\Enemy Game\Fire</Filter>
+    </ClInclude>
+    <ClInclude Include="CRockRoll.h">
+      <Filter>Contra Game\Object\Enemy Game\RockRoll</Filter>
+    </ClInclude>
+    <ClInclude Include="CGroundElectron.h">
+      <Filter>Contra Game\Object\Ground Game\GroundElectron</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -8,12 +8,26 @@
 #define PATH_MENU_ITEM2 ".//DataGame//Images//Menu//item2_menu.png"
 #pragma endregion MenuPath
 
+#pragma region PausePath
+#define PATH_PAUSE_TITLE ".//DataGame//Images//Pause//pause_title.png"
+#define PATH_PAUSE_CONTINUE ".//DataGame//Images//Pause//pause_continue.png"
+#define PATH_PAUSE_END ".//DataGame//Images//Pause//pause_end.png"
+#pragma endregion PausePath
+
+#pragma region OverPath
+#define PATH_OVER_TITLE ".//DataGame//Images//GameOver//gameover_title.png"
+#pragma endregion OverPath
+
 #pragma region LoadPath
 #define PATH_LOAD_1P ".//DataGame//Images//Load//load_1p.png"
 #define PATH_LOAD_REST ".//DataGame//Images//Load//load_reset.png"
 #define PATH_LOAD_HI ".//DataGame//Images//Load//load_hi.png"
-#define PATH_LOAD_STAGE ".//DataGame//Images//Load//load_stage.png"
-#define PATH_LOAD_NAMESTAGE ".//DataGame//Images//Load//load_namestage.png"
+#define PATH_LOAD_STAGE1 ".//DataGame//Images//Load//load_stage1.png"
+#define PATH_LOAD_NAMESTAGE1 ".//DataGame//Images//Load//load_nameStage1.png"
+#define PATH_LOAD_STAGE2 ".//DataGame//Images//Load//load_stage2.png"
+#define PATH_LOAD_NAMESTAGE2 ".//DataGame//Images//Load//load_nameStage2.png"
+#define PATH_LOAD_STAGE3 ".//DataGame//Images//Load//load_stage3.png"
+#define PATH_LOAD_NAMESTAGE3 ".//DataGame//Images//Load//load_nameStage3.png"
 #define PATH_LOAD_NUMBER ".//DataGame//Images//Load//load_number.png"
 #pragma endregion LoadPath
 
@@ -33,6 +47,7 @@
 
 #pragma region HUDPath
 #define PATH_HUD_BADGE ".//DataGame//Images//Game//HUD//badge.png"
+#define PATH_HUD_GAMEOVER ".//DataGame//Images//Game//HUD//gameover.png"
 #pragma endregion HUDPath
 
 #pragma region MapPath
@@ -47,6 +62,8 @@
 #define PATH_GROUND_STAR ".//DataGame//Images//Game//Object//ground//ground_star.png"
 #define PATH_GROUND_EFFECT1 ".//DataGame//Images//Game//Object//ground//ground_effect1.png"
 #define PATH_GROUND_AUTO_DETROY ".//DataGame//Images//Game//Object//ground//ground_bridge.png"
+#define PATH_GROUND_ROCK_FLY ".//DataGame//Images//Game//Object//ground//rock_fly.png"
+#define PATH_GROUND_ELECTRON ".//DataGame//Images//Game//Object//ground//ground_electron.png"
 #pragma endregion GroundtPath
 
 #pragma region BulletPath
@@ -71,6 +88,8 @@
 #define PATH_ENEMY_WALL_TURRET ".//DataGame//Images//Game//Object//enemy//wall_turret.png"
 #define PATH_ENEMY_GROUND_CANON ".//DataGame//Images//Game//Object//enemy//ground_canon.png"
 #define PATH_ENEMY_RUN_MAN ".//DataGame//Images//Game//Object//enemy//run_man.png"
+#define PATH_ENEMY_FIRE ".//DataGame//Images//Game//Object//enemy//fire.png"
+#define PATH_ENEMY_ROCK_ROLL ".//DataGame//Images//Game//Object//enemy//rock_roll.png"
 #pragma endregion EnemyPath
 
 #pragma region PlayerPath

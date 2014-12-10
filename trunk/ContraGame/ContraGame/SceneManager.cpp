@@ -14,8 +14,7 @@ SceneManager *SceneManager::getInstance()
 
 SceneManager::SceneManager()
 {
-	m_typeScene = SCENE_MENU;
-	//m_typeScene = SCENE_PLAY;	
+	m_typeScene = SCENE_MENU;	
 }
 
 SceneManager::~SceneManager()
@@ -68,6 +67,9 @@ void SceneManager::createMenuScene()
 {
 	CResourcesManager::GetInstance()->loadMenuResource();
 	CResourcesManager::GetInstance()->loadLoadingResource();
+	CResourcesManager::GetInstance()->loadPauseResource();
+	CResourcesManager::GetInstance()->loadOverResource();
+
 	m_sceneMenu = new SceneMenu();
 	SceneManager::getInstance()->setScene(m_sceneMenu);
 }
@@ -121,13 +123,14 @@ void SceneManager::destroyPlayScene()
 
 // Pause
 void SceneManager::createPauseScene()
-{
-
+{	
+	m_scenePause = new ScenePause();
+	SceneManager::getInstance()->setScene(m_scenePause);
 }
 
 void SceneManager::loadPauseScene()
 {
-
+	SceneManager::getInstance()->setScene(m_scenePause);
 }
 
 void SceneManager::destroyPauseScene()
@@ -138,12 +141,13 @@ void SceneManager::destroyPauseScene()
 // GameOver
 void SceneManager::createOverScene()
 {
-
+	m_sceneOver = new SceneGameOver();
+	SceneManager::getInstance()->setScene(m_sceneOver);
 }
 
 void SceneManager::loadOverScene()
 {
-
+	SceneManager::getInstance()->setScene(m_sceneOver);
 }
 
 void SceneManager::destroyOverScene()

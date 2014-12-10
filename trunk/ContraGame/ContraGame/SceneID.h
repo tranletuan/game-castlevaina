@@ -10,4 +10,10 @@ enum SceneType
 	SCENE_GAMEOVER,
 };
 
+enum MenuItem
+{
+	Item1,
+	Item2
+};
+
 #endif

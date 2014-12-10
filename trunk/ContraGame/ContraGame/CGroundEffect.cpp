@@ -8,6 +8,7 @@ CGroundEffect::CGroundEffect(int id, SpecificType specific_type, D3DXVECTOR3 pos
 	_count = width / GROUND_SIZE_NORMAL;
 	_time_count = 0;
 	_isDraw = false;
+	_basic_type = Effect;
 	LoadResources();
 }
 
