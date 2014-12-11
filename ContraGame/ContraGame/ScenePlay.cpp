@@ -2,19 +2,22 @@
 
 ScenePlay::ScenePlay()
 {
+	// set var in class scene
+	m_timeDuring = 1000;
+	m_state = PS_InGame;
+
+	// out class scene
 	m_background = new Background();
 	m_cameraHUD = new CameraHUD();
 	m_tree = new QTTree();
 	m_listItemFLy = new CListItemFly();
-	
+
 	_weapon_player1 = new CPlayerWeapon();
 	_player1 = new CBill();
 	_player1->SetWeapon(_weapon_player1);
 	_player1->_physical.x = 3100;
 	_weapon_enemy = new CEnemyWeapon();
 	_runmans = new CRunmanManager();
-
-	m_star = new CGroundStar(123, Ground_Star, D3DXVECTOR3(0, 200, 0), 128, 16);
 
 	init();
 }
@@ -27,6 +30,12 @@ ScenePlay::~ScenePlay()
 void ScenePlay::processInput()
 {
 	_player1->ProcessInput();
+
+	if (m_input->onKeyDown(DIK_RETURN))
+	{
+		m_nextScene = true;
+	}
+	
 }
 
 void ScenePlay::init()
@@ -36,6 +45,71 @@ void ScenePlay::init()
 
 void ScenePlay::update(float time)
 {
+	// xu ly trong scene
+	if ( m_state == PS_InGame)
+	{
+		// chuyen game over
+		if (m_resource->m_life <= 0)
+		{
+			m_state = PS_GameOver;
+			m_timeDuring = 80;
+		}
+		// chuyen next map
+		if (_player1->_mission_complete)
+		{
+			m_state = PS_NextMap;
+			m_timeDuring = 60;
+		}
+	}
+
+	switch (m_state)
+	{
+	case PS_InGame:
+		break;
+	case PS_GameOver:
+		m_state = PS_WaitNextScene;
+		break;
+	case PS_WaitNextScene:
+		m_timeDuring--;
+		if (m_timeDuring < 0)
+		{
+			m_nextScene = true;
+		}
+		break;
+	case PS_Pause:
+		break;	
+	case PS_NextMap:
+		m_state = PS_WaitNextScene;
+		break;
+	default:
+		break;
+	}
+
+	if (m_nextScene)
+	{		
+		m_state = PS_InGame;
+		if (m_resource->m_life > 0)
+		{
+			// chuyen qua scene pause
+			if (!_player1->_mission_complete)
+			{
+				SceneManager::getInstance()->createPauseScene();
+			}
+			// chuyen qua scene loading
+			else 
+			{
+				m_resource->m_levelMap++;
+				SceneManager::getInstance()->createLoadingScene();	
+			}
+			
+		}
+		else
+		{
+			SceneManager::getInstance()->createOverScene();
+		}
+	}
+
+	// xu ly trong game
 	UpdateFullListObjetcInView();
 	ProcessGroundsWithOneAnother();
 	ProcessEnemiesWithOneAnother();
@@ -51,7 +125,7 @@ void ScenePlay::update(float time)
 	m_cameraHUD->update(time);
 	m_camera->Update();
 
-	m_star->Update(time);
+
 	UpdateGlobalVariable();
 }
 
@@ -64,9 +138,9 @@ void ScenePlay::draw()
 	_weapon_player1->Draw();
 	_player1->Draw();
 	_runmans->Draw();
-	
+
 	m_cameraHUD->draw();
-	m_star->Draw();
+
 }
 
 void ScenePlay::destroy()
@@ -181,12 +255,12 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 				}
 			}
 			//Va chạm với đạn người chơi 2
-			
 			//Boss chết thì tất cả enemy đều chết
 			if (_boss != NULL && _boss->_hp <= 0)
 			{
 				enemy->_hp = 0;
 			}
+
 
 		}
 	}

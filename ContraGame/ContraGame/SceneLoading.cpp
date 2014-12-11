@@ -79,8 +79,7 @@ void SceneLoading::update(float time)
 {
 	if (m_nextScene)
 	{
-		SceneManager::getInstance()->createPlayScene();
-		m_nextScene = false;
+		SceneManager::getInstance()->createPlayScene();	
 	}
 	if (m_backScene)
 	{

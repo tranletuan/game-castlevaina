@@ -135,8 +135,7 @@ void SceneGameOver::update(float time)
 		else if (m_curItem == Item2)
 		{
 			SceneManager::getInstance()->createMenuScene();
-		}
-		m_nextScene = false;
+		}	
 	}
 }
 

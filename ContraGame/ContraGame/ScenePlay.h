@@ -1,4 +1,4 @@
-#ifndef SCENEPLAY_H
+﻿#ifndef SCENEPLAY_H
 #define SCENEPLAY_H
 
 #include <map>
@@ -9,22 +9,28 @@
 #include "QTTree.h"
 #include "CBill.h"
 #include "CEnemyWeapon.h"
-#include "CSniperStand.h"
-#include "CSniperHide.h"
-#include "CGroundCanon.h"
-#include "CWallTurret.h"
 #include "CListItemFly.h"
 #include "CBoss1.h"
-#include "CGroundEffect.h"
-#include "CGroundStar.h"
 #include "CRunManManager.h"
-#include "CBossGun.h"
+#include "SceneManager.h"
 
-class Background;
+enum PlayState
+{
+	PS_InGame,
+	PS_GameOver, // mạng =0 , game over
+	PS_Pause,
+	PS_WaitNextScene, // Đợi chuyển qua scene 
+	PS_NextMap,  // next map
+};
+
+class SceneManager;
 class ScenePlay:
 	public BaseScene
 {
 private:
+
+	PlayState m_state;
+
 	Background *m_background;
 	CameraHUD *m_cameraHUD;
 	CCamera *m_camera;
@@ -42,9 +48,7 @@ private:
 	vector<CObject*> _items;
 
 	CListItemFly *m_listItemFLy;
-	CRunmanManager* _runmans;
-
-	CGroundStar	*m_star;
+	CRunmanManager* _runmans;	
 	CObject* _boss;
 
 public:
