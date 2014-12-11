@@ -225,7 +225,7 @@ void CResourcesManager::loadMap2()
 
 	// enemy
 	_enemy_fire = new CTexture(PATH_ENEMY_FIRE,3);
-	_enemy_rock_roll = new CTexture(PATH_ENEMY_ROCK_ROLL,3);
+	_enemy_rock_roll = new CTexture(PATH_ENEMY_ROCK_ROLL,4);
 }
 
 void CResourcesManager::loadMap3()

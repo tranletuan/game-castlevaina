@@ -26,6 +26,7 @@ void SceneManager::setScene(BaseScene *x)
 {
 	m_curScene = x;
 	m_typeScene = x->getSceneID();
+	m_curScene->setNextScene(false);
 }
 
 void SceneManager::setScene(SceneType x)
@@ -44,6 +45,7 @@ void SceneManager::setScene(SceneType x)
 	default:
 		break;
 	}
+	m_curScene->setNextScene(false);
 }
 
 void SceneManager::draw()
@@ -69,7 +71,6 @@ void SceneManager::createMenuScene()
 	CResourcesManager::GetInstance()->loadLoadingResource();
 	CResourcesManager::GetInstance()->loadPauseResource();
 	CResourcesManager::GetInstance()->loadOverResource();
-
 	m_sceneMenu = new SceneMenu();
 	SceneManager::getInstance()->setScene(m_sceneMenu);
 }
@@ -126,6 +127,7 @@ void SceneManager::createPauseScene()
 {	
 	m_scenePause = new ScenePause();
 	SceneManager::getInstance()->setScene(m_scenePause);
+
 }
 
 void SceneManager::loadPauseScene()

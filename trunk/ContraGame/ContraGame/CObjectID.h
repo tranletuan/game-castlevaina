@@ -30,13 +30,14 @@ enum  SpecificType
 	EffectDestroy,
 
 	//Enemy
-	RunMan,
-	RunMan_Fire,
-	Sniper_Stand,
-	Sniper_Hide,
-	Ground_Canon,
+	RunMan,		// nguoi chay
+	RunMan_Fire, // nguoi chay ban sung
+	Sniper_Stand, // sinper dung yen 
+	Sniper_Hide, 
+	Ground_Canon, 
 	Wall_Turret,
-	Fire_Run,
+	Fire_Run, // Ngọn lửa di chuyển ở map 2
+	Rock_Roll,  // Viên đá rơi ở map 2
 
 	// Item
 	ItemM,
