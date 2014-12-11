@@ -30,8 +30,6 @@ private:
 	
 
 public:
-
-	int _hp;
 	CBoss1(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
 	~CBoss1();
 

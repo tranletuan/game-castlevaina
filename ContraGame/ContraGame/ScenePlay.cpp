@@ -3,7 +3,7 @@
 ScenePlay::ScenePlay()
 {
 	m_background = new Background();
-	m_cameraHUD = new CameraHUD(3);
+	m_cameraHUD = new CameraHUD();
 	m_tree = new QTTree();
 	m_listItemFLy = new CListItemFly();
 	
@@ -95,7 +95,13 @@ void ScenePlay::UpdateFullListObjetcInView()
 				break;
 			case Enemy:
 				if (ob->_enable)
+				{
 					_enemies.push_back(ob);
+					if (ob->_specific_type == Boss1)
+					{
+						_boss = ob;
+					}
+				}
 				break;
 			case Item:
 				if (ob->_enable)
@@ -176,6 +182,11 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 			}
 			//Va chạm với đạn người chơi 2
 			
+			//Boss chết thì tất cả enemy đều chết
+			if (_boss != NULL && _boss->_hp <= 0)
+			{
+				enemy->_hp = 0;
+			}
 
 		}
 	}

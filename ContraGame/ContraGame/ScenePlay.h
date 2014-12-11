@@ -45,6 +45,7 @@ private:
 	CRunmanManager* _runmans;
 
 	CGroundStar	*m_star;
+	CObject* _boss;
 
 public:
 	ScenePlay();
