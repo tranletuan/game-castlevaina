@@ -37,6 +37,7 @@ protected:
 	GunDirection _gun_direction;
 	PlayerStatus _player_status;
 
+	
 	int _id_ground_stand;
 	void UpdateBounds();
 	bool SetStatus(PlayerStatus status);
@@ -54,6 +55,7 @@ public:
 	CBill();
 	~CBill();
 
+	bool _mission_complete;
 	void LoadResources();
 	void Draw();
 	void Update(int delta_time);

@@ -1,16 +1,18 @@
 #include "CBoss1.h"
 
 CBoss1::CBoss1(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
-	:CObject(id, specific_type, pos, width, height)
+	:CObject(id, specific_type, Enemy, pos, width, height)
 {
-	_hp = 3;
+	_hp = 10;
 	_state = B1S_Acti;
 	_destroy_bg = false;
 	_time_counter = 0;
+	_can_impact = true;
+	_enable = true;
+	_physical.SetBounds(pos.x - BOSS1_SPACE_X, pos.y - BOSS1_SPACE_Y, 20, 20);
 	LoadResources();
+	
 }
-
-
 
 void CBoss1::LoadResources()
 {
@@ -138,6 +140,7 @@ void CBoss1::DrawWhenDestroyBG1(D3DXVECTOR3 pos)
 	_sprite_effect1->DrawWithDirectionAndOneTimeEffect(pos_draw, 1, 0, 2, 300);
 	_sprite_effect1->DrawWithDirectionAndOneTimeEffect(pos_draw1, 1, 0, 2, 300);
 }
+
 void CBoss1::DrawWhenDestroyBG2(D3DXVECTOR3 pos)
 {
 	_sprite_bg->SelectFrameOf(1);
@@ -147,6 +150,7 @@ void CBoss1::DrawWhenDestroyBG2(D3DXVECTOR3 pos)
 	_sprite_effect2->DrawWithDirectionAndOneTimeEffect(pos_draw, 1, 0, 2, 300);
 	_sprite_effect2->DrawWithDirectionAndOneTimeEffect(pos_draw1, 1, 0, 2, 300);
 }
+
 void CBoss1::DrawWhenDestroyBG3(D3DXVECTOR3 pos)
 {
 	_sprite_bg->SelectFrameOf(1);
@@ -156,6 +160,7 @@ void CBoss1::DrawWhenDestroyBG3(D3DXVECTOR3 pos)
 	_sprite_effect3->DrawWithDirectionAndOneTimeEffect(pos_draw, 1, 0, 2, 300);
 	_sprite_effect3->DrawWithDirectionAndOneTimeEffect(pos_draw1, 1, 0, 2, 300);
 }
+
 void CBoss1::DrawWhenDestroyBG4(D3DXVECTOR3 pos)
 {
 	_sprite_bg->SelectFrameOf(1);
