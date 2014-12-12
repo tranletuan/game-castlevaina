@@ -95,9 +95,9 @@ void CBossGun::Attacking()
 				_queue_id_bullet.push(id);
 				SetStatus(EAttack);
 			}
-
-			_last_time_shoot = now;
 		}
+
+		_last_time_shoot = now;
 	}
 }
 

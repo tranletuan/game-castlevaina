@@ -3,13 +3,13 @@
 CBoss1::CBoss1(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
 	:CObject(id, specific_type, Enemy, pos, width, height)
 {
-	_hp = 10;
+	_hp = 30;
 	_state = B1S_Acti;
 	_destroy_bg = false;
 	_time_counter = 0;
 	_can_impact = true;
 	_enable = true;
-	_physical.SetBounds(pos.x - BOSS1_SPACE_X, pos.y - BOSS1_SPACE_Y, 20, 20);
+	_physical.SetBounds(pos.x - BOSS1_SPACE_X, pos.y - BOSS1_SPACE_Y, 15, 15);
 	LoadResources();
 	
 }
@@ -105,8 +105,11 @@ void CBoss1::Update(int delta_time)
 		break;
 	case B1S_NextMap:
 		break;
-	default:
-		break;
+	}
+
+	if (_hp == 0)
+	{
+		_physical.SetBounds(0, 0, 0, 0);
 	}
 }
 
