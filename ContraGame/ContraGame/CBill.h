@@ -18,7 +18,7 @@ enum GunDirection
 
 enum PlayerStatus
 {
-	Stand, Move, Attack, Jump, Fall, Die, Revival
+	Stand, Move, Attack, Jump, Fall, Die
 };
 
 class CBill : public CObject
@@ -36,8 +36,10 @@ protected:
 	Environment _enviroment;
 	GunDirection _gun_direction;
 	PlayerStatus _player_status;
+	DWORD _last_time_revival;
+	DWORD _last_time_die;
 
-	
+	bool _is_revival;
 	int _id_ground_stand;
 	void UpdateBounds();
 	bool SetStatus(PlayerStatus status);
@@ -70,6 +72,7 @@ public:
 	void Moving(float vx);
 	void Standing(float y_ground, int id_ground);
 	bool Falling(CObject* ground);
+	void Living();
 
 	int GetIdGroundIgnore();
 	int	GetGunDirection();

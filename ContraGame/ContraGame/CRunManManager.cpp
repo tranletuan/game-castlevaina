@@ -180,7 +180,11 @@ void CRunmanManager::CheckCollisionWithPlayer(CPlayerWeapon* weapon, CBill* play
 				}
 			}
 
-			//Kiểm tra va chạm với người chơi
+			//Kiểm tra va chạm với người chơi 1
+			if (player->_physical.Collision(&runman->_physical) != NoCollision && player->_can_impact)
+			{
+				player->Dying();
+			}
 		}
 	}
 }

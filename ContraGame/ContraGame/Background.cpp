@@ -14,7 +14,11 @@ void Background::draw()
 	for (int row = m_beginRow; row < m_endRow; row++) {
 		for (int col = m_beginCol; col < m_endCol; col++) {
 			int index = row * m_cols + col;
-			m_listTiled.at(index)->draw();
+			if (m_listTiled.size() > index)
+			{
+				m_listTiled.at(index)->draw();
+			}
+			
 		}
 	}
 }

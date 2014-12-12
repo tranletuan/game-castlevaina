@@ -10,6 +10,9 @@ CBill::CBill(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int
 	_physical.time_in_space = 0;
 	_physical.vx = 0;
 	_id_ground_stand = -1;
+	_enable = true;
+	_is_revival = true;
+	_last_time_revival = 0;
 	LoadResources();
 }
 
@@ -22,6 +25,9 @@ CBill::CBill()
 	_physical.time_in_space = 0;
 	_physical.vx = 0;
 	_id_ground_stand = -1;
+	_enable = true;
+	_is_revival = true;
+	_last_time_revival = 0;
 	LoadResources();
 }
 
@@ -56,30 +62,33 @@ void CBill::LoadResources()
 
 void CBill::Draw()
 {
-	CCamera* camera = CResourcesManager::GetInstance()->_camera;
-	D3DXVECTOR3 pos = camera->Transform(_physical.x, _physical.y);
-
-	switch (_player_status)
+	if (_enable)
 	{
-	case Move:
-		DrawWhenMove(pos);
-		break;
-	case Stand:
-		DrawWhenStand(pos);
-		break;
-	case Jump:
-		DrawWhenJump(pos);
-		break;
-	case Die:
-		DrawWhenDie(pos);
-		break;
-	case Attack:
-		DrawWhenAttack(pos);
-		break;
-	case Fall:
-		_current_sprite = _bill_move;
-		_current_sprite->DrawWithDirection(pos, _physical.vx_last, 0, 0);
-		break;
+		CCamera* camera = CResourcesManager::GetInstance()->_camera;
+		D3DXVECTOR3 pos = camera->Transform(_physical.x, _physical.y);
+
+		switch (_player_status)
+		{
+		case Move:
+			DrawWhenMove(pos);
+			break;
+		case Stand:
+			DrawWhenStand(pos);
+			break;
+		case Jump:
+			DrawWhenJump(pos);
+			break;
+		case Die:
+			DrawWhenDie(pos);
+			break;
+		case Attack:
+			DrawWhenAttack(pos);
+			break;
+		case Fall:
+			_current_sprite = _bill_move;
+			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 0, 0);
+			break;
+		}
 	}
 
 
@@ -87,7 +96,51 @@ void CBill::Draw()
 
 void CBill::Update(int delta_time)
 {
-	_can_impact = true;
+	CResourcesManager* rs = CResourcesManager::GetInstance();
+
+	//Xét các trường hợp có thể va chạm với nhân vật
+	switch (_player_status)
+	{
+	case Stand:
+	case Move:
+	case Attack:
+	case Jump:
+	case Fall:
+		_can_impact = true;
+		break;
+	case Die:
+		_can_impact = false;
+		break;
+	}
+
+	//Khi nhân vật chết, tiến hành hồi sinh
+	if (!_is_revival && _current_sprite->index == 4 && _player_status == Die)
+	{
+		Living();
+	}
+
+	//Trong giai đoạn hồi sinh
+	if (_is_revival)
+	{
+		_can_impact = false; //Không thể va chạm (bất tử)
+		_enable = !_enable;
+		DWORD now = GetTickCount();
+
+		if (_last_time_revival == 0)
+		{
+			_last_time_revival = GetTickCount();
+		}
+
+		//Kết thúc giai đoạn bất tử
+		if (now - _last_time_revival >= BILL_REVIVAL_TIME)
+		{
+			_enable = true;
+			_can_impact = true;
+			_is_revival = false;
+		}
+	}
+
+	//Trường hợp đặc biệt khi ở dưới nước
 	if (_gun_direction == Down && _enviroment == Water)
 	{
 		_can_impact = false; //không va chạm với quái
@@ -102,7 +155,6 @@ void CBill::Update(int delta_time)
 		SetStatus(Fall);
 	}
 
-	CResourcesManager* rs = CResourcesManager::GetInstance();
 	rs->m_posBill.x = _physical.x;
 	rs->m_posBill.y = _physical.y;
 }
@@ -302,11 +354,46 @@ void CBill::Standing(float y_ground, int id_ground)
 	_id_ground_stand = id_ground;
 }
 
+void CBill::Living()
+{
+	DWORD now = GetTickCount();
+	if (_last_time_die == 0)
+	{
+		_last_time_die = GetTickCount();
+	}
+
+	if (now - _last_time_die >= 1200)
+	{
+		CResourcesManager* rs = CResourcesManager::GetInstance();
+		rs->m_life--;
+		if (rs->m_life > 0)
+		{
+			_physical.vx_last = 1;
+			_enviroment = Land;
+			_gun_direction = Normal;
+			_player_status = Fall;
+			_physical.time_in_space = 0;
+			_physical.vx = 0;
+			_physical.vy = 0;
+			_physical.n = 0;
+			_id_ground_stand = -1;
+			_enable = true;
+			_is_revival = true;
+			_last_time_revival = 0;
+			_bill_die->Reset();
+
+			//Kiểm tra tọa độ rơi
+			_physical.y = rs->_camera->getPosY();
+			_last_time_die = 0;
+		}
+	}
+}
+
 //SUPPORT DRAW
 void CBill::DrawWhenDie(D3DXVECTOR3 pos)
 {
 	_current_sprite = _bill_die;
-	_current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 0, 4);
+	_current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 0, 4, 200);
 }
 
 void CBill::DrawWhenJump(D3DXVECTOR3 pos)
@@ -482,7 +569,7 @@ void CBill::UpdateBounds()
 		case Fall:
 			_physical.SetBounds(
 				_physical.x,
-				_physical.y,
+				_physical.y - 4,
 				BILL_BOUNDS_WIDTH,
 				BILL_BOUNDS_HEIGHT);
 			break;
@@ -490,8 +577,8 @@ void CBill::UpdateBounds()
 			_physical.SetBounds(
 				_physical.x,
 				_physical.y - 10,
-				_current_sprite->sprite_texture->frame_width,
-				_current_sprite->sprite_texture->frame_height);
+				14,
+				20);
 			break;
 		case Die:
 			_physical.SetBounds(

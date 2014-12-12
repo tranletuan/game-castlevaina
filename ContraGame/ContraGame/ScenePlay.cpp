@@ -243,6 +243,13 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 			CObject* enemy = (*i);
 
 			//Va chạm với người chơi 1
+			if (_player1->_can_impact && enemy->_specific_type != Wall_Turret && enemy->_specific_type != Ground_Canon)
+			{
+				if (_player1->_physical.Collision(&enemy->_physical) != NoCollision)
+				{
+					_player1->Dying();
+				}
+			}
 
 			//Va chạm với người chơi 2
 
