@@ -16,8 +16,6 @@ public:
 	~CWeapon();
 
 	virtual void RemoveDisabledBullet() = 0;
-	virtual CollisionDirection CheckCollision(CObject* obj) = 0;
-
 	virtual void LoadResources() = 0;
 	void Update(int delta_time);
 	void Draw();

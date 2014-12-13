@@ -4,6 +4,7 @@
 #include "CWeapon.h"
 #include "CNEBullet.h"
 #include "CBBullet.h"
+#include "CBill.h"
 
 class CEnemyWeapon : public CWeapon
 {
@@ -17,7 +18,7 @@ public:
 
 	void LoadResources();
 	void RemoveDisabledBullet();
-	CollisionDirection CheckCollision(CObject* obj);
+	void CheckCollisionWithPlayer(CBill* player);
 	void UpdateQueueIdBullet(queue<int> &queue_id_bullet);
 
 	int ShootingBulletNE(D3DXVECTOR3 pos, int angle, float vo);

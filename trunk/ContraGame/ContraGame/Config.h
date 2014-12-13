@@ -10,8 +10,7 @@
 #define BILL_VX 0.06f
 #define BILL_VY 5.95f	
 #define BILL_VY_DIE  5.0f
-#define BILL_BOUNDS_WIDTH 10
-#define BILL_BOUNDS_HEIGHT 24
+#define BILL_DISTANCE_GROUND 16
 #define BILL_REVIVAL_TIME 2500
 
 //BULLET

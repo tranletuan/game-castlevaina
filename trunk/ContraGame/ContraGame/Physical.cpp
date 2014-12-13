@@ -32,6 +32,9 @@ void CPhysical::SetBounds(float x, float y, float width, float height)
 	bounds.right = bounds.left + width;
 	bounds.top = y + height / 2;
 	bounds.bottom = bounds.top - height;
+
+	bounds.width = width;
+	bounds.height = height;
 }
 
 void CPhysical::CalcPositionWithGravitation(int time, float gravity)

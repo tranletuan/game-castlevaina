@@ -1,7 +1,7 @@
 ﻿#include "CWallTurret.h"
 
 CWallTurret::CWallTurret(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
-	:CEnemyUseGun(id, specific_type, pos, width - 14, height - 14)
+	:CEnemyUseGun(id, specific_type, pos, width - 14, height - 12)
 {
 	_hp = 10;
 	_attack_angle = 180;

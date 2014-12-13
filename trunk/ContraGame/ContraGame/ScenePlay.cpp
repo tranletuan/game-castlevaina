@@ -15,10 +15,9 @@ ScenePlay::ScenePlay()
 	_weapon_player1 = new CPlayerWeapon();
 	_player1 = new CBill();
 	_player1->SetWeapon(_weapon_player1);
-	_player1->_physical.x = 3100;
 	_weapon_enemy = new CEnemyWeapon();
 	_runmans = new CRunmanManager();
-
+	_player1->_physical.x = 2100;
 	init();
 }
 
@@ -109,6 +108,8 @@ void ScenePlay::update(float time)
 		}
 	}
 
+	if (m_state != PS_InGame) return;
+
 	// xu ly trong game
 	UpdateFullListObjetcInView();
 	ProcessGroundsWithOneAnother();
@@ -125,6 +126,10 @@ void ScenePlay::update(float time)
 	m_cameraHUD->update(time);
 	m_camera->Update();
 
+	if (_boss != NULL && _boss->_hp <= 0)
+	{
+		_player1->GoingToNext();
+	}
 
 	UpdateGlobalVariable();
 }
@@ -203,17 +208,17 @@ void ScenePlay::ProcessGroundsWithOneAnother()
 			if (_player1->GetIdGroundIgnore() != ground->_id && collision_player1 != TopCollision)
 			{
 				collision_player1 = _player1->_physical.Collision(&ground->_physical);
+
 				if (collision_player1 == TopCollision && _player1->_physical.current_vy < 0)
 				{
+					_player1->Standing(ground->_physical.bounds.top, ground->_id);
 					if (ground->_specific_type == Ground_Water)
 					{
 						_player1->SetEnviroment(Water);
-						_player1->Standing(ground->_physical.bounds.top + BILL_BOUNDS_WIDTH / 2 + 0.5f, ground->_id);
 					}
 					else
 					{
 						_player1->SetEnviroment(Land);
-						_player1->Standing(ground->_physical.bounds.top + BILL_BOUNDS_HEIGHT / 2 + 0.5f, ground->_id);
 					}
 				}
 			}
@@ -245,7 +250,7 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 			//Va chạm với người chơi 1
 			if (_player1->_can_impact && enemy->_specific_type != Wall_Turret && enemy->_specific_type != Ground_Canon)
 			{
-				if (_player1->_physical.Collision(&enemy->_physical) != NoCollision)
+				if (_player1->_physical.Collision(&enemy->_physical) != NoCollision && _player1->_can_impact)
 				{
 					_player1->Dying();
 				}
@@ -274,6 +279,9 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 
 	//Quái nằm ngoài quadtree
 	_runmans->CheckCollisionWithPlayer(_weapon_player1, _player1);
+
+	//Xét va chạm đạn của quái với người chơi
+	_weapon_enemy->CheckCollisionWithPlayer(_player1);
 }
 
 void ScenePlay::ProcessItemsWithOneAnother()

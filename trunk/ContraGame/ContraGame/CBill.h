@@ -34,11 +34,14 @@ protected:
 	CSprite* _bill_in_water;
 
 	Environment _enviroment;
-	GunDirection _gun_direction;
+	
 	PlayerStatus _player_status;
 	DWORD _last_time_revival;
 	DWORD _last_time_die;
+	DWORD _last_time_wait;
 
+	int _count_jump;
+	bool _is_wait;
 	bool _is_revival;
 	int _id_ground_stand;
 	void UpdateBounds();
@@ -57,6 +60,7 @@ public:
 	CBill();
 	~CBill();
 
+	GunDirection _gun_direction;
 	bool _mission_complete;
 	void LoadResources();
 	void Draw();
@@ -73,6 +77,7 @@ public:
 	void Standing(float y_ground, int id_ground);
 	bool Falling(CObject* ground);
 	void Living();
+	void GoingToNext();
 
 	int GetIdGroundIgnore();
 	int	GetGunDirection();
