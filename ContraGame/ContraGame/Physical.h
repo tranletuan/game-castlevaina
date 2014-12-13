@@ -13,6 +13,7 @@ enum CollisionDirection
 struct BOUNDS
 {
 	float left, right, top, bottom;
+	float width = 0, height = 0;
 };
 
 class CPhysical

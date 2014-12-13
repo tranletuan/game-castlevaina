@@ -43,6 +43,7 @@
     <ClCompile Include="CRockRoll.cpp" />
     <ClCompile Include="CRunman.cpp" />
     <ClCompile Include="CRunManManager.cpp" />
+    <ClCompile Include="CSniperBoss.cpp" />
     <ClCompile Include="CSniperHide.cpp" />
     <ClCompile Include="CSniperStand.cpp" />
     <ClCompile Include="CSBullet.cpp" />
@@ -139,6 +140,7 @@
     <ClInclude Include="SceneMenu.h" />
     <ClInclude Include="ScenePause.h" />
     <ClInclude Include="ScenePlay.h" />
+    <ClInclude Include="CSniperBoss.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="Text.h" />
@@ -177,8 +179,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

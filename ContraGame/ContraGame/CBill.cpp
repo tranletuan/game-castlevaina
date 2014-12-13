@@ -28,6 +28,7 @@ CBill::CBill()
 	_enable = true;
 	_is_revival = true;
 	_last_time_revival = 0;
+	_count_jump = 0;
 	LoadResources();
 }
 
@@ -184,8 +185,9 @@ void CBill::SetGunDirection(GunDirection gd)
 void CBill::Dying()
 {
 	//Kiểm tra trạng thái chuyển thành công hay không
-	if (!SetStatus(Die)) return;
+	if (_player_status == Die) return;
 
+	SetStatus(Die);
 	int sign = _physical.vx_last > 0 ? -1 : 1;
 	_physical.vx = BILL_VX * sign;
 	_physical.vy = BILL_VY_DIE;
@@ -197,7 +199,7 @@ bool CBill::Falling(CObject* ground)
 	if (_physical.x >= ground->_physical.bounds.left &&
 		_physical.x <= ground->_physical.bounds.right &&
 		_id_ground_stand != ground->_id &&
-		_physical.y - BILL_BOUNDS_HEIGHT / 2 - 0.5f > ground->_physical.bounds.top)
+		_physical.y - BILL_DISTANCE_GROUND - 0.5f > ground->_physical.bounds.top)
 	{
 		//Nếu có khả năng tiếp đất, kiểm tra trạng thái hiện tại 
 		if (_player_status == Fall || _player_status == Jump) return false;
@@ -350,7 +352,7 @@ void CBill::Standing(float y_ground, int id_ground)
 	//Chạm đất thì vector phản lực n phải có 1 lực tương đương với vector trọng trường
 	_physical.n = GRAVITY;
 	_physical.time_in_space = GetTickCount();
-	_physical.y = y_ground;
+	_physical.y = y_ground + BILL_DISTANCE_GROUND + 0.5f;
 	_id_ground_stand = id_ground;
 }
 
@@ -387,6 +389,49 @@ void CBill::Living()
 			_last_time_die = 0;
 		}
 	}
+}
+
+void CBill::GoingToNext()
+{
+	_is_wait = true;
+	DWORD now = GetTickCount();
+	
+	if (_last_time_wait == 0)
+	{
+		_last_time_wait = GetTickCount();
+	}
+
+	if (now - _last_time_wait >= 5000)
+	{
+		CResourcesManager* rs = CResourcesManager::GetInstance();
+		switch (rs->m_levelMap)
+		{
+		case 1:
+			Moving(BILL_VX);
+			SetGunDirection(Normal);
+
+			if (_physical.x >= 3230 && _count_jump == 0)
+			{
+				Jumping();
+				_count_jump++;
+			}
+
+			if (_physical.x >= 3305)
+			{
+				_count_jump = 0;
+				_last_time_wait = 0;
+				_mission_complete = true;
+				_is_wait = false;
+			}
+
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		}
+	}
+
 }
 
 //SUPPORT DRAW
@@ -554,24 +599,24 @@ void CBill::UpdateBounds()
 	{
 		switch (_player_status)
 		{
+		case Attack:
 		case Stand:
 			if (_gun_direction == Down)
 			{
 				_physical.SetBounds(
 					_physical.x,
-					_physical.y - 20,
-					34,
-					16);
+					_physical.y - 12,
+					30,
+					8);
 				break;
 			}
 		case Move:
-		case Attack:
 		case Fall:
 			_physical.SetBounds(
 				_physical.x,
-				_physical.y - 4,
-				BILL_BOUNDS_WIDTH,
-				BILL_BOUNDS_HEIGHT);
+				_physical.y - 2,
+				12,
+				28);
 			break;
 		case Jump:
 			_physical.SetBounds(
@@ -584,8 +629,8 @@ void CBill::UpdateBounds()
 			_physical.SetBounds(
 				_physical.x,
 				_physical.y,
-				_current_sprite->sprite_texture->frame_width,
-				_current_sprite->sprite_texture->frame_height);
+				BILL_DISTANCE_GROUND,
+				BILL_DISTANCE_GROUND);
 			break;
 		}
 	}
@@ -593,9 +638,9 @@ void CBill::UpdateBounds()
 	{
 		_physical.SetBounds(
 			_physical.x,
-			_physical.y,
-			BILL_BOUNDS_WIDTH,
-			BILL_BOUNDS_WIDTH);
+			_physical.y - 14,
+			8,
+			4);
 	}
 }
 
@@ -620,6 +665,8 @@ int CBill::GetGunDirection()
 
 void CBill::ProcessInput()
 {
+	if (_is_wait) return; //Lúc chờ qua màn k cho người chơi điều khiển
+
 	IsKeyDown();
 	OnKeyDown();
 	OnKeyUp();

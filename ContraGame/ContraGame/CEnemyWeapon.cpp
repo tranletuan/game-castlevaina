@@ -79,9 +79,18 @@ void CEnemyWeapon::RemoveDisabledBullet()
 	}
 }
 
-CollisionDirection CEnemyWeapon::CheckCollision(CObject* obj)
+void CEnemyWeapon::CheckCollisionWithPlayer(CBill* player)
 {
-	return TopCollision;
+	for (map<int, CBullet*>::iterator i = _list_bullet.begin(); i != _list_bullet.end(); i++)
+	{
+		CBullet* bullet = (*i).second;
+
+		if (bullet->_physical.Collision(&player->_physical) != NoCollision && player->_can_impact)
+		{
+			bullet->_physical.Collision(&player->_physical);
+			player->Dying();
+		}
+	}
 }
 
 void CEnemyWeapon::UpdateQueueIdBullet(queue<int> &queue_id_bullet)

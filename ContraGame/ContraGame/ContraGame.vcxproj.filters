@@ -237,6 +237,9 @@
     <Filter Include="Contra Game\Object\Enemy Game\RockRoll">
       <UniqueIdentifier>{19c63ff6-e7ab-4e40-b424-ae7f311b8b45}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contra Game\Object\Enemy Game\SniperBoss">
+      <UniqueIdentifier>{f11a0077-70ee-446d-a6ba-f02e33d7dcb0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -433,6 +436,9 @@
     </ClCompile>
     <ClCompile Include="CGroundElectron.cpp">
       <Filter>Contra Game\Object\Ground Game\GroundElectron</Filter>
+    </ClCompile>
+    <ClCompile Include="CSniperBoss.cpp">
+      <Filter>Contra Game\Object\Enemy Game\SniperBoss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -642,6 +648,9 @@
     </ClInclude>
     <ClInclude Include="CGroundElectron.h">
       <Filter>Contra Game\Object\Ground Game\GroundElectron</Filter>
+    </ClInclude>
+    <ClInclude Include="CSniperBoss.h">
+      <Filter>Contra Game\Object\Enemy Game\SniperBoss</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

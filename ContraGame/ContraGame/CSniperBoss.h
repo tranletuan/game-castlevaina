@@ -1,9 +1,9 @@
-#ifndef _CSNIPER_HIDE_H_
-#define _CSNIPER_HIDE_H_
+#ifndef _CSNIPER_BOSS_H_
+#define _CSNIPER_BOSS_H_
 
 #include "CEnemyUseGun.h"
 
-class CSniperHide : public CEnemyUseGun
+class CSniperBoss : public CEnemyUseGun
 {
 protected:
 	bool _ready_shoot;
@@ -14,12 +14,12 @@ protected:
 	void DrawWhenWait(D3DXVECTOR3 pos);
 	void Attacking();
 public:
-	CSniperHide(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
-	~CSniperHide();
+	CSniperBoss(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
+	~CSniperBoss();
 
 	void LoadResources();
 	void Draw();
 	void Update(int delta_time);
 	void SetTarget(float x, float y);
 };
-#endif // !_CSNIPER_HIDE_H_
+#endif // !_CSNIPER_BOSS_H_
