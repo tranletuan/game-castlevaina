@@ -1,0 +1,21 @@
+1 Ground 0 48 256 16 
+2 Ground 2 176 128 16 
+3 Ground 127 226 128 16 
+4 Ground 96 144 128 16 
+5 Ground 129 112 96 16 
+6 Ground 159 81 96 16 
+7 Ground 159 177 96 16 
+8 Ground 64 272 96 16 
+9 Ground 0 239 64 16 
+10 Ground 33 209 64 16 
+11 Ground 189 256 64 16 
+12 Ground 192 369 64 16 
+13 Ground 0 368 64 16 
+14 Ground 29 448 64 16 
+15 Ground 126 416 128 16 
+16 Ground 31 337 160 16 
+17 Ground 0 305 128 16 
+18 Ground 31 416 32 16 
+
+0 Camera 0 240 256 240 
+0 Character 40 50 36 46 

@@ -4,7 +4,7 @@ CRockRoll::CRockRoll(int id, SpecificType specific_type, D3DXVECTOR3 pos, int wi
 	: CObject(id, specific_type, Enemy, pos, width, height)
 {
 	_state = RS_Wait;
-	_hp = 1;
+	_hp = 3;
 	_idGround = -1;
 	_posYBegin = pos.y;
 	_timeDruing = 60;
@@ -20,6 +20,7 @@ CRockRoll::~CRockRoll()
 void CRockRoll::LoadResources()
 {
 	_current_sprite = new CSprite(CResourcesManager::GetInstance()->_enemy_rock_roll);
+	_sprite_effect = new CSprite(CResourcesManager::GetInstance()->_effect_destroy);
 }
 
 void CRockRoll::Draw()
@@ -54,6 +55,15 @@ void CRockRoll::DrawWhenMove(D3DXVECTOR3 pos)
 
 void CRockRoll::DrawWhenDie(D3DXVECTOR3 pos)
 {
+	if (_sprite_effect->index == 2 )
+	{		
+		_state = RS_OutView;
+	}
+	else
+	{
+		_sprite_effect->DrawWithDirectionAndOneTimeEffect(pos, 1, 0, 2);
+	}
+
 }
 
 void CRockRoll::Update(int delta_time)
@@ -62,45 +72,40 @@ void CRockRoll::Update(int delta_time)
 	float _posYCam = CResourcesManager::GetInstance()->_camera->getPosY()
 		- CResourcesManager::GetInstance()->_camera->getHeight();  // điểm dưới của camera
 	vector<CObject*> Obs = CResourcesManager::GetInstance()->listObinView;
-
+	
+	// vang ra khoi screen
+	if (_posYCam >= _physical.y )
+	{
+		_state = RS_OutView;
+	}
 
 	switch (_state)
 	{
 	case RS_Wait:
 		if (_physical.y - _posYBill <= 20)
-		{
-			_timeDruing = 60;
+		{			
 			_state = RS_Fall;
-
 		}
 		break;
 	case RS_Fall:
 		_physical.CalcPositionWithGravitation(delta_time, 0.005);
-		_physical.SetBounds(_physical.x,_physical.y,28,28);
-		if (_posYCam >= _physical.y)
-		{
-			_state = RS_OutView;
-		}
+		_physical.SetBounds(_physical.x,_physical.y,28,28);		
 
-
-		// xet va cham		
+		// xet va cham voi ground
 		for (int i = 0; i < Obs.size(); i++)
 		{
 			if (Obs.at(i)->getSpecificType() == Ground_Grass)
 			{
 				CollisionDirection collision = NoCollision;
 				if (Obs.at(i)->getID() != _idGround)
-				{
-					if (Obs.at(i)->getID() == 20)
-					{
-						float iaa = 0;
-					}
+				{					
 					collision = _physical.Collision(&Obs.at(i)->_physical);
 					if (collision == TopCollision)
 					{
 						_state = RS_Up;
 						_idGround = Obs.at(i)->getID();
 						_physical.vy = 1;
+						break;
 					}
 				}
 			}
@@ -110,13 +115,15 @@ void CRockRoll::Update(int delta_time)
 		break;
 	case RS_Up:
 		_physical.CalcPositionWithGravitation(delta_time, 0.001);
-		if (_physical.vy <= 0)
+		if (_physical.current_vy <= 0)
 		{
+			_physical.time_in_space = 0;
+			_physical.vy = 0;
 			_state = RS_Fall;
 		}
 		break;
 	case RS_Die:
-
+	
 		break;
 	case RS_OutView:
 		_timeDruing--;
@@ -124,11 +131,22 @@ void CRockRoll::Update(int delta_time)
 		{
 			_physical.y = _posYBegin;
 			_physical.vy = 0;
-			_physical.time_in_space = 0;
+			_physical.n = 0;
+			_physical.time_in_space = 0;		
 			_state = RS_Wait;
+			_sprite_effect->Reset();
+			_timeDruing = 60;
+			_hp = 3;
 		}
 		break;
 	default:
 		break;
 	}
+
+	// het mau hp
+	if (_hp == 0 && _state != RS_Die)
+	{
+		_state = RS_Die;
+	}
+
 }
