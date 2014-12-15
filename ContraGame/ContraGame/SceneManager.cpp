@@ -88,14 +88,14 @@ void SceneManager::destroyMenuScene()
 
 // Loading
 void SceneManager::createLoadingScene()
-{
-	CResourcesManager::GetInstance()->loadPlayResource();
+{	
 	m_sceneLoad = new SceneLoading();
 	SceneManager::getInstance()->setScene(m_sceneLoad);
 }
 
 void SceneManager::loadLoadingScene()
 {
+	CResourcesManager::GetInstance()->loadPlayResource();
 	SceneManager::getInstance()->setScene(m_sceneLoad);
 }
 
@@ -106,8 +106,7 @@ void SceneManager::destroyLoadingScene()
 
 // Play
 void SceneManager::createPlayScene()
-{
-	CResourcesManager::GetInstance()->loadPlayResource();
+{	
 	m_scenePlay = new ScenePlay();
 	SceneManager::getInstance()->setScene(m_scenePlay);
 }

@@ -65,7 +65,7 @@ void ScenePause::init()
 	m_spNumber = new CSprite(m_resource->load_number);
 
 
-	switch (CResourcesManager::GetInstance()->m_levelMap)
+	switch (CResourcesManager::GetInstance()->m_curMap)
 	{
 	case 1:
 		m_spStage = new CSprite(m_resource->load_stage1);

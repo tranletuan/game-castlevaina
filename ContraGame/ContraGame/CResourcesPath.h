@@ -41,7 +41,7 @@
 #pragma region BackgrounPath
 #define PATH_MAP_BG1_PIC ".//DataGame//Images//Game//Background//1.png"
 #define PATH_MAP_BG1_TEXT ".//DataGame//Map//1_bg.txt"
-#define PATH_MAP_BG2_PIC ".//DataGame//Images//Background//2.png"
+#define PATH_MAP_BG2_PIC ".//DataGame//Images//Game//Background//2.png"
 #define PATH_MAP_BG2_TEXT ".//DataGame//Map//2_bg.txt"
 #pragma endregion BackgrounPath
 
@@ -54,6 +54,9 @@
 #define PATH_OB_MAP1 ".//DataGame//Map//1_ob.txt"
 #define PATH_OB_MAP1_QT ".//DataGame//Map//1_ob_qt.txt"
 #define PATH_QT_MAP1 ".//DataGame//Map//1_quadtree.txt"
+#define PATH_OB_MAP2 ".//DataGame//Map//2_ob.txt"
+#define PATH_OB_MAP2_QT ".//DataGame//Map//2_ob_qt.txt"
+#define PATH_QT_MAP2 ".//DataGame//Map//2_quadtree.txt"
 #pragma endregion MapPath
 
 #pragma region GroundtPath
@@ -116,5 +119,12 @@
 #define PATH_HIGHSCORE_2 ".//DataGame//HighScore//highscore_2.txt"
 #define PATH_HIGHSCORE_3 ".//DataGame//HighScore//highscore_3.txt"
 #pragma endregion DataPath
+
+#pragma region ConfiMapPath
+#define PATH_CONFI_DEFAULT ".//DataGame//Map//confi_default.txt"
+#define PATH_CONFI_MAP_1 ".//DataGame//Map//confi_map_1.txt"
+#define PATH_CONFI_MAP_2 ".//DataGame//Map//confi_map_2.txt"
+#define PATH_CONFI_MAP_3 ".//DataGame//Map//confi_map_3.txt"
+#pragma endregion ConfiMapPath
 
 #endif

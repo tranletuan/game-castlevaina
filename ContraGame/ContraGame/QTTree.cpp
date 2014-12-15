@@ -12,22 +12,13 @@ QTTree::~QTTree()
 
 void QTTree::init()
 {
-	m_levelMap = CResourcesManager::GetInstance()->m_levelMap;
+	
 	m_camera = CResourcesManager::GetInstance()->_camera;
 
 
 	// load list
-	vector<QTNode*> m_listNode;
-	switch (m_levelMap)
-	{
-	case 1:
-		m_listNode = CResourcesManager::GetInstance()->map1_listNode;
-		break;
-	case 2:
-		break;
-	default:
-		break;
-	}
+	vector<QTNode*> m_listNode;	
+	m_listNode = CResourcesManager::GetInstance()->map_listNode;	
 
 	m_numSub = m_listNode.at(m_listNode.size() - 1)->getID().length() / 2; 
 	map<int, CObject*> map_objects;
@@ -55,7 +46,7 @@ void QTTree::init()
 		}
 	}
 
-	CResourcesManager::GetInstance()->map1_listNode = m_listNode;
+	CResourcesManager::GetInstance()->map_listNode = m_listNode;
 
 	// cap nhat lai node da add cac node con	
 	string Idi = "";
@@ -217,7 +208,7 @@ CObject * QTTree::getObjectTrust(CObject *x)
 	// chuyển tọa độ từ top - left sang center
 	float posX = x->getPosX() + x->getWidth() / 2;
 	float posY = x->getPosY() - x->getHeight() / 2;
-
+	
 	switch (x->getSpecificType())
 	{
 	case Ground_Grass:
@@ -249,6 +240,10 @@ CObject * QTTree::getObjectTrust(CObject *x)
 		return new CFire(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	case Boss_Gun:
 		return new CBossGun(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
+	case Rock_Roll:
+		x->setHeight(CResourcesManager::GetInstance()->_enemy_rock_roll->frame_height);
+		posY = x->getPosY() - x->getHeight() / 2;
+		return new CRockRoll(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	}
 }
 

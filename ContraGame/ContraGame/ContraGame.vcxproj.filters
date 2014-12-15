@@ -652,5 +652,8 @@
     <ClInclude Include="CSniperBoss.h">
       <Filter>Contra Game\Object\Enemy Game\SniperBoss</Filter>
     </ClInclude>
+    <ClInclude Include="CResourceID.h">
+      <Filter>Contra Game\Manager\Resource</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

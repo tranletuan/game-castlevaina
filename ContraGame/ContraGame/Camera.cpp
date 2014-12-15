@@ -41,7 +41,7 @@ void CCamera::UpdateCameraY(float y)
 void CCamera::Update(int time)
 {
 	CResourcesManager* rs = CResourcesManager::GetInstance();
-	switch (rs->m_levelMap)
+	switch (rs->m_curMap)
 	{
 	case 1:
 		if (!_isMove)

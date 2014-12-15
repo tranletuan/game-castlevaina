@@ -17,7 +17,7 @@ ScenePlay::ScenePlay()
 	_player1->SetWeapon(_weapon_player1);
 	_weapon_enemy = new CEnemyWeapon();
 	_runmans = new CRunmanManager();
-	_player1->_physical.x = 2100;
+//	_player1->_physical.x = 2100;
 	init();
 }
 
@@ -96,8 +96,7 @@ void ScenePlay::update(float time)
 			}
 			// chuyen qua scene loading
 			else 
-			{
-				m_resource->m_levelMap++;
+			{				
 				SceneManager::getInstance()->createLoadingScene();	
 			}
 			
@@ -124,7 +123,7 @@ void ScenePlay::update(float time)
 	_weapon_enemy->Update(time);
 	_runmans->Update(time);
 	m_cameraHUD->update(time);
-	m_camera->Update();
+	m_camera->Update(time);
 
 	if (_boss != NULL && _boss->_hp <= 0)
 	{

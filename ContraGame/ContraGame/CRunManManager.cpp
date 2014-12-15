@@ -82,9 +82,9 @@ void CRunmanManager::CheckActive()
 		D3DXVECTOR3 pos = _position_active.at(i);
 		D3DXVECTOR3 pos_check_active = cam->Transform(pos);
 
-		int levelMap = CResourcesManager::GetInstance()->m_levelMap;
+		int curMap = CResourcesManager::GetInstance()->m_curMap;
 
-		switch (levelMap)
+		switch (curMap)
 		{
 		case 1:
 		case 3:

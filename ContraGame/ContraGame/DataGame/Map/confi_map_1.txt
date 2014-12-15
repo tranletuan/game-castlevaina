@@ -1,0 +1,15 @@
+2
+RunMan
+ItemFly
+Ground
+Water
+WaterEffect1
+Sniper
+SniperHide
+ItemStand
+BlockHouse
+Obstacle
+Boss1
+StarEffect
+BossGun
+Brigde

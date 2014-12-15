@@ -404,7 +404,7 @@ void CBill::GoingToNext()
 	if (now - _last_time_wait >= 5000)
 	{
 		CResourcesManager* rs = CResourcesManager::GetInstance();
-		switch (rs->m_levelMap)
+		switch (rs->m_curMap)
 		{
 		case 1:
 			Moving(BILL_VX);

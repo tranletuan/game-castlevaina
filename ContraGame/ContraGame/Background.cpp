@@ -25,20 +25,8 @@ void Background::draw()
 
 void Background::init()
 {
-	m_camera = CResourcesManager::GetInstance()->_camera;
-	m_level = CResourcesManager::GetInstance()->m_levelMap;
-
-	switch (m_level)
-	{
-	case 1:
-		m_listBG = CResourcesManager::GetInstance()->map1_bg_listTile;
-		break;
-	case 2:
-		m_listBG = CResourcesManager::GetInstance()->map2_bg_listTile;
-		break;
-	default:
-		break;
-	}
+	m_camera = CResourcesManager::GetInstance()->_camera;	
+	m_listBG = CResourcesManager::GetInstance()->map_bg_listTile;	
 
 	// lay chieu dai va chieu rong cua background
 	m_cols = m_listBG.at(0);

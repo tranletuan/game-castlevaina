@@ -35,11 +35,11 @@ void CGroundCanon::Update(int delta_time)
 	_weapon->UpdateQueueIdBullet(_queue_id_bullet);
 
 	CCamera *_cam = CResourcesManager::GetInstance()->_camera;
-	int levelMap = CResourcesManager::GetInstance()->m_levelMap;
+	int curMap = CResourcesManager::GetInstance()->m_curMap;
 
 	//chuyển state
 	// Xét khoảng hoạt động của item stand the o level map
-	switch (levelMap)
+	switch (curMap)
 	{
 	case 1:
 	case 3:

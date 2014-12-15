@@ -44,12 +44,7 @@ QTNode::~QTNode()
 
 void QTNode::setListOb(string str)
 {
-	vector<CObject*> listObLoad;
-	m_levelMap = CResourcesManager::GetInstance()->m_levelMap;
-	if (m_levelMap == 1)
-	{
-		listObLoad = CResourcesManager::GetInstance()->map1_listOb;
-	}
+	vector<CObject*> listObLoad = CResourcesManager::GetInstance()->map_listOb;	
 
 	string delimiter = ",";	
 	size_t pos = 0;
