@@ -52,6 +52,7 @@ public:
 	int m_numScore;
 	int m_highScore;
 
+	
 	vector<string> _listString; // load tu file confi
 	vector<CObject*> listObinView;
 	vector<CObject*> listObNoTree; // list ob khong nam trong quad tree
@@ -93,9 +94,7 @@ public:
 	/*--- Play Resource ----*/
 	
 	// background
-	CTexture *background_1;
-	CTexture *background_2;
-	CTexture *background_3;
+	CTexture *background;
 
 	/* ------ Object	 ------- */
 
@@ -123,6 +122,7 @@ public:
 	CTexture* _ground_star;
 	CTexture* _ground_rock_fly;
 	CTexture* _ground_electron;
+	CTexture* _ground_waterfall;
 
 	//Effect
 	CTexture* _effect_destroy;

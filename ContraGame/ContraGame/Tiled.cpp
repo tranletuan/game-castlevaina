@@ -22,19 +22,7 @@ void Tiled::init()
 	m_level = CResourcesManager::GetInstance()->m_curMap;
 	m_camera = CResourcesManager::GetInstance()->_camera;
 	// load sprite
-	switch (m_level)
-	{
-	case 1:
-		m_sprite = new CSprite(CResourcesManager::GetInstance()->background_1);
-		break;
-	case 2:
-		m_sprite = new CSprite(CResourcesManager::GetInstance()->background_2);
-		break;
-	case 3:
-		break;
-	default:
-		break;
-	}
+	m_sprite = new CSprite(CResourcesManager::GetInstance()->background);
 }
 
 

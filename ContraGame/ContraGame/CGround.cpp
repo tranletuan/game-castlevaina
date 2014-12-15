@@ -3,7 +3,7 @@
 CGround::CGround(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
 	:CObject(id, specific_type, Ground, pos, width, height)
 {
-	_count = width / GROUND_SIZE_NORMAL;
+	_count = width / GROUND_SIZE_NORMAL_X;
 	LoadResources();
 }
 
@@ -37,7 +37,7 @@ void CGround::Update(int delta_time)
 void CGround::Draw()
 {
 	//Chỉ vẽ để kiểm tra, khi chạy game đoạn code sẽ bị xóa
-	/*int x = _physical.bounds.left + GROUND_SIZE_NORMAL / 2;
+	/*int x = _physical.bounds.left + GROUND_SIZE_NORMAL_X / 2;
 
 	CCamera* c = CResourcesManager::GetInstance()->_camera;
 	D3DXVECTOR3 pos = c->Transform(x, _physical.y);
@@ -46,6 +46,6 @@ void CGround::Draw()
 	for (int i = 0; i < _count; i++)
 	{
 		_current_sprite->Draw(pos.x, pos.y);
-		pos.x += GROUND_SIZE_NORMAL;
+		pos.x += GROUND_SIZE_NORMAL_X;
 	}*/
 }

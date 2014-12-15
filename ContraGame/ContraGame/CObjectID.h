@@ -20,6 +20,7 @@ enum  SpecificType
 	// Ground
 	Ground_Grass, // vo hinh
 	Ground_Water,
+	Ground_WaterFall,
 	Ground_Effect1,
 	Ground_Bridge,
 	Ground_Star, //ngôi sao ở map 1

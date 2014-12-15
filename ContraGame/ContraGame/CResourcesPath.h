@@ -67,6 +67,7 @@
 #define PATH_GROUND_AUTO_DETROY ".//DataGame//Images//Game//Object//ground//ground_bridge.png"
 #define PATH_GROUND_ROCK_FLY ".//DataGame//Images//Game//Object//ground//rock_fly.png"
 #define PATH_GROUND_ELECTRON ".//DataGame//Images//Game//Object//ground//ground_electron.png"
+#define PATH_GROUND_WATETFALL ".//DataGame//Images//Game//Object//ground//waterfall.png"
 #pragma endregion GroundtPath
 
 #pragma region BulletPath

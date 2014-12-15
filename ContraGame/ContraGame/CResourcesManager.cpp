@@ -220,7 +220,7 @@ void CResourcesManager::loadAllInMap()
 	case 1:
 		path = PATH_CONFI_MAP_1;
 		/* --- Background ---*/
-		background_1 = new CTexture(PATH_MAP_BG1_PIC, D3DCOLOR_XRGB(0, 0, 0));
+		background = new CTexture(PATH_MAP_BG1_PIC, D3DCOLOR_XRGB(0, 0, 0));
 		map_bg_listTile = loadFileTextBG(PATH_MAP_BG1_TEXT);
 		// load object from file text
 		map_listOb = loadFileTextOB(PATH_OB_MAP1_QT);
@@ -232,7 +232,7 @@ void CResourcesManager::loadAllInMap()
 	case 2:
 		path = PATH_CONFI_MAP_2;
 		/* --- Background ---*/
-		background_2 = new CTexture(PATH_MAP_BG2_PIC, D3DCOLOR_XRGB(0, 0, 0));
+		background = new CTexture(PATH_MAP_BG2_PIC, D3DCOLOR_XRGB(0, 0, 0));
 		map_bg_listTile = loadFileTextBG(PATH_MAP_BG2_TEXT);		
 		// load object from file text
 		map_listOb = loadFileTextOB(PATH_OB_MAP2_QT);
@@ -349,7 +349,10 @@ void CResourcesManager::loadAllInMap()
 				{
 					loadTexture(RESID_ENEMY_ROCK_ROLL);
 				}
-				
+				else if (line == "WaterFall")
+				{
+					loadTexture(RESID_GROUND_WATERFALL);
+				}				
 			}
 		}
 		myfile.close();
@@ -368,10 +371,10 @@ void CResourcesManager::loadTexture(ResourceID id)
 	switch (id)
 	{
 	case RESID_BG1:
-		background_1 = new CTexture(PATH_MAP_BG1_PIC, D3DCOLOR_XRGB(0, 0, 0));
+		background = new CTexture(PATH_MAP_BG1_PIC, D3DCOLOR_XRGB(0, 0, 0));
 		break;
 	case RESID_BG2:
-		background_2 = new CTexture(PATH_MAP_BG2_PIC, D3DCOLOR_XRGB(0, 0, 0));
+		background = new CTexture(PATH_MAP_BG2_PIC, D3DCOLOR_XRGB(0, 0, 0));
 		break;
 	case RESID_BG3:
 		break;
@@ -438,6 +441,10 @@ void CResourcesManager::loadTexture(ResourceID id)
 	case RESID_GROUND_WATER:
 		_ground_water = new CTexture(PATH_GROUND_WATER);
 		break;
+	case RESID_GROUND_WATERFALL:
+		_ground_waterfall = new CTexture(PATH_GROUND_WATETFALL,2);
+		break;
+		
 	case RESID_EFFECT_DESTROY:
 		_effect_destroy = new CTexture(PATH_EFFECT_DESTROY, 3);
 		break;

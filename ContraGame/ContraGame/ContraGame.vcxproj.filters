@@ -240,6 +240,9 @@
     <Filter Include="Contra Game\Object\Enemy Game\SniperBoss">
       <UniqueIdentifier>{f11a0077-70ee-446d-a6ba-f02e33d7dcb0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contra Game\Object\Ground Game\WaterFall">
+      <UniqueIdentifier>{aea90109-2b3a-43fc-ae76-c534c7d3aca2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -439,6 +442,9 @@
     </ClCompile>
     <ClCompile Include="CSniperBoss.cpp">
       <Filter>Contra Game\Object\Enemy Game\SniperBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="WaterFall.cpp">
+      <Filter>Contra Game\Object\Ground Game\WaterFall</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -654,6 +660,9 @@
     </ClInclude>
     <ClInclude Include="CResourceID.h">
       <Filter>Contra Game\Manager\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="CWaterFall.h">
+      <Filter>Contra Game\Object\Ground Game\WaterFall</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
