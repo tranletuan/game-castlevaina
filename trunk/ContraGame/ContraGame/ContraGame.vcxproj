@@ -76,6 +76,7 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="QTTree.cpp" />
     <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="WaterFall.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +120,7 @@
     <ClInclude Include="CSniperStand.h" />
     <ClInclude Include="CSBullet.h" />
     <ClInclude Include="CWallTurret.h" />
+    <ClInclude Include="CWaterFall.h" />
     <ClInclude Include="dsutil.h" />
     <ClInclude Include="dxutil.h" />
     <ClInclude Include="GameContra.h" />

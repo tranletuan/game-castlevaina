@@ -5,7 +5,7 @@ CGroundEffect::CGroundEffect(int id, SpecificType specific_type, D3DXVECTOR3 pos
 
 {
 	_basic_type = Effect;
-	_count = width / GROUND_SIZE_NORMAL;
+	_count = width / GROUND_SIZE_NORMAL_X;
 	_time_count = 0;
 	_isDraw = false;
 	_basic_type = Effect;
@@ -58,7 +58,7 @@ void CGroundEffect::Draw()
 	if (_isDraw)
 	{
 		//Chỉ vẽ để kiểm tra, khi chạy game đoạn code sẽ bị xóa
-		int x = _physical.bounds.left + GROUND_SIZE_NORMAL / 2;
+		int x = _physical.bounds.left + GROUND_SIZE_NORMAL_X / 2;
 
 		CCamera* c = CResourcesManager::GetInstance()->_camera;
 		D3DXVECTOR3 pos = c->Transform(x, _physical.y);
@@ -66,7 +66,7 @@ void CGroundEffect::Draw()
 		for (int i = 0; i < _count; i++)
 		{
 			_current_sprite->Draw(pos.x, pos.y);
-			pos.x += GROUND_SIZE_NORMAL;
+			pos.x += GROUND_SIZE_NORMAL_X;
 		}
 	}
 
