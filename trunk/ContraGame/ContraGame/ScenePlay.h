@@ -14,6 +14,9 @@
 #include "CRunManManager.h"
 #include "SceneManager.h"
 
+// test
+#include "CRockRoll.h"
+
 enum PlayState
 {
 	PS_InGame,
@@ -50,6 +53,9 @@ private:
 	CListItemFly *m_listItemFLy;
 	CRunmanManager* _runmans;	
 	CObject* _boss;
+
+
+	CRockRoll *m_rock_roll;
 
 public:
 	ScenePlay();

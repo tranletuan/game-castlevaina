@@ -16,6 +16,7 @@
 #include "CBossGun.h"
 #include "CGroundElectron.h"
 #include "CFire.h"
+#include "CRockRoll.h"
 
 class QTTree
 {
@@ -23,7 +24,7 @@ private:
 	vector<CObject*> m_listObInView; // danh sach cac doi tuong trong view port
 	QTNode* m_nodeRoot;
 	int m_numSub; // so lan chia node
-	int m_levelMap;
+
 	CCamera *m_camera;
 
 public:

@@ -19,7 +19,7 @@ Tiled::Tiled(int index, int id, float posX, float posY)
 
 void Tiled::init()
 {
-	m_level = CResourcesManager::GetInstance()->m_levelMap;
+	m_level = CResourcesManager::GetInstance()->m_curMap;
 	m_camera = CResourcesManager::GetInstance()->_camera;
 	// load sprite
 	switch (m_level)

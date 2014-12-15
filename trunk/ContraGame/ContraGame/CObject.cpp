@@ -132,6 +132,10 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(Boss_Gun);
 	}
+	else if (x == "RockRoll")
+	{
+		setSpecificType(Rock_Roll);
+	}
 }
 
 void CObject::setTrack(string x)

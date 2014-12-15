@@ -71,12 +71,12 @@ void CItemStand::Update(int delta_time)
 {
 	CResourcesManager* rs = CResourcesManager::GetInstance();
 	CCamera *_cam = rs->_camera;
-	int levelMap = rs->m_levelMap;
+	int curMap = rs->m_curMap;
 	// chuyển state item
 	// Xét khoảng hoạt động của item stand the o level map
 	if (_state_item_stand == SIS_Close || _state_item_stand == SIS_Open)
 	{
-		switch (levelMap)
+		switch (curMap)
 		{
 		case 1:
 		case 3:

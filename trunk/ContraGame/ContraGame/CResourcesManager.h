@@ -18,6 +18,7 @@
 #include "QTNode.h"
 #include "CObject.h"
 #include "CDatabase.h"
+#include "CResourceID.h"
 
 using namespace std;
 
@@ -43,13 +44,15 @@ public:
 	CDatabase *m_data;
 	D3DXVECTOR3 m_posBill;
 
-	int m_levelMap;
+	int m_curMap;  // map hien tai
+	int m_nextMap; // map tiep theo
 	int m_life;	
 	int m_heightMap;
 	int m_widthMap;
 	int m_numScore;
 	int m_highScore;
 
+	vector<string> _listString; // load tu file confi
 	vector<CObject*> listObinView;
 	vector<CObject*> listObNoTree; // list ob khong nam trong quad tree
 	vector<CObject*> _grounds;
@@ -92,6 +95,7 @@ public:
 	// background
 	CTexture *background_1;
 	CTexture *background_2;
+	CTexture *background_3;
 
 	/* ------ Object	 ------- */
 
@@ -144,12 +148,12 @@ public:
 	CTexture* _boss_gun;
 
 	/*-------- Background -------*/
-	vector<int> map1_bg_listTile; // danh sach list file text background
-	vector<int> map2_bg_listTile;
+	vector<int> map_bg_listTile; // danh sach list file text background
 
-	/*--------- Map --------*/
-	vector<QTNode*> map1_listNode;
-	vector<CObject*> map1_listOb;
+
+	/*--------- Map --------*/	
+	vector<QTNode*> map_listNode;
+	vector<CObject*> map_listOb;
 
 	// function
 	~CResourcesManager();
@@ -168,12 +172,7 @@ public:
 	void unloadLoadingResource();
 	//Play
 	void loadPlayResource();	
-	void loadMap1();
-	void loadMap2();
-	void loadMap3();
-	void unloadMap1();
-	void unlloadMap2();
-	void unloadMap3();
+
 	void loadPlayGraphics();
 	void loadPlayAudio();
 	void unloadPlayResource();
@@ -188,7 +187,14 @@ public:
 	void loadOverAudio();
 	void unloadOverResource();
 
-
+	// load tung ctexture 
+	void loadTexture(ResourceID id);
+	// get tung ctexture
+	CTexture* getTexture(ResourceID id);
+	// load all texture object trong map
+	void loadAllInMap();
+	//  unload all texture object trong map
+	void unloadAllInMap();
 	// load list cac object khong nam trong quad tree
 	vector<CObject*> loadFileTextOBNoneTree(string path);
 	// load list cac tile tu file text
@@ -201,8 +207,6 @@ public:
 	CObject* splitTextPushOB(string str);
 	// split string de add vo Node
 	QTNode* splitTextPushNode(string str);
-
-	void setLevelMap(int x){ m_levelMap; }
 
 };
 
