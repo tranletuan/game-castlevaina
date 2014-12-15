@@ -232,7 +232,7 @@ void CResourcesManager::loadAllInMap()
 	case 2:
 		path = PATH_CONFI_MAP_2;
 		/* --- Background ---*/
-		background_2 = new CTexture(PATH_MAP_BG1_PIC, D3DCOLOR_XRGB(0, 0, 0));
+		background_2 = new CTexture(PATH_MAP_BG2_PIC, D3DCOLOR_XRGB(0, 0, 0));
 		map_bg_listTile = loadFileTextBG(PATH_MAP_BG2_TEXT);		
 		// load object from file text
 		map_listOb = loadFileTextOB(PATH_OB_MAP2_QT);
@@ -344,6 +344,10 @@ void CResourcesManager::loadAllInMap()
 				else if (line == "StarEffect")
 				{
 					loadTexture(RESID_GROUND_STAR);
+				}
+				else if (line == "RockRoll")
+				{
+					loadTexture(RESID_ENEMY_ROCK_ROLL);
 				}
 				
 			}
