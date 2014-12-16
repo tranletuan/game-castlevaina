@@ -1,6 +1,6 @@
-﻿#include "CGroundEffect.h"
+﻿#include "CWaterEffect.h"
 
-CGroundEffect::CGroundEffect(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
+CWaterEffect::CWaterEffect(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
 	:CEffectObject(id, specific_type, pos, width, height)
 
 {
@@ -10,7 +10,7 @@ CGroundEffect::CGroundEffect(int id, SpecificType specific_type, D3DXVECTOR3 pos
 	LoadResources();
 }
 
-CGroundEffect::~CGroundEffect()
+CWaterEffect::~CWaterEffect()
 {
 	if (_current_sprite != NULL)
 	{
@@ -18,40 +18,28 @@ CGroundEffect::~CGroundEffect()
 	}
 }
 
-void CGroundEffect::LoadResources()
+void CWaterEffect::LoadResources()
 {
 	CResourcesManager* rs = CResourcesManager::GetInstance();
-	switch (_specific_type)
-	{	
-		break;
-	case Ground_Effect1:
-		_current_sprite = new CSprite(rs->_ground_effect1);
-		break;
-	}
+	_current_sprite = new CSprite(rs->_effect_water);
+
 }
 
-void CGroundEffect::Update(int delta_time)
+void CWaterEffect::Update(int delta_time)
 {
-
-	switch (_specific_type)
+	_time_count++;
+	_isDraw = false;
+	if (_time_count > 10000)
 	{
-	case Ground_Effect1:
-		_time_count++;
-		_isDraw = false;
-		if (_time_count > 10000)
-		{
-			_time_count = 0;
-		}
-		if (_time_count % 20 > 5 && _time_count % 20 < 20)
-		{
-			_isDraw = true;
-		}
-
-		break;
+		_time_count = 0;
+	}
+	if (_time_count % 20 > 5 && _time_count % 20 < 20)
+	{
+		_isDraw = true;
 	}
 }
 
-void CGroundEffect::Draw()
+void CWaterEffect::Draw()
 {
 	if (_isDraw)
 	{

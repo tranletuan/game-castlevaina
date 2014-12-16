@@ -30,7 +30,7 @@
     <ClCompile Include="CFBullet.cpp" />
     <ClCompile Include="CGround.cpp" />
     <ClCompile Include="CGroundCanon.cpp" />
-    <ClCompile Include="CGroundEffect.cpp" />
+    <ClCompile Include="CWaterEffect.cpp" />
     <ClCompile Include="CItemFly.cpp" />
     <ClCompile Include="CItemStand.cpp" />
     <ClCompile Include="CLBullet.cpp" />
@@ -57,7 +57,7 @@
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="CameraHUD.cpp" />
-    <ClCompile Include="CGroundStar.cpp" />
+    <ClCompile Include="CStarEffect.cpp" />
     <ClCompile Include="CGroundElectron.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Physical.cpp" />
@@ -78,7 +78,7 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="QTTree.cpp" />
     <ClCompile Include="Utils.cpp" />
-    <ClCompile Include="WaterFall.cpp" />
+    <ClCompile Include="CWaterFallE.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -102,7 +102,7 @@
     <ClInclude Include="CFire.h" />
     <ClInclude Include="CGround.h" />
     <ClInclude Include="CGroundCanon.h" />
-    <ClInclude Include="CGroundEffect.h" />
+    <ClInclude Include="CWaterEffect.h" />
     <ClInclude Include="CGroundElectron.h" />
     <ClInclude Include="CItemFly.h" />
     <ClInclude Include="CItemStand.h" />
@@ -124,14 +124,14 @@
     <ClInclude Include="CSniperStand.h" />
     <ClInclude Include="CSBullet.h" />
     <ClInclude Include="CWallTurret.h" />
-    <ClInclude Include="CWaterFall.h" />
+    <ClInclude Include="CWaterFallE.h" />
     <ClInclude Include="dsutil.h" />
     <ClInclude Include="dxutil.h" />
     <ClInclude Include="GameContra.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="CameraHUD.h" />
-    <ClInclude Include="CGroundStar.h" />
+    <ClInclude Include="CStarEffect.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Physical.h" />
     <ClInclude Include="QTNode.h" />
@@ -186,8 +186,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

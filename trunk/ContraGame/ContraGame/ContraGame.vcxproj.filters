@@ -210,14 +210,8 @@
     <Filter Include="Contra Game\Object\RunMan">
       <UniqueIdentifier>{590ece62-d9e9-4e1d-a806-5f51bf0f72eb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contra Game\Object\Ground Game\GroundEffect">
-      <UniqueIdentifier>{77fb6fb0-e8e5-470d-9539-2727ca04d129}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contra Game\Scene\SceneGameOver">
       <UniqueIdentifier>{959eb80f-8f21-40ce-a12f-59db09c30725}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contra Game\Object\Ground Game\GroundStar">
-      <UniqueIdentifier>{09e37ead-bd6f-40d1-aac4-2dbef133e548}</UniqueIdentifier>
     </Filter>
     <Filter Include="Contra Game\Object\Item\ListItemFly">
       <UniqueIdentifier>{089bdab2-c230-4751-9374-0785ed1ecf6f}</UniqueIdentifier>
@@ -240,14 +234,20 @@
     <Filter Include="Contra Game\Object\Enemy Game\SniperBoss">
       <UniqueIdentifier>{f11a0077-70ee-446d-a6ba-f02e33d7dcb0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contra Game\Object\Ground Game\WaterFall">
-      <UniqueIdentifier>{aea90109-2b3a-43fc-ae76-c534c7d3aca2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contra Game\Object\Enemy Game\SniperBlock">
       <UniqueIdentifier>{84444016-23aa-4e05-8202-e63384b0dd70}</UniqueIdentifier>
     </Filter>
     <Filter Include="Contra Game\Object\Enemy Game\BoomThrow">
       <UniqueIdentifier>{e3e79aca-7095-4003-85b1-b7e69a4a41e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Effect Game\GroundStar">
+      <UniqueIdentifier>{09e37ead-bd6f-40d1-aac4-2dbef133e548}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Effect Game\WaterFall">
+      <UniqueIdentifier>{aea90109-2b3a-43fc-ae76-c534c7d3aca2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Effect Game\Water">
+      <UniqueIdentifier>{77fb6fb0-e8e5-470d-9539-2727ca04d129}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -413,9 +413,6 @@
     <ClCompile Include="CRunman.cpp">
       <Filter>Contra Game\Object\RunMan</Filter>
     </ClCompile>
-    <ClCompile Include="CGroundEffect.cpp">
-      <Filter>Contra Game\Object\Ground Game\GroundEffect</Filter>
-    </ClCompile>
     <ClCompile Include="SceneGameOver.cpp">
       <Filter>Contra Game\Scene\SceneGameOver</Filter>
     </ClCompile>
@@ -424,9 +421,6 @@
     </ClCompile>
     <ClCompile Include="ScenePlay.cpp">
       <Filter>Contra Game\Scene\ScenePlay</Filter>
-    </ClCompile>
-    <ClCompile Include="CGroundStar.cpp">
-      <Filter>Contra Game\Object\Ground Game\GroundStar</Filter>
     </ClCompile>
     <ClCompile Include="CListItemFly.cpp">
       <Filter>Contra Game\Object\Item\ListItemFly</Filter>
@@ -449,14 +443,20 @@
     <ClCompile Include="CSniperBoss.cpp">
       <Filter>Contra Game\Object\Enemy Game\SniperBoss</Filter>
     </ClCompile>
-    <ClCompile Include="WaterFall.cpp">
-      <Filter>Contra Game\Object\Ground Game\WaterFall</Filter>
-    </ClCompile>
     <ClCompile Include="CSniperBlock.cpp">
       <Filter>Contra Game\Object\Enemy Game\SniperBlock</Filter>
     </ClCompile>
     <ClCompile Include="CBoomThrow.cpp">
       <Filter>Contra Game\Object\Enemy Game\BoomThrow</Filter>
+    </ClCompile>
+    <ClCompile Include="CWaterEffect.cpp">
+      <Filter>Contra Game\Object\Effect Game\Water</Filter>
+    </ClCompile>
+    <ClCompile Include="CStarEffect.cpp">
+      <Filter>Contra Game\Object\Effect Game\GroundStar</Filter>
+    </ClCompile>
+    <ClCompile Include="CWaterFallE.cpp">
+      <Filter>Contra Game\Object\Effect Game\WaterFall</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -637,17 +637,11 @@
     <ClInclude Include="CRunManManager.h">
       <Filter>Contra Game\Object\RunMan</Filter>
     </ClInclude>
-    <ClInclude Include="CGroundEffect.h">
-      <Filter>Contra Game\Object\Ground Game\GroundEffect</Filter>
-    </ClInclude>
     <ClInclude Include="SceneGameOver.h">
       <Filter>Contra Game\Scene\SceneGameOver</Filter>
     </ClInclude>
     <ClInclude Include="CGround.h">
       <Filter>Contra Game\Object\Ground Game\Ground</Filter>
-    </ClInclude>
-    <ClInclude Include="CGroundStar.h">
-      <Filter>Contra Game\Object\Ground Game\GroundStar</Filter>
     </ClInclude>
     <ClInclude Include="CListItemFly.h">
       <Filter>Contra Game\Object\Item\ListItemFly</Filter>
@@ -673,14 +667,20 @@
     <ClInclude Include="CResourceID.h">
       <Filter>Contra Game\Manager\Resource</Filter>
     </ClInclude>
-    <ClInclude Include="CWaterFall.h">
-      <Filter>Contra Game\Object\Ground Game\WaterFall</Filter>
-    </ClInclude>
     <ClInclude Include="CSniperBlock.h">
       <Filter>Contra Game\Object\Enemy Game\SniperBlock</Filter>
     </ClInclude>
     <ClInclude Include="CBoomThrow.h">
       <Filter>Contra Game\Object\Enemy Game\BoomThrow</Filter>
+    </ClInclude>
+    <ClInclude Include="CWaterEffect.h">
+      <Filter>Contra Game\Object\Effect Game\Water</Filter>
+    </ClInclude>
+    <ClInclude Include="CStarEffect.h">
+      <Filter>Contra Game\Object\Effect Game\GroundStar</Filter>
+    </ClInclude>
+    <ClInclude Include="CWaterFallE.h">
+      <Filter>Contra Game\Object\Effect Game\WaterFall</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

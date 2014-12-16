@@ -6,18 +6,21 @@
 #include "CGround.h"
 #include "CSniperStand.h"
 #include "CItemStand.h"
-#include "CGroundEffect.h"
+#include "CWaterEffect.h"
 #include "CWallTurret.h"
 #include "CGroundCanon.h"
 #include "CBoss1.h"
 #include "CSniperHide.h"
 #include "CAutoDestroyBridge.h"
-#include "CGroundStar.h"
+#include "CStarEffect.h"
 #include "CBossGun.h"
 #include "CGroundElectron.h"
 #include "CFire.h"
 #include "CRockRoll.h"
 #include "CSniperBoss.h"
+#include "CBoomThrow.h"
+#include "CSniperBlock.h"
+#include "CWaterFallE.h"
 
 class QTTree
 {

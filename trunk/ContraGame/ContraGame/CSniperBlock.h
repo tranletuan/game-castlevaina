@@ -3,14 +3,18 @@
 
 #include "CObject.h"
 
-class SniperBlock
+class CSniperBlock
+	:public CObject
 {
 private:
 
 public:
-	SniperBlock();
-	~SniperBlock();
+	CSniperBlock(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
+	~CSniperBlock();
 
+	void LoadResources();
+	void Draw();
+	void Update(int delta_time);
 
 };
 

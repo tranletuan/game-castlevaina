@@ -293,7 +293,7 @@ void CResourcesManager::loadAllInMap()
 				}
 				else if (line == "WaterEffect1")
 				{
-					loadTexture(RESID_GROUND_EFFECT1);
+					loadTexture(RESID_EFFECT_WATER);
 				}
 				else if (line == "Water")
 				{
@@ -342,7 +342,7 @@ void CResourcesManager::loadAllInMap()
 				}
 				else if (line == "StarEffect")
 				{
-					loadTexture(RESID_GROUND_STAR);
+					loadTexture(RESID_EFFECT_STAR);
 				}
 				else if (line == "RockRoll")
 				{
@@ -354,7 +354,7 @@ void CResourcesManager::loadAllInMap()
 				}
 				else if (line == "WaterFall")
 				{
-					loadTexture(RESID_GROUND_WATERFALL);
+					loadTexture(RESID_EFFECT_WATERFALL);
 				}
 				else if (line == "SniperBlock")
 				{
@@ -446,14 +446,14 @@ void CResourcesManager::loadTexture(ResourceID id)
 	case RESID_GROUND_BRIDGE:
 		_ground_auto_destroy_bridge = new CTexture(PATH_GROUND_AUTO_DETROY, 1, 6);
 		break;
-	case RESID_GROUND_EFFECT1:
-		_ground_effect1 = new CTexture(PATH_GROUND_EFFECT1);
+	case RESID_EFFECT_WATER:
+		_effect_water = new CTexture(PATH_EFFECT_WATER);
 		break;
 	case RESID_GROUND_ELECTRON:
 		_ground_electron = new CTexture(PATH_GROUND_ELECTRON, 1, 2);
 		break;
-	case RESID_GROUND_STAR:
-		_ground_star = new CTexture(PATH_GROUND_STAR, 6, 2);
+	case RESID_EFFECT_STAR:
+		_effect_star = new CTexture(PATH_EFFECT_STAR, 6, 2);
 		break;
 	case RESID_GROUND_ROCK_FLY:
 		_ground_rock_fly = new CTexture(PATH_GROUND_ROCK_FLY);
@@ -461,10 +461,9 @@ void CResourcesManager::loadTexture(ResourceID id)
 	case RESID_GROUND_WATER:
 		_ground_water = new CTexture(PATH_GROUND_WATER);
 		break;
-	case RESID_GROUND_WATERFALL:
-		_ground_waterfall = new CTexture(PATH_GROUND_WATETFALL, 2);
+	case RESID_EFFECT_WATERFALL:
+		_effect_waterfall = new CTexture(PATH_EFFECT_WATETFALL, 2);
 		break;
-
 	case RESID_EFFECT_DESTROY:
 		_effect_destroy = new CTexture(PATH_EFFECT_DESTROY, 3);
 		break;

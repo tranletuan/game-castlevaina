@@ -90,7 +90,7 @@ void CObject::setSpecificType(string x)
 	}
 	else if (x == "WaterEffect1")
 	{
-		setSpecificType(Ground_Effect1);
+		setSpecificType(Effect_Water);
 	}
 	else if (x == "BlockHouse")
 	{
@@ -118,7 +118,7 @@ void CObject::setSpecificType(string x)
 	}
 	else if (x == "StarEffect")
 	{
-		setSpecificType(Ground_Star);
+		setSpecificType(Effect_Star);
 	}
 	else if (x == "GroundElectron")
 	{
@@ -139,6 +139,14 @@ void CObject::setSpecificType(string x)
 	else if (x == "SniperBoss")
 	{
 		setSpecificType(Sniper_Boss);
+	}
+	else if (x == "BoomThrow")
+	{
+		setSpecificType(Boom_Throw);
+	}
+	else if (x == "SniperBlock")
+	{
+		setSpecificType(Sniper_Block);
 	}
 }
 

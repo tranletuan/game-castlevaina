@@ -1,6 +1,6 @@
-﻿#include "CGroundStar.h"
+﻿#include "CStarEffect.h"
 
-CGroundStar::CGroundStar(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
+CStarEffect::CStarEffect(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
 	:CEffectObject(id, specific_type, pos, width, height)
 
 {
@@ -11,7 +11,7 @@ CGroundStar::CGroundStar(int id, SpecificType specific_type, D3DXVECTOR3 pos, in
 	LoadResources();
 }
 
-CGroundStar::~CGroundStar()
+CStarEffect::~CStarEffect()
 {
 	if (_current_sprite != NULL)
 	{
@@ -19,40 +19,29 @@ CGroundStar::~CGroundStar()
 	}
 }
 
-void CGroundStar::LoadResources()
+void CStarEffect::LoadResources()
 {
 	CResourcesManager* rs = CResourcesManager::GetInstance();
-	switch (_specific_type)
-	{
-		break;
-	case Ground_Star:
-		_current_sprite = new CSprite(rs->_ground_star);
-		break;
-	}
+	_current_sprite = new CSprite(rs->_effect_star);
+
 }
 
-void CGroundStar::Update(int delta_time)
+void CStarEffect::Update(int delta_time)
 {
-
-	switch (_specific_type)
+	_time_count++;
+	_isDraw = false;
+	if (_time_count > 10000)
 	{
-	case Ground_Star:
-		_time_count++;
-		_isDraw = false;
-		if (_time_count > 10000)
-		{
-			_time_count = 0;
-		}
-		_current_sprite->SelectFrameOf(_indexSprite + 6);
-		if (_time_count % 20 > 5 && _time_count % 20 < 20)
-		{
-			_current_sprite->SelectFrameOf(_indexSprite);
-		}
-		break;
+		_time_count = 0;
+	}
+	_current_sprite->SelectFrameOf(_indexSprite + 6);
+	if (_time_count % 20 > 5 && _time_count % 20 < 20)
+	{
+		_current_sprite->SelectFrameOf(_indexSprite);
 	}
 }
 
-void CGroundStar::Draw()
+void CStarEffect::Draw()
 {
 	//Chỉ vẽ để kiểm tra, khi chạy game đoạn code sẽ bị xóa
 	int x = _physical.bounds.left + GROUND_SIZE_NORMAL_X / 2;

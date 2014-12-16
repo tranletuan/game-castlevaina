@@ -62,12 +62,9 @@
 #pragma region GroundtPath
 #define PATH_GROUND_GRASS ".//DataGame//Images//Game//Object//ground//grass.png"
 #define PATH_GROUND_WATER ".//DataGame//Images//Game//Object//ground//water.png"
-#define PATH_GROUND_STAR ".//DataGame//Images//Game//Object//ground//ground_star.png"
-#define PATH_GROUND_EFFECT1 ".//DataGame//Images//Game//Object//ground//ground_effect1.png"
 #define PATH_GROUND_AUTO_DETROY ".//DataGame//Images//Game//Object//ground//ground_bridge.png"
 #define PATH_GROUND_ROCK_FLY ".//DataGame//Images//Game//Object//ground//rock_fly.png"
 #define PATH_GROUND_ELECTRON ".//DataGame//Images//Game//Object//ground//ground_electron.png"
-#define PATH_GROUND_WATETFALL ".//DataGame//Images//Game//Object//ground//waterfall.png"
 #pragma endregion GroundtPath
 
 #pragma region BulletPath
@@ -84,6 +81,9 @@
 #define PATH_EFFECT_DESTROY ".//DataGame//Images//Game//Object//effect//effect_destroy.png"
 #define PATH_EFFECT_SHOOT ".//DataGame//Images//Game//Object//effect//effect_shoot.png"
 #define PATH_EFFECT_DIE ".//DataGame//Images//Game//Object//effect//effect_die.png"
+#define PATH_EFFECT_STAR ".//DataGame//Images//Game//Object//effect//effect_star.png"
+#define PATH_EFFECT_WATER ".//DataGame//Images//Game//Object//effect//effect_water.png"
+#define PATH_EFFECT_WATETFALL ".//DataGame//Images//Game//Object//effect//effect_waterfall.png"
 #pragma endregion EffectPath
 
 #pragma region EnemyPath

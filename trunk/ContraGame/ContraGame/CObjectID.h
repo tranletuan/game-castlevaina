@@ -20,15 +20,15 @@ enum  SpecificType
 	// Ground
 	Ground_Grass, // vo hinh
 	Ground_Water,
-	Ground_WaterFall,
-	Ground_Effect1,
-	Ground_Bridge,
-	Ground_Star, //ngôi sao ở map 1
+	Ground_Bridge,	
 	Ground_RockFly, // hòn đá bay qua lại
 	Ground_Electron, // cầu điện ở map 2 để fire di chuyển lên
 
 	// Effect
 	EffectDestroy,
+	Effect_Star,
+	Effect_Water,
+	Effect_WaterFall,
 
 	//Enemy
 	RunMan,		// nguoi chay
@@ -40,6 +40,8 @@ enum  SpecificType
 	Fire_Run, // Ngọn lửa di chuyển ở map 2
 	Rock_Roll,  // Viên đá rơi ở map 2
 	Sniper_Boss,
+	Boom_Throw, // Quả boom ném map 3
+	Sniper_Block, // Sniper map 3
 
 	// Item
 	ItemM,

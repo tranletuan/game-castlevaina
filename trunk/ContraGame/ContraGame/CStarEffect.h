@@ -3,7 +3,7 @@
 
 #include "CEffectObject.h"
 
-class CGroundStar : public CEffectObject
+class CStarEffect : public CEffectObject
 {
 private:
 	int _count;
@@ -12,8 +12,8 @@ private:
 	
 	int _indexSprite;
 public:
-	CGroundStar(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
-	~CGroundStar();
+	CStarEffect(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
+	~CStarEffect();
 
 	void LoadResources();
 	void Draw();

@@ -220,8 +220,8 @@ CObject * QTTree::getObjectTrust(CObject *x)
 	case ItemF_Stand:
 	case ItemS_Stand:
 		return new CItemStand(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
-	case Ground_Effect1:
-		return new CGroundEffect(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
+	case Effect_Water:
+		return new CWaterEffect(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	case Wall_Turret:
 		return new CWallTurret(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	case Ground_Canon:
@@ -232,8 +232,8 @@ CObject * QTTree::getObjectTrust(CObject *x)
 		return new CSniperHide(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());		
 	case Ground_Bridge:
 		return new CAutoDestroyBridge(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
-	case Ground_Star:
-		return new CGroundStar(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
+	case Effect_Star:
+		return new CStarEffect(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	case Ground_Electron:
 		return new CGroundElectron(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());		
 	case Fire_Run:
@@ -246,6 +246,12 @@ CObject * QTTree::getObjectTrust(CObject *x)
 		return new CRockRoll(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	case Sniper_Boss:
 		return new CSniperBoss(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
+	case Sniper_Block:
+		return new CSniperBlock(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
+	case Effect_WaterFall:
+		return new CWaterFallE(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
+	case Boom_Throw:
+		return new CBoomThrow(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	}
 }
 

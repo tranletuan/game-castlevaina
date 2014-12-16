@@ -116,18 +116,19 @@ public:
 
 	//Ground
 	CTexture* _ground_grass;
-	CTexture* _ground_water;
-	CTexture* _ground_effect1;
+	CTexture* _ground_water;	
 	CTexture* _ground_auto_destroy_bridge;
-	CTexture* _ground_star;
 	CTexture* _ground_rock_fly;
 	CTexture* _ground_electron;
-	CTexture* _ground_waterfall;
+
 
 	//Effect
 	CTexture* _effect_destroy;
 	CTexture* _effect_shoot;
 	CTexture* _effect_die;
+	CTexture* _effect_waterfall;
+	CTexture* _effect_water;
+	CTexture* _effect_star;
 
 	//Enemy
 	CTexture* _enemy_sniper_stand;
