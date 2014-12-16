@@ -3,7 +3,7 @@
 
 #include "CEffectObject.h"
 
-class CGroundEffect : public CEffectObject
+class CWaterEffect : public CEffectObject
 {
 private:
 	int _count;
@@ -12,8 +12,8 @@ private:
 	
 
 public:
-	CGroundEffect(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
-	~CGroundEffect();
+	CWaterEffect(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
+	~CWaterEffect();
 
 	void LoadResources();
 	void Draw();

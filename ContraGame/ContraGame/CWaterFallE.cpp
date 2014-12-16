@@ -1,21 +1,20 @@
-#include "CWaterFall.h"
+#include "CWaterFallE.h"
 
-CWaterFall::CWaterFall(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
-	:CGround(id, specific_type, pos, width, height)
-{
-	_basic_type = Effect;
+CWaterFallE::CWaterFallE(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
+	:CEffectObject(id, specific_type, pos, width, height)
+{	
 	_cols = width / GROUND_SIZE_NORMAL_X;
 	_rows = height / GROUND_SIZE_NORMAL_Y;
 	_countTime = 0;
 	LoadResources();
 }
 
-void CWaterFall::LoadResources()
+void CWaterFallE::LoadResources()
 {
-	_current_sprite = new CSprite(CResourcesManager::GetInstance()->_ground_waterfall);
+	_current_sprite = new CSprite(CResourcesManager::GetInstance()->_effect_waterfall);
 }
 
-void CWaterFall::Draw()
+void CWaterFallE::Draw()
 {
 	CCamera* c = CResourcesManager::GetInstance()->_camera;
 	for (int i = 0; i < _cols; i++)
@@ -52,7 +51,7 @@ void CWaterFall::Draw()
 	}
 }
 
-void CWaterFall::Update(int delta_time)
+void CWaterFallE::Update(int delta_time)
 {
 	_countTime++;
 	if (_countTime > 5000)
@@ -61,7 +60,7 @@ void CWaterFall::Update(int delta_time)
 	}
 }
 
-CWaterFall::~CWaterFall()
+CWaterFallE::~CWaterFallE()
 {
 
 }
