@@ -18,6 +18,7 @@
     <ClCompile Include="CBill.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CBBullet.cpp" />
+    <ClCompile Include="CBoomThrow.cpp" />
     <ClCompile Include="CBoss1.cpp" />
     <ClCompile Include="CBossGun.cpp" />
     <ClCompile Include="CBullet.cpp" />
@@ -43,6 +44,7 @@
     <ClCompile Include="CRockRoll.cpp" />
     <ClCompile Include="CRunman.cpp" />
     <ClCompile Include="CRunManManager.cpp" />
+    <ClCompile Include="CSniperBlock.cpp" />
     <ClCompile Include="CSniperBoss.cpp" />
     <ClCompile Include="CSniperHide.cpp" />
     <ClCompile Include="CSniperStand.cpp" />
@@ -87,6 +89,7 @@
     <ClInclude Include="CBill.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CBBullet.h" />
+    <ClInclude Include="CBoomThrow.h" />
     <ClInclude Include="CBoss1.h" />
     <ClInclude Include="CBossGun.h" />
     <ClInclude Include="CBullet.h" />
@@ -116,6 +119,7 @@
     <ClInclude Include="CRockFly.h" />
     <ClInclude Include="CRunman.h" />
     <ClInclude Include="CRunManManager.h" />
+    <ClInclude Include="CSniperBlock.h" />
     <ClInclude Include="CSniperHide.h" />
     <ClInclude Include="CSniperStand.h" />
     <ClInclude Include="CSBullet.h" />
