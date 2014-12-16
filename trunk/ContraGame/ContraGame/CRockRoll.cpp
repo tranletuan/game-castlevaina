@@ -88,7 +88,7 @@ void CRockRoll::Update(int delta_time)
 		}
 		break;
 	case RS_Fall:
-		_physical.CalcPositionWithGravitation(delta_time, 0.005);
+		_physical.CalcPositionWithGravitation(delta_time, ENEMY_ROCK_ROLL_GRAVITY);
 		_physical.SetBounds(_physical.x,_physical.y,28,28);		
 
 		// xet va cham voi ground

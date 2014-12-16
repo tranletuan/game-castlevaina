@@ -243,6 +243,12 @@
     <Filter Include="Contra Game\Object\Ground Game\WaterFall">
       <UniqueIdentifier>{aea90109-2b3a-43fc-ae76-c534c7d3aca2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contra Game\Object\Enemy Game\SniperBlock">
+      <UniqueIdentifier>{84444016-23aa-4e05-8202-e63384b0dd70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Enemy Game\BoomThrow">
+      <UniqueIdentifier>{e3e79aca-7095-4003-85b1-b7e69a4a41e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -445,6 +451,12 @@
     </ClCompile>
     <ClCompile Include="WaterFall.cpp">
       <Filter>Contra Game\Object\Ground Game\WaterFall</Filter>
+    </ClCompile>
+    <ClCompile Include="CSniperBlock.cpp">
+      <Filter>Contra Game\Object\Enemy Game\SniperBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoomThrow.cpp">
+      <Filter>Contra Game\Object\Enemy Game\BoomThrow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -663,6 +675,12 @@
     </ClInclude>
     <ClInclude Include="CWaterFall.h">
       <Filter>Contra Game\Object\Ground Game\WaterFall</Filter>
+    </ClInclude>
+    <ClInclude Include="CSniperBlock.h">
+      <Filter>Contra Game\Object\Enemy Game\SniperBlock</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoomThrow.h">
+      <Filter>Contra Game\Object\Enemy Game\BoomThrow</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

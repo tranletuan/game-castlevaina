@@ -225,7 +225,7 @@ void CResourcesManager::loadAllInMap()
 		// load object from file text
 		map_listOb = loadFileTextOB(PATH_OB_MAP1_QT);
 		// load list ob khong nam trong quad tree
-		listObNoTree = loadFileTextOBNoneTree(PATH_OB_MAP1);	
+		listObNoTree = loadFileTextOBNoneTree(PATH_OB_MAP1);
 		// load quadtree
 		map_listNode = loadFileTextNode(PATH_QT_MAP1);
 		break;
@@ -233,7 +233,7 @@ void CResourcesManager::loadAllInMap()
 		path = PATH_CONFI_MAP_2;
 		/* --- Background ---*/
 		background = new CTexture(PATH_MAP_BG2_PIC, D3DCOLOR_XRGB(0, 0, 0));
-		map_bg_listTile = loadFileTextBG(PATH_MAP_BG2_TEXT);		
+		map_bg_listTile = loadFileTextBG(PATH_MAP_BG2_TEXT);
 		// load object from file text
 		map_listOb = loadFileTextOB(PATH_OB_MAP2_QT);
 		// load list ob khong nam trong quad tree
@@ -250,7 +250,7 @@ void CResourcesManager::loadAllInMap()
 
 	// load camera + bill
 	float posX = map_listOb.at(map_listOb.size() - 2)->getPosX();
-	float posY = map_listOb.at(map_listOb.size() - 2)->getPosY();	
+	float posY = map_listOb.at(map_listOb.size() - 2)->getPosY();
 	_camera = new CCamera(posX, posY);
 
 	posX = map_listOb.at(map_listOb.size() - 1)->getPosX();
@@ -263,7 +263,7 @@ void CResourcesManager::loadAllInMap()
 	// xoa list load tu file confi
 	if (_listString.size() > 0)
 	{
-		_listString.erase(_listString.begin(),_listString.end());
+		_listString.erase(_listString.begin(), _listString.end());
 	}
 
 	// load all texture
@@ -272,7 +272,7 @@ void CResourcesManager::loadAllInMap()
 	if (myfile.is_open())
 	{
 		while (getline(myfile, line))
-		{			
+		{
 			if (dem == 0)
 			{
 				m_curMap = m_nextMap;
@@ -352,7 +352,15 @@ void CResourcesManager::loadAllInMap()
 				else if (line == "WaterFall")
 				{
 					loadTexture(RESID_GROUND_WATERFALL);
-				}				
+				}
+				else if (line == "SniperBlock")
+				{
+					loadTexture(RESID_ENEMY_SNIPER_BLOCK);
+				}
+				else if (line == "BoomThrow")
+				{
+					loadTexture(RESID_ENEMY_BOOM_THROW);
+				}
 			}
 		}
 		myfile.close();
@@ -420,6 +428,12 @@ void CResourcesManager::loadTexture(ResourceID id)
 	case RESID_ENEMY_WALL_TURRET:
 		_enemy_wall_turret = new CTexture(PATH_ENEMY_WALL_TURRET, 3, 14);
 		break;
+	case RESID_ENEMY_BOOM_THROW:
+		_enemy_boom_throw = new CTexture(PATH_ENEMY_BOOM_THROW, 4);
+		break;
+	case RESID_ENEMY_SNIPER_BLOCK:
+		_enemy_sniper_block = new CTexture(PATH_ENEMY_SNIPER_BLOCK, 2);
+		break;
 	case RESID_GROUND_GRASS:
 		_ground_grass = new CTexture(PATH_GROUND_GRASS);
 		break;
@@ -442,9 +456,9 @@ void CResourcesManager::loadTexture(ResourceID id)
 		_ground_water = new CTexture(PATH_GROUND_WATER);
 		break;
 	case RESID_GROUND_WATERFALL:
-		_ground_waterfall = new CTexture(PATH_GROUND_WATETFALL,2);
+		_ground_waterfall = new CTexture(PATH_GROUND_WATETFALL, 2);
 		break;
-		
+
 	case RESID_EFFECT_DESTROY:
 		_effect_destroy = new CTexture(PATH_EFFECT_DESTROY, 3);
 		break;

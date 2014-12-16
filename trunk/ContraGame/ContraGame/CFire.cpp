@@ -71,7 +71,7 @@ void CFire::Update(int delta_time)
 		_direction = 1;
 	}
 
-	_physical.vx = ENENY_FIRE_VX * _direction;
+	_physical.vx = ENEMY_FIRE_VX * _direction;
 	_physical.vy = 0;
 	_physical.CalcPositionWithoutGravitation(delta_time);
 }

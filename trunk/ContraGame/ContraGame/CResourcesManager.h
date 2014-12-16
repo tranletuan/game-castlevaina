@@ -137,6 +137,8 @@ public:
 	CTexture* _enemy_run_man;
 	CTexture* _enemy_fire;
 	CTexture* _enemy_rock_roll;
+	CTexture* _enemy_boom_throw;
+	CTexture* _enemy_sniper_block;
 
 	// Item
 	CTexture* _item;
