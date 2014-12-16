@@ -70,9 +70,6 @@ void SceneLoading::draw()
 		drawNumber(to_string(m_resource->m_highScore), 110, 95);
 		drawNumber(to_string(m_resource->m_life), 70, 65);
 	}
-
-
-
 }
 
 void SceneLoading::update(float time)
@@ -111,7 +108,6 @@ void SceneLoading::drawNumber(string str, float posX, float posY)
 	}
 
 }
-
 
 void SceneLoading::destroy()
 {

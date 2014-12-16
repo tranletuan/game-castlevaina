@@ -1,10 +1,9 @@
 #ifndef CGROUND_ELECTRON_H
 #define CGROUND_ELECTRON_H
 
-#include "CGround.h"
+#include "CEffectObject.h"
 
-class CGroundElectron:
-	public CGround
+class CGroundElectron: public CEffectObject
 {
 private:
 

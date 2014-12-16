@@ -70,36 +70,29 @@ void CItemFly::LoadResources()
 
 void CItemFly::Draw()
 {
-	if (_enable)
+	CCamera *_cam = CResourcesManager::GetInstance()->_camera;
+	D3DXVECTOR3 pos = _cam->Transform(_physical.x, _physical.y);
+
+	if (_hp == 0 && _pos_effect.x == 0 && _pos_effect.y == 0)
 	{
-		CCamera *_cam = CResourcesManager::GetInstance()->_camera;
-		D3DXVECTOR3 pos = _cam->Transform(_physical.x, _physical.y);
+		_pos_effect = _cam->Transform(_physical.x, _physical.y);
+	}
 
-		if (_hp == 0 && _pos_effect.x == 0 && _pos_effect.y == 0)
-		{
-			_pos_effect = _cam->Transform(_physical.x, _physical.y);
-		}
-
-		switch (_state_item_fly)
-		{
-		case SIF_Move:
-			DrawWhenMove(pos);
-			break;
-		case SIF_Die:
-			DrawWhenDie(pos);
-			break;
-		}
+	switch (_state_item_fly)
+	{
+	case SIF_Move:
+		DrawWhenMove(pos);
+		break;
+	case SIF_Die:
+		DrawWhenDie(pos);
+		break;
 	}
 }
 
 void CItemFly::Update(int delta_time)
 {
 	CResourcesManager* rs = CResourcesManager::GetInstance();
-	_physical.SetBounds(
-		_physical.x,
-		_physical.y,
-		_sprite_item->sprite_texture->frame_width,
-		_sprite_item->sprite_texture->frame_height);
+	_physical.SetBounds(_physical.x, _physical.y, 20, 20);
 
 	if (_hp == 0)
 	{
@@ -138,7 +131,6 @@ void CItemFly::Update(int delta_time)
 
 void CItemFly::MoveFollowCos(int delta_time)
 {
-
 	_angle += ITEM_FLY_ANGLE;
 	if (_angle > 360) _angle = 360 - _angle;
 
@@ -154,9 +146,6 @@ void CItemFly::MoveFollowCos(int delta_time)
 		_physical.vx = 0;
 		_physical.CalcPositionWithoutGravitation(delta_time);
 	}
-
-
-
 }
 
 void CItemFly::MoveWhenDie(int delta_time)
@@ -172,7 +161,10 @@ void CItemFly::MoveWhenDie(int delta_time)
 void CItemFly::DrawWhenMove(D3DXVECTOR3 pos)
 {
 	// Khi chưa hoạt động chỉ ở index = 0;	
-	_current_sprite->Draw(pos.x, pos.y);
+	if (_enable)
+	{
+		_current_sprite->Draw(pos.x, pos.y);
+	}
 }
 
 void CItemFly::DrawWhenDie(D3DXVECTOR3 pos)
@@ -182,8 +174,12 @@ void CItemFly::DrawWhenDie(D3DXVECTOR3 pos)
 	{
 		_sprite_effect->DrawWithDirectionAndOneTimeEffect(_pos_effect, _physical.vx_last, 0, 2, 200);
 	}
+
 	// Vẽ item văng lên	
-	_sprite_item->Draw(pos.x, pos.y);
+	if (_enable)
+	{
+		_sprite_item->Draw(pos.x, pos.y);
+	}
 }
 
 CItemFly::~CItemFly()

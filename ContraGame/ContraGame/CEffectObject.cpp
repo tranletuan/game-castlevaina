@@ -6,6 +6,12 @@ CEffectObject::CEffectObject(SpecificType specific_type, D3DXVECTOR3 pos, int ef
 	_effect_time = effect_time;
 }
 
+CEffectObject::CEffectObject(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
+	: CObject(id, specific_type, Effect, pos, width, height)
+{
+
+}
+
 CEffectObject::~CEffectObject()
 {
 	if (_current_sprite != NULL)

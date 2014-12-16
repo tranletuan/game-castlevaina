@@ -17,6 +17,7 @@
 #include "CGroundElectron.h"
 #include "CFire.h"
 #include "CRockRoll.h"
+#include "CSniperBoss.h"
 
 class QTTree
 {

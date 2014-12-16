@@ -149,7 +149,6 @@ void CResourcesManager::loadPlayGraphics()
 	_effect_die = new CTexture(PATH_EFFECT_DIE, 3);
 
 	loadAllInMap();
-
 }
 
 
@@ -349,6 +348,10 @@ void CResourcesManager::loadAllInMap()
 				{
 					loadTexture(RESID_ENEMY_ROCK_ROLL);
 				}
+				else if (line == "SniperBoss")
+				{
+					loadTexture(RESID_ENEMY_SNIPER_BOSS);
+				}
 				else if (line == "WaterFall")
 				{
 					loadTexture(RESID_GROUND_WATERFALL);
@@ -428,6 +431,9 @@ void CResourcesManager::loadTexture(ResourceID id)
 	case RESID_ENEMY_WALL_TURRET:
 		_enemy_wall_turret = new CTexture(PATH_ENEMY_WALL_TURRET, 3, 14);
 		break;
+	case RESID_ENEMY_SNIPER_BOSS:
+		_enemy_sniper_boss = new CTexture(PATH_ENEMY_SNIPER_BOSS, 7);
+		break;
 	case RESID_ENEMY_BOOM_THROW:
 		_enemy_boom_throw = new CTexture(PATH_ENEMY_BOOM_THROW, 4);
 		break;
@@ -498,8 +504,6 @@ void CResourcesManager::loadTexture(ResourceID id)
 	case RESID_BOSS_1_GUN:
 		_boss_gun = new CTexture(PATH_BOSS_GUN, 3);
 		break;
-	default:
-		break;
 	}
 }
 
@@ -540,6 +544,7 @@ vector<int> CResourcesManager::loadFileTextBG(string path)
 	in.close();
 	return x;
 }
+
 vector<QTNode*> CResourcesManager::loadFileTextNode(string path)
 {
 	vector<QTNode*> listNode;

@@ -1,10 +1,9 @@
 #ifndef _CGROUNDSTAR_H_
 #define _CGROUNDSTAR_H_
 
-#include "CGround.h"
+#include "CEffectObject.h"
 
-class CGroundStar : 
-	public CGround
+class CGroundStar : public CEffectObject
 {
 private:
 	int _count;

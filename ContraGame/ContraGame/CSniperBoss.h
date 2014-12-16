@@ -8,6 +8,8 @@ class CSniperBoss : public CEnemyUseGun
 protected:
 	bool _ready_shoot;
 	bool _is_shot;
+	bool _is_shooting;
+	bool _is_change;
 
 	void DrawWhenAttack(D3DXVECTOR3 pos);
 	void DrawWhenDie(D3DXVECTOR3 pos);

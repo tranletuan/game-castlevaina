@@ -244,6 +244,8 @@ CObject * QTTree::getObjectTrust(CObject *x)
 		x->setHeight(CResourcesManager::GetInstance()->_enemy_rock_roll->frame_height);
 		posY = x->getPosY() - x->getHeight() / 2;
 		return new CRockRoll(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
+	case Sniper_Boss:
+		return new CSniperBoss(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	}
 }
 

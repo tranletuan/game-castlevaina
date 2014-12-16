@@ -17,7 +17,7 @@ ScenePlay::ScenePlay()
 	_player1->SetWeapon(_weapon_player1);
 	_weapon_enemy = new CEnemyWeapon();
 	_runmans = new CRunmanManager();
-//	_player1->_physical.x = 2100;
+
 	init();
 }
 
@@ -34,7 +34,6 @@ void ScenePlay::processInput()
 	{
 		m_nextScene = true;
 	}
-	
 }
 
 void ScenePlay::init()
@@ -124,7 +123,7 @@ void ScenePlay::update(float time)
 	_runmans->Update(time);
 	m_cameraHUD->update(time);
 	m_camera->Update(time);
-
+	
 	if (_boss != NULL && _boss->_hp <= 0)
 	{
 		_player1->GoingToNext();
@@ -138,11 +137,10 @@ void ScenePlay::draw()
 	m_background->draw();
 	m_tree->draw();
 	m_listItemFLy->Draw();
-	_weapon_enemy->Draw();
 	_weapon_player1->Draw();
 	_player1->Draw();
+	_weapon_enemy->Draw();
 	_runmans->Draw();
-
 	m_cameraHUD->draw();
 
 }
@@ -182,10 +180,7 @@ void ScenePlay::UpdateFullListObjetcInView()
 				}
 				break;
 			case Item:
-				if (ob->_enable)
-				{
 					_items.push_back(ob);
-				}
 				break;
 			}
 		}
@@ -280,7 +275,7 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 	_runmans->CheckCollisionWithPlayer(_weapon_player1, _player1);
 
 	//Xét va chạm đạn của quái với người chơi
-	_weapon_enemy->CheckCollisionWithPlayer(_player1);
+	//_weapon_enemy->CheckCollisionWithPlayer(_player1);
 }
 
 void ScenePlay::ProcessItemsWithOneAnother()
@@ -293,7 +288,7 @@ void ScenePlay::ProcessItemsWithOneAnother()
 			CObject* item = (*i);
 
 			//Xét va chạm với người chơi 1
-			if (item->_hp == 0)
+			if (item->_hp == 0 && item->_enable)
 			{
 				if (_player1->_physical.Collision(&item->_physical) != NoCollision)
 				{

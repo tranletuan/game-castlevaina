@@ -71,7 +71,7 @@ void CSniperHide::Update(int delta_time)
 			}
 
 			DWORD now = GetTickCount();
-			if (now - _last_time_shoot >= ENEMT_SNIPER_HIDE_TIME_WAIT)
+			if (now - _last_time_shoot >= ENEMY_SNIPER_BOSS_TIME_WAIT)
 			{
 				SetStatus(EAttack);
 				_last_time_shoot = 0;
@@ -85,6 +85,10 @@ void CSniperHide::Update(int delta_time)
 	case EDie:
 		_physical.SetBounds(0, 0, 0, 0);
 		_can_impact = false;
+		if (_current_sprite == _die_sprite && _current_sprite->index == 2)
+		{
+			_enable = false;
+		}
 		break;
 	case EAttack:
 		if (_current_sprite->index > 1)
@@ -161,9 +165,5 @@ void CSniperHide::DrawWhenDie(D3DXVECTOR3 pos)
 	if (_current_sprite->index != _current_sprite->sprite_texture->count - 1)
 	{
 		_current_sprite->DrawWithDirection(pos, _physical.vx_last, 0, 2);
-	}
-	else
-	{
-		_enable = false;
 	}
 }

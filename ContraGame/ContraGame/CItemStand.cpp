@@ -35,35 +35,32 @@ void CItemStand::LoadResources()
 
 void CItemStand::Draw()
 {
-	if (_enable)
+	CCamera *_cam = CResourcesManager::GetInstance()->_camera;
+	D3DXVECTOR3 pos;
+
+	if (_hp <= 0)
 	{
-		CCamera *_cam = CResourcesManager::GetInstance()->_camera;
-		D3DXVECTOR3 pos;
+		pos = _cam->Transform(_physical.x, _physical.y);;
+	}
+	else
+	{
+		pos = _cam->Transform(_pos_stand.x, _pos_stand.y);
+	}
 
-		if (_hp <= 0)
-		{
-			pos = _cam->Transform(_physical.x, _physical.y);;
-		}
-		else
-		{
-			pos = _cam->Transform(_pos_stand.x, _pos_stand.y);
-		}
-
-		// Xử lý vẽ theo state item
-		switch (_state_item_stand)
-		{
-		case SIS_Close:
-			DrawWhenStand(pos);
-			break;
-		case SIS_Open:
-		case SIS_Enable:
-			DrawWhenActivity(pos);
-			break;
-		case SIS_Spatter:
-		case SIS_EAT:
-			DrawWhenAttack(pos);
-			break;
-		}
+	// Xử lý vẽ theo state item
+	switch (_state_item_stand)
+	{
+	case SIS_Close:
+		DrawWhenStand(pos);
+		break;
+	case SIS_Open:
+	case SIS_Enable:
+		DrawWhenActivity(pos);
+		break;
+	case SIS_Spatter:
+	case SIS_EAT:
+		DrawWhenAttack(pos);
+		break;
 	}
 }
 
@@ -190,7 +187,7 @@ void CItemStand::DrawWhenAttack(D3DXVECTOR3 pos)
 
 	// Vẽ item văng lên	
 	if (_physical.bounds.left != 0 && _physical.bounds.top != 0 &&
-		_physical.bounds.right != 0 && _physical.bounds.bottom != 0)
+		_physical.bounds.right != 0 && _physical.bounds.bottom != 0 && _enable)
 	{
 		_sprite_item->Draw(pos.x, pos.y);
 	}
