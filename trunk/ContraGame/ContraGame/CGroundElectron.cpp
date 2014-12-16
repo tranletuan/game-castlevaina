@@ -1,7 +1,7 @@
 #include "CGroundElectron.h"
 
 CGroundElectron::CGroundElectron(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
-	:CGround(id, specific_type, pos, width, height)
+	:CEffectObject(id, specific_type, pos, width, height)
 {
 	LoadResources();
 }

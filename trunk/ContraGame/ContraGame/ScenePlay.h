@@ -13,7 +13,7 @@
 #include "CBoss1.h"
 #include "CRunManManager.h"
 #include "SceneManager.h"
-
+#include "CSniperBoss.h"
 // test
 #include "CRockRoll.h"
 
@@ -53,9 +53,6 @@ private:
 	CListItemFly *m_listItemFLy;
 	CRunmanManager* _runmans;	
 	CObject* _boss;
-
-
-	CRockRoll *m_rock_roll;
 
 public:
 	ScenePlay();

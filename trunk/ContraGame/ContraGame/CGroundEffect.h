@@ -1,9 +1,9 @@
 #ifndef _CGROUNDEFFECT_H_
 #define _CGROUNDEFFECT_H_
 
-#include "CGround.h"
+#include "CEffectObject.h"
 
-class CGroundEffect : public CGround
+class CGroundEffect : public CEffectObject
 {
 private:
 	int _count;

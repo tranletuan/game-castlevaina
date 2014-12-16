@@ -4,7 +4,6 @@ CAutoDestroyBridge::CAutoDestroyBridge(int id, SpecificType specific_type, D3DXV
 	:CGround(id, specific_type, pos, width, height)
 {
 	_is_destroy = false;
-
 	for (int i = 0; i < GROUND_BRIDGE_DESTROY_EFFECT_COUNT; i++)
 	{
 		int sign_x = (rand() % 2) == 1 ? 1 : -1;

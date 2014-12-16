@@ -90,6 +90,6 @@
 90 StarEffect 1342 179 32 16
 91 BossGun 3208 100 32 32
 92 BossGun 3228 100 32 32
-91 GroundElectron 100 200 64 32 
+93 SniperBoss 3216 182 32 32 
 0 Camera 0 240 256 240 
 0 Character 40 240 36 46 

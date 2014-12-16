@@ -39,6 +39,7 @@ enum  SpecificType
 	Wall_Turret,
 	Fire_Run, // Ngọn lửa di chuyển ở map 2
 	Rock_Roll,  // Viên đá rơi ở map 2
+	Sniper_Boss,
 
 	// Item
 	ItemM,

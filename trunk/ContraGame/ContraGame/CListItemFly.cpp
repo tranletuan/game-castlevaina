@@ -30,10 +30,7 @@ void CListItemFly::Draw()
 {
 	for (int i = 0; i < _listItems.size(); i++)
 	{
-		if (_listItems.at(i)->getEnable())
-		{
-			_listItems.at(i)->Draw();
-		}
+		_listItems.at(i)->Draw();
 	}
 }
 

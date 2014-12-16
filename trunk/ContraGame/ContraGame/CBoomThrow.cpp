@@ -6,7 +6,7 @@ CBoomThrow::CBoomThrow(int id, SpecificType specific_type, D3DXVECTOR3 pos, int 
 	_timeDuring = 20;
 	_state = BoS_Throw;
 	_posBegin = pos;
-	_physical.vx = 
+	//_physical.vx = 
 	LoadResources();
 }
 

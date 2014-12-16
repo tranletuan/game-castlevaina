@@ -43,7 +43,7 @@ public:
 	CCamera *_camera;
 	CDatabase *m_data;
 	D3DXVECTOR3 m_posBill;
-
+	
 	int m_curMap;  // map hien tai
 	int m_nextMap; // map tiep theo
 	int m_life;	
@@ -137,6 +137,7 @@ public:
 	CTexture* _enemy_run_man;
 	CTexture* _enemy_fire;
 	CTexture* _enemy_rock_roll;
+	CTexture* _enemy_sniper_boss;
 	CTexture* _enemy_boom_throw;
 	CTexture* _enemy_sniper_block;
 

@@ -94,6 +94,7 @@
 #define PATH_ENEMY_RUN_MAN ".//DataGame//Images//Game//Object//enemy//run_man.png"
 #define PATH_ENEMY_FIRE ".//DataGame//Images//Game//Object//enemy//fire.png"
 #define PATH_ENEMY_ROCK_ROLL ".//DataGame//Images//Game//Object//enemy//rock_roll.png"
+#define PATH_ENEMY_SNIPER_BOSS ".//DataGame//Images//Game//Object//enemy//sniper_boss.png"
 #define PATH_ENEMY_BOOM_THROW ".//DataGame//Images//Game//Object//enemy//boomthrow.png"
 #define PATH_ENEMY_SNIPER_BLOCK ".//DataGame//Images//Game//Object//enemy//sniper_block.png"
 #pragma endregion EnemyPath

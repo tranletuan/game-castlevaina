@@ -66,7 +66,7 @@ void CBossGun::SetTarget(float x, float y)
 	_target.x = x;
 	_target.y = y;
 
-	if (!CheckTarget()) return;
+	if (_physical.x - _target.x > 200) return;
 	
 	CEnemyWeapon* wp = CResourcesManager::GetInstance()->_weapon_enemy;
 	SetWeapon(wp);
