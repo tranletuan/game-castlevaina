@@ -129,6 +129,17 @@
 #define PATH_HIGHSCORE_3 ".//DataGame//HighScore//highscore_3.txt"
 #pragma endregion DataPath
 
+#pragma region WinPath
+#define PATH_WIN_CONGRU ".//DataGame//Images//Win//win_congratulation.png"
+#define PATH_WIN_VICTORY ".//DataGame//Images//Win//win_victory.png"
+#define PATH_WIN_PRODUCT ".//DataGame//Images//Win//win_product.png"
+#define PATH_WIN_TIEN ".//DataGame//Images//Win//win_tien.png"
+#define PATH_WIN_TUAN ".//DataGame//Images//Win//win_tuan.png"
+#define PATH_WIN_LEAD ".//DataGame//Images//Win//win_lead.png"
+#define PATH_WIN_THAY ".//DataGame//Images//Win//win_thay.png"
+#define PATH_WIN_COPY ".//DataGame//Images//Win//win_copy.png"
+#pragma endregion WinPath
+
 #pragma region ConfiMapPath
 #define PATH_CONFI_DEFAULT ".//DataGame//Map//confi_default.txt"
 #define PATH_CONFI_MAP_1 ".//DataGame//Map//confi_map_1.txt"

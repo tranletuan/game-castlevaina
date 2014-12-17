@@ -42,6 +42,15 @@ void SceneManager::setScene(SceneType x)
 	case SCENE_PLAY:
 		setScene(m_scenePlay);
 		break;
+	case SCENE_PAUSE:
+		setScene(m_scenePause);
+		break;
+	case SCENE_GAMEOVER:
+		setScene(m_sceneOver);
+		break;
+	case SCENE_WIN:
+		setScene(m_sceneWin);
+		break;
 	default:
 		break;
 	}
@@ -71,6 +80,8 @@ void SceneManager::createMenuScene()
 	CResourcesManager::GetInstance()->loadLoadingResource();
 	CResourcesManager::GetInstance()->loadPauseResource();
 	CResourcesManager::GetInstance()->loadOverResource();
+	CResourcesManager::GetInstance()->loadWinResource();
+
 	m_sceneMenu = new SceneMenu();
 	SceneManager::getInstance()->setScene(m_sceneMenu);
 }
@@ -147,11 +158,30 @@ void SceneManager::createOverScene()
 }
 
 void SceneManager::loadOverScene()
-{
+{	
 	SceneManager::getInstance()->setScene(m_sceneOver);
 }
 
 void SceneManager::destroyOverScene()
+{
+
+}
+
+// Win Game
+
+void SceneManager::createWinScene()
+{	
+	m_sceneWin = new SceneWin();
+	SceneManager::getInstance()->setScene(m_sceneWin);
+
+}
+
+void SceneManager::loadWinScene()
+{
+	SceneManager::getInstance()->setScene(m_sceneWin);
+}
+
+void SceneManager::destroyWinScene()
 {
 
 }

@@ -120,8 +120,7 @@ void SceneMenu::update(float time)
 	// next scene
 	if (m_nextScene)
 	{
-		SceneManager::getInstance()->createLoadingScene();		
-		m_nextScene = false;
+		SceneManager::getInstance()->createLoadingScene();			
 	}
 
 }

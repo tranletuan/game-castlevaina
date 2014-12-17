@@ -208,6 +208,36 @@ void CResourcesManager::unloadOverResource()
 
 }
 
+/*----------- Win Gamer----------*/
+
+void CResourcesManager::loadWinResource()
+{
+	loadWinGraphics();
+	loadWinAudio();
+}
+
+void CResourcesManager::loadWinGraphics()
+{
+	win_congra = new CTexture(PATH_WIN_CONGRU);
+	win_victory = new CTexture(PATH_WIN_VICTORY);
+	win_lead = new CTexture(PATH_WIN_LEAD);
+	win_thay = new CTexture(PATH_WIN_THAY);
+	win_product = new CTexture(PATH_WIN_PRODUCT);
+	win_tien = new CTexture(PATH_WIN_TIEN);
+	win_tuan = new CTexture(PATH_WIN_TUAN);
+	win_copy = new CTexture(PATH_WIN_COPY);
+}
+
+void CResourcesManager::loadWinAudio()
+{
+
+}
+
+void CResourcesManager::unloadWinResource()
+{
+
+}
+
 /* ------------------ Other -------------------*/
 // load all texture object trong map
 void CResourcesManager::loadAllInMap()

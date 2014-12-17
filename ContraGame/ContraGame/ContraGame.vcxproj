@@ -70,6 +70,7 @@
     <ClCompile Include="SceneMenu.cpp" />
     <ClCompile Include="ScenePause.cpp" />
     <ClCompile Include="ScenePlay.cpp" />
+    <ClCompile Include="SceneWin.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Surface.cpp" />
     <ClCompile Include="Text.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="ScenePause.h" />
     <ClInclude Include="ScenePlay.h" />
     <ClInclude Include="CSniperBoss.h" />
+    <ClInclude Include="SceneWin.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="Text.h" />
