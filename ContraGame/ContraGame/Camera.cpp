@@ -44,6 +44,7 @@ void CCamera::Update(int time)
 	switch (rs->m_curMap)
 	{
 	case 1:
+	case 3:
 		if (!_isMove)
 		{
 			if (view_port.x >= 0 && view_port.x <= rs->m_widthMap - kScreenWidth)
