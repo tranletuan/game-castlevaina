@@ -1,0 +1,7 @@
+1 Ground 1 95 576 16 
+2 Ground 587 127 96 16 
+3 Ground 576 47 160 16 
+4 BoomThrow 150 180 16 16 
+5 BoomThrow 120 180 16 16 
+0 Camera 0 240 256 240 
+0 Character 40 240 36 46 

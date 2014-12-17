@@ -43,6 +43,8 @@
 #define PATH_MAP_BG1_TEXT ".//DataGame//Map//1_bg.txt"
 #define PATH_MAP_BG2_PIC ".//DataGame//Images//Game//Background//2.png"
 #define PATH_MAP_BG2_TEXT ".//DataGame//Map//2_bg.txt"
+#define PATH_MAP_BG3_PIC ".//DataGame//Images//Game//Background//3.png"
+#define PATH_MAP_BG3_TEXT ".//DataGame//Map//3_bg.txt"
 #pragma endregion BackgrounPath
 
 #pragma region HUDPath
@@ -57,6 +59,9 @@
 #define PATH_OB_MAP2 ".//DataGame//Map//2_ob.txt"
 #define PATH_OB_MAP2_QT ".//DataGame//Map//2_ob_qt.txt"
 #define PATH_QT_MAP2 ".//DataGame//Map//2_quadtree.txt"
+#define PATH_OB_MAP3 ".//DataGame//Map//3_ob.txt"
+#define PATH_OB_MAP3_QT ".//DataGame//Map//3_ob_qt.txt"
+#define PATH_QT_MAP3 ".//DataGame//Map//3_quadtree.txt"
 #pragma endregion MapPath
 
 #pragma region GroundtPath

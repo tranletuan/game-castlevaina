@@ -242,6 +242,15 @@ void CResourcesManager::loadAllInMap()
 		break;
 	case 3:
 		path = PATH_CONFI_MAP_3;
+		/* --- Background ---*/
+		background = new CTexture(PATH_MAP_BG3_PIC, D3DCOLOR_XRGB(0, 0, 0));
+		map_bg_listTile = loadFileTextBG(PATH_MAP_BG3_TEXT);
+		// load object from file text
+		map_listOb = loadFileTextOB(PATH_OB_MAP3_QT);
+		// load list ob khong nam trong quad tree
+		listObNoTree = loadFileTextOBNoneTree(PATH_OB_MAP3);
+		// load quadtree
+		map_listNode = loadFileTextNode(PATH_QT_MAP3);
 		break;
 	default:
 		break;
