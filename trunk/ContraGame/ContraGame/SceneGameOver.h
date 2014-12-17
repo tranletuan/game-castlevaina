@@ -17,7 +17,6 @@ private:
 	CSprite *m_spEnd;  // nut end
 	CSprite *m_spBadge; // huy hieu
 
-
 	MenuItem m_curItem;
 	int m_timeCount;
 	bool m_checkItem; // da chon menu 

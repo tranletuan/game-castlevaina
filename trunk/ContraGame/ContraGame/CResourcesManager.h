@@ -51,9 +51,8 @@ public:
 	int m_widthMap;
 	int m_numScore;
 	int m_highScore;
-
 	
-	vector<string> _listString; // load tu file confi
+	vector<string> _listString; // danh sach string cac texture duoc load len o scene game
 	vector<CObject*> listObinView;
 	vector<CObject*> listObNoTree; // list ob khong nam trong quad tree
 	vector<CObject*> _grounds;
@@ -89,8 +88,20 @@ public:
 	CTexture *pause_title;
 	CTexture *pause_continue;
 	CTexture *pause_end;
+
 	/*--- Game Over Resource ----*/
 	CTexture *over_title;
+
+	/*--- Win Game Resource ----*/
+	CTexture *win_congra;
+	CTexture *win_victory;
+	CTexture *win_product;
+	CTexture *win_tien;
+	CTexture *win_tuan;
+	CTexture *win_lead;
+	CTexture *win_thay;
+	CTexture *win_copy;
+
 	/*--- Play Resource ----*/
 	
 	// background
@@ -190,6 +201,13 @@ public:
 	void loadOverGraphics();
 	void loadOverAudio();
 	void unloadOverResource();
+	// Win Game
+	void loadWinResource();
+	void loadWinGraphics();
+	void loadWinAudio();
+	void unloadWinResource();
+
+	/*---------------- method ---------------*/
 
 	// load tung ctexture 
 	void loadTexture(ResourceID id);

@@ -10,12 +10,14 @@
 #include "ScenePlay.h"
 #include "ScenePause.h"
 #include "SceneGameOver.h"
+#include "SceneWin.h"
 
 class SceneMenu;
 class ScenePlay;
 class SceneLoading;
 class SceneGameOver;
 class ScenePause;
+class SceneWin;
 
 class SceneManager
 {
@@ -29,6 +31,7 @@ private:
 	ScenePlay *m_scenePlay;
 	SceneGameOver *m_sceneOver;
 	ScenePause *m_scenePause;
+	SceneWin *m_sceneWin;
 
 	SceneManager();
 
@@ -69,6 +72,10 @@ public:
 	void createOverScene();
 	void loadOverScene();
 	void destroyOverScene();
+	// Win
+	void createWinScene();
+	void loadWinScene();
+	void destroyWinScene();
 
 };
 

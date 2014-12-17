@@ -249,6 +249,9 @@
     <Filter Include="Contra Game\Object\Effect Game\Water">
       <UniqueIdentifier>{77fb6fb0-e8e5-470d-9539-2727ca04d129}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contra Game\Scene\SceneWin">
+      <UniqueIdentifier>{c02144b4-65f6-469a-88ca-c9bb877645e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -457,6 +460,9 @@
     </ClCompile>
     <ClCompile Include="CWaterFallE.cpp">
       <Filter>Contra Game\Object\Effect Game\WaterFall</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneWin.cpp">
+      <Filter>Contra Game\Scene\SceneWin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -681,6 +687,9 @@
     </ClInclude>
     <ClInclude Include="CWaterFallE.h">
       <Filter>Contra Game\Object\Effect Game\WaterFall</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneWin.h">
+      <Filter>Contra Game\Scene\SceneWin</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

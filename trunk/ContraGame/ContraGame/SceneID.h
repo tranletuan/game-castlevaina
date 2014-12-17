@@ -8,6 +8,7 @@ enum SceneType
 	SCENE_PLAY,
 	SCENE_PAUSE,
 	SCENE_GAMEOVER,
+	SCENE_WIN,
 };
 
 enum MenuItem
