@@ -275,7 +275,7 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 	_runmans->CheckCollisionWithPlayer(_weapon_player1, _player1);
 
 	//Xét va chạm đạn của quái với người chơi
-	//_weapon_enemy->CheckCollisionWithPlayer(_player1);
+	_weapon_enemy->CheckCollisionWithPlayer(_player1);
 }
 
 void ScenePlay::ProcessItemsWithOneAnother()

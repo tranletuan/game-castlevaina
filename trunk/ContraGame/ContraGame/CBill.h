@@ -39,7 +39,9 @@ protected:
 	DWORD _last_time_revival;
 	DWORD _last_time_die;
 	DWORD _last_time_wait;
+	DWORD _last_time_shoot;
 
+	float _x_last;
 	int _count_jump;
 	bool _is_wait;
 	bool _is_revival;

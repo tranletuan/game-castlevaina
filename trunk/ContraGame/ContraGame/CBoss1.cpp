@@ -9,7 +9,7 @@ CBoss1::CBoss1(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, i
 	_time_counter = 0;
 	_can_impact = true;
 	_enable = true;
-	_physical.SetBounds(pos.x - BOSS1_SPACE_X, pos.y - BOSS1_SPACE_Y, 15, 15);
+	_physical.SetBounds(pos.x - BOSS1_SPACE_X, pos.y - BOSS1_SPACE_Y, 14, 14);
 	LoadResources();
 	
 }

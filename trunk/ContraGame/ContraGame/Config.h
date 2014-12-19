@@ -25,9 +25,9 @@
 #define BULLET_S_V 0.2f
 #define BULLET_S_ELAPSED_TIME 100
 
-#define BULLET_F_V 0.105f
-#define BULLET_F_R 18
-#define BULLET_F_ELAPSED_DEGREES 20
+#define BULLET_F_V 0.115f
+#define BULLET_F_R 16
+#define BULLET_F_ELAPSED_DEGREES 30
 #define BULLET_F_TOTAL 4
 
 #define BULLET_L_V 0.25f
