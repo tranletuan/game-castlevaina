@@ -128,9 +128,9 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(Fire_Run);
 	}
-	else if (x == "BossGun")
+	else if (x == "Boss1Gun")
 	{
-		setSpecificType(Boss_Gun);
+		setSpecificType(Boss1_Gun);
 	}
 	else if (x == "RockRoll")
 	{

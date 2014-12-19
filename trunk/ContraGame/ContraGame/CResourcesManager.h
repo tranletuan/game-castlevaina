@@ -124,6 +124,7 @@ public:
 	CTexture* _bullet_m;
 	CTexture* _bullet_ne;
 	CTexture* _bullet_b;
+	CTexture* _bullet_b2;
 
 	//Ground
 	CTexture* _ground_grass;
@@ -160,7 +161,11 @@ public:
 	// Boss
 	CTexture* _boss1_bg;
 	CTexture* _boss1_badge;
-	CTexture* _boss_gun;
+	CTexture* _boss1_gun;
+	CTexture* _boss2_bg;
+	CTexture* _boss2_elbow;
+	CTexture* _boss2_hand;
+
 
 	/*-------- Background -------*/
 	vector<int> map_bg_listTile; // danh sach list file text background
