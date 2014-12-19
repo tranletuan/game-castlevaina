@@ -204,9 +204,6 @@
     <Filter Include="Contra Game\Object\Boss\Boss1">
       <UniqueIdentifier>{dfcdd6f1-1861-4895-9af7-7ced7fecaaab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contra Game\Object\Boss\BossGun">
-      <UniqueIdentifier>{08c67c7f-779c-4042-90dd-0537c94ffcef}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contra Game\Object\RunMan">
       <UniqueIdentifier>{590ece62-d9e9-4e1d-a806-5f51bf0f72eb}</UniqueIdentifier>
     </Filter>
@@ -251,6 +248,18 @@
     </Filter>
     <Filter Include="Contra Game\Scene\SceneWin">
       <UniqueIdentifier>{c02144b4-65f6-469a-88ca-c9bb877645e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Boss\Boss2">
+      <UniqueIdentifier>{d8b6d76a-b181-4756-82da-172ead1971a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Boss\BossArm">
+      <UniqueIdentifier>{1d534e6f-b977-44b8-8925-8a1e7ef4661b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Boss\BossElbow">
+      <UniqueIdentifier>{78e131e0-6ab5-4fa4-8cdd-931772f46b40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Boss\Boss1Gun">
+      <UniqueIdentifier>{08c67c7f-779c-4042-90dd-0537c94ffcef}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -407,9 +416,6 @@
     <ClCompile Include="CBoss1.cpp">
       <Filter>Contra Game\Object\Boss\Boss1</Filter>
     </ClCompile>
-    <ClCompile Include="CBossGun.cpp">
-      <Filter>Contra Game\Object\Boss\BossGun</Filter>
-    </ClCompile>
     <ClCompile Include="CRunManManager.cpp">
       <Filter>Contra Game\Object\RunMan</Filter>
     </ClCompile>
@@ -463,6 +469,15 @@
     </ClCompile>
     <ClCompile Include="SceneWin.cpp">
       <Filter>Contra Game\Scene\SceneWin</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss2Arm.cpp">
+      <Filter>Contra Game\Object\Boss\BossArm</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss2Elbow.cpp">
+      <Filter>Contra Game\Object\Boss\BossElbow</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss1Gun.cpp">
+      <Filter>Contra Game\Object\Boss\Boss1Gun</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -634,9 +649,6 @@
     <ClInclude Include="CBoss1.h">
       <Filter>Contra Game\Object\Boss\Boss1</Filter>
     </ClInclude>
-    <ClInclude Include="CBossGun.h">
-      <Filter>Contra Game\Object\Boss\BossGun</Filter>
-    </ClInclude>
     <ClInclude Include="CRunman.h">
       <Filter>Contra Game\Object\RunMan</Filter>
     </ClInclude>
@@ -690,6 +702,15 @@
     </ClInclude>
     <ClInclude Include="SceneWin.h">
       <Filter>Contra Game\Scene\SceneWin</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoss2Arm.h">
+      <Filter>Contra Game\Object\Boss\BossArm</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoss2Elbow.h">
+      <Filter>Contra Game\Object\Boss\BossElbow</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoss1Gun.h">
+      <Filter>Contra Game\Object\Boss\Boss1Gun</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

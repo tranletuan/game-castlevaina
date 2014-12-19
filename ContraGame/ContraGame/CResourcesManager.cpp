@@ -142,6 +142,7 @@ void CResourcesManager::loadPlayGraphics()
 	_bullet_m = new CTexture(PATH_BULLET_M);
 	_bullet_ne = new CTexture(PATH_BULLET_NE);
 	_bullet_b = new CTexture(PATH_BULLET_B);
+	_bullet_b2 = new CTexture(PATH_BULLET_B2, 4);
 
 	//Effect
 	_effect_destroy = new CTexture(PATH_EFFECT_DESTROY, 3);
@@ -366,9 +367,6 @@ void CResourcesManager::loadAllInMap()
 				{
 					loadTexture(RESID_BOSS_1_BADGE);
 					loadTexture(RESID_BOSS_1_BG);
-				}
-				else if (line == "BossGun")
-				{
 					loadTexture(RESID_BOSS_1_GUN);
 				}
 				else if (line == "GroundElectron")
@@ -402,6 +400,12 @@ void CResourcesManager::loadAllInMap()
 				else if (line == "BoomThrow")
 				{
 					loadTexture(RESID_ENEMY_BOOM_THROW);
+				}
+				else if (line == "Boss2")
+				{
+					loadTexture(RESID_BOSS_2_BG);
+					loadTexture(RESID_BOSS_2_ELBOW);
+					loadTexture(RESID_BOSS_2_HAND);
 				}
 			}
 		}
@@ -515,6 +519,9 @@ void CResourcesManager::loadTexture(ResourceID id)
 	case REDID_BULLET_B:
 		_bullet_b = new CTexture(PATH_BULLET_B);
 		break;
+	case REDID_BULLET_B2:
+		_bullet_b2 = new CTexture(PATH_BULLET_B2, 4);
+		break;
 	case REDID_BULLET_F:
 		_bullet_f = new CTexture(PATH_BULLET_F);
 		break;
@@ -540,7 +547,16 @@ void CResourcesManager::loadTexture(ResourceID id)
 		_boss1_badge = new CTexture(PATH_BOSS1_BAGDE, 3);
 		break;
 	case RESID_BOSS_1_GUN:
-		_boss_gun = new CTexture(PATH_BOSS_GUN, 3);
+		_boss1_gun = new CTexture(PATH_BOSS1_GUN, 3);
+		break;
+	case RESID_BOSS_2_BG:
+		_boss2_bg = new CTexture(PATH_BOSS2_BG, 2);
+		break;
+	case RESID_BOSS_2_ELBOW:
+		_boss2_elbow = new CTexture(PATH_BOSS2_ELBOW);
+		break;
+	case RESID_BOSS_2_HAND:
+		_boss2_hand = new CTexture(PATH_BOSS2_HAND);
 		break;
 	}
 }

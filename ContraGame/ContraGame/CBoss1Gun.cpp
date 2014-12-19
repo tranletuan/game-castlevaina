@@ -1,6 +1,6 @@
-﻿#include "CBossGun.h"
+﻿#include "CBoss1Gun.h"
 
-CBossGun::CBossGun(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
+CBoss1Gun::CBoss1Gun(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
 	:CEnemyUseGun(id, specific_type, pos, width, height)
 {
 	_hp = 20;
@@ -8,17 +8,17 @@ CBossGun::CBossGun(int id, SpecificType specific_type, D3DXVECTOR3 pos, int widt
 	LoadResources();
 }
 
-CBossGun::~CBossGun()
+CBoss1Gun::~CBoss1Gun()
 {
 }
 
-void CBossGun::LoadResources()
+void CBoss1Gun::LoadResources()
 {
 	CResourcesManager* rs = CResourcesManager::GetInstance();
 
-	if (_specific_type == Boss_Gun)
+	if (_specific_type == Boss1_Gun)
 	{
-		_live_sprite = new CSprite(rs->_boss_gun);
+		_live_sprite = new CSprite(rs->_boss1_gun);
 		_die_sprite = new CSprite(rs->_effect_destroy);
 		_current_sprite = _live_sprite;
 		_max_bullet = BOSS1_GUN_MAX_BULLET;
@@ -26,12 +26,12 @@ void CBossGun::LoadResources()
 
 }
 
-void CBossGun::Draw()
+void CBoss1Gun::Draw()
 {
 	CEnemy::Draw();
 }
 
-void CBossGun::Update(int delta_time)
+void CBoss1Gun::Update(int delta_time)
 {
 	//Target mục tiêu
 	D3DXVECTOR2 pos_target = CResourcesManager::GetInstance()->m_posBill;
@@ -61,7 +61,7 @@ void CBossGun::Update(int delta_time)
 	}
 }
 
-void CBossGun::SetTarget(float x, float y)
+void CBoss1Gun::SetTarget(float x, float y)
 {
 	_target.x = x;
 	_target.y = y;
@@ -73,7 +73,7 @@ void CBossGun::SetTarget(float x, float y)
 	Attacking();
 }
 
-void CBossGun::Attacking()
+void CBoss1Gun::Attacking()
 {
 	if (_hp == 0) return;
 	if (_enemy_status != EWait) return;
@@ -101,7 +101,7 @@ void CBossGun::Attacking()
 	}
 }
 
-void CBossGun::DrawWhenAttack(D3DXVECTOR3 pos)
+void CBoss1Gun::DrawWhenAttack(D3DXVECTOR3 pos)
 {
 	bool done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, -1, 0, 1, 150);
 
@@ -111,7 +111,7 @@ void CBossGun::DrawWhenAttack(D3DXVECTOR3 pos)
 	}
 }
 
-void CBossGun::DrawWhenDie(D3DXVECTOR3 pos)
+void CBoss1Gun::DrawWhenDie(D3DXVECTOR3 pos)
 {
 	_current_sprite->DrawWithDirection(pos, -1, 2, 2);
 
@@ -121,7 +121,7 @@ void CBossGun::DrawWhenDie(D3DXVECTOR3 pos)
 	}
 }
 
-void CBossGun::DrawWhenWait(D3DXVECTOR3 pos)
+void CBoss1Gun::DrawWhenWait(D3DXVECTOR3 pos)
 {
 	_current_sprite->DrawWithDirection(pos, -1, 0, 0);
 }

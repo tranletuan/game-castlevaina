@@ -80,6 +80,7 @@
 #define PATH_BULLET_M ".//DataGame//Images//Game//Object//bullet//bullet_m.png"
 #define PATH_BULLET_NE ".//DataGame//Images//Game//Object//bullet//bullet_ne.png"
 #define PATH_BULLET_B ".//DataGame//Images//Game//Object//bullet//bullet_b.png"
+#define PATH_BULLET_B2 ".//DataGame//Images//Game//Object//bullet//bullet_b2.png"
 #pragma endregion BulletPath
 
 #pragma region EffectPath
@@ -120,7 +121,10 @@
 #pragma region BossPath
 #define PATH_BOSS1_BG ".//DataGame//Images//Game//Object//boss//boss1_bg.png"
 #define PATH_BOSS1_BAGDE ".//DataGame//Images//Game//Object//boss//boss1_badge.png"
-#define PATH_BOSS_GUN ".//DataGame//Images//Game//Object//boss//boss_gun.png"
+#define PATH_BOSS1_GUN ".//DataGame//Images//Game//Object//boss//boss1_gun.png"
+#define PATH_BOSS2_BG ".//DataGame//Images//Game//Object//boss//boss2_bg.png"
+#define PATH_BOSS2_ELBOW ".//DataGame//Images//Game//Object//boss//boss2_elbow.png"
+#define PATH_BOSS2_HAND ".//DataGame//Images//Game//Object//boss//boss2_hand.png"
 #pragma endregion BossPath
 
 #pragma region DataPath

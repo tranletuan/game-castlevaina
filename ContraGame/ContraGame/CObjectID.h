@@ -20,7 +20,7 @@ enum  SpecificType
 	// Ground
 	Ground_Grass, // vo hinh
 	Ground_Water,
-	Ground_Bridge,	
+	Ground_Bridge,
 	Ground_RockFly, // hòn đá bay qua lại
 	Ground_Electron, // cầu điện ở map 2 để fire di chuyển lên
 
@@ -34,8 +34,8 @@ enum  SpecificType
 	RunMan,		// nguoi chay
 	RunMan_Fire, // nguoi chay ban sung
 	Sniper_Stand, // sinper dung yen 
-	Sniper_Hide, 
-	Ground_Canon, 
+	Sniper_Hide,
+	Ground_Canon,
 	Wall_Turret,
 	Fire_Run, // Ngọn lửa di chuyển ở map 2
 	Rock_Roll,  // Viên đá rơi ở map 2
@@ -56,7 +56,12 @@ enum  SpecificType
 
 	// Boss
 	Boss1,
-	Boss_Gun,
+	Boss1_Gun,
+	Boss2,
+	Boss2_Elbow,
+	Boss2_Hand, 
+	Boss2_Arm
+
 };
 
 // loai object

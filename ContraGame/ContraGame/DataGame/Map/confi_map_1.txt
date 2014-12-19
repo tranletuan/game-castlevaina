@@ -11,6 +11,6 @@ BlockHouse
 Obstacle
 Boss1
 StarEffect
-BossGun
 Brigde
 SniperBoss
+Boss2

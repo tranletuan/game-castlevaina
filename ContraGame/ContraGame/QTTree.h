@@ -13,7 +13,7 @@
 #include "CSniperHide.h"
 #include "CAutoDestroyBridge.h"
 #include "CStarEffect.h"
-#include "CBossGun.h"
+#include "CBoss1Gun.h"
 #include "CGroundElectron.h"
 #include "CFire.h"
 #include "CRockRoll.h"
