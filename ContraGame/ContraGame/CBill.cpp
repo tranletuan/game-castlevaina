@@ -98,6 +98,24 @@ void CBill::Draw()
 void CBill::Update(int delta_time)
 {
 	CResourcesManager* rs = CResourcesManager::GetInstance();
+	CCamera* c = rs->_camera;
+	D3DXVECTOR3 pos_view = c->Transform(_physical.x, _physical.y);
+
+	//Không cho nhân vật lui khỏi màn hình
+	if (pos_view.x - 16 < 0)
+	{
+		_physical.x = c->view_port.x + 16;
+	}
+
+	if (pos_view.x + 16 > c->getWidth())
+	{
+		_physical.x = c->view_port.x + c->getWidth() - 16;
+	}
+
+	if (pos_view.y > c->getHeight())
+	{
+		Dying();
+	}
 
 	//Xét các trường hợp có thể va chạm với nhân vật
 	switch (_player_status)
@@ -147,7 +165,12 @@ void CBill::Update(int delta_time)
 		_can_impact = false; //không va chạm với quái
 	}
 	
-	_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
+	//Chết văng khỏi màn hình thì k update tọa độ nữa
+	if (pos_view.y < c->getHeight())
+	{
+		_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
+	}
+
 	UpdateBounds();
 
 	//Tự động cập nhật trạng thái rơi khi vật k chạm đất
@@ -192,6 +215,7 @@ void CBill::Dying()
 	_physical.vx = BILL_VX * sign;
 	_physical.vy = BILL_VY_DIE;
 	_physical.n = 0;
+	_weapon->SetWaeponType(WPN);
 	_physical.time_in_space = GetTickCount();
 }
 
@@ -353,6 +377,7 @@ void CBill::Standing(float y_ground, int id_ground)
 
 	//Chạm đất thì vector phản lực n phải có 1 lực tương đương với vector trọng trường
 	_physical.n = GRAVITY;
+	_x_last = _physical.x;
 	_physical.time_in_space = GetTickCount();
 	_physical.y = y_ground + BILL_DISTANCE_GROUND + 0.5f;
 	_id_ground_stand = id_ground;
@@ -385,6 +410,7 @@ void CBill::Living()
 			_is_revival = true;
 			_last_time_revival = 0;
 			_bill_die->Reset();
+			_physical.x = _x_last;
 
 			//Kiểm tra tọa độ rơi
 			_physical.y = rs->_camera->getPosY();
@@ -744,5 +770,20 @@ void CBill::IsKeyDown()
 	if (_input->KeyDown(DIK_S))
 	{
 		SetGunDirection(Down);
+	}
+
+	if (_input->KeyDown(DIK_J) && _weapon->GetWeaponType() == WPM)
+	{
+		if (_last_time_shoot == 0)
+		{
+			_last_time_shoot = GetTickCount();
+		}
+		
+		DWORD now = GetTickCount();
+		if (now - _last_time_shoot >= 120)
+		{
+			Attacking();
+			_last_time_shoot = 0;
+		}
 	}
 }
