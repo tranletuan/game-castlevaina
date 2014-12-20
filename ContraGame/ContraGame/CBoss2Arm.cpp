@@ -17,7 +17,7 @@ void CBoss2Arm::LoadResources()
 {
 	int id = 0;
 	D3DXVECTOR3 pos = D3DXVECTOR3(_physical.x, _physical.y, 0);
-	for (int i = 0; i < _length; i++)
+	for (int i = 0; i < _length - 1; i++)
 	{
 		CBoss2Elbow* elbow = new CBoss2Elbow(id++, Boss2_Elbow, pos, 16, 16);
 		elbow->LoadResources();
@@ -29,6 +29,17 @@ void CBoss2Arm::LoadResources()
 			_elbows[elbow->_id - 1]->_next = elbow;
 		}
 	}
+
+	CBoss2Elbow* elbow = new CBoss2Hand(id++, Boss2_Hand, pos, 16, 16);
+	elbow->LoadResources();
+	_elbows[elbow->_id] = elbow;
+
+	if (elbow->_id > 0)
+	{
+		elbow->_pre = _elbows[elbow->_id - 1];
+		_elbows[elbow->_id - 1]->_next = elbow;
+	}
+
 }
 
 void CBoss2Arm::Update(int time)
@@ -66,8 +77,6 @@ void CBoss2Arm::Update(int time)
 			CBoss2Elbow* elbow = (*i).second;
 			elbow->Update(time);
 
-			_is_change = elbow->_is_active;
-
 			//Tất cả đồng loạt die khi máu cánh tay bằng 0
 			if (_hp == 0)
 			{
@@ -94,4 +103,15 @@ void CBoss2Arm::Draw()
 			elbow->Draw();
 		}
 	}
+}
+
+vector<CPhysical> CBoss2Arm::GetListElement()
+{
+	vector<CPhysical> list_element;
+	for (map<int, CBoss2Elbow*>::iterator i = _elbows.begin(); i != _elbows.end(); i++)
+	{
+		list_element.push_back((*i).second->_physical);
+	}
+
+	return list_element;
 }

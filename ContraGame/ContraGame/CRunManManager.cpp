@@ -126,7 +126,7 @@ void CRunmanManager::CheckCollisionWithGround(CObject* ground)
 			CRunman* runman = (*i).second;
 
 			//Kiểm tra va chạm với mặt đất
-			CollisionDirection cd = runman->_physical.Collision(&ground->_physical);
+			CollisionDirection cd = runman->CheckCollision(ground);
 			if (cd == TopCollision)
 			{
 				runman->Standing(ground->_physical.bounds.top + ENEMY_RUN_MAN_BOUNDS_HEIGHT / 2 + 0.5f, 
@@ -181,7 +181,7 @@ void CRunmanManager::CheckCollisionWithPlayer(CPlayerWeapon* weapon, CBill* play
 			}
 
 			//Kiểm tra va chạm với người chơi 1
-			if (player->_physical.Collision(&runman->_physical) != NoCollision && player->_can_impact)
+			if (player->CheckCollision(runman) != NoCollision && player->_can_impact)
 			{
 				player->Dying();
 			}

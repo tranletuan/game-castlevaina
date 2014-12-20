@@ -85,9 +85,8 @@ void CEnemyWeapon::CheckCollisionWithPlayer(CBill* player)
 	{
 		CBullet* bullet = (*i).second;
 
-		if (bullet->_physical.Collision(&player->_physical) != NoCollision && player->_can_impact)
+		if (bullet->CheckCollision(player) != NoCollision && player->_can_impact)
 		{
-			bullet->_physical.Collision(&player->_physical);
 			player->Dying();
 		}
 	}

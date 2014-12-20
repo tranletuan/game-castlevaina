@@ -106,7 +106,7 @@ CollisionDirection CPlayerWeapon::CheckCollision(CObject* obj)
 			if (!bullet->_enable) continue;
 
 			//Kiểm tra va chạm với 1 đối tượng
-			collision = bullet->_physical.Collision(&obj->_physical);
+			collision = bullet->CheckCollision(obj);
 			if (collision != NoCollision)
 			{
 				bullet->OnTarget();

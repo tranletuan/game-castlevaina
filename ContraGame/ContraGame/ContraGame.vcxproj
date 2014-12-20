@@ -23,6 +23,7 @@
     <ClCompile Include="CBoss2Arm.cpp" />
     <ClCompile Include="CBoss2Elbow.cpp" />
     <ClCompile Include="CBoss1Gun.cpp" />
+    <ClCompile Include="CBoss2Hand.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CDatabase.cpp" />
     <ClCompile Include="CEffectObject.cpp" />
@@ -97,6 +98,7 @@
     <ClInclude Include="CBoss2Arm.h" />
     <ClInclude Include="CBoss2Elbow.h" />
     <ClInclude Include="CBoss1Gun.h" />
+    <ClInclude Include="CBoss2Hand.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CDatabase.h" />
     <ClInclude Include="CEffectObject.h" />

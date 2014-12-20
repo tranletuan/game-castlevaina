@@ -487,18 +487,18 @@ void CBill::DrawWhenAttack(D3DXVECTOR3 pos)
 		switch (_gun_direction)
 		{
 		case Normal:
-			done = _current_sprite->DrawWithDirectionAndOneTimeEffect(position, _physical.vx_last, 4, 5, 500);
+			done = _current_sprite->DrawWithDirectionAndOneTimeEffect(position, _physical.vx_last, 4, 5, 400);
 			break;
 		case Up:
 			//Khi nhắm lên bắn có 2 kiểu, khi di chuyển hướng sung xéo
 			//còn khi đứng yên hướng súng 90 độ
 			if (_physical.vx != 0)
 			{
-				done = _current_sprite->DrawWithDirectionAndOneTimeEffect(position, _physical.vx_last, 6, 7, 500);
+				done = _current_sprite->DrawWithDirectionAndOneTimeEffect(position, _physical.vx_last, 6, 7, 400);
 			}
 			else
 			{
-				done = _current_sprite->DrawWithDirectionAndOneTimeEffect(position, _physical.vx_last, 8, 9, 500);
+				done = _current_sprite->DrawWithDirectionAndOneTimeEffect(position, _physical.vx_last, 8, 9, 400);
 			}
 			break;
 		}
@@ -745,6 +745,10 @@ void CBill::OnKeyUp()
 		_input->onKeyUp(DIK_S))
 	{
 		SetGunDirection(Normal);
+		if (_physical.n != 0)
+		{
+			_player_status = Stand;
+		}
 	}
 }
 

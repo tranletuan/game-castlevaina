@@ -186,6 +186,25 @@ void CObject::Draw()
 
 }
 
+CollisionDirection CObject::CheckCollision(CObject* ob)
+{
+	vector<CPhysical> ob_elements = ob->GetListElement();
+	CollisionDirection cd = NoCollision;
+	for (vector<CPhysical>::iterator i = ob_elements.begin(); i != ob_elements.end(); i++)
+	{
+		cd = _physical.Collision(&(*i));
+	}
+
+	return cd;
+}
+
+vector<CPhysical> CObject::GetListElement()
+{
+	vector<CPhysical> list;
+	list.push_back(_physical);
+	return list;
+}
+
 void CObject::setPos(D3DXVECTOR3 x)
 {
 	_physical.x = x.x;

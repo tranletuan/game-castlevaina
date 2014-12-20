@@ -10,12 +10,11 @@
 #include "CBill.h"
 #include "CEnemyWeapon.h"
 #include "CListItemFly.h"
-#include "CBoss1.h"
 #include "CRunManManager.h"
 #include "SceneManager.h"
-#include "CSniperBoss.h"
 // test
 #include "CRockRoll.h"
+#include "CBoss2Arm.h"
 
 enum PlayState
 {
@@ -53,6 +52,8 @@ private:
 	CListItemFly *m_listItemFLy;
 	CRunmanManager* _runmans;	
 	CObject* _boss;
+
+	CBoss2Arm* _boss_arm;
 
 public:
 	ScenePlay();
