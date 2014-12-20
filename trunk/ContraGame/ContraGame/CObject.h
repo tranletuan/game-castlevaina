@@ -32,6 +32,8 @@ public:
 	virtual void LoadResources();
 	virtual void Draw();
 	virtual void Update(int delta_time);
+	virtual CollisionDirection CheckCollision(CObject* );
+	virtual vector<CPhysical> GetListElement();
 
 	SpecificType getSpecificType(){ return _specific_type; }
 	void setSpecificType(SpecificType x){ _specific_type = x; }	
@@ -54,6 +56,7 @@ public:
 	CSprite *getSprite(){ return _current_sprite; }
 
 	D3DXVECTOR3 getPos(){ return D3DXVECTOR3(_physical.x, _physical.y, 0); }
+
 	void setPos(D3DXVECTOR3 x);
 	void setSpecificType(string x);
 	void setTrack(string x);

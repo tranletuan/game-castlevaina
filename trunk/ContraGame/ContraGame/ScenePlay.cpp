@@ -17,6 +17,7 @@ ScenePlay::ScenePlay()
 	_player1->SetWeapon(_weapon_player1);
 	_weapon_enemy = new CEnemyWeapon();
 	_runmans = new CRunmanManager();
+	_boss_arm = new CBoss2Arm(0, Boss2_Arm, D3DXVECTOR3(100, 100, 0), 16, 16);
 
 	init();
 }
@@ -129,6 +130,8 @@ void ScenePlay::update(float time)
 		_player1->GoingToNext();
 	}
 
+	_boss_arm->Update(time);
+
 	UpdateGlobalVariable();
 }
 
@@ -143,6 +146,7 @@ void ScenePlay::draw()
 	_runmans->Draw();
 	m_cameraHUD->draw();
 
+	_boss_arm->Draw();
 }
 
 void ScenePlay::destroy()
@@ -201,7 +205,7 @@ void ScenePlay::ProcessGroundsWithOneAnother()
 			//Xét va chạm với người chơi 1
 			if (_player1->GetIdGroundIgnore() != ground->_id && collision_player1 != TopCollision)
 			{
-				collision_player1 = _player1->_physical.Collision(&ground->_physical);
+				collision_player1 = _player1->CheckCollision(ground);
 
 				if (collision_player1 == TopCollision && _player1->_physical.current_vy < 0)
 				{
@@ -244,7 +248,7 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 			//Va chạm với người chơi 1
 			if (_player1->_can_impact && enemy->_specific_type != Wall_Turret && enemy->_specific_type != Ground_Canon)
 			{
-				if (_player1->_physical.Collision(&enemy->_physical) != NoCollision && _player1->_can_impact)
+				if (_player1->CheckCollision(enemy) != NoCollision && _player1->_can_impact)
 				{
 					_player1->Dying();
 				}

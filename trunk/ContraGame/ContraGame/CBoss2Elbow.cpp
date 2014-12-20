@@ -5,7 +5,6 @@ CBoss2Elbow::CBoss2Elbow(int id, SpecificType specific_type, D3DXVECTOR3 pos, in
 {
 	_hp = 1;
 	_is_active = true;
-
 	LoadResources();
 }
 
