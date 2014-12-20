@@ -14,17 +14,24 @@ CBoss2Elbow::~CBoss2Elbow()
 
 void CBoss2Elbow::LoadResources()
 {
+	CResourcesManager* rs = CResourcesManager::GetInstance();
+
 	if (_specific_type == Boss2_Elbow)
 	{
-		CResourcesManager* rs = CResourcesManager::GetInstance();
 		_live_sprite = new CSprite(rs->_boss2_elbow);
-		_die_sprite = new CSprite(rs->_effect_destroy);
-		_current_sprite = _live_sprite;
-		_radius = _id * (rs->_boss2_elbow->frame_width - 4);
-		if (_radius != 0)
-		{
-			_delta_degrees = D3DXToDegree(acos(1 - BOSS2_DISTANCE_CHANGE * BOSS2_DISTANCE_CHANGE / (float)(2 * _radius* _radius)));
-		}
+	}
+	else if (_specific_type == Boss2_Hand)
+	{
+		_live_sprite = new CSprite(rs->_boss2_hand);
+	}
+
+	_die_sprite = new CSprite(rs->_effect_destroy);
+	_current_sprite = _live_sprite;
+
+	_radius = _id * (rs->_boss2_elbow->frame_width - 3);
+	if (_radius != 0)
+	{
+		_delta_degrees = D3DXToDegree(acos(1 - BOSS2_DISTANCE_CHANGE * BOSS2_DISTANCE_CHANGE / (float)(2 * _radius* _radius)));
 	}
 }
 

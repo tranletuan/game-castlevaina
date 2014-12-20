@@ -27,7 +27,7 @@ public:
 	
 	bool _is_active;
 
-	virtual void LoadResources();
+	void LoadResources();
 	virtual void Update(int time);
 	void Draw();
 	void Spreading(int parent_id);

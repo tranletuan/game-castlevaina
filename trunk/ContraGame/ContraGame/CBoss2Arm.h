@@ -9,8 +9,10 @@ class CBoss2Arm : public CObject
 protected:
 	map<int, CBoss2Elbow*> _elbows;
 	DWORD _last_time_change;
+	DWORD _elapsed_time;
 	int _id_main_node;
 	int _length;
+	bool _is_change;
 
 public:
 	CBoss2Arm(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);

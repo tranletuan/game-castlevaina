@@ -22,7 +22,6 @@ public:
 	CBoss2Hand(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
 	~CBoss2Hand();
 
-	void LoadResources();
 	void Update(int time);
 
 	void SetWeapon(CEnemyWeapon* weapon) { _weapon = weapon; }
