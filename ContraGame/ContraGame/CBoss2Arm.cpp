@@ -5,6 +5,7 @@ CBoss2Arm::CBoss2Arm(int id, SpecificType specific_type, D3DXVECTOR3 pos, int wi
 {
 	_hp = 15;
 	_last_time_change = 0;
+	_length = 5;
 	LoadResources();
 }
 
@@ -16,7 +17,7 @@ void CBoss2Arm::LoadResources()
 {
 	int id = 0;
 	D3DXVECTOR3 pos = D3DXVECTOR3(_physical.x, _physical.y, 0);
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < _length; i++)
 	{
 		CBoss2Elbow* elbow = new CBoss2Elbow(id++, Boss2_Elbow, pos, 16, 16);
 		elbow->LoadResources();
@@ -44,7 +45,7 @@ void CBoss2Arm::Update(int time)
 			DWORD  now = GetTickCount();
 			if (now - _last_time_change >= BOSS2_ELAPSED_CHANGE)
 			{
-				_id_main_node = rand() % 3 + 1;
+				_id_main_node = (rand() % 2 + 1) * 2;
 
 				//Tất cả các node đều phải ngừng hoạt động
 				for (map<int, CBoss2Elbow*>::iterator i = _elbows.begin(); i != _elbows.end(); i++)
@@ -53,8 +54,8 @@ void CBoss2Arm::Update(int time)
 					elbow->SetDeactivate();
 				}
 
-				int direction = _elbows[_id_main_node]->_physical.vx_last *-1;
-				_elbows[_id_main_node]->SetActive(-1, direction);
+				_elbows[_id_main_node]->_physical.vx_last *= -1;
+				_elbows[_id_main_node]->SetActive();
 				_last_time_change = 0;
 			}
 		}
@@ -75,7 +76,7 @@ void CBoss2Arm::Update(int time)
 		}
 
 		//Node chính sẽ lan truyền, kiểm tra để các node lân cận chuyển động theo
-		_elbows[_id_main_node]->Spreading();
+		_elbows[_id_main_node]->Spreading(-1);
 
 	}
 

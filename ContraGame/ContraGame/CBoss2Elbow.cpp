@@ -21,7 +21,7 @@ void CBoss2Elbow::LoadResources()
 		_live_sprite = new CSprite(rs->_boss2_elbow);
 		_die_sprite = new CSprite(rs->_effect_destroy);
 		_current_sprite = _live_sprite;
-		_radius = _id * (rs->_boss2_elbow->frame_width - 2);
+		_radius = _id * (rs->_boss2_elbow->frame_width - 4);
 		if (_radius != 0)
 		{
 			_delta_degrees = D3DXToDegree(acos(1 - BOSS2_DISTANCE_CHANGE * BOSS2_DISTANCE_CHANGE / (float)(2 * _radius* _radius)));
@@ -83,54 +83,72 @@ void CBoss2Elbow::Turning()
 void CBoss2Elbow::SetDeactivate()
 {
 	_is_active = false;
-	_is_spread = false;
-	_parent_id = -1;
 }
 
-void CBoss2Elbow::SetActive(int parent_id, int _direction)
+void CBoss2Elbow::SetActive()
 {
 	_is_active = true;
-	_parent_id = parent_id;
 	_last_degrees = _degrees;
-	_physical.vx_last = _direction;
 }
 
-void CBoss2Elbow::Spreading()
+void CBoss2Elbow::Spreading(int parent_id)
 {
 	if (_delta_degrees <= 0) return;
+	if (_next != NULL) _next->_physical.vx_last = _physical.vx_last;
+	if (_pre != NULL) _pre->_physical.vx_last = _physical.vx_last;
 
-	//Khi cờ hiệu lan truyền chưa được bật
-	if (!_is_spread)
+	if (_next != NULL && _next->_id != parent_id)
 	{
-		if (abs(_degrees - _last_degrees) >= _delta_degrees)
+		if (!_next->_is_active)
 		{
-			_is_spread = true;
+			int angle1 = _physical.vx_last > 0 ? _degrees : _next->_degrees;
+			int angle2 = _physical.vx_last > 0 ? _next->_degrees : _degrees;
+
+			if (angle1 > 270 && angle2 < 90)
+			{
+				angle2 += 360;
+			}
+
+			if (angle1 < 90 && angle2 > 270)
+			{
+				angle1 += 360;
+			}
+
+			if (angle1 - angle2 >= _delta_degrees)
+			{
+				/*int delta = _physical.vx_last > 0 ? -_delta_degrees : _delta_degrees;
+				_next->SetDegrees(_degrees + delta);*/
+				_next->SetActive();
+			}
 		}
+
+		_next->Spreading(_id);
 	}
-	//Khi cờ hiệu lan truyền đã bật 
-	else
+
+	if (_pre != NULL && _pre->_id != parent_id)
 	{
-		//Kiểm tra và duyệt node trước nó 
-		if (_pre != NULL && _pre->_id != _parent_id)
+		if (!_pre->_is_active)
 		{
-			if (!_pre->_is_active)
+			int angle1 = _physical.vx_last > 0 ? _degrees : _pre->_degrees;
+			int angle2 = _physical.vx_last > 0 ? _pre->_degrees : _degrees;
+
+			if (angle1 > 270 && angle2 < 90)
 			{
-				_pre->SetActive(_id, _physical.vx_last);
+				angle2 += 360;
 			}
 
-			_pre->Spreading();
-		}
-
-		//Kiểm tra và duyệt node sau nó
-		if (_next != NULL && _next->_id != _parent_id)
-		{
-			if (!_next->_is_active)
+			if (angle1 < 90 && angle2 > 270)
 			{
-				_next->SetActive(_id, _physical.vx_last);
+				angle1 += 360;
 			}
 
-			_next->Spreading();
+			if (angle1 - angle2 >= _delta_degrees)
+			{
+				_pre->SetActive();
+			}
 		}
+
+		_pre->Spreading(_id);
 	}
 }
 

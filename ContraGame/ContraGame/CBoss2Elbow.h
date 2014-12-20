@@ -14,9 +14,6 @@ protected:
 	int _delta_degrees;
 	int _radius;
 
-	int _parent_id;
-	bool _is_spread;
-
 	float _x_circle;
 	float _y_circle;
 
@@ -33,8 +30,8 @@ public:
 	void LoadResources();
 	void Update(int time);
 	void Draw();
-	void Spreading();
-	void SetActive(int parent_id, int _direction);
+	void Spreading(int parent_id);
+	void SetActive();
 	void SetDeactivate();
 	void SetDegrees(int degrees);
 };
