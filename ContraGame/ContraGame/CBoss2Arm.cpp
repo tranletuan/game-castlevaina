@@ -4,8 +4,9 @@ CBoss2Arm::CBoss2Arm(int id, SpecificType specific_type, D3DXVECTOR3 pos, int wi
 	:CObject(id, specific_type, Enemy, pos, width, height)
 {
 	_hp = 15;
-	_last_time_change = 0;
 	_length = 5;
+	_last_time_change = 0;
+	_elapsed_time = BOSS2_ELAPSED_CHANGE;
 	LoadResources();
 }
 
@@ -54,19 +55,28 @@ void CBoss2Arm::Update(int time)
 			}
 
 			DWORD  now = GetTickCount();
-			if (now - _last_time_change >= BOSS2_ELAPSED_CHANGE)
+			if (now - _last_time_change >= _elapsed_time)
 			{
-				_id_main_node = (rand() % 2 + 1) * 2;
-
 				//Tất cả các node đều phải ngừng hoạt động
 				for (map<int, CBoss2Elbow*>::iterator i = _elbows.begin(); i != _elbows.end(); i++)
 				{
 					CBoss2Elbow* elbow = (*i).second;
 					elbow->SetDeactivate();
+					_is_change = !_is_change;
 				}
 
-				_elbows[_id_main_node]->_physical.vx_last *= -1;
-				_elbows[_id_main_node]->SetActive();
+				if (_is_change)
+				{
+					_elapsed_time = BOSS2_ELAPSED_CHANGE;
+					_id_main_node = (rand() % 2 + 1) * 2;
+					_elbows[_id_main_node]->_physical.vx_last *= -1;
+					_elbows[_id_main_node]->SetActive();
+				}
+				else
+				{
+					_elapsed_time = BOSS2_ELAPSED_CHANGE - 1500;
+				}
+
 				_last_time_change = 0;
 			}
 		}
@@ -85,7 +95,10 @@ void CBoss2Arm::Update(int time)
 		}
 
 		//Node chính sẽ lan truyền, kiểm tra để các node lân cận chuyển động theo
-		_elbows[_id_main_node]->Spreading(-1);
+		if (_is_change)
+		{
+			_elbows[_id_main_node]->Spreading(-1);
+		}
 
 	}
 

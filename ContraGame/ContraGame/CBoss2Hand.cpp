@@ -4,28 +4,12 @@ CBoss2Hand::CBoss2Hand(int id, SpecificType specific_type, D3DXVECTOR3 pos, int 
 	:CBoss2Elbow(id, specific_type, pos, width, height)
 {
 	_hp = 1;
+	_max_bullet = BOSS2_ARM_MAX_BULLET;
 	LoadResources();
 }
 
 CBoss2Hand::~CBoss2Hand()
 {
-}
-
-void CBoss2Hand::LoadResources()
-{
-	if (_specific_type == Boss2_Hand)
-	{
-		CResourcesManager* rs = CResourcesManager::GetInstance();
-		_live_sprite = new CSprite(rs->_boss2_hand);
-		_die_sprite = new CSprite(rs->_effect_destroy);
-		_current_sprite = _live_sprite;
-		_max_bullet = BOSS2_ARM_MAX_BULLET;
-		_radius = _id * (rs->_boss2_elbow->frame_width - 4);
-		if (_radius != 0)
-		{
-			_delta_degrees = D3DXToDegree(acos(1 - BOSS2_DISTANCE_CHANGE * BOSS2_DISTANCE_CHANGE / (float)(2 * _radius* _radius)));
-		}
-	}
 }
 
 void CBoss2Hand::Update(int time)
