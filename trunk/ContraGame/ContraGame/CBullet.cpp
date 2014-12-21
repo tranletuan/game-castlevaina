@@ -98,8 +98,6 @@ void CBullet::CalcVelocity(float v_max)
 		_physical.vy = v_max * sqrt(1 - k) * sign;
 		_physical.vx += _vo; //Tổng vận tốc tọa độ gốc di chuyển và đạn di chuyển
 	}
-
-
 }
 
 void CBullet::Shoot(D3DXVECTOR3 pos, int angle, float v_max, float vo)

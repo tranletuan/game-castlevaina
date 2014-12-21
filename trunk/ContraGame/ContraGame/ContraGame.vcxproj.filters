@@ -264,6 +264,9 @@
     <Filter Include="Contra Game\Object\Boss\Boss2Hand">
       <UniqueIdentifier>{951ebaaa-44e2-4436-bb58-cc413aed49e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contra Game\Object\Bullet Game\Bullet Enemy\CB2Bullet">
+      <UniqueIdentifier>{60601fb0-cdf5-4865-b182-b2471289e5ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -484,6 +487,9 @@
     </ClCompile>
     <ClCompile Include="CBoss2Hand.cpp">
       <Filter>Contra Game\Object\Boss\Boss2Hand</Filter>
+    </ClCompile>
+    <ClCompile Include="CB2Bullet.cpp">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Enemy\CB2Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -720,6 +726,9 @@
     </ClInclude>
     <ClInclude Include="CBoss2Hand.h">
       <Filter>Contra Game\Object\Boss\Boss2Hand</Filter>
+    </ClInclude>
+    <ClInclude Include="CB2Bullet.h">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Enemy\CB2Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

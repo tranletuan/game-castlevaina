@@ -3,8 +3,9 @@
 CBoss2Arm::CBoss2Arm(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
 	:CObject(id, specific_type, Enemy, pos, width, height)
 {
-	_hp = 15;
+	_hp = 20;
 	_length = 5;
+	_count_change = 0;
 	_last_time_change = 0;
 	_elapsed_time = BOSS2_ELAPSED_CHANGE;
 	LoadResources();
@@ -45,65 +46,53 @@ void CBoss2Arm::LoadResources()
 
 void CBoss2Arm::Update(int time)
 {
-	if (_elbows.size() > 0)
+	if (_hp > 0 && _elbows.size() > 0)
 	{
-		if (_hp > 0){
-			//Random node nào sẽ là node chính
-			if (_last_time_change == 0)
+		DWORD  now = GetTickCount();
+		if (now - _last_time_change >= BOSS2_ELAPSED_CHANGE)
+		{
+			_id_main_node = 1;
+			_count_change++;
+			
+			//Tất cả các node đều phải ngừng hoạt động
+			for (map<int, CBoss2Elbow*>::iterator i = _elbows.begin(); i != _elbows.end(); i++)
 			{
-				_last_time_change = GetTickCount();
-			}
-
-			DWORD  now = GetTickCount();
-			if (now - _last_time_change >= _elapsed_time)
-			{
-				//Tất cả các node đều phải ngừng hoạt động
-				for (map<int, CBoss2Elbow*>::iterator i = _elbows.begin(); i != _elbows.end(); i++)
+				CBoss2Elbow* elbow = (*i).second;
+				if (elbow->_id <= _id_main_node)
 				{
-					CBoss2Elbow* elbow = (*i).second;
 					elbow->SetDeactivate();
-					_is_change = !_is_change;
 				}
-
-				if (_is_change)
-				{
-					_elapsed_time = BOSS2_ELAPSED_CHANGE;
-					_id_main_node = (rand() % 2 + 1) * 2;
-					_elbows[_id_main_node]->_physical.vx_last *= -1;
-					_elbows[_id_main_node]->SetActive();
-				}
-				else
-				{
-					_elapsed_time = BOSS2_ELAPSED_CHANGE - 1500;
-				}
-
-				_last_time_change = 0;
 			}
-		}
 
-		//Cập nhật từng node con
-		for (map<int, CBoss2Elbow*>::iterator i = _elbows.begin(); i != _elbows.end(); i++)
-		{
-			CBoss2Elbow* elbow = (*i).second;
-			elbow->Update(time);
-
-			//Tất cả đồng loạt die khi máu cánh tay bằng 0
-			if (_hp == 0)
+			if (_count_change < 4)
 			{
-				elbow->_hp = 0;
+				_elbows[_id_main_node]->SetActive();
 			}
-		}
+			else
+			{
+				_count_change = 0;
+			}
+			
 
-		//Node chính sẽ lan truyền, kiểm tra để các node lân cận chuyển động theo
-		if (_is_change)
-		{
-			_elbows[_id_main_node]->Spreading(-1);
+			_last_time_change = now;
 		}
-
 	}
 
+	//Cập nhật từng node con
+	for (map<int, CBoss2Elbow*>::iterator i = _elbows.begin(); i != _elbows.end(); i++)
+	{
+		CBoss2Elbow* elbow = (*i).second;
+		elbow->Update(time);
 
-	
+		//Tất cả đồng loạt die khi máu cánh tay bằng 0
+		if (_hp == 0)
+		{
+			elbow->_hp = 0;
+		}
+	}
+
+	//Node chính sẽ lan truyền, kiểm tra để các node lân cận chuyển động theo
+	_elbows[_id_main_node]->Spreading(-1);
 }
 
 void CBoss2Arm::Draw()

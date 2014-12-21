@@ -27,12 +27,8 @@ void CBoss2Elbow::LoadResources()
 
 	_die_sprite = new CSprite(rs->_effect_destroy);
 	_current_sprite = _live_sprite;
-
-	_radius = _id * (rs->_boss2_elbow->frame_width - 3);
-	if (_radius != 0)
-	{
-		_delta_degrees = D3DXToDegree(acos(1 - BOSS2_DISTANCE_CHANGE * BOSS2_DISTANCE_CHANGE / (float)(2 * _radius* _radius)));
-	}
+	_radius = _id * (rs->_boss2_elbow->frame_width - 1);
+	_delta_degrees = 25;
 }
 
 void CBoss2Elbow::Update(int time)
@@ -89,69 +85,72 @@ void CBoss2Elbow::Turning()
 void CBoss2Elbow::SetDeactivate()
 {
 	_is_active = false;
+	_physical.vx_last *= -1;
 }
 
 void CBoss2Elbow::SetActive()
 {
 	_is_active = true;
-	_last_degrees = _degrees;
 }
 
 void CBoss2Elbow::Spreading(int parent_id)
 {
 	if (_delta_degrees <= 0) return;
-	if (_next != NULL) _next->_physical.vx_last = _physical.vx_last;
-	if (_pre != NULL) _pre->_physical.vx_last = _physical.vx_last;
 
 	if (_next != NULL && _next->_id != parent_id)
 	{
-		if (!_next->_is_active)
+		int angle1 = _physical.vx_last > 0 ? _degrees : _next->_degrees;
+		int angle2 = _physical.vx_last > 0 ? _next->_degrees : _degrees;
+
+		if (angle1 > 270 && angle2 < 90)
 		{
-			int angle1 = _physical.vx_last > 0 ? _degrees : _next->_degrees;
-			int angle2 = _physical.vx_last > 0 ? _next->_degrees : _degrees;
+			angle2 += 360;
+		}
 
-			if (angle1 > 270 && angle2 < 90)
-			{
-				angle2 += 360;
-			}
+		if (angle1 < 90 && angle2 > 270)
+		{
+			angle1 += 360;
+		}
 
-			if (angle1 < 90 && angle2 > 270)
+		if (angle1 - angle2 >= _delta_degrees)
+		{
+			if (_is_active)
 			{
-				angle1 += 360;
-			}
-
-			if (angle1 - angle2 >= _delta_degrees)
-			{
-				/*int delta = _physical.vx_last > 0 ? -_delta_degrees : _delta_degrees;
-				_next->SetDegrees(_degrees + delta);*/
+				int delta = _physical.vx_last > 0 ? -_delta_degrees : _delta_degrees;
+				_next->SetDegrees(_degrees + delta);
 				_next->SetActive();
+				_next->_physical.vx_last = _physical.vx_last;
+			}
+			else
+			{
+				_next->SetDeactivate();
 			}
 		}
 
 		_next->Spreading(_id);
 	}
 
-	if (_pre != NULL && _pre->_id != parent_id)
+	if (_pre != NULL && _pre->_id != parent_id && _is_active)
 	{
-		if (!_pre->_is_active)
+		int angle1 = _physical.vx_last > 0 ? _degrees : _pre->_degrees;
+		int angle2 = _physical.vx_last > 0 ? _pre->_degrees : _degrees;
+
+		if (angle1 > 270 && angle2 < 90)
 		{
-			int angle1 = _physical.vx_last > 0 ? _degrees : _pre->_degrees;
-			int angle2 = _physical.vx_last > 0 ? _pre->_degrees : _degrees;
+			angle2 += 360;
+		}
 
-			if (angle1 > 270 && angle2 < 90)
-			{
-				angle2 += 360;
-			}
+		if (angle1 < 90 && angle2 > 270)
+		{
+			angle1 += 360;
+		}
 
-			if (angle1 < 90 && angle2 > 270)
-			{
-				angle1 += 360;
-			}
-
-			if (angle1 - angle2 >= _delta_degrees)
-			{
-				_pre->SetActive();
-			}
+		if (angle1 - angle2 >= _delta_degrees)
+		{
+			int delta = _physical.vx_last > 0 ? -_delta_degrees : _delta_degrees;
+			_pre->SetDegrees(_degrees + delta);
+			_pre->SetActive();
+			_pre->_physical.vx_last = _physical.vx_last;
 		}
 
 		_pre->Spreading(_id);
