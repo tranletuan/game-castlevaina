@@ -44,7 +44,7 @@ void CBoss2Hand::SetTarget(float x, float y)
 	if (!CheckTarget()) return; //Mục tiêu chưa vào khoảng cách tấn công
 
 	//vector chỉ phương của mục tiêu, xem như đối tượng enemy là tâm trục tọa độ
-	D3DXVECTOR3 vector = D3DXVECTOR3(_target.x - _physical.x, _target.y - _physical.y, 0);
+	D3DXVECTOR3 vector = D3DXVECTOR3(_target.x - _x_circle, _target.y - _y_circle, 0);
 
 	//Trường hợp đặc biệt thứ 1
 	if (vector.y == 0)
@@ -70,7 +70,10 @@ void CBoss2Hand::SetTarget(float x, float y)
 		_target_angle += 360;
 	}
 
-	//Attacking();
+	if (_weapon != NULL && !_is_active)
+	{
+		//Attacking();
+	}
 }
 
 void CBoss2Hand::Attacking()
@@ -89,12 +92,8 @@ void CBoss2Hand::Attacking()
 		_attack_angle = (angle_2 - _target_angle) < (_target_angle - angle_1) ? angle_2 : angle_1;
 		_attack_angle %= 360;
 
-		//Chỉnh tọa độ bắn
-		int x = _physical.x;
-		int y = _physical.y;
-
 		//Bắn
-		int id = _weapon->ShootingBulletNE(D3DXVECTOR3(x, y, 0), _attack_angle, 0);
+		int id = _weapon->ShootingBulletB2(D3DXVECTOR3(_x_circle, _y_circle, 0), _attack_angle, 0);
 
 		if (id >= 0)
 		{

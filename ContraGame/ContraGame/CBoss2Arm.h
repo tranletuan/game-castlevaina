@@ -13,6 +13,7 @@ protected:
 	int _id_main_node;
 	int _length;
 	bool _is_change;
+	int _count_change;
 
 public:
 	CBoss2Arm(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);

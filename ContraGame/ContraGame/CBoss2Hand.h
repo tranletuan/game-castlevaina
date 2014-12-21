@@ -10,7 +10,7 @@ protected:
 	CEnemyWeapon* _weapon;
 	D3DXVECTOR3 _target;
 	queue<int> _queue_id_bullet;
-
+	DWORD _last_time_shoot;
 	int _attack_angle;
 	int _target_angle;
 	int _max_bullet;

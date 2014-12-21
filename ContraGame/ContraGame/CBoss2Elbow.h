@@ -13,6 +13,7 @@ protected:
 	int _last_degrees;
 	int _delta_degrees;
 	int _radius;
+	int _delta_radius;
 
 	float _x_circle;
 	float _y_circle;

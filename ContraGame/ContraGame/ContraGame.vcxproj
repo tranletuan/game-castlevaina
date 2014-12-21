@@ -15,6 +15,7 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="BaseScene.cpp" />
     <ClCompile Include="CAutoDestroyBridge.cpp" />
+    <ClCompile Include="CB2Bullet.cpp" />
     <ClCompile Include="CBill.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CBBullet.cpp" />
@@ -90,6 +91,7 @@
     <ClInclude Include="Background.h" />
     <ClInclude Include="BaseScene.h" />
     <ClInclude Include="CAutoDestroyBridge.h" />
+    <ClInclude Include="CB2Bullet.h" />
     <ClInclude Include="CBill.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CBBullet.h" />
