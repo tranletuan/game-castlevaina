@@ -72,7 +72,7 @@ void CBoss2Hand::SetTarget(float x, float y)
 
 	if (_weapon != NULL && !_is_active)
 	{
-		//Attacking();
+		Attacking();
 	}
 }
 
