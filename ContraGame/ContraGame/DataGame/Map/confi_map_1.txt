@@ -1,6 +1,6 @@
 2
 RunMan
-ItemFly
+Item
 Ground
 Water
 WaterEffect1

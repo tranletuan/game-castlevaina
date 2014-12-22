@@ -142,6 +142,7 @@ void CResourcesManager::loadPlayGraphics()
 	_bullet_m = new CTexture(PATH_BULLET_M);
 	_bullet_ne = new CTexture(PATH_BULLET_NE);
 	_bullet_b = new CTexture(PATH_BULLET_B);
+	_bullet_b2 = new CTexture(PATH_BULLET_B2, 3);
 
 	//Effect
 	_effect_destroy = new CTexture(PATH_EFFECT_DESTROY, 3);
@@ -553,8 +554,7 @@ void CResourcesManager::loadTexture(ResourceID id)
 	case RESID_BOSS_2:
 		_boss2_elbow = new CTexture(PATH_BOSS2_ELBOW);
 		_boss2_hand = new CTexture(PATH_BOSS2_HAND);
-		_boss2_bg = new CTexture(PATH_BOSS2_BG);
-		_bullet_b2 = new CTexture(PATH_BULLET_B2, 3);
+		_boss2_bg = new CTexture(PATH_BOSS2_BG);		
 		break;
 	}
 }
