@@ -54,6 +54,8 @@ enum  SpecificType
 	ItemM_Stand, // item dung yen
 	ItemF_Stand,
 	ItemS_Stand,
+	ItemL_Stand,
+	ItemB_Stand,
 
 	// Boss
 	Boss1,

@@ -68,10 +68,10 @@ void CCamera::Update(int time)
 		}
 		break;
 	case 2:
-		if (view_port.y >= 0 && view_port.x <= rs->m_heightMap)
+		/*if (view_port.y >= 0 && view_port.x <= rs->m_heightMap)
 		{
 			UpdateCameraY(rs->m_posBill.y);
-		}
+		}*/
 		break;
 	}
 	rs->_camera = this;
@@ -112,13 +112,17 @@ void CCamera::processInput()
 	{
 		view_port.x += 2;
 	}
-	else if (rs->m_input->KeyDown(DIK_LEFTARROW))
+	if (rs->m_input->KeyDown(DIK_LEFTARROW))
 	{
 		view_port.x -= 2;
 	}
-	else if (rs->m_input->onKeyDown(DIK_UPARROW))
+	if (rs->m_input->KeyDown(DIK_UP))
 	{
-		view_port.x += 0;
+		view_port.y += 2;
+	}
+	if (rs->m_input->KeyDown(DIK_DOWN))
+	{
+		view_port.y -= 2;
 	}
 }
 

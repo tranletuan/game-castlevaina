@@ -252,20 +252,20 @@
     <Filter Include="Contra Game\Object\Boss\Boss2">
       <UniqueIdentifier>{d8b6d76a-b181-4756-82da-172ead1971a8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contra Game\Object\Boss\Boss1Gun">
-      <UniqueIdentifier>{08c67c7f-779c-4042-90dd-0537c94ffcef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contra Game\Object\Boss\Boss2Arm">
-      <UniqueIdentifier>{1d534e6f-b977-44b8-8925-8a1e7ef4661b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contra Game\Object\Boss\Boss2Elbow">
-      <UniqueIdentifier>{78e131e0-6ab5-4fa4-8cdd-931772f46b40}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contra Game\Object\Boss\Boss2Hand">
-      <UniqueIdentifier>{951ebaaa-44e2-4436-bb58-cc413aed49e9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contra Game\Object\Bullet Game\Bullet Enemy\CB2Bullet">
       <UniqueIdentifier>{60601fb0-cdf5-4865-b182-b2471289e5ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Boss\Boss2\Boss2Hand">
+      <UniqueIdentifier>{951ebaaa-44e2-4436-bb58-cc413aed49e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Boss\Boss2\Boss2Elbow">
+      <UniqueIdentifier>{78e131e0-6ab5-4fa4-8cdd-931772f46b40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Boss\Boss2\Boss2Arm">
+      <UniqueIdentifier>{1d534e6f-b977-44b8-8925-8a1e7ef4661b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Boss\Boss1\Boss1Gun">
+      <UniqueIdentifier>{08c67c7f-779c-4042-90dd-0537c94ffcef}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -477,16 +477,16 @@
       <Filter>Contra Game\Scene\SceneWin</Filter>
     </ClCompile>
     <ClCompile Include="CBoss2Arm.cpp">
-      <Filter>Contra Game\Object\Boss\Boss2Arm</Filter>
+      <Filter>Contra Game\Object\Boss\Boss2\Boss2Arm</Filter>
     </ClCompile>
     <ClCompile Include="CBoss2Elbow.cpp">
-      <Filter>Contra Game\Object\Boss\Boss2Elbow</Filter>
+      <Filter>Contra Game\Object\Boss\Boss2\Boss2Elbow</Filter>
     </ClCompile>
     <ClCompile Include="CBoss1Gun.cpp">
-      <Filter>Contra Game\Object\Boss\Boss1Gun</Filter>
+      <Filter>Contra Game\Object\Boss\Boss1\Boss1Gun</Filter>
     </ClCompile>
     <ClCompile Include="CBoss2Hand.cpp">
-      <Filter>Contra Game\Object\Boss\Boss2Hand</Filter>
+      <Filter>Contra Game\Object\Boss\Boss2\Boss2Hand</Filter>
     </ClCompile>
     <ClCompile Include="CB2Bullet.cpp">
       <Filter>Contra Game\Object\Bullet Game\Bullet Enemy\CB2Bullet</Filter>
@@ -716,16 +716,16 @@
       <Filter>Contra Game\Scene\SceneWin</Filter>
     </ClInclude>
     <ClInclude Include="CBoss2Arm.h">
-      <Filter>Contra Game\Object\Boss\Boss2Arm</Filter>
+      <Filter>Contra Game\Object\Boss\Boss2\Boss2Arm</Filter>
     </ClInclude>
     <ClInclude Include="CBoss2Elbow.h">
-      <Filter>Contra Game\Object\Boss\Boss2Elbow</Filter>
+      <Filter>Contra Game\Object\Boss\Boss2\Boss2Elbow</Filter>
     </ClInclude>
     <ClInclude Include="CBoss1Gun.h">
-      <Filter>Contra Game\Object\Boss\Boss1Gun</Filter>
+      <Filter>Contra Game\Object\Boss\Boss1\Boss1Gun</Filter>
     </ClInclude>
     <ClInclude Include="CBoss2Hand.h">
-      <Filter>Contra Game\Object\Boss\Boss2Hand</Filter>
+      <Filter>Contra Game\Object\Boss\Boss2\Boss2Hand</Filter>
     </ClInclude>
     <ClInclude Include="CB2Bullet.h">
       <Filter>Contra Game\Object\Bullet Game\Bullet Enemy\CB2Bullet</Filter>

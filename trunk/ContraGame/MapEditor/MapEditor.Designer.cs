@@ -84,6 +84,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.textBoxXHeight = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBG)).BeginInit();
             this.panel2.SuspendLayout();
@@ -158,6 +160,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBoxXHeight);
+            this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.comboBoxNameItem);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.comboBoxDir);
@@ -489,6 +493,9 @@
             this.imageListOB.Images.SetKeyName(4, "Obstacle.png");
             this.imageListOB.Images.SetKeyName(5, "SniperHide.png");
             this.imageListOB.Images.SetKeyName(6, "Boss1.png");
+            this.imageListOB.Images.SetKeyName(7, "BossGun.png");
+            this.imageListOB.Images.SetKeyName(8, "Fire.png");
+            this.imageListOB.Images.SetKeyName(9, "RockRoll.png");
             // 
             // imageListBG
             // 
@@ -501,6 +508,9 @@
             this.imageListBG.Images.SetKeyName(4, "WaterEffect2.png");
             this.imageListBG.Images.SetKeyName(5, "WaterEffect3.png");
             this.imageListBG.Images.SetKeyName(6, "Star.png");
+            this.imageListBG.Images.SetKeyName(7, "rock_fly.png");
+            this.imageListBG.Images.SetKeyName(8, "Ground_Electon.png");
+            this.imageListBG.Images.SetKeyName(9, "WaterFall.png");
             // 
             // buttonSave
             // 
@@ -636,6 +646,24 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // textBoxXHeight
+            // 
+            this.textBoxXHeight.Location = new System.Drawing.Point(189, 71);
+            this.textBoxXHeight.Name = "textBoxXHeight";
+            this.textBoxXHeight.Size = new System.Drawing.Size(28, 20);
+            this.textBoxXHeight.TabIndex = 13;
+            this.textBoxXHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxXHeight_KeyPress);
+            this.textBoxXHeight.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxXHeight_KeyUp);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(163, 71);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(20, 13);
+            this.label14.TabIndex = 12;
+            this.label14.Text = " X ";
+            // 
             // MapEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -732,6 +760,8 @@
         private System.Windows.Forms.ComboBox comboBoxDir;
         private System.Windows.Forms.ComboBox comboBoxNameItem;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TextBox textBoxXHeight;
+        private System.Windows.Forms.Label label14;
     }
 }
 
