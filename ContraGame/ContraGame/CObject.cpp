@@ -88,6 +88,14 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(ItemS_Stand);
 	}
+	else if (x == "ItemStandB")
+	{
+		setSpecificType(ItemB_Stand);
+	}
+	else if (x == "ItemStandL")
+	{
+		setSpecificType(ItemL_Stand);
+	}
 	else if (x == "WaterEffect1")
 	{
 		setSpecificType(Effect_Water);
@@ -124,7 +132,7 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(Ground_Electron);
 	}
-	else if (x == "FireRun")
+	else if (x == "Fire")
 	{
 		setSpecificType(Fire_Run);
 	}
@@ -135,6 +143,10 @@ void CObject::setSpecificType(string x)
 	else if (x == "RockRoll")
 	{
 		setSpecificType(Rock_Roll);
+	}
+	else if (x == "RockFly")
+	{
+		setSpecificType(Ground_RockFly);
 	}
 	else if (x == "SniperBoss")
 	{
@@ -147,6 +159,10 @@ void CObject::setSpecificType(string x)
 	else if (x == "SniperBlock")
 	{
 		setSpecificType(Sniper_Block);
+	}
+	else if (x == "WaterFall")
+	{
+		setSpecificType(Effect_WaterFall);
 	}
 }
 

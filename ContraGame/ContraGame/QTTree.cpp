@@ -219,6 +219,8 @@ CObject * QTTree::getObjectTrust(CObject *x)
 	case ItemM_Stand:
 	case ItemF_Stand:
 	case ItemS_Stand:
+	case ItemB_Stand:
+	case ItemL_Stand:
 		return new CItemStand(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	case Effect_Water:
 		return new CWaterEffect(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
@@ -252,6 +254,8 @@ CObject * QTTree::getObjectTrust(CObject *x)
 		return new CWaterFallE(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	case Boom_Throw:
 		return new CBoomThrow(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
+	case Ground_RockFly:
+		return new CRockFly(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	}
 }
 

@@ -30,11 +30,13 @@ ScenePlay::~ScenePlay()
 void ScenePlay::processInput()
 {
 	_player1->ProcessInput();
+	m_camera->processInput();
 
 	if (m_input->onKeyDown(DIK_RETURN))
 	{
 		m_nextScene = true;
 	}
+	
 }
 
 void ScenePlay::init()
@@ -129,7 +131,7 @@ void ScenePlay::update(float time)
 	{
 		_player1->GoingToNext();
 	}
-
+	
 	_boss_arm->Update(time);
 
 	UpdateGlobalVariable();
@@ -144,6 +146,8 @@ void ScenePlay::draw()
 	_player1->Draw();
 	_weapon_enemy->Draw();
 	_runmans->Draw();
+
+	
 	m_cameraHUD->draw();
 
 	_boss_arm->Draw();

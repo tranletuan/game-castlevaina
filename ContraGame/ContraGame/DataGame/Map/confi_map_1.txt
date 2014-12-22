@@ -13,4 +13,3 @@ Boss1
 StarEffect
 Brigde
 SniperBoss
-Boss2

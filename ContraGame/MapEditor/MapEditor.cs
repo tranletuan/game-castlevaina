@@ -22,7 +22,7 @@ namespace MapEditor
 
     public partial class MapEditor : Form
     {
-        int Xwidth;
+        int Xwidth,Xheight;
         Background frmBG;
         Image imageCursor = null;
         CursorCur CurrentCursor;
@@ -49,6 +49,9 @@ namespace MapEditor
             listViewOB.Items.Add("Obstacle", 4);
             listViewOB.Items.Add("SniperHide", 5);
             listViewOB.Items.Add("Boss1", 6);
+            listViewOB.Items.Add("BossGun", 7);
+            listViewOB.Items.Add("Fire", 8);
+            listViewOB.Items.Add("RockRoll", 9);
 
             imageListOB.TransparentColor = Color.Transparent;
 
@@ -77,7 +80,10 @@ namespace MapEditor
             listViewBG.Items.Add("WaterEffect1", 3);
             listViewBG.Items.Add("WaterEffect2", 4);
             listViewBG.Items.Add("WaterEffect3", 5);
-            listViewBG.Items.Add("StarEffect", 5);
+            listViewBG.Items.Add("StarEffect", 6);
+            listViewBG.Items.Add("RockFly", 7);
+            listViewBG.Items.Add("GroundElectron", 8);
+            listViewBG.Items.Add("WaterFall", 9);
 
             // other
             CurrentCursor = CursorCur.NONE;
@@ -102,7 +108,10 @@ namespace MapEditor
 
             textBoxXWidth.Text = "1";
             textBoxXWidth.Enabled = false;
+            textBoxXHeight.Text = "1";
+            textBoxXHeight.Enabled = false;
 
+            Xheight = Convert.ToInt32(textBoxXHeight.Text);
             Xwidth = Convert.ToInt32(textBoxXWidth.Text);
             buttonEdit.Enabled = false;
             comboBoxDir.SelectedIndex = 0;
@@ -194,8 +203,17 @@ namespace MapEditor
                     }
                     else if (imgIndex == 7)
                     {
-                        imageCursor = FileTool.ResizeImage(imageCursor, 24, 32);
+                        imageCursor = FileTool.ResizeImage(imageCursor, 12, 6);
                     }
+                    else if (imgIndex == 8)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 16, 16);
+                    }
+                    else if (imgIndex == 9)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 28, 28);
+                    }
+                   
                 }
             }
 
@@ -275,14 +293,20 @@ namespace MapEditor
                     else
                     {
                         // them vao list  
-                        string nameOb = textBoxNameOB.Text;
+                        string nameOb = textBoxNameOB.Text.Trim();
                         if (isItemStand)
                         {
                             nameOb = "ItemStand" + comboBoxNameItem.Text.Trim();
                         }
-
+                       
+                      
                         ObjectTile ob = new ObjectTile(p, (listObject.Count + 1), nameOb, Convert.ToInt32(textBoxX.Text.Trim()),
                             Convert.ToInt32(textBoxY.Text.Trim()), direction);
+                        if (nameOb == "RockRoll")
+                        {
+                            ob.Height = 240;
+                        }
+                      
                         listObject.Add(ob);
                         listObject.ElementAt(listObject.Count - 1).Pic.Click += new System.EventHandler(PictureBoxes_Click);
                         listObject.ElementAt(listObject.Count - 1).Pic.MouseMove += new System.Windows.Forms.MouseEventHandler(PictureBoxes_MouseMove);
@@ -411,9 +435,14 @@ namespace MapEditor
 
             resetButtonEdit();
             Xwidth = 1;
+            Xheight = 1;
             if (Convert.ToInt32(textBoxXWidth.Text.Trim()) > 0)
             {
                 Xwidth = Convert.ToInt32(textBoxXWidth.Text.Trim());
+            }
+            if (Convert.ToInt32(textBoxXHeight.Text.Trim()) > 0)
+            {
+                Xheight = Convert.ToInt32(textBoxXHeight.Text.Trim());
             }
 
 
@@ -454,7 +483,18 @@ namespace MapEditor
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 32 * Xwidth, 16);
                     }
-
+                    else if (imgIndex == 7)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 32 * Xwidth, 32);
+                    }
+                    else if (imgIndex == 8)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 128 * Xwidth, 16);
+                    }
+                    else if (imgIndex == 9)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 32 * Xwidth, 16*Xheight);
+                    }
 
                 }
             }
@@ -536,6 +576,7 @@ namespace MapEditor
             {
                 buttonEdit.Text = "Back";
                 textBoxXWidth.Enabled = true;
+                textBoxXHeight.Enabled = true;
             }
             else if (buttonEdit.Text == "Back")
             {
@@ -543,6 +584,7 @@ namespace MapEditor
                 {
                     int Xold = Xwidth; // gia tri Xwidth cu
                     Xwidth = 1;
+                    Xheight = 1;
                     imageCursor = FileTool.ResizeImage(imageCursor, imageCursor.Width * Xwidth / Xold, imageCursor.Height);
                     this.Cursor = new Cursor(((Bitmap)imageCursor).GetHicon());
                 }
@@ -584,6 +626,8 @@ namespace MapEditor
             buttonEdit.Text = "Edit";
             textBoxXWidth.Text = "1";
             textBoxXWidth.Enabled = false;
+            textBoxXHeight.Text = "1";
+            textBoxXHeight.Enabled = false;
 
         }
         private void PictureBoxes_MouseMove(object sender, EventArgs e)
@@ -599,6 +643,32 @@ namespace MapEditor
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             pictureBoxBG.Visible = !pictureBoxBG.Visible;
+        }
+
+        private void textBoxXHeight_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxXHeight_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (textBoxXHeight.Text.Trim() != "" && Convert.ToInt32(textBoxXHeight.Text.Trim()) > 0)
+            {
+                int Xold = Xheight; // gia tri Xwidth cu
+                Xheight = Convert.ToInt32(textBoxXHeight.Text);
+                imageCursor = FileTool.ResizeImage(imageCursor, imageCursor.Width, imageCursor.Height * Xheight / Xold);
+                this.Cursor = new Cursor(((Bitmap)imageCursor).GetHicon());
+            }
+            else
+            {
+                int Xold = Xheight; // gia tri Xwidth cu
+                Xheight = 1;
+                imageCursor = FileTool.ResizeImage(imageCursor, imageCursor.Width, imageCursor.Height * Xheight / Xold);
+                this.Cursor = new Cursor(((Bitmap)imageCursor).GetHicon());
+            }
         }
     }
 
