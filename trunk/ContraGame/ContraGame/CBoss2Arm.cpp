@@ -73,15 +73,17 @@ void CBoss2Arm::Update(int time)
 				_count_change = 0;
 			}
 			
-
 			_last_time_change = now;
 		}
 	}
 
+	//Node chính sẽ lan truyền, kiểm tra để các node lân cận chuyển động theo
+	_elbows[_id_main_node]->Spreading(-1);
+
 	//Cập nhật từng node con
-	for (map<int, CBoss2Elbow*>::iterator i = _elbows.begin(); i != _elbows.end(); i++)
+	for (int i = 0; i < _length; i++)
 	{
-		CBoss2Elbow* elbow = (*i).second;
+		CBoss2Elbow* elbow = _elbows[i];
 		elbow->Update(time);
 
 		//Tất cả đồng loạt die khi máu cánh tay bằng 0
@@ -91,8 +93,6 @@ void CBoss2Arm::Update(int time)
 		}
 	}
 
-	//Node chính sẽ lan truyền, kiểm tra để các node lân cận chuyển động theo
-	_elbows[_id_main_node]->Spreading(-1);
 }
 
 void CBoss2Arm::Draw()

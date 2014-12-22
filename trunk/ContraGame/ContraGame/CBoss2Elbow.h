@@ -10,15 +10,15 @@ protected:
 	CSprite* _die_sprite;
 
 	int _degrees;
-	int _last_degrees;
 	int _delta_degrees;
-	int _radius;
-	int _delta_radius;
+	float _radius;
+	float _delta_radius;
 
 	float _x_circle;
 	float _y_circle;
 
 	void Turning();
+	void CalRadius(int degrees, int pre_degrees);
 public:
 	CBoss2Elbow(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
 	~CBoss2Elbow();
