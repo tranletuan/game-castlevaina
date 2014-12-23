@@ -23,7 +23,7 @@ protected:
 public:
 	CRunman(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
 	~CRunman();
-	int _hp;
+
 	RMStatus _rm_status;
 	bool _stand_in_water;
 

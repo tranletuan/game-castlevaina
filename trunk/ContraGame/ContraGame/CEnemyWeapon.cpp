@@ -63,7 +63,7 @@ void CEnemyWeapon::LoadResources()
 		_queue_bullet_b2.push(bullet);
 	}
 
-	//EMBullet
+	//MEBullet
 	for (int i = 0; i < BULLET_ME_TOTAL; i++)
 	{
 		CBullet* bullet = new CMBullet(id++);
