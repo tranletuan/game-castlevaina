@@ -71,7 +71,7 @@ void CSniperHide::Update(int delta_time)
 			}
 
 			DWORD now = GetTickCount();
-			if (now - _last_time_shoot >= ENEMY_SNIPER_BOSS_TIME_WAIT)
+			if (now - _last_time_shoot >= ENEMY_SNIPER_HIDE_TIME_WAIT)
 			{
 				SetStatus(EAttack);
 				_last_time_shoot = 0;

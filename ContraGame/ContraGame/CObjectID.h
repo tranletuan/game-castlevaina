@@ -43,6 +43,7 @@ enum  SpecificType
 	Sniper_Boss,
 	Boom_Throw, // Quả boom ném map 3
 	Sniper_Block, // Sniper map 3
+	Sniper_Water,
 
 	// Item
 	ItemM,

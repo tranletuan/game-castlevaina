@@ -17,8 +17,8 @@ ScenePlay::ScenePlay()
 	_player1->SetWeapon(_weapon_player1);
 	_weapon_enemy = new CEnemyWeapon();
 	_runmans = new CRunmanManager();
-	_boss_arm = new CBoss2Arm(0, Boss2_Arm, D3DXVECTOR3(100, 100, 0), 16, 16, -1);
-
+	
+	test = new CSniperWater(0, Sniper_Water, D3DXVECTOR3(50, 30, 0), 16, 16);
 	init();
 }
 
@@ -132,7 +132,7 @@ void ScenePlay::update(float time)
 		_player1->GoingToNext();
 	}
 	
-	_boss_arm->Update(time);
+	test->Update(time);
 
 	UpdateGlobalVariable();
 }
@@ -146,11 +146,8 @@ void ScenePlay::draw()
 	_player1->Draw();
 	_weapon_enemy->Draw();
 	_runmans->Draw();
-
-	
 	m_cameraHUD->draw();
-
-	_boss_arm->Draw();
+	test->Draw();
 }
 
 void ScenePlay::destroy()
