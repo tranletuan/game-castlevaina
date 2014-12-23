@@ -273,6 +273,9 @@
     <Filter Include="Contra Game\Object\Enemy Game\SniperWater">
       <UniqueIdentifier>{12f0c77d-ebed-4c5a-9448-496350291c32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contra Game\Object\RunManFire">
+      <UniqueIdentifier>{5872aaef-4075-4a62-944d-938653e0fb9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -505,6 +508,9 @@
     </ClCompile>
     <ClCompile Include="CSniperWater.cpp">
       <Filter>Contra Game\Object\Enemy Game\SniperWater</Filter>
+    </ClCompile>
+    <ClCompile Include="CRunmanFire.cpp">
+      <Filter>Contra Game\Object\RunManFire</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -753,6 +759,9 @@
     </ClInclude>
     <ClInclude Include="CTank.h">
       <Filter>Contra Game\Object\Enemy Game\Tank</Filter>
+    </ClInclude>
+    <ClInclude Include="CRunmanFire.h">
+      <Filter>Contra Game\Object\RunManFire</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -35,6 +35,7 @@
     <ClCompile Include="CFBullet.cpp" />
     <ClCompile Include="CGround.cpp" />
     <ClCompile Include="CGroundCanon.cpp" />
+    <ClCompile Include="CRunmanFire.cpp" />
     <ClCompile Include="CSniperWater.cpp" />
     <ClCompile Include="CTank.cpp" />
     <ClCompile Include="CWaterEffect.cpp" />
@@ -115,6 +116,7 @@
     <ClInclude Include="CFire.h" />
     <ClInclude Include="CGround.h" />
     <ClInclude Include="CGroundCanon.h" />
+    <ClInclude Include="CRunmanFire.h" />
     <ClInclude Include="CSniperWater.h" />
     <ClInclude Include="CTank.h" />
     <ClInclude Include="CWaterEffect.h" />
@@ -202,8 +204,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
