@@ -256,6 +256,8 @@ CObject * QTTree::getObjectTrust(CObject *x)
 		return new CBoomThrow(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	case Ground_RockFly:
 		return new CRockFly(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
+	case Tank:
+		return new CTank(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	}
 }
 

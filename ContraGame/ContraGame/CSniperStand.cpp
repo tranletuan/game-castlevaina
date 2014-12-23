@@ -81,6 +81,8 @@ void CSniperStand::Attacking()
 
 			_attack_angle = (angle_2 - _target_angle) < (_target_angle - angle_1) ? angle_2 : angle_1;
 			_attack_angle %= 360;
+
+
 			_physical.vx_last = _attack_angle > 90 && _attack_angle < 270 ? -1 : 1;
 
 			//Chỉnh tọa độ bắn
