@@ -17,7 +17,7 @@ ScenePlay::ScenePlay()
 	_player1->SetWeapon(_weapon_player1);
 	_weapon_enemy = new CEnemyWeapon();
 	_runmans = new CRunmanManager();
-	_boss_arm = new CBoss2Arm(0, Boss2_Arm, D3DXVECTOR3(100, 100, 0), 16, 16);
+	_boss_arm = new CBoss2Arm(0, Boss2_Arm, D3DXVECTOR3(100, 100, 0), 16, 16, -1);
 
 	init();
 }

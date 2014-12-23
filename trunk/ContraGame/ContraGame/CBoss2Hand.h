@@ -19,7 +19,7 @@ protected:
 	void SetTarget(float x, float y);
 	void Attacking();
 public:
-	CBoss2Hand(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
+	CBoss2Hand(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height, int direction);
 	~CBoss2Hand();
 
 	void Update(int time);

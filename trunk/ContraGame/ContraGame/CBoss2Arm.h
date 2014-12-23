@@ -12,11 +12,12 @@ protected:
 	DWORD _elapsed_time;
 	int _id_main_node;
 	int _length;
-	bool _is_change;
 	int _count_change;
-
+	bool _is_boot;
+	bool _is_change;
+	
 public:
-	CBoss2Arm(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
+	CBoss2Arm(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height, int direction);
 	~CBoss2Arm();
 
 	void LoadResources();

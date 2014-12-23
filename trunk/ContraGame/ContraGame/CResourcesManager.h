@@ -162,7 +162,8 @@ public:
 	CTexture* _boss1_bg;
 	CTexture* _boss1_badge;
 	CTexture* _boss1_gun;
-	CTexture* _boss2_bg;
+	CTexture* _boss2_live;
+	CTexture* _boss2_die;
 	CTexture* _boss2_elbow;
 	CTexture* _boss2_hand;
 

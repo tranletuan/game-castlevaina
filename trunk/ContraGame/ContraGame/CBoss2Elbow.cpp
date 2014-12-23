@@ -1,11 +1,17 @@
 ﻿#include "CBoss2Elbow.h"
 
-CBoss2Elbow::CBoss2Elbow(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
+CBoss2Elbow::CBoss2Elbow(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height, int direction)
 	: CObject(id, specific_type, Enemy, pos, width, height)
 {
 	_hp = 1;
 	_is_active = true;
 	_delta_radius = 0;
+	_x_circle = _physical.x;
+	_y_circle = _physical.y;
+	_physical.vx_last = direction;
+	_physical.vx = direction > 0 ? BOSS2_V_BOOT : -BOSS2_V_BOOT;
+	_physical.vy = BOSS2_V_BOOT;
+	_degrees = direction > 0 ? 45 : 135;
 	LoadResources();
 }
 
@@ -212,4 +218,19 @@ void CBoss2Elbow::CalRadius(int degrees, int pre_degrees)
 	}
 
 	_delta_radius -= (_id - 1);
+}
+
+bool CBoss2Elbow::Boot(int time)
+{
+	D3DXVECTOR3 vector = D3DXVECTOR3(_x_circle - _physical.x, _y_circle - _physical.y, 0);
+	int distance = sqrt(vector.x * vector.x + vector.y* vector.y);
+
+	if (distance < _delta_radius)
+	{
+		_x_circle += _physical.vx * time;
+		_y_circle += _physical.vy * time;
+		return false;
+	}
+
+	return true;
 }

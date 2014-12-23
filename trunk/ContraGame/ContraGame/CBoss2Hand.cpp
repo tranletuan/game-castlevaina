@@ -1,7 +1,7 @@
 ﻿#include "CBoss2Hand.h"
 
-CBoss2Hand::CBoss2Hand(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
-	:CBoss2Elbow(id, specific_type, pos, width, height)
+CBoss2Hand::CBoss2Hand(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height, int direction)
+	:CBoss2Elbow(id, specific_type, pos, width, height, direction)
 {
 	_hp = 1;
 	_max_bullet = BOSS2_ARM_MAX_BULLET;
