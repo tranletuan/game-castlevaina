@@ -1,16 +1,19 @@
-﻿#ifndef CSNIPERBLOCK_H
-#define CSNIPERBLOCK_H
+﻿#ifndef CTANK_H
+#define CTANK_H
 
 #include "CEnemyUseGun.h"
 
-class CSniperBlock
-	:public CEnemyUseGun
+
+class CTank
+	: public CEnemyUseGun
 {
 private:
-	
+	float _distance_move; // khoảng cách di chuyển
+	int _count; // đếm số lần bắn
+
 public:
-	CSniperBlock(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
-	~CSniperBlock();
+	CTank(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
+	~CTank();
 
 	void LoadResources();
 	void Draw();
@@ -22,9 +25,8 @@ public:
 	void DrawWhenDie(D3DXVECTOR3 pos);
 	void Attacking();
 
-
+	
 };
-
 
 
 #endif

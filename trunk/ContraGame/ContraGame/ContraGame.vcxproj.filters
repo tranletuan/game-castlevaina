@@ -267,8 +267,11 @@
     <Filter Include="Contra Game\Object\Boss\Boss1\Boss1Gun">
       <UniqueIdentifier>{08c67c7f-779c-4042-90dd-0537c94ffcef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contra Game\Object\Enemy Game\Tank">
+      <UniqueIdentifier>{d0c289e5-b6b5-4180-83d5-6f5ea0379d8d}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Contra Game\Object\Enemy Game\SniperWater">
-      <UniqueIdentifier>{093d0029-6733-4f6b-803a-b2849c9a01a2}</UniqueIdentifier>
+      <UniqueIdentifier>{12f0c77d-ebed-4c5a-9448-496350291c32}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -496,6 +499,9 @@
     </ClCompile>
     <ClCompile Include="CBoss2.cpp">
       <Filter>Contra Game\Object\Boss\Boss2</Filter>
+    </ClCompile>
+    <ClCompile Include="CTank.cpp">
+      <Filter>Contra Game\Object\Enemy Game\Tank</Filter>
     </ClCompile>
     <ClCompile Include="CSniperWater.cpp">
       <Filter>Contra Game\Object\Enemy Game\SniperWater</Filter>
@@ -744,6 +750,9 @@
     </ClInclude>
     <ClInclude Include="CSniperWater.h">
       <Filter>Contra Game\Object\Enemy Game\SniperWater</Filter>
+    </ClInclude>
+    <ClInclude Include="CTank.h">
+      <Filter>Contra Game\Object\Enemy Game\Tank</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

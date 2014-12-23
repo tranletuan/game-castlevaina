@@ -153,8 +153,8 @@ public:
 	CTexture* _enemy_sniper_boss;
 	CTexture* _enemy_boom_throw;
 	CTexture* _enemy_sniper_block;
+	CTexture* _enemy_tank;
 	CTexture* _enemy_sniper_water;
-
 	// Item
 	CTexture* _item;
 	CTexture* _item_stand;

@@ -415,10 +415,15 @@ void CResourcesManager::loadAllInMap()
 				{
 					loadTexture(RESID_ITEM_STAND);
 				}
+				else if (line == "Tank")
+				{
+					loadTexture(RESID_ENEMY_TANK);
+				}
 				else if (line == "SniperWater")
 				{
 					loadTexture(RESID_ENEMY_SNIPER_WATER);
 				}
+				
 			}
 		}
 		myfile.close();
@@ -495,6 +500,12 @@ void CResourcesManager::loadTexture(ResourceID id)
 	case RESID_ENEMY_SNIPER_BLOCK:
 		_enemy_sniper_block = new CTexture(PATH_ENEMY_SNIPER_BLOCK, 2);
 		break;
+	case RESID_ENEMY_TANK:
+		_enemy_tank= new CTexture(PATH_ENEMY_TANK, 6,3);
+		break;
+	case RESID_ENEMY_SNIPER_WATER:
+		_enemy_sniper_water = new CTexture(PATH_ENEMY_SNIPER_WATER,3);
+		break;
 	case RESID_GROUND_GRASS:
 		_ground_grass = new CTexture(PATH_GROUND_GRASS);
 		break;
@@ -559,9 +570,6 @@ void CResourcesManager::loadTexture(ResourceID id)
 		_boss2_hand = new CTexture(PATH_BOSS2_HAND);
 		_boss2_live = new CTexture(PATH_BOSS2_LIVE, 3, 4);
 		_boss2_die = new CTexture(PATH_BOSS2_DIE);
-		break;
-	case RESID_ENEMY_SNIPER_WATER:
-		_enemy_sniper_water = new CTexture(PATH_ENEMY_SNIPER_WATER, 3);
 		break;
 	}
 }

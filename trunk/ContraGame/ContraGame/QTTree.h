@@ -22,6 +22,7 @@
 #include "CSniperBlock.h"
 #include "CWaterFallE.h"
 #include "CRockFly.h"
+#include "CTank.h"
 
 class QTTree
 {

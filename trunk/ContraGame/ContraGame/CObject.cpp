@@ -164,6 +164,14 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(Effect_WaterFall);
 	}
+	else if (x == "Tank")
+	{
+		setSpecificType(Tank);
+	}
+	else if (x == "SniperWater")
+	{
+		setSpecificType(Sniper_Water);
+	}
 }
 
 void CObject::setTrack(string x)
