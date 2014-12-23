@@ -491,6 +491,9 @@
     <ClCompile Include="CB2Bullet.cpp">
       <Filter>Contra Game\Object\Bullet Game\Bullet Enemy\CB2Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="CBoss2.cpp">
+      <Filter>Contra Game\Object\Boss\Boss2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Register.h">
@@ -729,6 +732,9 @@
     </ClInclude>
     <ClInclude Include="CB2Bullet.h">
       <Filter>Contra Game\Object\Bullet Game\Bullet Enemy\CB2Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoss2.h">
+      <Filter>Contra Game\Object\Boss\Boss2</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

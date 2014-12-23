@@ -88,7 +88,7 @@ void CRunmanManager::CheckActive()
 		{
 		case 1:
 		case 3:
-			if ((pos_check_active.x < 0 && pos.x > -ENEMY_RUN_MAN_DISTANCE_ACTIVE) ||
+			if ((pos_check_active.x < 0 && pos_check_active.x > -ENEMY_RUN_MAN_DISTANCE_ACTIVE) ||
 				(pos_check_active.x < kScreenWidth + ENEMY_RUN_MAN_DISTANCE_ACTIVE && pos_check_active.x > kScreenWidth))
 			{
 				Attacking(pos);

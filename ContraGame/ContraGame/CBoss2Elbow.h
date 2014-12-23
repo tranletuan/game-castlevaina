@@ -20,7 +20,7 @@ protected:
 	void Turning();
 	void CalRadius(int degrees, int pre_degrees);
 public:
-	CBoss2Elbow(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
+	CBoss2Elbow(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height, int direction);
 	~CBoss2Elbow();
 
 	CBoss2Elbow* _next = NULL;
@@ -35,6 +35,7 @@ public:
 	void SetActive();
 	void SetDeactivate();
 	void SetDegrees(int degrees);
+	bool Boot(int time);
 };
 
 #endif // !_CHAND_PART_H_

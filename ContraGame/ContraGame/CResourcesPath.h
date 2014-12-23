@@ -122,7 +122,8 @@
 #define PATH_BOSS1_BG ".//DataGame//Images//Game//Object//boss//boss1_bg.png"
 #define PATH_BOSS1_BAGDE ".//DataGame//Images//Game//Object//boss//boss1_badge.png"
 #define PATH_BOSS1_GUN ".//DataGame//Images//Game//Object//boss//boss1_gun.png"
-#define PATH_BOSS2_BG ".//DataGame//Images//Game//Object//boss//boss2_bg.png"
+#define PATH_BOSS2_LIVE ".//DataGame//Images//Game//Object//boss//boss2_live.png"
+#define PATH_BOSS2_DIE ".//DataGame//Images//Game//Object//boss//boss2_die.png"
 #define PATH_BOSS2_ELBOW ".//DataGame//Images//Game//Object//boss//boss2_elbow.png"
 #define PATH_BOSS2_HAND ".//DataGame//Images//Game//Object//boss//boss2_hand.png"
 #pragma endregion BossPath
