@@ -45,8 +45,11 @@
 #define BULLET_B_VY 5.0f
 #define BULLET_B_TOTAL 4
 
-#define BULLET_B2_V 0.07
+#define BULLET_B2_V 0.07f
 #define BULLET_B2_TOTAL 4
+
+#define BULLET_ME_V 0.07f
+#define BULLET_ME_TOTAL 4
 
 //GROUND
 #define GROUND_SIZE_NORMAL_X 32

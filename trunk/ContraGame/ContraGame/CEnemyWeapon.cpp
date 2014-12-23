@@ -62,6 +62,14 @@ void CEnemyWeapon::LoadResources()
 		bullet->LoadResources();
 		_queue_bullet_b2.push(bullet);
 	}
+
+	//EMBullet
+	for (int i = 0; i < BULLET_ME_TOTAL; i++)
+	{
+		CBullet* bullet = new CMBullet(id++);
+		bullet->LoadResources();
+		_queue_bullet_me.push(bullet);
+	}
 }
 
 void CEnemyWeapon::RemoveDisabledBullet()
@@ -85,6 +93,9 @@ void CEnemyWeapon::RemoveDisabledBullet()
 			break;
 		case BulletB2:
 			_queue_bullet_b2.push(bullet);
+			break;
+		case BulletM:
+			_queue_bullet_me.push(bullet);
 			break;
 		}
 	}
@@ -160,6 +171,21 @@ int CEnemyWeapon::ShootingBulletB2(D3DXVECTOR3 pos, int angle, float vo)
 		bullet->Shoot(pos, angle, BULLET_B2_V, vo);
 
 		_queue_bullet_b2.pop();
+		_list_bullet[bullet->_id] = bullet;
+		return bullet->_id;
+	}
+
+	return -1;
+}
+
+int CEnemyWeapon::ShootingBulletME(D3DXVECTOR3 pos, int angle, float vo)
+{
+	if (!_queue_bullet_me.empty())
+	{
+		CBullet* bullet = _queue_bullet_me.front();
+		bullet->Shoot(pos, angle, BULLET_ME_V, vo);
+
+		_queue_bullet_me.pop();
 		_list_bullet[bullet->_id] = bullet;
 		return bullet->_id;
 	}
