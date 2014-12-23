@@ -103,6 +103,7 @@
 #define PATH_ENEMY_SNIPER_BOSS ".//DataGame//Images//Game//Object//enemy//sniper_boss.png"
 #define PATH_ENEMY_BOOM_THROW ".//DataGame//Images//Game//Object//enemy//boomthrow.png"
 #define PATH_ENEMY_SNIPER_BLOCK ".//DataGame//Images//Game//Object//enemy//sniper_block.png"
+#define PATH_ENEMY_SNIPER_WATER ".//DataGame//Images//Game//Object//enemy//sniper_water.png"
 #pragma endregion EnemyPath
 
 #pragma region PlayerPath

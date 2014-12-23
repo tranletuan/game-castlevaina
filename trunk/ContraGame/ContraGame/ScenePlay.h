@@ -12,9 +12,8 @@
 #include "CListItemFly.h"
 #include "CRunManManager.h"
 #include "SceneManager.h"
-// test
-#include "CRockRoll.h"
-#include "CBoss2Arm.h"
+
+#include "CSniperWater.h"
 
 enum PlayState
 {
@@ -53,8 +52,7 @@ private:
 	CRunmanManager* _runmans;	
 	CObject* _boss;
 
-	CBoss2Arm* _boss_arm;
-
+	CSniperWater* test;
 public:
 	ScenePlay();
 	~ScenePlay();

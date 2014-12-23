@@ -415,7 +415,10 @@ void CResourcesManager::loadAllInMap()
 				{
 					loadTexture(RESID_ITEM_STAND);
 				}
-				
+				else if (line == "SniperWater")
+				{
+					loadTexture(RESID_ENEMY_SNIPER_WATER);
+				}
 			}
 		}
 		myfile.close();
@@ -556,6 +559,9 @@ void CResourcesManager::loadTexture(ResourceID id)
 		_boss2_hand = new CTexture(PATH_BOSS2_HAND);
 		_boss2_live = new CTexture(PATH_BOSS2_LIVE, 3, 4);
 		_boss2_die = new CTexture(PATH_BOSS2_DIE);
+		break;
+	case RESID_ENEMY_SNIPER_WATER:
+		_enemy_sniper_water = new CTexture(PATH_ENEMY_SNIPER_WATER, 3);
 		break;
 	}
 }
