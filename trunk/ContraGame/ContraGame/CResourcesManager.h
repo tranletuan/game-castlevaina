@@ -148,6 +148,7 @@ public:
 	CTexture* _enemy_wall_turret;
 	CTexture* _enemy_ground_canon;
 	CTexture* _enemy_run_man;
+	CTexture* _enemy_run_man_fire;
 	CTexture* _enemy_fire;
 	CTexture* _enemy_rock_roll;
 	CTexture* _enemy_sniper_boss;

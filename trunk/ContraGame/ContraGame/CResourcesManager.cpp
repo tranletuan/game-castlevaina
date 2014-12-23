@@ -423,6 +423,10 @@ void CResourcesManager::loadAllInMap()
 				{
 					loadTexture(RESID_ENEMY_SNIPER_WATER);
 				}
+				else if (line == "RunManFire")
+				{
+					loadTexture(RESID_ENEMY_RUN_MAN_FIRE);
+				}
 				
 			}
 		}
@@ -481,6 +485,9 @@ void CResourcesManager::loadTexture(ResourceID id)
 		break;
 	case RESID_ENEMY_RUN_MAN:
 		_enemy_run_man = new CTexture(PATH_ENEMY_RUN_MAN, 8);
+		break;
+	case RESID_ENEMY_RUN_MAN_FIRE:
+		_enemy_run_man_fire = new CTexture(PATH_ENEMY_RUN_MAN_FIRE, 2);
 		break;
 	case RESID_ENEMY_SINPER_HIDE:
 		_enemy_sniper_hide = new CTexture(PATH_ENEMY_SNIPER_HIDE, 4);

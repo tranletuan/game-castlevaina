@@ -26,7 +26,7 @@ void CRunman::Update(int delta_time)
 {
 	if (_enable)
 	{
-		if (_hp == 0)
+		if (_hp <= 0)
 		{
 			if (_physical.n == 0 && _physical.current_vy <= 0)
 			{

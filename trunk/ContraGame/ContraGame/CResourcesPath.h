@@ -98,6 +98,7 @@
 #define PATH_ENEMY_WALL_TURRET ".//DataGame//Images//Game//Object//enemy//wall_turret.png"
 #define PATH_ENEMY_GROUND_CANON ".//DataGame//Images//Game//Object//enemy//ground_canon.png"
 #define PATH_ENEMY_RUN_MAN ".//DataGame//Images//Game//Object//enemy//run_man.png"
+#define PATH_ENEMY_RUN_MAN_FIRE ".//DataGame//Images//Game//Object//enemy//run_man_fire.png"
 #define PATH_ENEMY_FIRE ".//DataGame//Images//Game//Object//enemy//fire.png"
 #define PATH_ENEMY_ROCK_ROLL ".//DataGame//Images//Game//Object//enemy//rock_roll.png"
 #define PATH_ENEMY_SNIPER_BOSS ".//DataGame//Images//Game//Object//enemy//sniper_boss.png"
