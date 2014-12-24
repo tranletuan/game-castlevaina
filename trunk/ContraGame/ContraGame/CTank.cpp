@@ -177,10 +177,16 @@ void CTank::Attacking()
 	//Giãn cách bắn 
 	if (now - _last_time_shoot >= ENEMY_SNIPER_STAND_ELAPSED_SHOOT)
 	{
+
+		if (_count == 9 && _enemy_status == EAttack)
+		{
+			_enemy_status = EWait;
+			_distance_move = 12;
+		}
+
 		//Kiểm tra số đạn đã bắn, nếu vẫn còn bắn được thì bắn
 		if (_queue_id_bullet.size() < _max_bullet)
 		{
-
 			_count++;
 
 			//2 góc liền kề với góc của mục tiêu
@@ -225,10 +231,6 @@ void CTank::Attacking()
 		}
 	}
 
-	if (_count == 9 && _enemy_status == EAttack)
-	{
-		_enemy_status = EWait;
-		_distance_move = 12;
-	}
+	
 
 }
