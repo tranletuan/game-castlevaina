@@ -10,6 +10,7 @@ class CTank
 private:
 	float _distance_move; // khoảng cách di chuyển
 	int _count; // đếm số lần bắn
+	float _distance_acti; // khoảng hoạt động
 
 public:
 	CTank(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);

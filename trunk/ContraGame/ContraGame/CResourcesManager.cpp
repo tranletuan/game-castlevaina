@@ -100,6 +100,7 @@ void CResourcesManager::loadLoadingGraphics()
 	//high sorce map 1
 	m_data = new CDatabase();
 	m_highScore = m_data->readHighScore(PATH_HIGHSCORE_1);
+
 }
 
 void CResourcesManager::loadLoadingAudio()

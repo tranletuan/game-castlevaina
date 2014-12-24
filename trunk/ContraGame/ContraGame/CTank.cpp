@@ -8,7 +8,9 @@ CTank::CTank(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int
 	_distance_move = 5;
 	_count = 0;
 	_attack_angle = 180;
+	_distance_acti = width;
 	LoadResources();
+	_physical.x = pos.x + width / 2;
 }
 
 CTank::~CTank()
@@ -33,46 +35,62 @@ void CTank::Draw()
 
 void CTank::Update(int delta_time)
 {
-	if (_physical.x + _live_sprite->sprite_texture->frame_width / 2 < CResourcesManager::GetInstance()->_camera->getPosX())
+	CResourcesManager *rs = CResourcesManager::GetInstance();
+	
+	_physical.SetBounds(0, 0, 0, 0);
+	// set cho camera di chuyển
+	if (rs->_camera->getState() == CamS_Follow && _count == 0
+		&& rs->m_posBill.x > _physical.x - _distance_acti)
 	{
-		_can_impact = false;
-		_physical.SetBounds(0, 0, 0, 0);
-	}
-	_physical.SetBounds(_physical.x, _physical.y, 80, 60);
+		rs->_camera->setState(CamS_Move);
+	}	
 
-	if (_enemy_status == EAttack)
+	// Khi camera dưng lại mới update tank
+	if (rs->_camera->getState() == CamS_Stop)
 	{
-		//Target mục tiêu
-		D3DXVECTOR2 pos_target = CResourcesManager::GetInstance()->m_posBill;
-		SetTarget(pos_target.x, pos_target.y);
+		_physical.SetBounds(_physical.x, _physical.y, 80, 60);
 
-		//Cập nhật lại những viên đạn có thể bắn trong list của enemy
-		_weapon->UpdateQueueIdBullet(_queue_id_bullet);
-	}
-	else if (_enemy_status == EWait)
-	{
-		if (_count <= 9)
+		// khi tank ra khỏi view
+		if (_physical.x + _live_sprite->sprite_texture->frame_width / 2 < rs->_camera->getPosX())
 		{
-			_physical.vx = -0.04f;
-			_distance_move += _physical.vx;
-			_physical.CalcPositionWithoutGravitation(delta_time);
-			if (_distance_move <= 0)
+			_can_impact = false;
+			_physical.SetBounds(0, 0, 0, 0);
+			rs->_camera->setState(CamS_Follow);
+		}
+
+		if (_enemy_status == EAttack)
+		{
+			//Target mục tiêu
+			D3DXVECTOR2 pos_target = rs->m_posBill;
+			SetTarget(pos_target.x, pos_target.y);
+
+			//Cập nhật lại những viên đạn có thể bắn trong list của enemy
+			_weapon->UpdateQueueIdBullet(_queue_id_bullet);
+		}
+		else if (_enemy_status == EWait)
+		{
+			if (_count <= 9)
 			{
-				_enemy_status = EAttack;
-				_physical.vx = 0;
+				_physical.vx = -0.04f;
+				_distance_move += _physical.vx;
+				_physical.CalcPositionWithoutGravitation(delta_time);
+				if (_distance_move <= 0)
+				{
+					_enemy_status = EAttack;
+					_physical.vx = 0;
+				}
 			}
 		}
-	}
 
-
-	// hp = 0
-
-	if (_hp == 0)
-	{
-		_enemy_status = EDie;
-		_physical.vx = 0;
-		_physical.SetBounds(0, 0, 0, 0);
-		_can_impact = false;
+		// hp = 0
+		if (_hp == 0)
+		{
+			_enemy_status = EDie;
+			_physical.vx = 0;
+			_physical.SetBounds(0, 0, 0, 0);
+			_can_impact = false;
+			rs->_camera->setState(CamS_Follow);
+		}
 	}
 
 }
