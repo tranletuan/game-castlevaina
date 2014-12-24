@@ -32,7 +32,7 @@ void CSniperBlock::Draw()
 void CSniperBlock::Update(int delta_time)
 {
 	//Target mục tiêu
-	D3DXVECTOR2 pos_target = CResourcesManager::GetInstance()->m_posBill;
+	D3DXVECTOR3 pos_target = CResourcesManager::GetInstance()->m_posBill;
 	SetTarget(pos_target.x, pos_target.y);
 
 	//Cập nhật lại những viên đạn có thể bắn trong list của enemy
@@ -68,6 +68,7 @@ void CSniperBlock::DrawWhenAttack(D3DXVECTOR3 pos)
 		_enemy_status = EWait;
 	}
 }
+
 void CSniperBlock::DrawWhenWait(D3DXVECTOR3 pos)
 {
 	_current_sprite->SelectFrameOf(0);
@@ -99,12 +100,11 @@ void CSniperBlock::Attacking()
 		//Kiểm tra số đạn đã bắn, nếu vẫn còn bắn được thì bắn
 		if (_queue_id_bullet.size() < _max_bullet)
 		{
-			
 			//Chỉnh tọa độ bắn
 			int x = _physical.x - 16;
 			int y = _physical.y + 10;
 
-			int id = _weapon->ShootingBulletNE(D3DXVECTOR3(x, y, 0), 180, 0);
+			int id = _weapon->ShootingBulletME(D3DXVECTOR3(x, y, 0), 180, 0);
 
 			if (id >= 0)
 			{
@@ -113,8 +113,6 @@ void CSniperBlock::Attacking()
 
 			_last_time_shoot = now;
 			SetStatus(EAttack);
-
-
 		}
 	}
 }

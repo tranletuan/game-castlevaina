@@ -56,6 +56,10 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(RunMan);
 	}
+	else if (x == "RunManFire")
+	{
+		setSpecificType(RunMan_Fire);
+	}
 	else if (x == "ItemR")
 	{
 		setSpecificType(ItemR);

@@ -13,12 +13,12 @@ class CRunman : public CObject
 protected:
 	CSprite* _live_sprite;
 	CSprite* _die_sprite;
-	
-	virtual void DrawWhenStand(D3DXVECTOR3 pos);
-	virtual void DrawWhenRun(D3DXVECTOR3);
-	virtual void DrawWhenAttack(D3DXVECTOR3 pos);
-	virtual void DrawWhenJump(D3DXVECTOR3 pos);
-	virtual void DrawWhenDie(D3DXVECTOR3 pos);
+
+	void virtual DrawWhenAttack(D3DXVECTOR3 pos);
+	void DrawWhenStand(D3DXVECTOR3 pos);
+	void DrawWhenRun(D3DXVECTOR3);
+	void DrawWhenJump(D3DXVECTOR3 pos);
+	void DrawWhenDie(D3DXVECTOR3 pos);
 	bool SetStatus(RMStatus status);
 public:
 	CRunman(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
@@ -27,10 +27,10 @@ public:
 	RMStatus _rm_status;
 	bool _stand_in_water;
 
-	virtual void Draw();
 	virtual void LoadResources();
 	virtual void Update(int delta_time);
 	virtual void SetTarget(D3DXVECTOR3 pos, D3DXVECTOR3 target);
+	void Draw();
 	bool Jumping();
 	void Standing(float y_ground, SpecificType ground_type);
 	void Dying();

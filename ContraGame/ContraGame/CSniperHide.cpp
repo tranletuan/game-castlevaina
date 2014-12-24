@@ -29,7 +29,7 @@ void CSniperHide::LoadResources()
 void CSniperHide::Update(int delta_time)
 {
 	//Target mục tiêu
-	D3DXVECTOR2 pos_target = CResourcesManager::GetInstance()->m_posBill;
+	D3DXVECTOR3 pos_target = CResourcesManager::GetInstance()->m_posBill;
 	SetTarget(pos_target.x, pos_target.y);
 
 	//Cập nhật lại những viên đạn có thể bắn trong list của enemy
