@@ -4,7 +4,7 @@ CCamera::CCamera()
 {
 	view_port.x = 0;
 	view_port.y = kScreenHeight;
-	_cam_state == CamS_Follow;
+	_state = CamS_Follow;
 	_vX = 2;
 
 }
@@ -13,65 +13,93 @@ CCamera::CCamera(float posX, float posY)
 {
 	view_port.x = posX;
 	view_port.y = posY;
-	_cam_state == CamS_Follow;
-	_isMove = false;
-	_isStop = false;
+	_state = CamS_Follow;
 	_vX = 0.08;
+	_vY = 0.08;
+	_distanceX = kScreenWidth / 2;
+	_distanceY = kScreenHeight / 2;
 }
 
 void CCamera::UpdateCameraX(float x)
 {
-
-	view_port.x = (int)x - kScreenWidth / 2;
-	if (view_port.x < 0)
+	if (x > view_port.x + kScreenWidth / 2)
 	{
-		view_port.x = 0;
+		view_port.x = (int)x - kScreenWidth / 2;
 	}
 }
 
 void CCamera::UpdateCameraY(float y)
 {
-	view_port.y = (int)y + kScreenHeight / 2;
-	if (view_port.y < 0)
+	if (y > view_port.y + kScreenHeight / 2)
 	{
-		view_port.y = 0;
+		view_port.y = (int)y - kScreenHeight / 2;
 	}
 }
 
 void CCamera::Update(int time)
 {
 	CResourcesManager* rs = CResourcesManager::GetInstance();
-	switch (rs->m_curMap)
+	switch (_state)
 	{
-	case 1:
-	case 3:
-		if (!_isMove)
+	case CamS_Move:
+		if (rs->m_curMap == 2)
 		{
-			if (view_port.x >= 0 && view_port.x <= rs->m_widthMap - kScreenWidth)
-			{
-				if ((int)rs->m_posBill.x < rs->m_widthMap - kScreenWidth)
-				{
-					if (!_isStop)
-					{
-						UpdateCameraX(rs->m_posBill.x);
-					}
-				}
-				else
-				{
-					_isMove = true;
-				}
-			}
+			MoveY(time);
 		}
 		else
 		{
-			MoveDistanceX(128, time);
+			MoveX(time);
 		}
 		break;
-	case 2:
-		/*if (view_port.y >= 0 && view_port.x <= rs->m_heightMap)
+	case CamS_Follow:
+		if (rs->m_curMap == 2)
 		{
-			UpdateCameraY(rs->m_posBill.y);
-		}*/
+			if (rs->m_posBill.y < rs->m_heightMap - kScreenHeight)
+			{
+				UpdateCameraY(rs->m_posBill.x);
+			}
+			else
+			{
+				_state = CamS_Move;
+			}
+		}
+		else if (rs->m_curMap == 3)
+		{
+			UpdateCameraX(rs->m_posBill.x);
+		}
+		else if (rs->m_curMap == 1)
+		{
+			if (rs->m_posBill.x < rs->m_widthMap - kScreenWidth)
+			{
+				UpdateCameraX(rs->m_posBill.x);
+			}
+			else
+			{
+				_state = CamS_Move;
+			}
+		}
+		break;
+	case CamS_Stop:
+		if (rs->m_curMap == 2)
+		{
+			if (rs->m_heightMap - kScreenHeight < view_port.y)
+			{
+				view_port.y = rs->m_heightMap - kScreenHeight;
+			}
+		}
+		else if (rs->m_curMap == 3)
+		{
+
+		}
+		else if (rs->m_curMap == 1)
+		{
+			if (rs->m_widthMap - kScreenWidth < view_port.x)
+			{
+				view_port.x = rs->m_widthMap - kScreenWidth;
+			}
+		}
+		break;
+	default:
 		break;
 	}
 	rs->_camera = this;
@@ -131,16 +159,32 @@ D3DXVECTOR3 CCamera::Transform(D3DXVECTOR3 pos)
 	return Transform(pos.x, pos.y);
 }
 
-void CCamera::MoveDistanceX(float distance, int time)
+void CCamera::MoveX(int time)
 {
-	if (view_port.x < CResourcesManager::GetInstance()->m_widthMap - kScreenWidth)
+	int delta = (int)time*_vX;
+	view_port.x += delta;
+	if (_distanceX <= 0)
 	{
-		int delta = (int)time*_vX;
-		view_port.x += delta;
+		_state = CamS_Stop;
+		_distanceX = kScreenWidth / 2;
 	}
 	else
 	{
-		_isStop = true;
+		_distanceX -= delta;
 	}
+}
 
+void CCamera::MoveY(int time)
+{
+	int delta = (int)time*_vY;
+	view_port.y += delta;
+	if (_distanceY <= 0)
+	{
+		_state = CamS_Stop;
+		_distanceY = kScreenHeight / 2;
+	}
+	else
+	{
+		_distanceY -= delta;
+	}
 }

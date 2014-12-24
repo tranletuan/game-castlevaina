@@ -16,10 +16,11 @@ class CResourcesManager;
 class CCamera
 {
 private:
-	CamState _cam_state;
-	bool _isMove;
-	bool _isStop;
+	CamState _state;	
 	float _vX; // Vận tốc vX
+	float _vY;
+	float _distanceX; // khoảng di chuyển theo X
+	float _distanceY; 
 
 public:
 	D3DXVECTOR2 view_port;
@@ -41,10 +42,11 @@ public:
 	int getHeight(){ return kScreenHeight; }	
 	void setVx(float x){ _vX = 0; }
 	float getVx(){ return _vX; }
-	void setState(CamState x){ _cam_state = x; }
-	CamState getState(){ return _cam_state; }
+	void setState(CamState x){ _state = x; }
+	CamState getState(){ return _state; }
 
-	void MoveDistanceX( float distance, int time); // Di chuyển 1 khoảng cách khi tới điểm theo X
+	void MoveX( int time); // Di chuyển  theo X
+	void MoveY(int time); // Di chuyển  theo Y
 };
 
 
