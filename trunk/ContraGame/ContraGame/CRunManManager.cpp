@@ -12,6 +12,8 @@ CRunmanManager::~CRunmanManager()
 void CRunmanManager::LoadResources()
 {
 	int id = 0;
+
+	//Runman
 	for (int i = 0; i < ENEMY_RUN_MAN_TOTAL; i++)
 	{
 		CRunman* runman = new CRunman(
@@ -25,14 +27,34 @@ void CRunmanManager::LoadResources()
 		_queue_runman.push(runman);
 	}
 
+	//Runman Fire
+	for (int i = 0; i < ENEMY_RUN_MAN_FIRE_TOTAL; i++)
+	{
+		CRunman* runman = new CRunmanFire(
+			id++,
+			RunMan_Fire,
+			D3DXVECTOR3(0, 0, 0),
+			ENEMY_RUN_MAN_BOUNDS_WIDTH,
+			ENEMY_RUN_MAN_BOUNDS_HEIGHT);
+
+		runman->LoadResources();
+		_queue_runman_fire.push(runman);
+	}
+
 	vector<CObject*> list_notree = CResourcesManager::GetInstance()->listObNoTree;
 	for (vector<CObject*>::iterator i = list_notree.begin(); i != list_notree.end(); i++)
 	{
 		CObject* ob = (*i);
-		if (ob->_specific_type != RunMan) continue;
-
-		D3DXVECTOR3 pos = D3DXVECTOR3(ob->_physical.x, ob->_physical.y, 0);
-		_position_active.push_back(pos);
+		if (ob->_specific_type == RunMan)
+		{
+			D3DXVECTOR3 pos = D3DXVECTOR3(ob->_physical.x, ob->_physical.y, 0);
+			_pos_runman_active.push_back(pos);
+		}
+		else if (ob->_specific_type == RunMan_Fire)
+		{
+			D3DXVECTOR3 pos = D3DXVECTOR3(ob->_physical.x, ob->_physical.y, 0);
+			_pos_runman_fire_active.push_back(pos);
+		}
 	}
 }
 
@@ -77,30 +99,63 @@ void CRunmanManager::CheckActive()
 {
 	CCamera* cam = CResourcesManager::GetInstance()->_camera;
 
-	for (int i = 0; i < _position_active.size(); i++)
+	//Check Active Run Man
+	for (int i = 0; i < _pos_runman_active.size(); i++)
 	{
-		D3DXVECTOR3 pos = _position_active.at(i);
+		D3DXVECTOR3 pos = _pos_runman_active.at(i);
 		D3DXVECTOR3 pos_check_active = cam->Transform(pos);
 
 		int curMap = CResourcesManager::GetInstance()->m_curMap;
 
 		switch (curMap)
 		{
+		case 2:
+			if (pos_check_active.y < kScreenHeight / 2 - ENEMY_RUN_MAN_FIRE_ATTACK_DISTANCE ||
+				pos_check_active.y > kScreenHeight / 2 + ENEMY_RUN_MAN_FIRE_ATTACK_DISTANCE)
+			{
+				break;
+			}
 		case 1:
 		case 3:
 			if ((pos_check_active.x < 0 && pos_check_active.x > -ENEMY_RUN_MAN_DISTANCE_ACTIVE) ||
 				(pos_check_active.x < kScreenWidth + ENEMY_RUN_MAN_DISTANCE_ACTIVE && pos_check_active.x > kScreenWidth))
 			{
-				Attacking(pos);
+				RunManAttacking(pos);
 			}
 			break;
+		}
+	}
+
+	//Check Active Run Man Fire
+	//Check Active Run Man
+	for (int i = 0; i < _pos_runman_fire_active.size(); i++)
+	{
+		D3DXVECTOR3 pos = _pos_runman_fire_active.at(i);
+		D3DXVECTOR3 pos_check_active = cam->Transform(pos);
+
+		int curMap = CResourcesManager::GetInstance()->m_curMap;
+
+		switch (curMap)
+		{
 		case 2:
+			if (pos_check_active.y < kScreenHeight / 2 - ENEMY_RUN_MAN_FIRE_ATTACK_DISTANCE ||
+				pos_check_active.y > kScreenHeight / 2 + ENEMY_RUN_MAN_FIRE_ATTACK_DISTANCE)
+			{
+				break;
+			}
+		case 1:
+		case 3:
+			if ((pos_check_active.x < 0 && pos_check_active.x > -ENEMY_RUN_MAN_DISTANCE_ACTIVE) ||
+				(pos_check_active.x < kScreenWidth + ENEMY_RUN_MAN_DISTANCE_ACTIVE && pos_check_active.x > kScreenWidth))
+			{
+				RunManFireAttacking(pos);
+			}
 			break;
 		}
 	}
 }
 
-void CRunmanManager::Attacking(D3DXVECTOR3 pos)
+void CRunmanManager::RunManAttacking(D3DXVECTOR3 pos)
 {
 	if(!_queue_runman.empty())
 	{
@@ -111,6 +166,23 @@ void CRunmanManager::Attacking(D3DXVECTOR3 pos)
 			runman->SetTarget(pos, CResourcesManager::GetInstance()->m_posBill);
 
 			_queue_runman.pop();
+			_list_runman[runman->_id] = runman;
+			_last_time = now;
+		}
+	}
+}
+
+void CRunmanManager::RunManFireAttacking(D3DXVECTOR3 pos)
+{
+	if (!_queue_runman_fire.empty())
+	{
+		DWORD now = GetTickCount();
+		if (now - _last_time >= ENEMY_RUN_MAN_ELAPSED_TIME_ATTACK)
+		{
+			CRunman* runman = _queue_runman_fire.front();
+			runman->SetTarget(pos, CResourcesManager::GetInstance()->m_posBill);
+
+			_queue_runman_fire.pop();
 			_list_runman[runman->_id] = runman;
 			_last_time = now;
 		}
@@ -171,7 +243,7 @@ void CRunmanManager::CheckCollisionWithPlayer(CPlayerWeapon* weapon, CBill* play
 			CRunman* runman = (*i).second;
 
 			//Kiểm tra va chạm với đạn người chơi 1
-			if (runman->_hp > 0)
+			if (runman->_hp > 0 && runman->_can_impact)
 			{
 				if (weapon->CheckCollision(runman) != NoCollision)
 				{
@@ -204,6 +276,9 @@ void CRunmanManager::RemoveDisableRunman()
 		{
 		case RunMan:
 			_queue_runman.push(runman);
+			break;
+		case RunMan_Fire:
+			_queue_runman_fire.push(runman);
 			break;
 		}
 	}

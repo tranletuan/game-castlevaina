@@ -14,7 +14,7 @@ void CRunman::LoadResources()
 {
 	CResourcesManager* rs = CResourcesManager::GetInstance();
 
-	if (_specific_type == RunMan)
+	if (_specific_type == RunMan || _specific_type == RunMan_Fire)
 	{
 		_live_sprite = new CSprite(rs->_enemy_run_man);
 		_die_sprite = new CSprite(rs->_effect_die);
@@ -24,22 +24,22 @@ void CRunman::LoadResources()
 
 void CRunman::Update(int delta_time)
 {
-	if (_enable)
-	{
-		if (_hp <= 0)
-		{
-			if (_physical.n == 0 && _physical.current_vy <= 0)
-			{
-				SetStatus(RMDie);
-			}
-		}
-		else
-		{
-			_physical.SetBounds(_physical.x, _physical.y, ENEMY_RUN_MAN_BOUNDS_WIDTH, ENEMY_RUN_MAN_BOUNDS_HEIGHT);
-		}
+	if (!_enable) return;
 
-		_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
+	if (_hp <= 0)
+	{
+		_physical.SetBounds(0, 0, 0, 0);
+		if (_physical.n == 0 && _physical.current_vy <= 0)
+		{
+			SetStatus(RMDie);
+		}
 	}
+	else
+	{
+		_physical.SetBounds(_physical.x, _physical.y, ENEMY_RUN_MAN_BOUNDS_WIDTH, ENEMY_RUN_MAN_BOUNDS_HEIGHT);
+	}
+
+	_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
 }
 
 void CRunman::Draw()
@@ -73,7 +73,7 @@ void CRunman::Draw()
 void CRunman::SetTarget(D3DXVECTOR3 pos, D3DXVECTOR3 target)
 {
 	_physical.x = pos.x;
-	_physical.y = target.y + 35;
+	_physical.y = pos.y;
 	_physical.vy = 0;
 	_physical.n = 0;
 	_physical.time_in_space = 0;
@@ -82,6 +82,7 @@ void CRunman::SetTarget(D3DXVECTOR3 pos, D3DXVECTOR3 target)
 	_hp = 1;
 	_enable = true;
 	_rm_status = RMRun;
+	_can_impact = true;
 	_die_sprite->Reset();
 	_current_sprite = _live_sprite;
 
@@ -103,10 +104,6 @@ void CRunman::DrawWhenStand(D3DXVECTOR3 pos)
 	{
 		pos.y += (ENEMY_RUN_MAN_BOUNDS_HEIGHT - 5);
 		_current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 6, 7, 150);
-	}
-	else
-	{
-		_enable = false;
 	}
 }
 
@@ -176,6 +173,7 @@ void CRunman::Standing(float y_ground, SpecificType ground_type)
 			if (ground_type == Ground_Water)
 			{
 				_rm_status = RMStand;
+				_can_impact = false;
 				_physical.SetBounds(0, 0, 0, 0);
 			}
 			else

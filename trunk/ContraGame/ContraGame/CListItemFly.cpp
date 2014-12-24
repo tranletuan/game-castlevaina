@@ -17,12 +17,13 @@ void CListItemFly::LoadResources()
 	vector<CObject*> listObNoneTreeX;
 	for (int i = 0; i < _listItems.size(); i++)
 	{
-		if (_listItems.at(i)->getSpecificType() != RunMan)
+		if (_listItems.at(i)->getSpecificType() != RunMan && _listItems.at(i)->getSpecificType() != RunMan_Fire)
 		{
 			CObject *ob = getObjectTrust(_listItems.at(i));
 			listObNoneTreeX.push_back(ob);
 		}		
 	}
+
 	_listItems = listObNoneTreeX;
 }
 
