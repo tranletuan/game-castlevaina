@@ -105,7 +105,6 @@
 108 WaterFall 0 1363 32 112 
 109 WaterFall 31 1428 32 64 
 110 WaterFall 130 1471 32 64 
-111 WaterFall 128 1366 96 32 
 112 WaterFall 96 1538 160 48 
 114 WaterFall 128 677 128 16 
 115 WaterFall 64 807 128 48 
