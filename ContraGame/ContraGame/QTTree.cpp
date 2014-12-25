@@ -260,6 +260,11 @@ CObject * QTTree::getObjectTrust(CObject *x)
 		return new CTank(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	case Sniper_Water:
 		return new CSniperWater(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
+	case Boss2:
+		return new CBoss2(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
+	case Boss2_Arm:
+		int direction = posX > kScreenWidth / 2 ? 1 : -1;
+		return new CBoss2Arm(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight(), direction);
 	}
 }
 

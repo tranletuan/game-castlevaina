@@ -17,8 +17,6 @@ ScenePlay::ScenePlay()
 	_player1->SetWeapon(_weapon_player1);
 	_weapon_enemy = new CEnemyWeapon();
 	_runmans = new CRunmanManager();
-	
-	test = new CSniperWater(0, Sniper_Water, D3DXVECTOR3(100, 30, 0), 16, 16);
 	init();
 }
 
@@ -36,7 +34,6 @@ void ScenePlay::processInput()
 	{
 		m_nextScene = true;
 	}
-	
 }
 
 void ScenePlay::init()
@@ -131,8 +128,7 @@ void ScenePlay::update(float time)
 	{
 		_player1->GoingToNext();
 	}
-	
-	test->Update(time);
+
 
 	UpdateGlobalVariable();
 }
@@ -141,13 +137,12 @@ void ScenePlay::draw()
 {
 	m_background->draw();
 	m_tree->draw();
-	m_listItemFLy->Draw();
+	m_listItemFLy->Draw();	
+	_runmans->Draw();
+	_weapon_enemy->Draw();
 	_weapon_player1->Draw();
 	_player1->Draw();
-	_weapon_enemy->Draw();
-	_runmans->Draw();
 	m_cameraHUD->draw();
-	test->Draw();
 }
 
 void ScenePlay::destroy()
@@ -178,7 +173,8 @@ void ScenePlay::UpdateFullListObjetcInView()
 				if (ob->_enable)
 				{
 					_enemies.push_back(ob);
-					if (ob->_specific_type == Boss1)
+					if (ob->_specific_type == Boss1 ||
+						ob->_specific_type == Boss2)
 					{
 						_boss = ob;
 					}
@@ -222,7 +218,8 @@ void ScenePlay::ProcessGroundsWithOneAnother()
 				}
 			}
 
-			//Xét va chạm với người chơi 2
+			//Xét va chạm với những loại đạn có khả năng chạm đất
+			_weapon_enemy->CheckCollisionWithGround(ground);
 
 			//Xét va chạm với các đối tượng k có trong quadtree
 			_runmans->CheckCollisionWithGround(ground);
@@ -255,8 +252,6 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 				}
 			}
 
-			//Va chạm với người chơi 2
-
 			//Va chạm với đạn người chơi 1
 			if (enemy->_hp > 0)
 			{
@@ -271,8 +266,6 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 			{
 				enemy->_hp = 0;
 			}
-
-
 		}
 	}
 

@@ -180,7 +180,10 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(Boss2);
 	}
-	
+	else if (x == "Boss2Arm")
+	{
+		setSpecificType(Boss2_Arm);
+	}
 }
 
 void CObject::setTrack(string x)

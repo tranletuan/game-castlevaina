@@ -24,6 +24,8 @@
 #include "CRockFly.h"
 #include "CTank.h"
 #include "CSniperWater.h"
+#include "CBoss2.h"
+#include "CBoss2Arm.h"
 
 class QTTree
 {

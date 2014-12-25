@@ -93,7 +93,25 @@ void CSniperWater::SetTarget(float x, float y)
 	_target.x = x;
 	_target.y = y;
 
-	if (_target.y >= _physical.y)
+	int cur_map = CResourcesManager::GetInstance()->m_curMap;
+	bool is_attack = false;
+
+	//Tùy theo map mà quái bắt mục tiêu theo cách khác nhau
+	switch (cur_map)
+	{
+	case 1:
+	case 3:
+		if (abs(_physical.x - _target.x) <= ENEMY_SNIPER_WATER_DISTANCE_ATTACK)
+			is_attack = true;
+		break;
+	case 2:
+		if (_target.y - _physical.y <= ENEMY_SNIPER_WATER_DISTANCE_ATTACK &&
+			_target.y > _physical.y)
+			is_attack = true;
+		break;
+	}
+
+	if (is_attack)
 	{
 		_attack_angle = 90;
 		SetWeapon(CResourcesManager::GetInstance()->_weapon_enemy);

@@ -125,6 +125,30 @@ void CEnemyWeapon::CheckCollisionWithPlayer(CBill* player)
 	}
 }
 
+void CEnemyWeapon::CheckCollisionWithGround(CObject* ground)
+{
+	if (ground->_specific_type != Ground_Grass) return;
+	if (_list_bullet.size() > 0)
+	{
+		for (map<int, CBullet*>::iterator i = _list_bullet.begin(); i != _list_bullet.end(); i++)
+		{
+			CBullet* bullet = (*i).second;
+			if (bullet->_specific_type != BulletSP) continue;
+
+			if (bullet->CheckCollision(ground) == TopCollision && 
+				bullet->_physical.current_vy < 0)
+			{
+				bullet->OnTarget();
+			}
+		}
+	}
+}
+
+void CEnemyWeapon::CheckCollisionWithWeaponPlayer(CPlayerWeapon* weapon)
+{
+
+}
+
 void CEnemyWeapon::UpdateQueueIdBullet(queue<int> &queue_id_bullet)
 {
 	int i = 0;
