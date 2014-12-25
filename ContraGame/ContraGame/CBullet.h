@@ -11,6 +11,8 @@ protected:
 	float _vo;
 	virtual void CalcVelocity(float v_max);
 	void SetAngle(int angle);
+	void Moving(float v_max);
+
 	CSprite* _ontarget_sprite;
 	CSprite* _bullet_sprite;
 
@@ -21,7 +23,6 @@ public:
 	virtual void LoadResources();
 	virtual void Update(int delta_time);
 	virtual void Draw() = 0;
-	virtual void Moving(float v_max) ;
 	virtual void Shoot(D3DXVECTOR3 pos, int angle, float v_max, float vo = 0);
 	void OnTarget();
 };

@@ -144,6 +144,7 @@ void CResourcesManager::loadPlayGraphics()
 	_bullet_ne = new CTexture(PATH_BULLET_NE);
 	_bullet_b = new CTexture(PATH_BULLET_B);
 	_bullet_b2 = new CTexture(PATH_BULLET_B2, 4);
+	_bullet_sp = new CTexture(PATH_BULLET_SP);
 
 	//Effect
 	_effect_destroy = new CTexture(PATH_EFFECT_DESTROY, 3);

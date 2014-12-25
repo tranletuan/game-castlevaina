@@ -69,11 +69,6 @@ void CFBullet::CalcVelocity(float v_max)
 	CBullet::CalcVelocity(v_max);
 }
 
-void CFBullet::Moving(float v_max)
-{
-	CalcVelocity(v_max);
-}
-
 void CFBullet::Shoot(D3DXVECTOR3 pos, int angle, float v_max, float vo)
 {
 	CBullet::Shoot(pos, angle, v_max, vo);

@@ -125,6 +125,7 @@ public:
 	CTexture* _bullet_ne;
 	CTexture* _bullet_b;
 	CTexture* _bullet_b2;
+	CTexture* _bullet_sp;
 
 	//Ground
 	CTexture* _ground_grass;

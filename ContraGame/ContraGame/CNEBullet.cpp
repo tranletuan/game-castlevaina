@@ -44,11 +44,6 @@ void CNEBullet::Draw()
 
 }
 
-void CNEBullet::Moving(float v_max)
-{
-	CalcVelocity(v_max);
-}
-
 void CNEBullet::CalcVelocity(float v_max)
 {
 	CBullet::CalcVelocity(v_max);

@@ -5,6 +5,7 @@
 #include "CNEBullet.h"
 #include "CBBullet.h"
 #include "CB2Bullet.h"
+#include "CSPBullet.h"
 #include "CBill.h"
 
 class CEnemyWeapon : public CWeapon
@@ -14,6 +15,7 @@ protected:
 	queue<CBullet*> _queue_bullet_b;
 	queue<CBullet*> _queue_bullet_b2;
 	queue<CBullet*> _queue_bullet_me;
+	queue<CBullet*> _queue_bullet_sp;
 
 public:
 	CEnemyWeapon();
@@ -28,5 +30,6 @@ public:
 	int ShootingBulletB(D3DXVECTOR3 pos);
 	int ShootingBulletB2(D3DXVECTOR3 pos, int angle, float vo);
 	int ShootingBulletME(D3DXVECTOR3 pos, int angle, float vo);
+	int ShootingBulletSP(D3DXVECTOR3 pos, int angle, float vo);
 };
 #endif // !_CENEMY_WAEPON_H_

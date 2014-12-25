@@ -276,6 +276,9 @@
     <Filter Include="Contra Game\Object\RunMan\RunManFire">
       <UniqueIdentifier>{5872aaef-4075-4a62-944d-938653e0fb9a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contra Game\Object\Bullet Game\Bullet Enemy\CSPBullet">
+      <UniqueIdentifier>{2bb4d895-f711-4c44-9268-05681b19d093}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -511,6 +514,9 @@
     </ClCompile>
     <ClCompile Include="CRunmanFire.cpp">
       <Filter>Contra Game\Object\RunMan\RunManFire</Filter>
+    </ClCompile>
+    <ClCompile Include="CSPBullet.cpp">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Enemy\CSPBullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -762,6 +768,9 @@
     </ClInclude>
     <ClInclude Include="CRunmanFire.h">
       <Filter>Contra Game\Object\RunMan\RunManFire</Filter>
+    </ClInclude>
+    <ClInclude Include="CSPBullet.h">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Enemy\CSPBullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -63,11 +63,6 @@ void CBBullet::CalcVelocity(float v_max)
 	_physical.vy = BULLET_B_VY;
 }
 
-void CBBullet::Moving(float v_max)
-{
-	CalcVelocity(v_max);
-}
-
 void CBBullet::Shoot(D3DXVECTOR3 pos, int angle, float v_max, float vo)
 {
 	CBullet::Shoot(pos, angle, v_max, vo);
