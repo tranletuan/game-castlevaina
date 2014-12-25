@@ -7,7 +7,9 @@ CBoss2Arm::CBoss2Arm(int id, SpecificType specific_type, D3DXVECTOR3 pos, int wi
 	_length = 5;
 	_count_change = 0;
 	_last_time_change = 0;
-	_elapsed_time = BOSS2_ELAPSED_CHANGE;
+	_can_impact = false;
+	_enable = false;
+	_is_wait = true;
 	_physical.vx_last = direction;
 	LoadResources();
 }
@@ -47,75 +49,94 @@ void CBoss2Arm::LoadResources()
 
 void CBoss2Arm::Update(int time)
 {
-	if (_hp > 0)
+	if (!_enable) return;
+	_can_impact = true;
+
+	if (_is_wait)
 	{
-		//Khởi động cánh tay trước khi quay
-		if (!_is_boot)
+		if (_last_time_change == 0) _last_time_change = GetTickCount();
+		DWORD now = GetTickCount();
+		if (now - _last_time_change >= BOSS2_ARM_ELAPSED_CHANGE)
 		{
-			for (int i = 0; i < _length; i++)
-			{
-				_is_boot = _elbows[i]->Boot(time);
-			}
-			return;
+			_last_time_change = 0;
+			_is_wait = false;
 		}
-
-		//Cập nhật tay quay
-		DWORD  now = GetTickCount();
-		if (now - _last_time_change >= BOSS2_ELAPSED_CHANGE)
-		{
-			_id_main_node = 1;
-			_count_change++;
-
-			//Tất cả các node nhỏ hơn node chính đều phải ngừng hoạt động
-			for (int i = 0; i <= _id_main_node; i++)
-			{
-				_elbows[i]->SetDeactivate();
-			}
-
-			//Chu kỳ tay ngừng lại bắn 1 lần
-			if (_count_change < 4)
-			{
-				_elbows[_id_main_node]->SetActive();
-			}
-			else
-			{
-				_count_change = 0;
-			}
-
-			_last_time_change = now;
-		}
-
-		//Node chính sẽ lan truyền, kiểm tra để các node lân cận chuyển động theo
-		_elbows[_id_main_node]->Spreading(-1);
 	}
-
-	//Cập nhật từng node con
-	for (int i = 0; i < _length; i++)
+	else
 	{
-		CBoss2Elbow* elbow = _elbows[i];
-
-		//Chỉ cập nhật khi tất cả các node đã cập nhật xong
-		if (_is_boot)
+		if (_hp > 0)
 		{
-			elbow->Update(time);
+			//Khởi động cánh tay trước khi quay
+			if (!_is_boot)
+			{
+				for (int i = 0; i < _length; i++)
+				{
+					_is_boot = _elbows[i]->Boot(time);
+				}
+				return;
+			}
+
+			//Cập nhật tay quay
+			DWORD  now = GetTickCount();
+			if (now - _last_time_change >= BOSS2_ARM_ELAPSED_CHANGE)
+			{
+				_id_main_node = 1;
+				_count_change++;
+
+				//Tất cả các node nhỏ hơn node chính đều phải ngừng hoạt động
+				for (int i = 0; i <= _id_main_node; i++)
+				{
+					_elbows[i]->SetDeactivate();
+				}
+
+				//Chu kỳ tay ngừng lại bắn 1 lần
+				if (_count_change < 4)
+				{
+					_elbows[_id_main_node]->SetActive();
+				}
+				else
+				{
+					_count_change = 0;
+				}
+
+				_last_time_change = now;
+			}
+
+			//Node chính sẽ lan truyền, kiểm tra để các node lân cận chuyển động theo
+			_elbows[_id_main_node]->Spreading(-1);
 		}
 
-		//Tất cả đồng loạt die khi máu cánh tay bằng 0
-		if (_hp <= 0)
+		//Cập nhật từng node con
+		for (int i = 0; i < _length; i++)
 		{
-			elbow->_hp = 0;
+			CBoss2Elbow* elbow = _elbows[i];
+
+			//Chỉ cập nhật khi tất cả các node đã cập nhật xong
+			if (_is_boot)
+			{
+				elbow->Update(time);
+			}
+
+			//Tất cả đồng loạt die khi máu cánh tay bằng 0
+			if (_hp <= 0)
+			{
+				elbow->_hp = 0;
+			}
 		}
 	}
 }
 
 void CBoss2Arm::Draw()
 {
+	if (_is_wait || !_enable) return;
+
 	if (_elbows.size() > 0)
 	{
 		for (map<int, CBoss2Elbow*>::iterator i = _elbows.begin(); i != _elbows.end(); i++)
 		{
 			CBoss2Elbow* elbow = (*i).second;
 			elbow->Draw();
+			_enable = elbow->_enable;
 		}
 	}
 }

@@ -13,8 +13,6 @@
 #include "CRunManManager.h"
 #include "SceneManager.h"
 
-#include "CSniperWater.h"
-
 enum PlayState
 {
 	PS_InGame,
@@ -52,7 +50,6 @@ private:
 	CRunmanManager* _runmans;	
 	CObject* _boss;
 
-	CSniperWater* test;
 public:
 	ScenePlay();
 	~ScenePlay();

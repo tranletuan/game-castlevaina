@@ -5,6 +5,7 @@ CBoss2Elbow::CBoss2Elbow(int id, SpecificType specific_type, D3DXVECTOR3 pos, in
 {
 	_hp = 1;
 	_is_active = true;
+	_enable = true;
 	_delta_radius = 0;
 	_x_circle = _physical.x;
 	_y_circle = _physical.y;
@@ -67,6 +68,8 @@ void CBoss2Elbow::Update(int time)
 
 void CBoss2Elbow::Draw()
 {
+	if (!_enable) return;
+
 	CCamera* c = CResourcesManager::GetInstance()->_camera;
 	D3DXVECTOR3 pos = c->Transform(_x_circle, _y_circle);
 	if (_hp > 0)
@@ -75,7 +78,7 @@ void CBoss2Elbow::Draw()
 	}
 	else
 	{
-		bool _enable = !_current_sprite->DrawWithDirectionAndOneTimeEffect(pos, 1, 0, 2);
+		_enable = !_current_sprite->DrawWithDirectionAndOneTimeEffect(pos, 1, 0, 2, 300);
 	}
 }
 

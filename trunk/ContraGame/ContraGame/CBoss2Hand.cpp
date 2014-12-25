@@ -41,8 +41,6 @@ void CBoss2Hand::SetTarget(float x, float y)
 	_target.x = x;
 	_target.y = y;
 
-	if (!CheckTarget()) return; //Mục tiêu chưa vào khoảng cách tấn công
-
 	//vector chỉ phương của mục tiêu, xem như đối tượng enemy là tâm trục tọa độ
 	D3DXVECTOR3 vector = D3DXVECTOR3(_target.x - _x_circle, _target.y - _y_circle, 0);
 
@@ -70,16 +68,13 @@ void CBoss2Hand::SetTarget(float x, float y)
 		_target_angle += 360;
 	}
 
-	if (_weapon != NULL && !_is_active)
-	{
-		Attacking();
-	}
+	Attacking();
 }
 
 void CBoss2Hand::Attacking()
 {
 	if (_hp == 0) return;
-	if (!CheckTarget()) return; //Mục tiêu chưa vào tầm tấn công
+	if (_weapon == NULL) return;
 
 	//Kiểm tra số đạn đã bắn, nếu vẫn còn bắn được thì bắn
 	if (_queue_id_bullet.size() < _max_bullet)

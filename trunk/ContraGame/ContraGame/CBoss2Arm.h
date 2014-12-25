@@ -7,15 +7,15 @@
 class CBoss2Arm : public CObject
 {
 protected:
-	map<int, CBoss2Elbow*> _elbows;
-	DWORD _last_time_change;
-	DWORD _elapsed_time;
-	int _id_main_node;
-	int _length;
-	int _count_change;
-	bool _is_boot;
-	bool _is_change;
-	
+	map<int, CBoss2Elbow*>	_elbows;
+	DWORD					_last_time_change;
+	int						_id_main_node;
+	int						_length;
+	int						_count_change;
+	bool					_is_boot;
+	bool					_is_change;
+	bool					_is_wait;
+
 public:
 	CBoss2Arm(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height, int direction);
 	~CBoss2Arm();
