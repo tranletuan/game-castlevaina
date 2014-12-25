@@ -52,6 +52,13 @@ namespace MapEditor
             listViewOB.Items.Add("BossGun", 7);
             listViewOB.Items.Add("Fire", 8);
             listViewOB.Items.Add("RockRoll", 9);
+            listViewOB.Items.Add("RunManFire", 10);
+            listViewOB.Items.Add("SniperBlock", 11);
+            listViewOB.Items.Add("SniperWater", 12);
+            listViewOB.Items.Add("Boom", 13);
+            listViewOB.Items.Add("Tank", 14);
+            listViewOB.Items.Add("Boss2", 15);
+            listViewOB.Items.Add("Boss3", 16);
 
             imageListOB.TransparentColor = Color.Transparent;
 
@@ -213,7 +220,35 @@ namespace MapEditor
                     {
                         imageCursor = FileTool.ResizeImage(imageCursor, 28, 28);
                     }
-                   
+                    else if (imgIndex == 10)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 26, 32);
+                        CurrentCursor = CursorCur.ITEM;
+                    }
+                    else if (imgIndex == 11)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 32, 32);
+                    }
+                    else if (imgIndex == 12)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 16, 32);
+                    }
+                    else if (imgIndex == 13)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 16, 16);
+                    }
+                    else if (imgIndex == 14)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 96, 66);
+                    }
+                    else if (imgIndex == 15)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 256, 194);
+                    }
+                    else if (imgIndex == 16)
+                    {
+                        imageCursor = FileTool.ResizeImage(imageCursor, 60, 64);
+                    }
                 }
             }
 
@@ -305,6 +340,10 @@ namespace MapEditor
                         if (nameOb == "RockRoll")
                         {
                             ob.Height = 240;
+                        }
+                        else if (nameOb == "Tank")
+                        {
+                            ob.Width = 304;
                         }
                       
                         listObject.Add(ob);
@@ -405,6 +444,7 @@ namespace MapEditor
             listObject.Add(cam);
             ObjectTile character = new ObjectTile(0, "Character", Convert.ToInt32(textBoxChaX.Text.Trim()), Convert.ToInt32(textBoxChaY.Text.Trim()), 36, 46, 0);
             listObject.Add(character);
+            FileTool.writeFileConfi(saveFileDialog1, listObject, listObNoneTree);
             FileTool.writeFileOB(saveFileDialog1, listObject, pictureBoxBG.Width, pictureBoxBG.Height);
             FileTool.writeFileOBNoneQuadTree(saveFileDialog1, listObNoneTree, pictureBoxBG.Width, pictureBoxBG.Height);
             FileTool.writeFileTree(saveFileDialog1, tree);
