@@ -30,6 +30,12 @@ void CItemStand::LoadResources()
 	case ItemF_Stand:
 		_sprite_item->SelectFrameOf(3);
 		break;
+	case ItemB_Stand:
+		_sprite_item->SelectFrameOf(2);
+		break;
+	case ItemL_Stand:
+		_sprite_item->SelectFrameOf(5);
+		break;
 	}
 }
 

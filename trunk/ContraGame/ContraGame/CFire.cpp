@@ -4,6 +4,7 @@ CFire::CFire(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int
 	:CObject(id, specific_type, Enemy, pos, width, height)
 {
 	_init = true;
+	_can_impact = true;
 	LoadResources();
 }
 
@@ -60,6 +61,7 @@ void CFire::Update(int delta_time)
 			}
 		}
 	}
+	_physical.SetBounds(_physical.x, _physical.y, 16, 16);
 	// Đi ra tọa độ kết thúc
 	if (_physical.x > _posXEnd)
 	{

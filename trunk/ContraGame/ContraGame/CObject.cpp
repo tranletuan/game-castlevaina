@@ -156,7 +156,7 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(Sniper_Boss);
 	}
-	else if (x == "BoomThrow")
+	else if (x == "Boom")
 	{
 		setSpecificType(Boom_Throw);
 	}
@@ -176,6 +176,11 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(Sniper_Water);
 	}
+	else if (x == "Boss2")
+	{
+		setSpecificType(Boss2);
+	}
+	
 }
 
 void CObject::setTrack(string x)
