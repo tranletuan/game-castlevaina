@@ -35,6 +35,7 @@ void CRockFly::DrawMove(D3DXVECTOR3 pos)
 
 void CRockFly::Update(int delta_time)
 {
+	_physical.SetBounds(_physical.x, _physical.y, 28, 30);
 	// Đi ra tọa độ kết thúc
 	if (_physical.x >= _posXEnd )
 	{

@@ -17,3 +17,4 @@ BlockHouse
 Obstacle
 Boss2
 SniperWater
+RunManFire

@@ -23,6 +23,7 @@
 #include "CWaterFallE.h"
 #include "CRockFly.h"
 #include "CTank.h"
+#include "CSniperWater.h"
 
 class QTTree
 {

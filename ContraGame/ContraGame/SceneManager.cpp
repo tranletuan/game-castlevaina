@@ -117,7 +117,7 @@ void SceneManager::destroyLoadingScene()
 
 // Play
 void SceneManager::createPlayScene()
-{	
+{		
 	m_scenePlay = new ScenePlay();
 	SceneManager::getInstance()->setScene(m_scenePlay);
 }

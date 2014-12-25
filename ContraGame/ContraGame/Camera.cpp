@@ -22,7 +22,7 @@ CCamera::CCamera(float posX, float posY)
 
 void CCamera::UpdateCameraX(float x)
 {
-	if (x > view_port.x + kScreenWidth / 2)
+	if ((int)x > view_port.x + kScreenWidth / 2)
 	{
 		view_port.x = (int)x - kScreenWidth / 2;
 	}
@@ -30,9 +30,9 @@ void CCamera::UpdateCameraX(float x)
 
 void CCamera::UpdateCameraY(float y)
 {
-	if (y > view_port.y + kScreenHeight / 2)
+	if ((int)y > view_port.y - kScreenHeight / 2)
 	{
-		view_port.y = (int)y - kScreenHeight / 2;
+		view_port.y = (int)y + kScreenHeight / 2;
 	}
 }
 
@@ -56,7 +56,7 @@ void CCamera::Update(int time)
 		{
 			if (rs->m_posBill.y < rs->m_heightMap - kScreenHeight)
 			{
-				UpdateCameraY(rs->m_posBill.x);
+				UpdateCameraY(rs->m_posBill.y);
 			}
 			else
 			{

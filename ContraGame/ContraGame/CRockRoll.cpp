@@ -8,7 +8,8 @@ CRockRoll::CRockRoll(int id, SpecificType specific_type, D3DXVECTOR3 pos, int wi
 	_idGround = -1;
 	_posYBegin = pos.y;
 	_timeDruing = 60;
-
+	_physical.SetBounds(_physical.x, _physical.y, 26, 26);
+	_can_impact = true;
 	LoadResources();
 }
 
@@ -72,7 +73,10 @@ void CRockRoll::Update(int delta_time)
 	float _posYCam = CResourcesManager::GetInstance()->_camera->getPosY()
 		- CResourcesManager::GetInstance()->_camera->getHeight();  // điểm dưới của camera
 	vector<CObject*> Obs = CResourcesManager::GetInstance()->listObinView;
-	
+
+	_physical.SetBounds(_physical.x, _physical.y, 26, 26);
+	_can_impact = true;
+
 	// vang ra khoi screen
 	if (_posYCam >= _physical.y )
 	{
@@ -123,10 +127,13 @@ void CRockRoll::Update(int delta_time)
 		}
 		break;
 	case RS_Die:
-	
+		_physical.SetBounds(0, 0, 0, 0);
+		_can_impact = false;
 		break;
 	case RS_OutView:
 		_timeDruing--;
+		_physical.SetBounds(0, 0, 0, 0);
+		_can_impact = false;
 		if (_timeDruing <= 0)
 		{
 			_physical.y = _posYBegin;
