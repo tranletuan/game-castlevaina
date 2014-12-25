@@ -18,7 +18,7 @@ ScenePlay::ScenePlay()
 	_weapon_enemy = new CEnemyWeapon();
 	_runmans = new CRunmanManager();
 	
-	test = new CSniperWater(0, Sniper_Water, D3DXVECTOR3(50, 30, 0), 16, 16);
+	test = new CSniperWater(0, Sniper_Water, D3DXVECTOR3(100, 30, 0), 16, 16);
 	init();
 }
 

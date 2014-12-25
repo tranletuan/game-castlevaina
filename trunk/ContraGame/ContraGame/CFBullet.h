@@ -19,7 +19,6 @@ public:
 	void LoadResources();
 	void Draw();
 	void Update(int delta_time);
-	void Moving(float v_max);
 	void Shoot(D3DXVECTOR3 pos, int angle, float v_max, float vo = 0);
 };
 

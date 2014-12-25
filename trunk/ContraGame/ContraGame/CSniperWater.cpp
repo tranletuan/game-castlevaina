@@ -114,11 +114,26 @@ void CSniperWater::Attacking()
 		int x = _physical.x + 4;
 		int y = _physical.y + 10;
 
-		int id = _weapon->ShootingBulletNE(D3DXVECTOR3(x, y, 0), _attack_angle, 0);
+		int id1 = _weapon->ShootingBulletSP(D3DXVECTOR3(x, y, 0), 95, 0);
+		int id2 = _weapon->ShootingBulletSP(D3DXVECTOR3(x, y, 0), 90, 0);
+		int id3 = _weapon->ShootingBulletSP(D3DXVECTOR3(x, y, 0), 85, 0);
 
-		if (id >= 0)
+		if (id1 >= 0)
 		{
-			_queue_id_bullet.push(id);
+			_queue_id_bullet.push(id1);
+			_is_shot = true;
+
+		}
+
+		if (id2 >= 0)
+		{
+			_queue_id_bullet.push(id2);
+			_is_shot = true;
+		}
+
+		if (id3 >= 0)
+		{
+			_queue_id_bullet.push(id3);
 			_is_shot = true;
 		}
 	}

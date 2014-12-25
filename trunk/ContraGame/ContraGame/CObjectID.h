@@ -17,6 +17,7 @@ enum  SpecificType
 	BulletNE,
 	BulletB,
 	BulletB2,
+	BulletSP,
 
 	// Ground
 	Ground_Grass, // vo hinh

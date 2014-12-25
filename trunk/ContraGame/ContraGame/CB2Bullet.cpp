@@ -35,11 +35,6 @@ void CB2Bullet::Draw()
 		CCamera* c = CResourcesManager::GetInstance()->_camera;
 		D3DXVECTOR3 pos = c->Transform(_physical.x, _physical.y);
 		_current_sprite->DrawWithDirection(pos, _physical.vx_last, 0, 3, 200);
-
-		if (_current_sprite == _ontarget_sprite)
-		{
-			_enable = false;
-		}
 	}
 
 }

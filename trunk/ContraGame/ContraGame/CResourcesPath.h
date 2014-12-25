@@ -81,6 +81,7 @@
 #define PATH_BULLET_NE ".//DataGame//Images//Game//Object//bullet//bullet_ne.png"
 #define PATH_BULLET_B ".//DataGame//Images//Game//Object//bullet//bullet_b.png"
 #define PATH_BULLET_B2 ".//DataGame//Images//Game//Object//bullet//bullet_b2.png"
+#define PATH_BULLET_SP ".//DataGame//Images//Game//Object//bullet//bullet_sp.png"
 #pragma endregion BulletPath
 
 #pragma region EffectPath

@@ -45,11 +45,6 @@ void CMBullet::Draw()
 	}
 }
 
-void CMBullet::Moving(float v_max)
-{
-	CalcVelocity(v_max);
-}
-
 void CMBullet::CalcVelocity(float v_max)
 {
 	CBullet::CalcVelocity(v_max);

@@ -116,5 +116,5 @@ void CBullet::Shoot(D3DXVECTOR3 pos, int angle, float v_max, float vo)
 
 void CBullet::Moving(float v_max)
 {
-
+	CalcVelocity(v_max);
 }
