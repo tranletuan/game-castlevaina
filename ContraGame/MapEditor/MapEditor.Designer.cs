@@ -37,6 +37,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.listViewControl = new System.Windows.Forms.ListView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBoxXHeight = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.comboBoxNameItem = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.comboBoxDir = new System.Windows.Forms.ComboBox();
@@ -84,8 +86,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.textBoxXHeight = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBG)).BeginInit();
             this.panel2.SuspendLayout();
@@ -181,6 +181,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detail : ";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // textBoxXHeight
+            // 
+            this.textBoxXHeight.Location = new System.Drawing.Point(189, 71);
+            this.textBoxXHeight.Name = "textBoxXHeight";
+            this.textBoxXHeight.Size = new System.Drawing.Size(28, 20);
+            this.textBoxXHeight.TabIndex = 13;
+            this.textBoxXHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxXHeight_KeyPress);
+            this.textBoxXHeight.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxXHeight_KeyUp);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(163, 71);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(20, 13);
+            this.label14.TabIndex = 12;
+            this.label14.Text = " X ";
             // 
             // comboBoxNameItem
             // 
@@ -496,6 +514,13 @@
             this.imageListOB.Images.SetKeyName(7, "BossGun.png");
             this.imageListOB.Images.SetKeyName(8, "Fire.png");
             this.imageListOB.Images.SetKeyName(9, "RockRoll.png");
+            this.imageListOB.Images.SetKeyName(10, "RunManFire.png");
+            this.imageListOB.Images.SetKeyName(11, "SniperBlock.png");
+            this.imageListOB.Images.SetKeyName(12, "SniperWater.png");
+            this.imageListOB.Images.SetKeyName(13, "Boom.png");
+            this.imageListOB.Images.SetKeyName(14, "Tank.png");
+            this.imageListOB.Images.SetKeyName(15, "Boss2.png");
+            this.imageListOB.Images.SetKeyName(16, "Boss3.png");
             // 
             // imageListBG
             // 
@@ -645,24 +670,6 @@
             this.checkBox1.Text = "Hide Background";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // textBoxXHeight
-            // 
-            this.textBoxXHeight.Location = new System.Drawing.Point(189, 71);
-            this.textBoxXHeight.Name = "textBoxXHeight";
-            this.textBoxXHeight.Size = new System.Drawing.Size(28, 20);
-            this.textBoxXHeight.TabIndex = 13;
-            this.textBoxXHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxXHeight_KeyPress);
-            this.textBoxXHeight.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxXHeight_KeyUp);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(163, 71);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(20, 13);
-            this.label14.TabIndex = 12;
-            this.label14.Text = " X ";
             // 
             // MapEditor
             // 

@@ -112,5 +112,9 @@
 115 WaterFall 64 807 128 48 
 116 WaterFall 131 753 96 32 
 117 WaterFall 224 1337 32 240 
+118 SniperWater 215 1302 16 32 
+119 SniperWater 70 1191 16 32 
+120 SniperWater 152 600 16 32 
+121 Boss2 0 2160 256 194 
 0 Camera 0 240 256 240 
 0 Character 40 240 36 46 
