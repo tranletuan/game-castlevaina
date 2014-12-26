@@ -111,34 +111,27 @@ namespace MapEditor
         {
             //ghi file txt
             string path = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(saveFile.FileName),
-            "confi_map_ " + System.IO.Path.GetFileNameWithoutExtension(saveFile.FileName)) + ".txt";
+            "confi_map_" + System.IO.Path.GetFileNameWithoutExtension(saveFile.FileName)) + ".txt";
             System.IO.StreamWriter sWriter = new System.IO.StreamWriter(path);
             List<String> listString = new List<string>();
 
-            for (int i = 0; i < listnotree.Count; i++)
-            {
-                if (listnotree.ElementAt(i).Name.IndexOf("Item") != 0)
-                {
-                    listString.Add(listnotree.ElementAt(i).Name);
-                }
-                else
-                {
-                    listString.Add("Item");
-                }
-
-                for (int j = 0; j < listString.Count - 1; j++)
-                {
-                    if (listString.ElementAt(j) == listString.ElementAt(listString.Count - 1))
-                    {
-                        listString.RemoveAt(listString.Count - 1);
-                        break;
-                    }
-                }
-            }
+            int levelMap = Convert.ToInt32(saveFile.FileName) + 1;
+            listString.Add(levelMap.ToString());
+            listString.Add("RunMan");
+            listString.Add("RunManFire");
+            listString.Add("Item");
 
             for (int i = 0; i < listtree.Count; i++)
             {
-                listString.Add(listtree.ElementAt(i).Name);
+                if (listnotree.ElementAt(i).Name.IndexOf("ItemStand") == 0)
+                {
+                    listString.Add("ItemStand");
+                }
+                else
+                {
+                     listString.Add(listtree.ElementAt(i).Name);
+                }
+               
                 for (int j = 0; j < listString.Count - 1; j++)
                 {
                     if (listString.ElementAt(j) == listString.ElementAt(listString.Count - 1))

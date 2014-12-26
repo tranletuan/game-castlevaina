@@ -343,7 +343,8 @@ namespace MapEditor
                         }
                         else if (nameOb == "Tank")
                         {
-                            ob.Width = 304;
+                            ob.Width = 256;
+                            ob.PosX -= 256;
                         }
                       
                         listObject.Add(ob);

@@ -62,12 +62,8 @@ void CCamera::Update(int time)
 			{
 				_state = CamS_Move;
 			}
-		}
-		else if (rs->m_curMap == 3)
-		{
-			UpdateCameraX(rs->m_posBill.x);
-		}
-		else if (rs->m_curMap == 1)
+		}		
+		else 
 		{
 			if (rs->m_posBill.x < rs->m_widthMap - kScreenWidth)
 			{
