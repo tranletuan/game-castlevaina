@@ -10,7 +10,7 @@ CTank::CTank(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int
 	_attack_angle = 180;
 	_distance_acti = width;
 	LoadResources();
-	_physical.x = pos.x + width / 2;
+	_physical.x = pos.x + width / 2 + _current_sprite->sprite_texture->frame_width/2;
 }
 
 CTank::~CTank()

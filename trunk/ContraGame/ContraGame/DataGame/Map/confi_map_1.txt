@@ -13,6 +13,4 @@ Boss1
 StarEffect
 Brigde
 SniperBoss
-Boss2
-SniperWater
-RunManFire
+

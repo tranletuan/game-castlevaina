@@ -405,7 +405,7 @@ void CResourcesManager::loadAllInMap()
 				{
 					loadTexture(RESID_ENEMY_SNIPER_BLOCK);
 				}
-				else if (line == "BoomThrow")
+				else if (line == "Boom")
 				{
 					loadTexture(RESID_ENEMY_BOOM_THROW);
 				}
