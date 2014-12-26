@@ -62,10 +62,17 @@ bool CEnemy::SetStatus(EnemyStatus status)
 
 bool CEnemy::CheckTarget()
 {
-	if (abs(_physical.x - _target.x) <= ENEMY_ATTACK_DISTANCE)
+	bool flag = false;
+	switch (CResourcesManager::GetInstance()->m_curMap)
 	{
-		return true;
+	case 2:
+		flag = (abs(_physical.y - _target.y) <= ENEMY_ATTACK_DISTANCE);
+		break;
+	case 1:
+	case 3:
+		flag = (abs(_physical.x - _target.x) <= ENEMY_ATTACK_DISTANCE);
+		break;
 	}
 
-	return false;
+	return flag;
 }

@@ -54,7 +54,7 @@ void CSniperWater::Update(int delta_time)
 		}
 
 		//Chờ bắn đợt đạn tiếp theo
-		if (_enemy_status == EWait)
+		if (_enemy_status == EWait && CheckTarget())
 		{
 			if (_last_time_shoot == 0)
 			{
@@ -88,12 +88,11 @@ void CSniperWater::Update(int delta_time)
 	}
 }
 
-void CSniperWater::SetTarget(float x, float y)
+bool CSniperWater::CheckTarget()
 {
-	_target.x = x;
-	_target.y = y;
-
-	int cur_map = CResourcesManager::GetInstance()->m_curMap;
+	CResourcesManager* rs = CResourcesManager::GetInstance();
+	CCamera* c = rs->_camera;
+	int cur_map = rs->m_curMap;
 	bool is_attack = false;
 
 	//Tùy theo map mà quái bắt mục tiêu theo cách khác nhau
@@ -105,25 +104,27 @@ void CSniperWater::SetTarget(float x, float y)
 			is_attack = true;
 		break;
 	case 2:
-		if (_target.y - _physical.y <= ENEMY_SNIPER_WATER_DISTANCE_ATTACK &&
-			_target.y > _physical.y)
+		D3DXVECTOR3 pos_view = c->Transform(_physical.x, _physical.y);
+		if (_target.y > _physical.y + 16 && pos_view.y + 32 < c->getHeight())
 			is_attack = true;
 		break;
 	}
 
-	if (is_attack)
-	{
-		_attack_angle = 90;
-		SetWeapon(CResourcesManager::GetInstance()->_weapon_enemy);
-		Attacking();
-	}
+	return is_attack;
+}
+
+void CSniperWater::SetTarget(float x, float y)
+{
+	_target.x = x;
+	_target.y = y;
+	Attacking();
 }
 
 void CSniperWater::Attacking()
 {
 	if (_hp == 0) return;
 	if (_enemy_status != EAttack) return;
-	if (_weapon == NULL) return;
+	SetWeapon(CResourcesManager::GetInstance()->_weapon_enemy);
 
 	//Kiểm tra số đạn đã bắn
 	if (_queue_id_bullet.size() == 0)

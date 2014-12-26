@@ -11,6 +11,7 @@ CPhysical::CPhysical()
 	this->current_vy = 0;
 	this->time_in_space = 0;
 	this->n = 0;
+	this->vx_accretion = 0;
 }
 
 CPhysical::CPhysical(float x, float y, float vx, float vy)
@@ -24,6 +25,7 @@ CPhysical::CPhysical(float x, float y, float vx, float vy)
 	this->time_in_space = 0;
 	this->current_vx = 0;
 	this->current_vy = 0;
+	this->vx_accretion = 0;
 }
 
 void CPhysical::SetBounds(float x, float y, float width, float height)
@@ -39,7 +41,7 @@ void CPhysical::SetBounds(float x, float y, float width, float height)
 
 void CPhysical::CalcPositionWithGravitation(int time, float gravity)
 {
-	current_vx = vx * time;
+	current_vx = (vx + vx_accretion) * time;
 	x += current_vx;
 
 	//Chỉ bắt đầu rơi khi đối tượng chưa rơi
@@ -59,7 +61,7 @@ void CPhysical::CalcPositionWithGravitation(int time, float gravity)
 
 void CPhysical::CalcPositionWithoutGravitation(int time)
 {
-	current_vx = vx * time;
+	current_vx = (vx + vx_accretion) * time;
 	x += current_vx;
 
 	current_vy = vy * time;

@@ -27,6 +27,8 @@ CBill::CBill()
 	_id_ground_stand = -1;
 	_enable = true;
 	_is_revival = true;
+	_is_wait = false;
+	_mission_complete = false;
 	_last_time_revival = 0;
 	_count_jump = 0;
 	LoadResources();
@@ -102,19 +104,22 @@ void CBill::Update(int delta_time)
 	D3DXVECTOR3 pos_view = c->Transform(_physical.x, _physical.y);
 
 	//Không cho nhân vật lui khỏi màn hình
-	if (pos_view.x - 16 < 0)
+	if (_player_status != Die)
 	{
-		_physical.x = c->view_port.x + 16;
-	}
+		if (pos_view.x - 16 < 0)
+		{
+			_physical.x = c->view_port.x + 16;
+		}
 
-	if (pos_view.x + 16 > c->getWidth())
-	{
-		_physical.x = c->view_port.x + c->getWidth() - 16;
-	}
+		if (pos_view.x + 16 > c->getWidth())
+		{
+			_physical.x = c->view_port.x + c->getWidth() - 16;
+		}
 
-	if (pos_view.y > c->getHeight())
-	{
-		Dying();
+		if (pos_view.y + 16 > c->getHeight())
+		{
+			Dying();
+		}
 	}
 
 	//Xét các trường hợp có thể va chạm với nhân vật
@@ -166,7 +171,7 @@ void CBill::Update(int delta_time)
 	}
 	
 	//Chết văng khỏi màn hình thì k update tọa độ nữa
-	if (pos_view.y < c->getHeight())
+	if (pos_view.y < c->getHeight() + 64)
 	{
 		_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
 	}
@@ -216,7 +221,7 @@ void CBill::Dying()
 	_physical.vy = BILL_VY_DIE;
 	_physical.n = 0;
 	_weapon->SetWaeponType(WPN);
-	_physical.time_in_space = GetTickCount();
+	_physical.time_in_space = 0;
 }
 
 bool CBill::Falling(CObject* ground)
@@ -376,8 +381,15 @@ void CBill::Standing(float y_ground, int id_ground)
 	}
 
 	//Chạm đất thì vector phản lực n phải có 1 lực tương đương với vector trọng trường
+	CCamera* c = CResourcesManager::GetInstance()->_camera;
+	D3DXVECTOR3 pos_view = c->Transform(_physical.x, y_ground);
+	if (pos_view.y < c->getHeight())
+	{
+		_x_last = _physical.x;
+		_y_last = _physical.y;
+	}
+
 	_physical.n = GRAVITY;
-	_x_last = _physical.x;
 	_physical.time_in_space = GetTickCount();
 	_physical.y = y_ground + BILL_DISTANCE_GROUND + 0.5f;
 	_id_ground_stand = id_ground;
@@ -413,7 +425,15 @@ void CBill::Living()
 			_physical.x = _x_last;
 
 			//Kiểm tra tọa độ rơi
-			_physical.y = rs->_camera->getPosY();
+			int cur_map = rs->m_curMap;
+			if (cur_map == 2)
+			{
+				_physical.y = _y_last + 16;
+			}
+			else
+			{
+				_physical.y = rs->_camera->getPosY();
+			}
 			_last_time_die = 0;
 		}
 	}
