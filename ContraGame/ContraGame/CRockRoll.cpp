@@ -75,7 +75,7 @@ void CRockRoll::Update(int delta_time)
 		- CResourcesManager::GetInstance()->_camera->getHeight();  // điểm dưới của camera
 	vector<CObject*> Obs = CResourcesManager::GetInstance()->listObinView;
 
-	_physical.SetBounds(_physical.x, _physical.y, 26, 26);
+	_physical.SetBounds(_physical.x, _physical.y, 20, 20);
 	_can_impact = true;
 
 	// vang ra khoi screen
@@ -87,9 +87,15 @@ void CRockRoll::Update(int delta_time)
 	switch (_state)
 	{
 	case RS_Wait:
-		if (_physical.y - _posYBill <= 20)
-		{			
-			_state = RS_Fall;
+		if (_physical.y - _posYBill <= ENEMY_ATTACK_DISTANCE / 2)
+		{	
+			if (_last_time_wait == 0) _last_time_wait = GetTickCount();
+			DWORD now = GetTickCount();
+			if (now - _last_time_wait >= 800)
+			{
+				_state = RS_Fall;
+				_last_time_wait = 0;
+			}
 		}
 		break;
 	case RS_Fall:
@@ -115,8 +121,6 @@ void CRockRoll::Update(int delta_time)
 				}
 			}
 		}
-
-
 		break;
 	case RS_Up:
 		_physical.CalcPositionWithGravitation(delta_time, 0.001);
