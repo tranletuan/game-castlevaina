@@ -10,6 +10,7 @@ CRockRoll::CRockRoll(int id, SpecificType specific_type, D3DXVECTOR3 pos, int wi
 	_timeDruing = 60;
 	_physical.SetBounds(_physical.x, _physical.y, 26, 26);
 	_can_impact = true;
+	_enable = true;
 	LoadResources();
 }
 

@@ -5,6 +5,7 @@ CFire::CFire(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int
 {
 	_init = true;
 	_can_impact = true;
+	_enable = true;
 	LoadResources();
 }
 

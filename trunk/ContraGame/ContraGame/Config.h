@@ -48,7 +48,7 @@
 #define BULLET_B2_V 0.07f
 #define BULLET_B2_TOTAL 6
 
-#define BULLET_ME_V 0.07f
+#define BULLET_ME_V 0.09f
 #define BULLET_ME_TOTAL 5
 
 #define BULLET_SP_TOTAL 15
