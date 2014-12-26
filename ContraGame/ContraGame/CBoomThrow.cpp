@@ -9,6 +9,7 @@ CBoomThrow::CBoomThrow(int id, SpecificType specific_type, D3DXVECTOR3 pos, int 
 	_physical.vx = ENEMY_BOOM_THROW_VX;
 	_physical.vy = ENEMY_BOOM_THROW_VY;
 	_hp = 1;
+	_enable = true;
 	LoadResources();
 }
 
