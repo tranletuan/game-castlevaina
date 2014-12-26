@@ -25,6 +25,7 @@ public:
 	float	vy;
 	float	n; //Phản lực n trong trường hợp gia chạm với mắt đất
 	float	vx_last;
+	float	vx_accretion;
 	int		_width;
 	int		_height;
 	BOUNDS	bounds;
