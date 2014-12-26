@@ -442,6 +442,7 @@ void CBill::Living()
 void CBill::GoingToNext()
 {
 	_is_wait = true;
+	_can_impact = false;
 	DWORD now = GetTickCount();
 	
 	if (_last_time_wait == 0)
@@ -458,7 +459,7 @@ void CBill::GoingToNext()
 			Moving(BILL_VX);
 			SetGunDirection(Normal);
 
-			if (_physical.x >= 3230 && _count_jump == 0)
+			if (_physical.x >= 3260 && _count_jump == 0)
 			{
 				Jumping();
 				_count_jump++;

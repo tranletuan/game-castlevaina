@@ -21,6 +21,7 @@ private:
 	RockState _state; // trạng thái của viên đá
 	CSprite *_sprite_effect; 
 	int _timeDruing; // thời gian xuất hiện lại khi ra khỏi view
+	DWORD _last_time_wait;
 
 public:
 	CRockRoll(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
