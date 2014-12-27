@@ -241,6 +241,8 @@ public:
 	void readFileConfiDefault();
 	// edit Highscore
 	void editHighScoreOfMap();
+	// read Highscore
+	void readHighScoreOfMap();
 };
 
 

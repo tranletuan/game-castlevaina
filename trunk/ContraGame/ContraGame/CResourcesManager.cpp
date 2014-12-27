@@ -91,25 +91,6 @@ void CResourcesManager::loadLoadingGraphics()
 
 	//load high sorce map
 	m_data = new CDatabase();
-	switch (m_nextMap)
-	{
-	case 1:
-		m_highScore = m_data->readHighScore(PATH_HIGHSCORE_1);
-		break;
-	case 2:
-		m_highScore = m_data->readHighScore(PATH_HIGHSCORE_2);
-		break;
-	case 3:
-		m_highScore = m_data->readHighScore(PATH_HIGHSCORE_3);
-		break;
-	default:
-		break;
-	}
-
-
-
-	CResourcesManager::GetInstance()->m_numScore = 0;
-	string line;
 
 }
 
@@ -791,5 +772,23 @@ void CResourcesManager::editHighScoreOfMap()
 			break;
 		}
 
+	}
+}
+
+void CResourcesManager::readHighScoreOfMap()
+{
+	switch (m_nextMap)
+	{
+	case 1:
+		m_highScore = m_data->readHighScore(PATH_HIGHSCORE_1);
+		break;
+	case 2:
+		m_highScore = m_data->readHighScore(PATH_HIGHSCORE_2);
+		break;
+	case 3:
+		m_highScore = m_data->readHighScore(PATH_HIGHSCORE_3);
+		break;
+	default:
+		break;
 	}
 }
