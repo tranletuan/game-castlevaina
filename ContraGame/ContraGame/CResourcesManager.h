@@ -196,7 +196,6 @@ public:
 	void unloadLoadingResource();
 	//Play
 	void loadPlayResource();	
-
 	void loadPlayGraphics();
 	void loadPlayAudio();
 	void unloadPlayResource();
@@ -238,7 +237,10 @@ public:
 	CObject* splitTextPushOB(string str);
 	// split string de add vo Node
 	QTNode* splitTextPushNode(string str);
-
+	// doc file confi_default
+	void readFileConfiDefault();
+	// edit Highscore
+	void editHighScoreOfMap();
 };
 
 

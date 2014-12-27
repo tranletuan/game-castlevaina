@@ -5,6 +5,7 @@ ScenePlay::ScenePlay()
 	// set var in class scene
 	m_timeDuring = 1000;
 	m_state = PS_InGame;
+	_countScore = 10000;
 
 	// out class scene
 	m_background = new Background();
@@ -44,7 +45,7 @@ void ScenePlay::init()
 void ScenePlay::update(float time)
 {
 	// xu ly trong scene
-	if ( m_state == PS_InGame)
+	if (m_state == PS_InGame)
 	{
 		// chuyen game over
 		if (m_resource->m_life <= 0)
@@ -75,7 +76,7 @@ void ScenePlay::update(float time)
 		}
 		break;
 	case PS_Pause:
-		break;	
+		break;
 	case PS_NextMap:
 		m_state = PS_WaitNextScene;
 		break;
@@ -84,7 +85,7 @@ void ScenePlay::update(float time)
 	}
 
 	if (m_nextScene)
-	{		
+	{
 		m_state = PS_InGame;
 		if (m_resource->m_life > 0)
 		{
@@ -94,11 +95,13 @@ void ScenePlay::update(float time)
 				SceneManager::getInstance()->createPauseScene();
 			}
 			// chuyen qua scene loading
-			else 
-			{				
-				SceneManager::getInstance()->createLoadingScene();	
+			else
+			{
+				// thêm highscore mới vào
+				CResourcesManager::GetInstance()->editHighScoreOfMap();
+				SceneManager::getInstance()->createLoadingScene();
 			}
-			
+
 		}
 		else
 		{
@@ -123,7 +126,7 @@ void ScenePlay::update(float time)
 	_runmans->Update(time);
 	m_cameraHUD->update(time);
 	m_camera->Update(time);
-	
+
 	if (_boss != NULL && _boss->_hp <= 0)
 	{
 		_player1->GoingToNext();
@@ -137,7 +140,7 @@ void ScenePlay::draw()
 {
 	m_background->draw();
 	m_tree->draw();
-	m_listItemFLy->Draw();	
+	m_listItemFLy->Draw();
 	_runmans->Draw();
 	_weapon_enemy->Draw();
 	_weapon_player1->Draw();
@@ -173,15 +176,31 @@ void ScenePlay::UpdateFullListObjetcInView()
 				if (ob->_enable)
 				{
 					_enemies.push_back(ob);
-					if (ob->_specific_type == Boss1 ||
-						ob->_specific_type == Boss2)
+					if (CResourcesManager::GetInstance()->m_curMap == 1)
 					{
-						_boss = ob;
+						if (ob->_specific_type == Boss1)
+						{
+							_boss = ob;
+						}
+					}
+					else if (CResourcesManager::GetInstance()->m_curMap == 2)
+					{
+						if (ob->_specific_type == Boss2)
+						{
+							_boss = ob;
+						}
+					}
+					else if (CResourcesManager::GetInstance()->m_curMap == 3)
+					{
+						if (ob->_specific_type == Boss3)
+						{
+							_boss = ob;
+						}
 					}
 				}
 				break;
 			case Item:
-					_items.push_back(ob);
+				_items.push_back(ob);
 				break;
 			}
 		}
@@ -220,7 +239,7 @@ void ScenePlay::ProcessGroundsWithOneAnother()
 					{
 						_player1->_physical.vx_accretion = ground->_physical.vx;
 					}
-					
+
 				}
 			}
 
@@ -319,6 +338,13 @@ void ScenePlay::ProcessItemsWithOneAnother()
 			{
 				if (_weapon_player1->CheckCollision(item) != NoCollision && item->_can_impact)
 				{
+					CResourcesManager::GetInstance()->m_numScore += 500;
+					_countScore -= 500;
+					if (_countScore < 0)
+					{
+						_countScore = 10000;
+						CResourcesManager::GetInstance()->m_life++;
+					}
 					item->_hp--;
 				}
 			}

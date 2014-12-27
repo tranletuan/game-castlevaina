@@ -22,21 +22,11 @@ void CResourcesManager::prepareManager(LPD3DXSPRITE sp, LPDIRECT3DDEVICE9 pd3Dev
 	GetInstance()->m_audio = audio;
 
 	// init var default
-	GetInstance()->m_life = 20;
+	GetInstance()->m_life = 3;
 	GetInstance()->m_numScore = 0;
-
-	// doc map next 
-	string line;
-	ifstream myfile(PATH_CONFI_DEFAULT);
-	if (myfile.is_open())
-	{
-		while (getline(myfile, line))
-		{
-			GetInstance()->m_nextMap = atoi(line.c_str());
-		}
-		myfile.close();
-	}
-	GetInstance()->m_curMap = GetInstance()->m_nextMap;
+	GetInstance()->m_highScore = 0;
+	GetInstance()->m_numScore = 0;
+	GetInstance()->readFileConfiDefault();
 }
 
 
@@ -97,9 +87,29 @@ void CResourcesManager::loadLoadingGraphics()
 	load_nameStage3 = new CTexture(PATH_LOAD_NAMESTAGE3, D3DCOLOR_XRGB(0, 0, 0));
 	load_number = new CTexture(PATH_LOAD_NUMBER, 10);
 
-	//high sorce map 1
+
+
+	//load high sorce map
 	m_data = new CDatabase();
-	m_highScore = m_data->readHighScore(PATH_HIGHSCORE_1);
+	switch (m_nextMap)
+	{
+	case 1:
+		m_highScore = m_data->readHighScore(PATH_HIGHSCORE_1);
+		break;
+	case 2:
+		m_highScore = m_data->readHighScore(PATH_HIGHSCORE_2);
+		break;
+	case 3:
+		m_highScore = m_data->readHighScore(PATH_HIGHSCORE_3);
+		break;
+	default:
+		break;
+	}
+
+
+
+	CResourcesManager::GetInstance()->m_numScore = 0;
+	string line;
 
 }
 
@@ -151,7 +161,7 @@ void CResourcesManager::loadPlayGraphics()
 	_effect_shoot = new CTexture(PATH_EFFECT_SHOOT);
 	_effect_die = new CTexture(PATH_EFFECT_DIE, 3);
 
-	loadAllInMap();
+
 }
 
 
@@ -245,7 +255,7 @@ void CResourcesManager::unloadWinResource()
 // load all texture object trong map
 void CResourcesManager::loadAllInMap()
 {
-	string line;
+
 	string path = "";
 	switch (m_nextMap)
 	{
@@ -309,6 +319,7 @@ void CResourcesManager::loadAllInMap()
 
 	// load all texture
 	ifstream myfile(path);
+	string line = "";
 	int dem = 0;
 	if (myfile.is_open())
 	{
@@ -367,7 +378,7 @@ void CResourcesManager::loadAllInMap()
 				}
 				else if (line == "Boss1")
 				{
-					loadTexture(RESID_BOSS_1);					
+					loadTexture(RESID_BOSS_1);
 				}
 				else if (line == "Boss2")
 				{
@@ -429,7 +440,7 @@ void CResourcesManager::loadAllInMap()
 				{
 					loadTexture(RESID_ENEMY_RUN_MAN_FIRE);
 				}
-				
+
 			}
 		}
 		myfile.close();
@@ -510,10 +521,10 @@ void CResourcesManager::loadTexture(ResourceID id)
 		_enemy_sniper_block = new CTexture(PATH_ENEMY_SNIPER_BLOCK, 2);
 		break;
 	case RESID_ENEMY_TANK:
-		_enemy_tank= new CTexture(PATH_ENEMY_TANK, 6,3);
+		_enemy_tank = new CTexture(PATH_ENEMY_TANK, 6, 3);
 		break;
 	case RESID_ENEMY_SNIPER_WATER:
-		_enemy_sniper_water = new CTexture(PATH_ENEMY_SNIPER_WATER,3);
+		_enemy_sniper_water = new CTexture(PATH_ENEMY_SNIPER_WATER, 3);
 		break;
 	case RESID_GROUND_GRASS:
 		_ground_grass = new CTexture(PATH_GROUND_GRASS);
@@ -571,7 +582,7 @@ void CResourcesManager::loadTexture(ResourceID id)
 		break;
 	case RESID_BOSS_1:
 		_boss1_bg = new CTexture(PATH_BOSS1_BG, 2);
-		_boss1_badge = new CTexture(PATH_BOSS1_BAGDE, 3);	
+		_boss1_badge = new CTexture(PATH_BOSS1_BAGDE, 3);
 		_boss1_gun = new CTexture(PATH_BOSS1_GUN, 3);
 		break;
 	case RESID_BOSS_2:
@@ -745,5 +756,40 @@ QTNode* CResourcesManager::splitTextPushNode(string str)
 	return node;
 }
 
+void CResourcesManager::readFileConfiDefault()
+{
+	// doc map next 
+	string line;
+	ifstream myfile(PATH_CONFI_DEFAULT);
+	if (myfile.is_open())
+	{
+		while (getline(myfile, line))
+		{
+			GetInstance()->m_nextMap = atoi(line.c_str());
+		}
+		myfile.close();
+	}
+	GetInstance()->m_curMap = GetInstance()->m_nextMap;
+}
 
+void CResourcesManager::editHighScoreOfMap()
+{
+	if (CResourcesManager::GetInstance()->m_numScore > CResourcesManager::GetInstance()->m_highScore)
+	{
+		switch (m_curMap)
+		{
+		case 1:
+			m_data->writeHighScore(PATH_HIGHSCORE_1, m_numScore);
+			break;
+		case 2:
+			m_data->writeHighScore(PATH_HIGHSCORE_2, m_numScore);
+			break;
+		case 3:
+			m_data->writeHighScore(PATH_HIGHSCORE_3, m_numScore);
+			break;
+		default:
+			break;
+		}
 
+	}
+}

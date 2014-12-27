@@ -31,7 +31,7 @@ void SceneLoading::init()
 
 	m_spNumber = new CSprite(m_resource->load_number);
 
-	switch (CResourcesManager::GetInstance()->m_curMap)
+	switch (CResourcesManager::GetInstance()->m_nextMap)
 	{
 	case 1:
 		m_spStage = new CSprite(m_resource->load_stage1);
@@ -76,6 +76,8 @@ void SceneLoading::update(float time)
 {
 	if (m_nextScene)
 	{
+		m_timeDuring = 120;
+		CResourcesManager::GetInstance()->m_numScore = 0;
 		SceneManager::getInstance()->createPlayScene();	
 	}	
 

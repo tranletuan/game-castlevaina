@@ -15,7 +15,6 @@ void QTTree::init()
 	
 	m_camera = CResourcesManager::GetInstance()->_camera;
 
-
 	// load list
 	vector<QTNode*> m_listNode;	
 	m_listNode = CResourcesManager::GetInstance()->map_listNode;	
@@ -212,8 +211,9 @@ CObject * QTTree::getObjectTrust(CObject *x)
 	switch (x->getSpecificType())
 	{
 	case Ground_Grass:
+		return new CGroundGrass(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	case Ground_Water:
-		return new CGround(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
+		return new CGroundWater(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	case Sniper_Stand:
 		return new CSniperStand(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	case ItemM_Stand:

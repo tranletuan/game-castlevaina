@@ -81,7 +81,7 @@ void SceneManager::createMenuScene()
 	CResourcesManager::GetInstance()->loadPauseResource();
 	CResourcesManager::GetInstance()->loadOverResource();
 	CResourcesManager::GetInstance()->loadWinResource();
-
+	CResourcesManager::GetInstance()->loadPlayResource();
 	m_sceneMenu = new SceneMenu();
 	SceneManager::getInstance()->setScene(m_sceneMenu);
 }
@@ -99,14 +99,15 @@ void SceneManager::destroyMenuScene()
 
 // Loading
 void SceneManager::createLoadingScene()
-{	
-	CResourcesManager::GetInstance()->loadPlayResource();
+{
 	m_sceneLoad = new SceneLoading();
 	SceneManager::getInstance()->setScene(m_sceneLoad);
 }
 
+
+
 void SceneManager::loadLoadingScene()
-{	
+{
 	SceneManager::getInstance()->setScene(m_sceneLoad);
 }
 
@@ -117,8 +118,9 @@ void SceneManager::destroyLoadingScene()
 
 // Play
 void SceneManager::createPlayScene()
-{		
-	m_scenePlay = new ScenePlay();
+{
+	CResourcesManager::GetInstance()->loadAllInMap();
+	m_scenePlay = new ScenePlay();	
 	SceneManager::getInstance()->setScene(m_scenePlay);
 }
 
@@ -153,6 +155,7 @@ void SceneManager::destroyPauseScene()
 // GameOver
 void SceneManager::createOverScene()
 {
+	
 	m_sceneOver = new SceneGameOver();
 	SceneManager::getInstance()->setScene(m_sceneOver);
 }

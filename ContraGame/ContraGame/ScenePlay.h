@@ -28,6 +28,7 @@ class ScenePlay:
 {
 private:
 
+	int _countScore; // Biến này sử dụng để thêm 1 mạng
 	PlayState m_state;
 
 	Background *m_background;

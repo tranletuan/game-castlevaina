@@ -3,7 +3,6 @@
 
 #include "QTNode.h"
 #include "CResourcesManager.h"
-#include "CGround.h"
 #include "CSniperStand.h"
 #include "CItemStand.h"
 #include "CWaterEffect.h"
@@ -26,6 +25,8 @@
 #include "CSniperWater.h"
 #include "CBoss2.h"
 #include "CBoss2Arm.h"
+#include "CGroundGrass.h"
+#include "CGroundWater.h"
 
 class QTTree
 {

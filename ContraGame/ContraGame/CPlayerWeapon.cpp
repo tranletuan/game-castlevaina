@@ -110,7 +110,7 @@ CollisionDirection CPlayerWeapon::CheckCollision(CObject* obj)
 			if (collision != NoCollision)
 			{
 				bullet->OnTarget();
-				CResourcesManager::GetInstance()->m_numScore += 500;
+				
 				break;
 			}
 		}

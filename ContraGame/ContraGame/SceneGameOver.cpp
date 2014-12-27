@@ -128,12 +128,16 @@ void SceneGameOver::update(float time)
 	// xu ly next scene
 	if (m_nextScene)
 	{
+		CResourcesManager::GetInstance()->m_life = 3;
+		CResourcesManager::GetInstance()->m_numScore = 0;
 		if (m_curItem == Item1)
-		{
+		{			
+			CResourcesManager::GetInstance()->m_nextMap = CResourcesManager::GetInstance()->m_curMap;
 			SceneManager::getInstance()->createPlayScene();
 		}
 		else if (m_curItem == Item2)
-		{
+		{			
+			CResourcesManager::GetInstance()->readFileConfiDefault();
 			SceneManager::getInstance()->createMenuScene();
 		}	
 	}

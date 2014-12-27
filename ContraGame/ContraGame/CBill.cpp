@@ -23,12 +23,12 @@ CBill::CBill()
 	_gun_direction = Normal;
 	_player_status = Fall;
 	_physical.time_in_space = 0;
+	_mission_complete = false;
+	_is_wait = false;
 	_physical.vx = 0;
 	_id_ground_stand = -1;
 	_enable = true;
-	_is_revival = true;
-	_is_wait = false;
-	_mission_complete = false;
+	_is_revival = true;	
 	_last_time_revival = 0;
 	_count_jump = 0;
 	LoadResources();
