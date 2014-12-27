@@ -68,6 +68,8 @@
     <ClCompile Include="CameraHUD.cpp" />
     <ClCompile Include="CStarEffect.cpp" />
     <ClCompile Include="CGroundElectron.cpp" />
+    <ClCompile Include="CGroundGrass.cpp" />
+    <ClCompile Include="CGroundWater.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Physical.cpp" />
     <ClCompile Include="QTNode.cpp" />
@@ -151,6 +153,8 @@
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="CameraHUD.h" />
     <ClInclude Include="CStarEffect.h" />
+    <ClInclude Include="CGroundGrass.h" />
+    <ClInclude Include="CGroundWater.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Physical.h" />
     <ClInclude Include="QTNode.h" />
@@ -206,8 +210,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

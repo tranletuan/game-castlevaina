@@ -66,7 +66,8 @@ enum  SpecificType
 	Boss2,
 	Boss2_Elbow,
 	Boss2_Hand, 
-	Boss2_Arm
+	Boss2_Arm,
+	Boss3,
 
 };
 

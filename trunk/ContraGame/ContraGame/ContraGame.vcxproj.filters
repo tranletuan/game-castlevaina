@@ -279,6 +279,12 @@
     <Filter Include="Contra Game\Object\Bullet Game\Bullet Enemy\CSPBullet">
       <UniqueIdentifier>{2bb4d895-f711-4c44-9268-05681b19d093}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contra Game\Object\Ground Game\GroundWater">
+      <UniqueIdentifier>{88af3ff9-daf9-413c-a84e-79d5ec450ec7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Ground Game\GroundGrass">
+      <UniqueIdentifier>{53152475-f520-433f-9869-1c1a01b75d91}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -517,6 +523,12 @@
     </ClCompile>
     <ClCompile Include="CSPBullet.cpp">
       <Filter>Contra Game\Object\Bullet Game\Bullet Enemy\CSPBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CGroundGrass.cpp">
+      <Filter>Contra Game\Object\Ground Game\GroundGrass</Filter>
+    </ClCompile>
+    <ClCompile Include="CGroundWater.cpp">
+      <Filter>Contra Game\Object\Ground Game\GroundWater</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -771,6 +783,12 @@
     </ClInclude>
     <ClInclude Include="CSPBullet.h">
       <Filter>Contra Game\Object\Bullet Game\Bullet Enemy\CSPBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CGroundGrass.h">
+      <Filter>Contra Game\Object\Ground Game\GroundGrass</Filter>
+    </ClInclude>
+    <ClInclude Include="CGroundWater.h">
+      <Filter>Contra Game\Object\Ground Game\GroundWater</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

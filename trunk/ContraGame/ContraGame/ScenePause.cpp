@@ -163,6 +163,9 @@ void ScenePause::update(float time)
 		}
 		else if (m_curItem == Item2)
 		{
+			CResourcesManager::GetInstance()->m_life = 3;
+			CResourcesManager::GetInstance()->m_numScore = 0;
+			CResourcesManager::GetInstance()->readFileConfiDefault();
 			SceneManager::getInstance()->createMenuScene();
 		}		
 	}
