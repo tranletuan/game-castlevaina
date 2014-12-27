@@ -49,6 +49,10 @@ void CBoss2Arm::LoadResources()
 
 void CBoss2Arm::Update(int time)
 {
+	CResourcesManager* rs = CResourcesManager::GetInstance();
+	CCamera* c = rs->_camera;
+	if (c->view_port.y == rs->m_heightMap) _enable = true;
+
 	if (!_enable) return;
 	_can_impact = true;
 
