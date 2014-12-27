@@ -5,7 +5,7 @@ ScenePlay::ScenePlay()
 	// set var in class scene
 	m_timeDuring = 1000;
 	m_state = PS_InGame;
-	_countScore = 10000;
+	_countScore = 20000;
 
 	// out class scene
 	m_background = new Background();
@@ -286,7 +286,7 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 					_countScore -= 500;
 					if (_countScore < 0)
 					{
-						_countScore = 10000;
+						_countScore = 20000;
 						CResourcesManager::GetInstance()->m_life++;
 					}
 					enemy->_hp--;

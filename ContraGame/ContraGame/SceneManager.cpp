@@ -100,6 +100,7 @@ void SceneManager::destroyMenuScene()
 // Loading
 void SceneManager::createLoadingScene()
 {
+	CResourcesManager::GetInstance()->readHighScoreOfMap();
 	m_sceneLoad = new SceneLoading();
 	SceneManager::getInstance()->setScene(m_sceneLoad);
 }

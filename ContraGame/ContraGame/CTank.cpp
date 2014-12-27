@@ -230,7 +230,4 @@ void CTank::Attacking()
 			SetStatus(EAttack);
 		}
 	}
-
-	
-
 }
