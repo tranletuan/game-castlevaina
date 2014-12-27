@@ -282,6 +282,13 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 			{
 				if (_weapon_player1->CheckCollision(enemy) != NoCollision && enemy->_can_impact)
 				{
+					CResourcesManager::GetInstance()->m_numScore += 500;
+					_countScore -= 500;
+					if (_countScore < 0)
+					{
+						_countScore = 10000;
+						CResourcesManager::GetInstance()->m_life++;
+					}
 					enemy->_hp--;
 				}
 			}
@@ -337,14 +344,7 @@ void ScenePlay::ProcessItemsWithOneAnother()
 			if (item->_hp > 0)
 			{
 				if (_weapon_player1->CheckCollision(item) != NoCollision && item->_can_impact)
-				{
-					CResourcesManager::GetInstance()->m_numScore += 500;
-					_countScore -= 500;
-					if (_countScore < 0)
-					{
-						_countScore = 10000;
-						CResourcesManager::GetInstance()->m_life++;
-					}
+				{					
 					item->_hp--;
 				}
 			}
