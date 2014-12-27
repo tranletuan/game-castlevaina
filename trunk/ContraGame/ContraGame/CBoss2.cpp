@@ -26,9 +26,12 @@ void CBoss2::LoadResources()
 
 void CBoss2::Update(int time)
 {
+	CResourcesManager* rs = CResourcesManager::GetInstance();
+	CCamera* c = rs->_camera;
+	if (c->view_port.y == rs->m_heightMap) _enable = true;
+
 	if (!_enable) return;
 
-	
 	if (_hp <= 0)
 	{
 		_physical.SetBounds(0, 0, 0, 0);
