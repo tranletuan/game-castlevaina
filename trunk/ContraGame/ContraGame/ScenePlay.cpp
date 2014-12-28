@@ -40,6 +40,24 @@ void ScenePlay::processInput()
 void ScenePlay::init()
 {
 	m_camera = m_resource->_camera;
+
+	switch (m_resource->m_curMap)
+	{
+	case 1:
+		m_music_bg = m_resource->music_map1_bg;
+		break;
+	case 2:
+		m_music_bg = m_resource->music_map2_bg;
+		break;
+	case 3:
+		m_music_bg = m_resource->music_map3_bg;
+		break;
+	default:
+		break;
+	}
+
+	m_audio->playSound(m_music_bg);
+	m_audio->loopSound(m_music_bg);
 }
 
 void ScenePlay::update(float time)
@@ -86,6 +104,8 @@ void ScenePlay::update(float time)
 
 	if (m_nextScene)
 	{
+		m_audio->stopSound(m_music_bg);
+		m_audio->stopSound(m_resource->sound_stage_clear);
 		m_state = PS_InGame;
 		if (m_resource->m_life > 0)
 		{
@@ -97,9 +117,19 @@ void ScenePlay::update(float time)
 			// chuyen qua scene loading
 			else
 			{
+
 				// thêm highscore mới vào
-				CResourcesManager::GetInstance()->editHighScoreOfMap();
-				SceneManager::getInstance()->createLoadingScene();
+				m_resource->editHighScoreOfMap();
+
+				if (m_resource->m_curMap == 1)
+				{
+					SceneManager::getInstance()->createWinScene();
+				}
+				else
+				{
+					SceneManager::getInstance()->createLoadingScene();
+				}
+
 			}
 
 		}
@@ -129,6 +159,9 @@ void ScenePlay::update(float time)
 
 	if (_boss != NULL && _boss->_hp <= 0)
 	{
+		m_audio->stopSound(m_resource->sound_boss_dead);
+		m_resource->sound_stage_clear->Reset();
+		m_audio->playSound(m_resource->sound_stage_clear);
 		_player1->GoingToNext();
 	}
 
@@ -155,7 +188,7 @@ void ScenePlay::destroy()
 
 void ScenePlay::UpdateFullListObjetcInView()
 {
-	vector<CObject*> objects = CResourcesManager::GetInstance()->listObinView;
+	vector<CObject*> objects = m_resource->listObinView;
 
 	if (objects.size() > 0)
 	{
@@ -176,21 +209,21 @@ void ScenePlay::UpdateFullListObjetcInView()
 				if (ob->_enable)
 				{
 					_enemies.push_back(ob);
-					if (CResourcesManager::GetInstance()->m_curMap == 1)
+					if (m_resource->m_curMap == 1)
 					{
 						if (ob->_specific_type == Boss1)
 						{
 							_boss = ob;
 						}
 					}
-					else if (CResourcesManager::GetInstance()->m_curMap == 2)
+					else if (m_resource->m_curMap == 2)
 					{
 						if (ob->_specific_type == Boss2)
 						{
 							_boss = ob;
 						}
 					}
-					else if (CResourcesManager::GetInstance()->m_curMap == 3)
+					else if (m_resource->m_curMap == 3)
 					{
 						if (ob->_specific_type == Boss3)
 						{
@@ -261,6 +294,8 @@ void ScenePlay::ProcessGroundsWithOneAnother()
 
 void ScenePlay::ProcessEnemiesWithOneAnother()
 {
+
+
 	//Quái nằm trong quadtree
 	if (_enemies.size() > 0)
 	{
@@ -282,20 +317,31 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 			{
 				if (_weapon_player1->CheckCollision(enemy) != NoCollision && enemy->_can_impact)
 				{
-					CResourcesManager::GetInstance()->m_numScore += 500;
+					m_resource->m_numScore += 500;
 					_countScore -= 500;
 					if (_countScore < 0)
 					{
 						_countScore = 20000;
-						CResourcesManager::GetInstance()->m_life++;
+						m_resource->m_life++;
+						m_resource->sound_bill_1up->Reset();
+						m_audio->playSound(m_resource->sound_bill_1up);
 					}
+					
 					enemy->_hp--;
+
+					// chơi sound
+					if (enemy->_hp > 0)
+					{
+						m_resource->sound_enemy_attacked->Reset();
+						m_audio->playSound(m_resource->sound_enemy_attacked);
+					}
 				}
 			}
 			//Va chạm với đạn người chơi 2
 			//Boss chết thì tất cả enemy đều chết
 			if (_boss != NULL && _boss->_hp <= 0)
-			{
+			{				
+				m_onSound = true;
 				enemy->_hp = 0;
 			}
 		}
@@ -344,7 +390,7 @@ void ScenePlay::ProcessItemsWithOneAnother()
 			if (item->_hp > 0)
 			{
 				if (_weapon_player1->CheckCollision(item) != NoCollision && item->_can_impact)
-				{					
+				{
 					item->_hp--;
 				}
 			}
@@ -358,7 +404,7 @@ void ScenePlay::ProcessItemsWithOneAnother()
 
 void ScenePlay::UpdateGlobalVariable()
 {
-	CResourcesManager* rs = CResourcesManager::GetInstance();
-	rs->_grounds = _grounds;
-	rs->_weapon_enemy = _weapon_enemy;
+
+	m_resource->_grounds = _grounds;
+	m_resource->_weapon_enemy = _weapon_enemy;
 }

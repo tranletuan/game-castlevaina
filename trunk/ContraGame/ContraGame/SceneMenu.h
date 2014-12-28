@@ -14,8 +14,6 @@ private:
 	CSprite *m_spItem2;
 	CSprite *m_spBadge;
 
-	CSound *m_musicbg;
-
 	D3DXVECTOR2 m_deltaVec;
 	bool m_runBG;
 	MenuItem m_curItem;

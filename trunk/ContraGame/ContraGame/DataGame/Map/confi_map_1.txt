@@ -14,3 +14,4 @@ StarEffect
 Brigde
 SniperBoss
 RunManFire
+Tank

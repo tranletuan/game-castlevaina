@@ -14,9 +14,9 @@ class CAudio
 public:
 	CAudio(HWND);	
 	CSound *LoadSound(char*);
-	void PlaySound(CSound *);
-	void LoopSound(CSound *);
-	void StopSound(CSound *);
+	void playSound(CSound *);
+	void loopSound(CSound *);
+	void stopSound(CSound *);
 	static bool m_isSoundOff;
 };
 

@@ -30,7 +30,7 @@ void SceneMenu::init()
 	m_spBadge = new CSprite(m_resource->menu_badge);
 	m_spBadge->setPostion(D3DXVECTOR2(266, 155));
 
-	m_musicbg = m_resource->music_menu_bg;
+	m_music_bg = m_resource->music_menu_bg;
 }
 
 void SceneMenu::draw()
@@ -94,12 +94,7 @@ void SceneMenu::update(float time)
 	}
 	else
 	{
-		// play nhac nen
-		if (!m_onSound)
-		{
-			//m_audio->PlaySound(m_musicbg);			
-			m_onSound = true;
-		}
+		
 		
 	}
 
@@ -135,6 +130,13 @@ void SceneMenu::processInput()
 	// phim enter
 	if (m_input->onKeyDown(DIK_RETURN))
 	{
+		// play nhac nen
+		if (!m_onSound)
+		{
+			m_audio->playSound(m_music_bg);		
+		}
+		m_onSound = true;
+
 		if (m_runBG)
 		{
 			defaulPostionBG();

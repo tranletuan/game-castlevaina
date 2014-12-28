@@ -64,13 +64,28 @@ public:
 	CTexture *HUD_badge;
 	CTexture *HUD_gameover;
 
+	/*------    Sound      -----*/
+	CSound *sound_enemy_attacked;
+	CSound *sound_bill_1up;
+	CSound *sound_bill_dead;
+	CSound *sound_boss_dead;
+	CSound *sound_stage_clear;
+
+	/*------    Music      -----*/
+	CSound *music_menu_bg;
+	CSound *music_map1_bg;
+	CSound *music_map2_bg;
+	CSound *music_map3_bg;
+	CSound *music_gameover_bg;
+	CSound *music_win_bg;
+
 	/*--- Menu Resource ----*/
 	CTexture *menu_bg;
 	CTexture *menu_item1;
 	CTexture *menu_item2;
 	CTexture *menu_badge;
 
-	CSound *music_menu_bg;
+	
 
 	/*--- Loading Resource ----*/
 	CTexture *load_1p;
