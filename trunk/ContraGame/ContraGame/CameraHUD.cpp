@@ -1,8 +1,8 @@
 #include "CameraHUD.h"
 
 CameraHUD::CameraHUD()
-{	
-	init();	
+{
+	init();
 }
 
 CameraHUD::~CameraHUD()
@@ -17,9 +17,12 @@ void CameraHUD::draw()
 		// ve huy chuong
 		for (int i = 0; i < m_life; i++)
 		{
-			D3DXVECTOR2 pos = D3DXVECTOR2(20 + i*SPACE_BADGE, 20);
-			m_spriteBadge->setPostion(pos);
-			m_spriteBadge->Draw(pos);
+			if (i < 4)
+			{
+				D3DXVECTOR2 pos = D3DXVECTOR2(20 + i*SPACE_BADGE, 20);
+				m_spriteBadge->setPostion(pos);
+				m_spriteBadge->Draw(pos);
+			}
 		}
 	}
 	else
@@ -27,9 +30,9 @@ void CameraHUD::draw()
 		// sprite game over ve
 		D3DXVECTOR2 pos = D3DXVECTOR2(20, 20);
 		m_spriteOver->setPostion(pos);
-		m_spriteOver->Draw(pos);	 
+		m_spriteOver->Draw(pos);
 	}
-	
+
 }
 
 void CameraHUD::update(int time)
