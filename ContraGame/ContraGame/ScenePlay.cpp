@@ -51,6 +51,8 @@ void ScenePlay::processInput()
 void ScenePlay::init()
 {
 	m_camera = m_resource->_camera;
+	m_spDoor = new CSprite(m_resource->_boss3_door_die);
+	m_spDoor->setPostion(D3DXVECTOR2(190, 98));
 
 	switch (m_resource->m_curMap)
 	{
@@ -186,6 +188,14 @@ void ScenePlay::draw()
 	_weapon_enemy->Draw();
 	_weapon_player1->Draw();
 	_player1->Draw();
+	if (m_resource->m_curMap == 3)
+	{		
+		if (_boss != NULL && _boss->_hp <= 0)
+		{
+			m_spDoor->Draw(m_spDoor->_pos);
+		}
+	}
+	
 	m_cameraHUD->draw();
 	
 }

@@ -22,7 +22,7 @@ void CResourcesManager::prepareManager(LPD3DXSPRITE sp, LPDIRECT3DDEVICE9 pd3Dev
 	GetInstance()->m_audio = audio;
 
 	// init var default
-	GetInstance()->m_life = 3;
+	GetInstance()->m_life = 30;
 	GetInstance()->m_numScore = 0;
 	GetInstance()->m_highScore = 0;
 	GetInstance()->m_numScore = 0;
@@ -143,7 +143,7 @@ void CResourcesManager::loadPlayGraphics()
 	_effect_shoot = new CTexture(PATH_EFFECT_SHOOT);
 	_effect_die = new CTexture(PATH_EFFECT_DIE, 3);
 
-
+	_boss3_door_die = new CTexture(PATH_BOSS3_DOOR_DIE);
 }
 
 
