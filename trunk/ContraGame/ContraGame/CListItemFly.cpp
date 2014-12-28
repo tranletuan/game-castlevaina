@@ -60,23 +60,29 @@ void CListItemFly::CheckCollisionWithPlayerAndWeapon(CPlayerWeapon* weapon, CBil
 		{
 			if (player->_physical.Collision(&item->_physical) != NoCollision)
 			{
+				// play soun
+				CResourcesManager::GetInstance()->m_audio->playSound(CResourcesManager::GetInstance()->sound_get_item);
 				switch (item->_specific_type)
 				{
 				case ItemM:
+					player->setSoundBullet(CResourcesManager::GetInstance()->sound_bullet_m);
 					weapon->SetWaeponType(WPM);
 					break;
 				case ItemR:
 					weapon->SetVelocityPowerful(BULLET_REINFORCE);
 					break;
 				case ItemF:
+					player->setSoundBullet(CResourcesManager::GetInstance()->sound_bullet_m);
 					weapon->SetWaeponType(WPF);
 					break;
 				case ItemL:
+					player->setSoundBullet(CResourcesManager::GetInstance()->sound_bullet_l);
 					weapon->SetWaeponType(WPL);
 					break;
 				case ItemB:
 					break;
 				case ItemS:
+					player->setSoundBullet(CResourcesManager::GetInstance()->sound_bullet_s);
 					weapon->SetWaeponType(WPS);
 					break;
 				}

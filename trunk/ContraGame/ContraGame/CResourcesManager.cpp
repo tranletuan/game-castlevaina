@@ -158,6 +158,11 @@ void CResourcesManager::loadPlayAudio()
 	sound_bill_dead = m_audio->LoadSound(PATH_SOUND_BILL_DEAD);
 	sound_boss_dead = m_audio->LoadSound(PATH_SOUND_BOSS_DEAD);
 	sound_stage_clear = m_audio->LoadSound(PATH_SOUND_STAGE_CLEAR);
+	sound_get_item = m_audio->LoadSound(PATH_SOUND_GET_ITEM);
+	sound_bullet_default = m_audio->LoadSound(PATH_SOUND_BULLET_DEFALUT);
+	sound_bullet_m = m_audio->LoadSound(PATH_SOUND_BULLET_M);
+	sound_bullet_s = m_audio->LoadSound(PATH_SOUND_BULLET_S);
+	sound_bullet_l = m_audio->LoadSound(PATH_SOUND_BULLET_L);
 
 }
 void CResourcesManager::unloadPlayResource()

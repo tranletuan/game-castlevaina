@@ -37,6 +37,11 @@
 #define PATH_SOUND_BILL_DEAD ".//DataGame//Audios//s_bill_dead.wav"
 #define PATH_SOUND_BOSS_DEAD ".//DataGame//Audios//s_boss_dead.wav"
 #define PATH_SOUND_STAGE_CLEAR ".//DataGame//Audios//s_stage_clear.wav"
+#define PATH_SOUND_GET_ITEM ".//DataGame//Audios//s_get_item.wav"
+#define PATH_SOUND_BULLET_DEFALUT ".//DataGame//Audios//s_bullet_default.wav"
+#define PATH_SOUND_BULLET_M ".//DataGame//Audios//s_bullet_m.wav"
+#define PATH_SOUND_BULLET_S ".//DataGame//Audios//s_bullet_s.wav"
+#define PATH_SOUND_BULLET_L ".//DataGame//Audios//s_bullet_l.wav"
 #pragma endregion SoundPath
 
 #pragma region MusicPath

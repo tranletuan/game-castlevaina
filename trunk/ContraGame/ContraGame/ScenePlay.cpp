@@ -159,8 +159,7 @@ void ScenePlay::update(float time)
 
 	if (_boss != NULL && _boss->_hp <= 0)
 	{
-		m_audio->stopSound(m_resource->sound_boss_dead);
-		m_resource->sound_stage_clear->Reset();
+		m_audio->stopSound(m_resource->sound_boss_dead);	
 		m_audio->playSound(m_resource->sound_stage_clear);
 		_player1->GoingToNext();
 	}
@@ -317,8 +316,10 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 			{
 				if (_weapon_player1->CheckCollision(enemy) != NoCollision && enemy->_can_impact)
 				{
+					// xử lý điểm + thêm 1 mạng
 					m_resource->m_numScore += 500;
 					_countScore -= 500;
+
 					if (_countScore < 0)
 					{
 						_countScore = 20000;
@@ -340,8 +341,7 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 			//Va chạm với đạn người chơi 2
 			//Boss chết thì tất cả enemy đều chết
 			if (_boss != NULL && _boss->_hp <= 0)
-			{				
-				m_onSound = true;
+			{
 				enemy->_hp = 0;
 			}
 		}
@@ -368,15 +368,22 @@ void ScenePlay::ProcessItemsWithOneAnother()
 			{
 				if (_player1->_physical.Collision(&item->_physical) != NoCollision)
 				{
+					// play sound
+					m_resource->sound_get_item->Reset();
+					m_audio->playSound(m_resource->sound_get_item);		
+
 					switch (item->_specific_type)
 					{
 					case ItemM_Stand:
+						_player1->setSoundBullet(m_resource->sound_bullet_m);
 						_weapon_player1->SetWaeponType(WPM);
 						break;
 					case ItemF_Stand:
+						_player1->setSoundBullet(m_resource->sound_bullet_default);
 						_weapon_player1->SetWaeponType(WPF);
 						break;
 					case ItemS_Stand:
+						_player1->setSoundBullet(m_resource->sound_bullet_s);
 						_weapon_player1->SetWaeponType(WPS);
 						break;
 					}
@@ -404,7 +411,6 @@ void ScenePlay::ProcessItemsWithOneAnother()
 
 void ScenePlay::UpdateGlobalVariable()
 {
-
 	m_resource->_grounds = _grounds;
 	m_resource->_weapon_enemy = _weapon_enemy;
 }

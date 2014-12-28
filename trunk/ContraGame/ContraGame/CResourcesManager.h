@@ -70,6 +70,11 @@ public:
 	CSound *sound_bill_dead;
 	CSound *sound_boss_dead;
 	CSound *sound_stage_clear;
+	CSound *sound_get_item;
+	CSound *sound_bullet_default;
+	CSound *sound_bullet_m;
+	CSound *sound_bullet_s;
+	CSound *sound_bullet_l;
 
 	/*------    Music      -----*/
 	CSound *music_menu_bg;
