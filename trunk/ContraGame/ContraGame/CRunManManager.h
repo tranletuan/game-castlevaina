@@ -30,7 +30,7 @@ public:
 	~CRunmanManager();
 
 	void RemoveDisableRunman();
-	void CheckCollisionWithGround(CObject* ground);
+	void CheckCollisionWithGround();
 	void CheckCollisionWithPlayer(CPlayerWeapon* weapon, CBill* player);
 
 	void LoadResources();

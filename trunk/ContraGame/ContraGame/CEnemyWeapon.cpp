@@ -171,8 +171,7 @@ void CEnemyWeapon::CheckCollisionWithGround(CObject* ground)
 			}
 
 			//Xét va chạm khi đạn B và FB chạm đát
-			if (bullet->_specific_type == BulletFB || 
-				bullet->_specific_type == BulletB)
+			if (bullet->_specific_type == BulletFB)
 			{
 				if (bullet->CheckCollision(ground) == TopCollision)
 				{
@@ -244,14 +243,18 @@ void CEnemyWeapon::UpdateQueueIdBullet(queue<int> &queue_id_bullet)
 	}
 }
 
-void CEnemyWeapon::DestroyAllBullet()
+void CEnemyWeapon::DestroyAllBullet() 
 {
 	if (_list_bullet.size() > 0)
 	{
 		for (map<int, CBullet*>::iterator i = _list_bullet.begin(); i != _list_bullet.end(); i++)
 		{
 			CBullet* bullet = (*i).second;
-			bullet->OnTarget();
+			
+			if (bullet->_hp > 0)
+			{
+				bullet->OnTarget();
+			}
 		}
 	}
 }

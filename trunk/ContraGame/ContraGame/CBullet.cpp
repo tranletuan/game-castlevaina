@@ -33,6 +33,7 @@ void CBullet::OnTarget()
 	_current_sprite = _ontarget_sprite;
 	_current_sprite->Reset();
 	_physical.SetBounds(0, 0, 0, 0);
+	_hp = 0;
 	
 }
 
@@ -108,6 +109,7 @@ void CBullet::Shoot(D3DXVECTOR3 pos, int angle, float v_max, float vo)
 	_physical.n = 0;
 	_vo = vo;
 	_enable = true;
+	_hp = 1;
 	_current_sprite = _bullet_sprite;
 	_current_sprite->Reset();
 	SetAngle(angle);

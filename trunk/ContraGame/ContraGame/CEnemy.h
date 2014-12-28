@@ -24,7 +24,7 @@ protected:
 	virtual void DrawWhenDie(D3DXVECTOR3 pos) = 0;
 	virtual void Attacking() = 0;
 
-	bool CheckTarget();
+	virtual bool CheckTarget();
 	bool SetStatus(EnemyStatus status);
 
 public:

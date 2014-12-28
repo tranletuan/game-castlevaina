@@ -18,7 +18,7 @@ ScenePlay::ScenePlay()
 	_player1->SetWeapon(_weapon_player1);
 	_weapon_enemy = new CEnemyWeapon();
 	_runmans = new CRunmanManager();
-
+	
 	init();
 }
 
@@ -266,7 +266,6 @@ void ScenePlay::ProcessGroundsWithOneAnother()
 	if (_grounds.size() > 0)
 	{
 		CollisionDirection collision_player1 = NoCollision;
-		CollisionDirection collision_player2 = NoCollision;
 		for (vector<CObject*>::iterator i = _grounds.begin(); i != _grounds.end(); i++)
 		{
 			CObject* ground = (*i);
@@ -297,10 +296,10 @@ void ScenePlay::ProcessGroundsWithOneAnother()
 
 			//Xét va chạm với những loại đạn có khả năng chạm đất
 			_weapon_enemy->CheckCollisionWithGround(ground);
-
-			//Xét va chạm với các đối tượng k có trong quadtree
-			_runmans->CheckCollisionWithGround(ground);
 		}
+
+		//Xét va chạm với các đối tượng k có trong quadtree
+		_runmans->CheckCollisionWithGround();
 
 		if (collision_player1 != TopCollision)
 		{

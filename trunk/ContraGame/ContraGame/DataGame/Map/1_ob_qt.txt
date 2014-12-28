@@ -91,5 +91,5 @@
 91 Boss1Gun 3208 100 32 32
 92 Boss1Gun 3228 100 32 32
 93 SniperBoss 3216 182 32 32 
-0 Camera 0 240 256 240 
-0 Character 40 240 36 46 
+0 Camera 2950 240 256 240 
+0 Character 3000 240 36 46 

@@ -110,11 +110,12 @@ void CRunmanManager::CheckActive()
 		switch (curMap)
 		{
 		case 2:
-			if (pos_check_active.y < kScreenHeight / 2 - ENEMY_RUN_MAN_FIRE_ATTACK_DISTANCE ||
-				pos_check_active.y > kScreenHeight / 2 + ENEMY_RUN_MAN_FIRE_ATTACK_DISTANCE)
+			if (pos_check_active.y > cam->getHeight() / 2 - ENEMY_RUN_MAN_FIRE_ATTACK_DISTANCE &&
+				pos_check_active.y < cam->getHeight() / 2 + ENEMY_RUN_MAN_FIRE_ATTACK_DISTANCE)
 			{
-				break;
+				RunManAttacking(pos);
 			}
+			break;
 		case 1:
 		case 3:
 			if ((pos_check_active.x < 0 && pos_check_active.x > -ENEMY_RUN_MAN_DISTANCE_ACTIVE) ||
@@ -127,7 +128,6 @@ void CRunmanManager::CheckActive()
 	}
 
 	//Check Active Run Man Fire
-	//Check Active Run Man
 	for (int i = 0; i < _pos_runman_fire_active.size(); i++)
 	{
 		D3DXVECTOR3 pos = _pos_runman_fire_active.at(i);
@@ -138,11 +138,12 @@ void CRunmanManager::CheckActive()
 		switch (curMap)
 		{
 		case 2:
-			if (pos_check_active.y < kScreenHeight / 2 - ENEMY_RUN_MAN_FIRE_ATTACK_DISTANCE ||
-				pos_check_active.y > kScreenHeight / 2 + ENEMY_RUN_MAN_FIRE_ATTACK_DISTANCE)
+			if (pos_check_active.y > cam->getHeight() / 2 - ENEMY_RUN_MAN_FIRE_ATTACK_DISTANCE &&
+				pos_check_active.y < cam->getHeight() / 2 + ENEMY_RUN_MAN_FIRE_ATTACK_DISTANCE)
 			{
-				break;
+				RunManFireAttacking(pos);
 			}
+			break;
 		case 1:
 		case 3:
 			if ((pos_check_active.x < 0 && pos_check_active.x > -ENEMY_RUN_MAN_DISTANCE_ACTIVE) ||
@@ -189,46 +190,59 @@ void CRunmanManager::RunManFireAttacking(D3DXVECTOR3 pos)
 	}
 }
 
-void CRunmanManager::CheckCollisionWithGround(CObject* ground)
+void CRunmanManager::CheckCollisionWithGround()
 {
 	if (_list_runman.size() > 0)
 	{
+		vector<CObject*> grounds = CResourcesManager::GetInstance()->_grounds;
 		for (map<int, CRunman*>::iterator i = _list_runman.begin(); i != _list_runman.end(); i++)
 		{
 			CRunman* runman = (*i).second;
-
-			//Kiểm tra va chạm với mặt đất
-			CollisionDirection cd = runman->CheckCollision(ground);
-			if (cd == TopCollision)
+			CollisionDirection cd = NoCollision;
+			for (vector<CObject*>::iterator i = grounds.begin(); i != grounds.end(); i++)
 			{
-				runman->Standing(ground->_physical.bounds.top + ENEMY_RUN_MAN_BOUNDS_HEIGHT / 2 + 0.5f, 
-					ground->_specific_type);
+				CObject* ground = (*i);
 
-				//Khi runman chạy hết đường thì hoặc là quay đầu, hoặc là nhảy
-				if ((runman->_physical.bounds.left <= ground->_physical.bounds.left ||
-					runman->_physical.bounds.right >= ground->_physical.bounds.right) &&
-					runman->_rm_status == RMRun)
+				//Kiểm tra va chạm với mặt đất
+				cd = runman->CheckCollision(ground);
+				if (cd == TopCollision)
 				{
-					int ran = rand() % 10;
-					if (ran < 7)
-					{
-						runman->Jumping();
-					}
-					else if (runman->_rm_status != RMJump)
-					{
-						runman->_physical.vx_last *= -1;
-						runman->_physical.vx *= -1;
+					runman->Standing(ground->_physical.bounds.top + ENEMY_RUN_MAN_BOUNDS_HEIGHT / 2 + 0.5f,
+						ground->_specific_type);
 
-						if (runman->_physical.vx_last > 0)
+					//Khi runman chạy hết đường thì hoặc là quay đầu, hoặc là nhảy
+					if ((runman->_physical.bounds.left - 8 <= ground->_physical.bounds.left ||
+						runman->_physical.bounds.right + 8 >= ground->_physical.bounds.right) &&
+						runman->_rm_status == RMRun)
+					{
+						int ran = rand() % 10;
+						if (ran < 7)
 						{
-							runman->_physical.x += 10;
+							runman->Jumping();
 						}
 						else
 						{
-							runman->_physical.x -= 10;
+							runman->_physical.vx_last *= -1;
+							runman->_physical.vx *= -1;
+
+							if (runman->_physical.vx_last > 0)
+							{
+								runman->_physical.x += 10;
+							}
+							else
+							{
+								runman->_physical.x -= 10;
+							}
 						}
 					}
+
+					break;
 				}
+			}
+
+			if (cd == NoCollision)
+			{
+				runman->_physical.n = 0;
 			}
 		}
 	}

@@ -224,7 +224,6 @@ void CBill::Dying()
 	_physical.vx = BILL_VX * sign;
 	_physical.vy = BILL_VY_DIE;
 	_physical.n = 0;
-	_weapon->SetWaeponType(WPN);
 	_physical.time_in_space = 0;
 }
 
@@ -429,6 +428,7 @@ void CBill::Living()
 			_last_time_revival = 0;
 			_bill_die->Reset();
 			_physical.x = _x_last;
+			_weapon->SetWaeponType(WPN);
 
 			//Kiểm tra tọa độ rơi
 			int cur_map = rs->m_curMap;
@@ -449,6 +449,7 @@ void CBill::GoingToNext()
 {
 	_is_wait = true;
 	_can_impact = false;
+	_physical.vx = 0;
 	DWORD now = GetTickCount();
 	
 	if (_last_time_wait == 0)
@@ -459,19 +460,19 @@ void CBill::GoingToNext()
 	if (now - _last_time_wait >= 5000)
 	{
 		CResourcesManager* rs = CResourcesManager::GetInstance();
+		SetGunDirection(Normal);
+		_audio->playSound(CResourcesManager::GetInstance()->sound_stage_clear);
 		switch (rs->m_curMap)
 		{
 		case 1:
-			_audio->playSound(CResourcesManager::GetInstance()->sound_stage_clear);
 			Moving(BILL_VX);
-			SetGunDirection(Normal);
-			if (_physical.x >= 3260 && _count_jump == 0)
-			{				
+			if (_physical.x >= 3230 && _count_jump == 0)
+			{
 				Jumping();
 				_count_jump++;
 			}
 
-			if (_physical.x >= 3305)
+			if (_physical.x >= rs->m_widthMap - 20)
 			{
 				_count_jump = 0;
 				_last_time_wait = 0;
@@ -480,13 +481,52 @@ void CBill::GoingToNext()
 			}
 
 			break;
-		case 2:
-			break;
+
 		case 3:
+			Moving(BILL_VX);
+
+			if (_physical.x >= rs->m_widthMap - 30)
+			{
+				_last_time_wait = 0;
+				_mission_complete = true;
+				_is_wait = false;
+			}
+
+			break;
+		case 2:
+			//Xét vị trí hiện tại và di chuyển vào giữa màn hình
+			int mid = rs->_camera->getWidth() / 2;
+			if (_physical.x < mid + 10)
+			{
+				Moving(BILL_VX);
+			}
+			else if (_physical.x > mid - 10)
+			{
+				Moving(-BILL_VX);
+			}
+			else
+			{
+				_physical.vx = 0;
+			}
+
+			//Nhảy qua màn
+			if (_count_jump == 0)
+			{
+				Jumping();
+				_count_jump++;
+			}
+
+			//Nhảy đạt độ cao cực đại thì qua màn
+			if (_physical.current_vy < 0 && _physical.n == 0)
+			{
+				_count_jump = 0;
+				_last_time_wait = 0;
+				_mission_complete = true;
+				_is_wait = false;
+			}
 			break;
 		}
 	}
-
 }
 
 //SUPPORT DRAW
@@ -540,12 +580,37 @@ void CBill::DrawWhenAttack(D3DXVECTOR3 pos)
 			switch (_gun_direction)
 			{
 			case Normal:
+				if (_current_sprite->index < 5)
+				{
+					_current_sprite->index += (_current_sprite->index / 5) * 5;
+				}
+
+				if (_current_sprite->index > 9)
+				{
+					_current_sprite->index -= (_current_sprite->index / 5) * 5;
+				}
+
 				done = _current_sprite->DrawWithDirectionAndOneTimeEffect(pos, _physical.vx_last, 5, 9);
 				break;
 			case Up:
+				if (_current_sprite->index < 10)
+				{
+					_current_sprite->index += (_current_sprite->index / 5) * 5;
+				}
+				
+				if (_current_sprite->index > 14)
+				{
+					_current_sprite->index -= (_current_sprite->index / 5) * 5;
+				}
+
 				_current_sprite->DrawWithDirection(pos, _physical.vx_last, 10, 14);
 				break;
 			case Down:
+				if (_current_sprite->index < 15)
+				{
+					_current_sprite->index += (_current_sprite->index / 5) * 5;
+				}
+
 				_current_sprite->DrawWithDirection(pos, _physical.vx_last, 15, 19);
 				break;
 			}
@@ -601,12 +666,32 @@ void CBill::DrawWhenMove(D3DXVECTOR3 pos)
 		switch (_gun_direction)
 		{
 		case Normal:
+			if (_current_sprite->index > 4)
+			{
+				_current_sprite->index -= (_current_sprite->index / 5) * 5;
+			}
+
 			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 0, 4);
 			break;
 		case Up:
+			if (_current_sprite->index < 10)
+			{
+				_current_sprite->index += (_current_sprite->index / 5) * 5;
+			}
+
+			if (_current_sprite->index > 14)
+			{
+				_current_sprite->index -= (_current_sprite->index / 5) * 5;
+			}
+
 			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 10, 14);
 			break;
 		case Down:
+			if (_current_sprite->index < 15)
+			{
+				_current_sprite->index -= (_current_sprite->index / 5) * 5;
+			}
+
 			_current_sprite->DrawWithDirection(pos, _physical.vx_last, 15, 19);
 			break;
 		}

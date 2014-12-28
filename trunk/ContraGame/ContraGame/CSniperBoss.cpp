@@ -103,6 +103,11 @@ void CSniperBoss::Draw()
 	CEnemy::Draw();
 }
 
+bool CSniperBoss::CheckTarget()
+{
+	return (abs(_physical.x - _target.x) <= ENEMY_ATTACK_DISTANCE + 50);
+}
+
 void CSniperBoss::SetTarget(float x, float y)
 {
 	CEnemyUseGun::SetTarget(x, y);
@@ -112,7 +117,6 @@ void CSniperBoss::SetTarget(float x, float y)
 void CSniperBoss::Attacking()
 {
 	if (_hp == 0) return;
-	if (!CheckTarget()) return; //Mục tiêu chưa vào tầm tấn công
 	if (_is_change) return; //Cờ hiệu thay đổi trạng thái
 
 	//Giãn cách bắn

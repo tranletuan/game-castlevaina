@@ -65,7 +65,7 @@ void CRunmanFire::SetTargetAttack(float x, float y)
 	float distance_y = _physical.y > y ? _physical.y - y : y - _physical.y;
 
 	if (distance_y <= ENEMY_RUN_MAN_FIRE_ATTACK_DISTANCE &&
-		distance_x <= ENEMY_RUN_MAN_FIRE_ATTACK_DISTANCE &&
+		distance_x <= ENEMY_RUN_MAN_FIRE_ATTACK_DISTANCE + 30 &&
 		_count_bullet < ENEMY_RUN_MAN_FIRE_MAX_BULLET &&
 		_rm_status == RMRun)
 	{
