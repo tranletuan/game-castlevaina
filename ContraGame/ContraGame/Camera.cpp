@@ -54,7 +54,7 @@ void CCamera::Update(int time)
 	case CamS_Follow:
 		if (rs->m_curMap == 2)
 		{
-			if (rs->m_posBill.y < rs->m_heightMap - 216)
+			if (rs->m_posBill.y < 1984 )
 			{
 				UpdateCameraY(rs->m_posBill.y);
 			}
@@ -80,7 +80,7 @@ void CCamera::Update(int time)
 		{
 			if (rs->m_heightMap - kScreenHeight < view_port.y)
 			{
-				view_port.y = rs->m_heightMap - kScreenHeight;
+				view_port.y = rs->m_heightMap ;
 			}
 		}		
 		else
