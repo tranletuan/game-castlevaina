@@ -201,7 +201,6 @@ bool QTTree::isCollWithCam(QTNode *node)
 
 }
 
-
 CObject * QTTree::getObjectTrust(CObject *x)
 {
 	// chuyển tọa độ từ top - left sang center

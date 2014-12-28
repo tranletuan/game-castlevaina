@@ -157,10 +157,12 @@ bool CRunman::Jumping()
 	if (!SetStatus(RMJump)) return false;
 
 	//Nếu chuyển thành công thì thực hiện nhảy
-	float rate = rand() % 10 / (float)10;
-	_physical.vy = ENEMY_RUN_MAN_VY + rate;
+	float vx = ENEMY_RUN_MAN_VX_JUMP + rand() % 3 / (float)100 + 0.01f;
+	vx = _physical.vx_last > 0 ?  vx : -vx;
+	_physical.vx = vx;
+	_physical.vy = ENEMY_RUN_MAN_VY;
 	_physical.n = 0;
-
+	_physical.time_in_space = 0;
 	return true;
 }
 
@@ -180,6 +182,7 @@ void CRunman::Standing(float y_ground, SpecificType ground_type)
 			{
 				_rm_status = RMRun;
 				_physical.y = y_ground;
+				_physical.vx = _physical.vx_last > 0 ? ENEMY_RUN_MAN_VX : -ENEMY_RUN_MAN_VX;
 			}
 		}
 
@@ -188,7 +191,7 @@ void CRunman::Standing(float y_ground, SpecificType ground_type)
 
 	//Chạm đất thì vector phản lực n phải có 1 lực tương đương với vector trọng trường
 	_physical.n = GRAVITY;
-	_physical.time_in_space = GetTickCount();
+	_physical.time_in_space = 0;
 }
 
 void CRunman::Dying()
@@ -199,7 +202,7 @@ void CRunman::Dying()
 		_physical.vy = ENEMY_VY_DIE;
 		_physical.n = 0;
 		_physical.SetBounds(0, 0, 0, 0);
-		_physical.time_in_space = GetTickCount();
+		_physical.time_in_space = 0;
 	}
 
 }

@@ -26,6 +26,7 @@ public:
 
 	RMStatus _rm_status;
 	bool _stand_in_water;
+	bool _is_change;
 
 	virtual void LoadResources();
 	virtual void Update(int delta_time);

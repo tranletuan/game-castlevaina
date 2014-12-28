@@ -15,6 +15,7 @@ protected:
 	void DrawWhenDie(D3DXVECTOR3 pos);
 	void DrawWhenWait(D3DXVECTOR3 pos);
 	void Attacking();
+	bool CheckTarget();
 public:
 	CSniperBoss(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height);
 	~CSniperBoss();

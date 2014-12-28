@@ -13,8 +13,6 @@
 #include "CRunManManager.h"
 #include "SceneManager.h"
 
-#include "CBoss3.h"
-
 enum PlayState
 {
 	PS_InGame,
@@ -53,8 +51,6 @@ private:
 	CListItemFly *m_listItemFLy;
 	CRunmanManager* _runmans;	
 	CObject* _boss;
-
-	CBoss3* boss_test;
 
 public:
 	ScenePlay();
