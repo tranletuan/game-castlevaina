@@ -777,6 +777,11 @@ void CBill::OnKeyUp()
 			_player_status = Stand;
 		}
 	}
+
+	if (_input->onKeyUp(DIK_J))
+	{
+		CResourcesManager::GetInstance()->m_audio->stopSound(CResourcesManager::GetInstance()->sound_bullet_m);
+	}
 }
 
 void CBill::IsKeyDown()
