@@ -18,6 +18,7 @@ protected:
 	bool m_nextScene;
 	bool m_backScene;
 	CAudio *m_audio;
+	CSound *m_music_bg;
 	bool m_onSound;
 
 

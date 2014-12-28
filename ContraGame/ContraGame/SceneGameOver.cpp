@@ -60,6 +60,10 @@ void SceneGameOver::init()
 	m_spBadge->setPostion(D3DXVECTOR2(100, 160));
 
 	m_spNumber = new CSprite(m_resource->load_number);
+
+	m_music_bg = m_resource->music_gameover_bg;
+	m_audio->playSound(m_music_bg);
+	
 }
 
 void SceneGameOver::draw()
@@ -74,7 +78,7 @@ void SceneGameOver::draw()
 	if (m_timeCount % 15 > 4 && m_timeCount % 15 < 15)
 	{
 		drawNumber(to_string(m_resource->m_numScore), 100, 25);
-		drawNumber(to_string(m_resource->m_highScore), 110, 75);		
+		drawNumber(to_string(m_resource->m_highScore), 110, 75);
 	}
 	// ve hieu ung button
 	if (!m_checkItem)
@@ -131,15 +135,15 @@ void SceneGameOver::update(float time)
 		CResourcesManager::GetInstance()->m_life = 3;
 		CResourcesManager::GetInstance()->m_numScore = 0;
 		if (m_curItem == Item1)
-		{			
+		{
 			CResourcesManager::GetInstance()->m_nextMap = CResourcesManager::GetInstance()->m_curMap;
 			SceneManager::getInstance()->createPlayScene();
 		}
 		else if (m_curItem == Item2)
-		{			
+		{
 			CResourcesManager::GetInstance()->readFileConfiDefault();
 			SceneManager::getInstance()->createMenuScene();
-		}	
+		}
 	}
 }
 

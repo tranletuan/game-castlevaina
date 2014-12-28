@@ -148,9 +148,18 @@ void CResourcesManager::loadPlayGraphics()
 
 void CResourcesManager::loadPlayAudio()
 {
+	music_map1_bg = m_audio->LoadSound(PATH_MUSIC_MAP1_BG);
+	music_map2_bg = m_audio->LoadSound(PATH_MUSIC_MAP2_BG);
+	music_map3_bg = m_audio->LoadSound(PATH_MUSIC_MAP3_BG);
+
+
+	sound_enemy_attacked = m_audio->LoadSound(PATH_SOUND_ENEMY_ATTACKED);
+	sound_bill_1up = m_audio->LoadSound(PATH_SOUND_BILL_1UP);
+	sound_bill_dead = m_audio->LoadSound(PATH_SOUND_BILL_DEAD);
+	sound_boss_dead = m_audio->LoadSound(PATH_SOUND_BOSS_DEAD);
+	sound_stage_clear = m_audio->LoadSound(PATH_SOUND_STAGE_CLEAR);
 
 }
-
 void CResourcesManager::unloadPlayResource()
 {
 
@@ -194,7 +203,7 @@ void CResourcesManager::loadOverGraphics()
 
 void CResourcesManager::loadOverAudio()
 {
-
+	music_gameover_bg = m_audio->LoadSound(PATH_MUSIC_GAMEOVER_BG);
 }
 
 void CResourcesManager::unloadOverResource()
@@ -224,7 +233,7 @@ void CResourcesManager::loadWinGraphics()
 
 void CResourcesManager::loadWinAudio()
 {
-
+	music_win_bg = m_audio->LoadSound(PATH_MUSIC_WIN_BG);
 }
 
 void CResourcesManager::unloadWinResource()

@@ -32,10 +32,20 @@
 #pragma endregion LoadPath
 
 #pragma region SoundPath
+#define PATH_SOUND_ENEMY_ATTACKED ".//DataGame//Audios//s_enemy_attacked.wav"
+#define PATH_SOUND_BILL_1UP ".//DataGame//Audios//s_bill_1up.wav"
+#define PATH_SOUND_BILL_DEAD ".//DataGame//Audios//s_bill_dead.wav"
+#define PATH_SOUND_BOSS_DEAD ".//DataGame//Audios//s_boss_dead.wav"
+#define PATH_SOUND_STAGE_CLEAR ".//DataGame//Audios//s_stage_clear.wav"
 #pragma endregion SoundPath
 
 #pragma region MusicPath
-#define PATH_MUSIC_MENU_BG ".//DataGame//Sounds//menu_bg.wav"
+#define PATH_MUSIC_MENU_BG ".//DataGame//Audios//m_menu_bg.wav"
+#define PATH_MUSIC_MAP1_BG ".//DataGame//Audios//m_map1_bg.wav"
+#define PATH_MUSIC_MAP2_BG ".//DataGame//Audios//m_map2_bg.wav"
+#define PATH_MUSIC_MAP3_BG ".//DataGame//Audios//m_map3_bg.wav"
+#define PATH_MUSIC_GAMEOVER_BG ".//DataGame//Audios//m_gameover_bg.wav"
+#define PATH_MUSIC_WIN_BG ".//DataGame//Audios//m_win_bg.wav"
 #pragma endregion MusicPath
 
 #pragma region BackgrounPath

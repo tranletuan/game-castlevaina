@@ -42,17 +42,17 @@ CSound* CAudio::LoadSound(char* filename)
 	return wave;
 }
 
-void CAudio::PlaySound(CSound *sound)
+void CAudio::playSound(CSound *sound)
 {
 	sound->Play();
 }
 
-void CAudio::LoopSound(CSound *sound)
+void CAudio::loopSound(CSound *sound)
 {
 	sound->Play(0, DSBPLAY_LOOPING);
 }
 
-void CAudio::StopSound(CSound *sound)
+void CAudio::stopSound(CSound *sound)
 {
 	sound->Stop();
 }

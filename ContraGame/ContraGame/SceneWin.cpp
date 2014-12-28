@@ -37,6 +37,10 @@ void SceneWin::init()
 	m_spTien = new CSprite(CResourcesManager::GetInstance()->win_tien);
 	m_spTuan = new CSprite(CResourcesManager::GetInstance()->win_tuan);
 	m_spCopy = new CSprite(CResourcesManager::GetInstance()->win_copy);
+
+	m_music_bg = m_resource->music_win_bg;
+	m_audio->playSound(m_music_bg);
+
 }
 
 void SceneWin::draw()
@@ -83,6 +87,8 @@ void SceneWin::update(float time)
 {
 	if (m_nextScene)
 	{
+		m_audio->stopSound(m_music_bg);
+		m_resource->readFileConfiDefault();
 		SceneManager::getInstance()->createMenuScene();
 	}
 
