@@ -27,6 +27,7 @@
 #include "CBoss2Arm.h"
 #include "CGroundGrass.h"
 #include "CGroundWater.h"
+#include "CBoss3.h"
 
 class QTTree
 {

@@ -135,6 +135,7 @@ void CResourcesManager::loadPlayGraphics()
 	_bullet_ne = new CTexture(PATH_BULLET_NE);
 	_bullet_b = new CTexture(PATH_BULLET_B);
 	_bullet_b2 = new CTexture(PATH_BULLET_B2, 4);
+	_bullet_b3 = new CTexture(PATH_BULLET_B3, 3);
 	_bullet_sp = new CTexture(PATH_BULLET_SP);
 
 	//Effect
@@ -386,6 +387,7 @@ void CResourcesManager::loadAllInMap()
 				else if (line == "RunMan")
 				{
 					loadTexture(RESID_ENEMY_RUN_MAN);
+					loadTexture(RESID_ENEMY_RUN_MAN_FIRE);
 				}
 				else if (line == "StarEffect")
 				{
@@ -431,11 +433,10 @@ void CResourcesManager::loadAllInMap()
 				{
 					loadTexture(RESID_ENEMY_SNIPER_WATER);
 				}
-				else if (line == "RunManFire")
+				else if (line == "Boss3")
 				{
-					loadTexture(RESID_ENEMY_RUN_MAN_FIRE);
+					loadTexture(RESID_BOSS_3);
 				}
-
 			}
 		}
 		myfile.close();
@@ -585,6 +586,9 @@ void CResourcesManager::loadTexture(ResourceID id)
 		_boss2_hand = new CTexture(PATH_BOSS2_HAND);
 		_boss2_live = new CTexture(PATH_BOSS2_LIVE, 3, 4);
 		_boss2_die = new CTexture(PATH_BOSS2_DIE);
+		break;
+	case RESID_BOSS_3:
+		_boss3 = new CTexture(PATH_BOSS3, 2, 6);
 		break;
 	}
 }

@@ -96,6 +96,7 @@
 #define PATH_BULLET_NE ".//DataGame//Images//Game//Object//bullet//bullet_ne.png"
 #define PATH_BULLET_B ".//DataGame//Images//Game//Object//bullet//bullet_b.png"
 #define PATH_BULLET_B2 ".//DataGame//Images//Game//Object//bullet//bullet_b2.png"
+#define PATH_BULLET_B3 ".//DataGame//Images//Game//Object//bullet//bullet_b3.png"
 #define PATH_BULLET_SP ".//DataGame//Images//Game//Object//bullet//bullet_sp.png"
 #pragma endregion BulletPath
 
@@ -145,6 +146,7 @@
 #define PATH_BOSS2_DIE ".//DataGame//Images//Game//Object//boss//boss2_die.png"
 #define PATH_BOSS2_ELBOW ".//DataGame//Images//Game//Object//boss//boss2_elbow.png"
 #define PATH_BOSS2_HAND ".//DataGame//Images//Game//Object//boss//boss2_hand.png"
+#define PATH_BOSS3 ".//DataGame//Images//Game//Object//boss//boss3.png"
 #pragma endregion BossPath
 
 #pragma region DataPath

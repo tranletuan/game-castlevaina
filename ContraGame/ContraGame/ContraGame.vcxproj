@@ -16,6 +16,7 @@
     <ClCompile Include="BaseScene.cpp" />
     <ClCompile Include="CAutoDestroyBridge.cpp" />
     <ClCompile Include="CB2Bullet.cpp" />
+    <ClCompile Include="CB3Bullet.cpp" />
     <ClCompile Include="CBill.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CBBullet.cpp" />
@@ -26,7 +27,9 @@
     <ClCompile Include="CBoss2Elbow.cpp" />
     <ClCompile Include="CBoss1Gun.cpp" />
     <ClCompile Include="CBoss2Hand.cpp" />
+    <ClCompile Include="CBoss3.cpp" />
     <ClCompile Include="CBullet.cpp" />
+    <ClCompile Include="CFBBullet.cpp" />
     <ClCompile Include="CSPBullet.cpp" />
     <ClCompile Include="CDatabase.cpp" />
     <ClCompile Include="CEffectObject.cpp" />
@@ -99,6 +102,7 @@
     <ClInclude Include="BaseScene.h" />
     <ClInclude Include="CAutoDestroyBridge.h" />
     <ClInclude Include="CB2Bullet.h" />
+    <ClInclude Include="CB3Bullet.h" />
     <ClInclude Include="CBill.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CBBullet.h" />
@@ -109,7 +113,9 @@
     <ClInclude Include="CBoss2Elbow.h" />
     <ClInclude Include="CBoss1Gun.h" />
     <ClInclude Include="CBoss2Hand.h" />
+    <ClInclude Include="CBoss3.h" />
     <ClInclude Include="CBullet.h" />
+    <ClInclude Include="CFBBullet.h" />
     <ClInclude Include="CSPBullet.h" />
     <ClInclude Include="CDatabase.h" />
     <ClInclude Include="CEffectObject.h" />
@@ -210,8 +216,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>H:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

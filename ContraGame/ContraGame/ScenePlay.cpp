@@ -18,6 +18,7 @@ ScenePlay::ScenePlay()
 	_player1->SetWeapon(_weapon_player1);
 	_weapon_enemy = new CEnemyWeapon();
 	_runmans = new CRunmanManager();
+
 	init();
 }
 
@@ -34,6 +35,16 @@ void ScenePlay::processInput()
 	if (m_input->onKeyDown(DIK_RETURN))
 	{
 		m_nextScene = true;
+	}
+
+	if (m_input->onKeyDown(DIK_9))
+	{
+		boss_test->_enable = true;
+	}
+
+	if (m_input->onKeyDown(DIK_0))
+	{
+		boss_test->_hp = 0;
 	}
 }
 
@@ -163,7 +174,6 @@ void ScenePlay::update(float time)
 		_player1->GoingToNext();
 	}
 
-
 	UpdateGlobalVariable();
 }
 
@@ -177,6 +187,7 @@ void ScenePlay::draw()
 	_weapon_player1->Draw();
 	_player1->Draw();
 	m_cameraHUD->draw();
+	
 }
 
 void ScenePlay::destroy()
@@ -262,7 +273,7 @@ void ScenePlay::ProcessGroundsWithOneAnother()
 					{
 						_player1->SetEnviroment(Water);
 					}
-					else if (ground->_specific_type == Land)
+					else if (ground->_specific_type == Ground_Grass)
 					{
 						_player1->SetEnviroment(Land);
 					}
@@ -292,8 +303,6 @@ void ScenePlay::ProcessGroundsWithOneAnother()
 
 void ScenePlay::ProcessEnemiesWithOneAnother()
 {
-
-
 	//Quái nằm trong quadtree
 	if (_enemies.size() > 0)
 	{
@@ -351,6 +360,15 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 
 	//Xét va chạm đạn của quái với người chơi
 	_weapon_enemy->CheckCollisionWithPlayer(_player1);
+
+	//Xét va chạm đạn của quái với đạn của người chơi
+	_weapon_enemy->CheckCollisionWithWeaponPlayer(_weapon_player1);
+
+	//boss chết thì vô hiệu hóa tất cả các loại đạn của quái
+	if (_boss != NULL && _boss->_hp <= 0)
+	{
+		_weapon_enemy->DestroyAllBullet();
+	}
 }
 
 void ScenePlay::ProcessItemsWithOneAnother()

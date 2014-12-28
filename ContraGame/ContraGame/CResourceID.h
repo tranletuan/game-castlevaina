@@ -63,6 +63,7 @@ enum ResourceID
 	// boss
 	RESID_BOSS_1,	
 	RESID_BOSS_2,
+	RESID_BOSS_3
 
 };
 

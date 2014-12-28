@@ -285,6 +285,15 @@
     <Filter Include="Contra Game\Object\Ground Game\GroundGrass">
       <UniqueIdentifier>{53152475-f520-433f-9869-1c1a01b75d91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contra Game\Object\Boss\Boss3">
+      <UniqueIdentifier>{6c9bc514-24d1-48d0-8ad6-b410d05b186a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Bullet Game\Bullet Enemy\CB3Bullet">
+      <UniqueIdentifier>{e7674a75-0971-4391-ad2f-2f623d8b781d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contra Game\Object\Bullet Game\Bullet Enemy\CFBBullet">
+      <UniqueIdentifier>{b4b1c476-5984-4319-bb7e-9540f08231ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -529,6 +538,15 @@
     </ClCompile>
     <ClCompile Include="CGroundWater.cpp">
       <Filter>Contra Game\Object\Ground Game\GroundWater</Filter>
+    </ClCompile>
+    <ClCompile Include="CB3Bullet.cpp">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Enemy\CB3Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CFBBullet.cpp">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Enemy\CFBBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss3.cpp">
+      <Filter>Contra Game\Object\Boss\Boss3</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -789,6 +807,15 @@
     </ClInclude>
     <ClInclude Include="CGroundWater.h">
       <Filter>Contra Game\Object\Ground Game\GroundWater</Filter>
+    </ClInclude>
+    <ClInclude Include="CB3Bullet.h">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Enemy\CB3Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CFBBullet.h">
+      <Filter>Contra Game\Object\Bullet Game\Bullet Enemy\CFBBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoss3.h">
+      <Filter>Contra Game\Object\Boss\Boss3</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
