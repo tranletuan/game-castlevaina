@@ -198,13 +198,13 @@ bool CPlayerWeapon::ShootingMBullet(D3DXVECTOR3 pos, int angle, float vo)
 		_queue_bullet_m.pop();
 		_list_bullet[bullet->_id] = bullet;
 
-		//play sound
+		//play sound		
 		CResourcesManager::GetInstance()->sound_bullet_m->Reset();
 		_audio_waepon->playSound(CResourcesManager::GetInstance()->sound_bullet_m);
 
 		return true;
 	}
-
+	
 	return false;
 }
 
