@@ -78,6 +78,22 @@ void CEnemyWeapon::LoadResources()
 		bullet->LoadResources();
 		_queue_bullet_sp.push(bullet);
 	}
+
+	//B3Bullet
+	for (int i = 0; i < BULLET_B3_TOTAL; i++)
+	{
+		CBullet* bullet = new CB3Bullet(id++);
+		bullet->LoadResources();
+		_queue_bullet_b3.push(bullet);
+	}
+
+	//FBBullet
+	for (int i = 0; i < BULLET_FB_TOTAL; i++)
+	{
+		CBullet* bullet = new CFBBullet(id++);
+		bullet->LoadResources();
+		_queue_bullet_fb.push(bullet);
+	}
 }
 
 void CEnemyWeapon::RemoveDisabledBullet()
@@ -108,6 +124,12 @@ void CEnemyWeapon::RemoveDisabledBullet()
 		case BulletSP:
 			_queue_bullet_sp.push(bullet);
 			break;
+		case BulletB3:
+			_queue_bullet_b3.push(bullet);
+			break;
+		case BulletFB:
+			_queue_bullet_fb.push(bullet);
+			break;
 		}
 	}
 }
@@ -118,9 +140,13 @@ void CEnemyWeapon::CheckCollisionWithPlayer(CBill* player)
 	{
 		CBullet* bullet = (*i).second;
 
-		if (bullet->CheckCollision(player) != NoCollision && player->_can_impact)
+		if (bullet->CheckCollision(player) != NoCollision)
 		{		
-			player->Dying();
+			//Chỉ chết khi người chơi có khả năng va chạm
+			if (player->_can_impact)
+			{
+				player->Dying();
+			}
 		}
 	}
 }
@@ -133,12 +159,46 @@ void CEnemyWeapon::CheckCollisionWithGround(CObject* ground)
 		for (map<int, CBullet*>::iterator i = _list_bullet.begin(); i != _list_bullet.end(); i++)
 		{
 			CBullet* bullet = (*i).second;
-			if (bullet->_specific_type != BulletSP) continue;
 
-			if (bullet->CheckCollision(ground) == TopCollision && 
-				bullet->_physical.current_vy < 0)
+			//Xét va chạm khi đạn SP chạm đất
+			if (bullet->_specific_type == BulletSP)
 			{
-				bullet->OnTarget();
+				if (bullet->CheckCollision(ground) == TopCollision &&
+					bullet->_physical.current_vy < 0)
+				{
+					bullet->OnTarget();
+				}
+			}
+
+			//Xét va chạm khi đạn B và FB chạm đát
+			if (bullet->_specific_type == BulletFB || 
+				bullet->_specific_type == BulletB)
+			{
+				if (bullet->CheckCollision(ground) == TopCollision)
+				{
+					bullet->OnTarget();
+				}
+			}
+
+			//Xét va chạm khi đạn B3 chạm đất
+			if (bullet->_specific_type == BulletB3)
+			{
+				if (bullet->CheckCollision(ground) == TopCollision && bullet->_physical.vy != 0)
+				{
+					bullet->_physical.vy = 0;
+					bullet->_physical.y = ground->_physical.bounds.top + 11;
+					D3DXVECTOR3 pos_target = CResourcesManager::GetInstance()->m_posBill;
+
+					//Hướng target của đạn
+					if (pos_target.x <= bullet->_physical.x)
+					{
+						bullet->_physical.vx = -BULLET_B3_V;
+					}
+					else
+					{
+						bullet->_physical.vx = BULLET_B3_V;
+					}
+				}
 			}
 		}
 	}
@@ -146,7 +206,23 @@ void CEnemyWeapon::CheckCollisionWithGround(CObject* ground)
 
 void CEnemyWeapon::CheckCollisionWithWeaponPlayer(CPlayerWeapon* weapon)
 {
+	if (_list_bullet.size() > 0)
+	{
+		for (map<int, CBullet*>::iterator i = _list_bullet.begin(); i != _list_bullet.end(); i++)
+		{
+			CBullet* bullet = (*i).second;
+			if (bullet->_specific_type != BulletFB &&
+				bullet->_specific_type != BulletB3)
+			{
+				continue;
+			}
 
+			if (weapon->CheckCollision(bullet) != NoCollision)
+			{
+				bullet->OnTarget();
+			}
+		}
+	}
 }
 
 void CEnemyWeapon::UpdateQueueIdBullet(queue<int> &queue_id_bullet)
@@ -165,6 +241,18 @@ void CEnemyWeapon::UpdateQueueIdBullet(queue<int> &queue_id_bullet)
 		}
 
 		i++;
+	}
+}
+
+void CEnemyWeapon::DestroyAllBullet()
+{
+	if (_list_bullet.size() > 0)
+	{
+		for (map<int, CBullet*>::iterator i = _list_bullet.begin(); i != _list_bullet.end(); i++)
+		{
+			CBullet* bullet = (*i).second;
+			bullet->OnTarget();
+		}
 	}
 }
 
@@ -213,6 +301,21 @@ int CEnemyWeapon::ShootingBulletB2(D3DXVECTOR3 pos, int angle, float vo)
 	return -1;
 }
 
+int CEnemyWeapon::ShootingBulletB3(D3DXVECTOR3 pos, int angle, float vo)
+{
+	if (!_queue_bullet_b3.empty())
+	{
+		CBullet* bullet = _queue_bullet_b3.front();
+		bullet->Shoot(pos, angle, BULLET_B3_V, vo);
+
+		_queue_bullet_b3.pop();
+		_list_bullet[bullet->_id] = bullet;
+		return bullet->_id;
+	}
+
+	return -1;
+}
+
 int CEnemyWeapon::ShootingBulletME(D3DXVECTOR3 pos, int angle, float vo)
 {
 	if (!_queue_bullet_me.empty())
@@ -236,6 +339,21 @@ int CEnemyWeapon::ShootingBulletSP(D3DXVECTOR3 pos, int angle, float vo)
 		bullet->Shoot(pos, angle, BULLET_SP_VX, vo);
 
 		_queue_bullet_sp.pop();
+		_list_bullet[bullet->_id] = bullet;
+		return bullet->_id;
+	}
+
+	return -1;
+}
+
+int CEnemyWeapon::ShootingBulletFB(D3DXVECTOR3 pos, int angle, float vo)
+{
+	if (!_queue_bullet_fb.empty())
+	{
+		CBullet* bullet = _queue_bullet_fb.front();
+		bullet->Shoot(pos, angle, BULLET_FB_V, vo);
+
+		_queue_bullet_fb.pop();
 		_list_bullet[bullet->_id] = bullet;
 		return bullet->_id;
 	}

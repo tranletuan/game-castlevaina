@@ -22,17 +22,17 @@ void CGroundGrass::LoadResources()
 void CGroundGrass::Draw()
 {
 	//Chỉ vẽ để kiểm tra, khi chạy game đoạn code sẽ bị xóa
-	int x = _physical.bounds.left + GROUND_SIZE_NORMAL_X / 2;
+	//int x = _physical.bounds.left + GROUND_SIZE_NORMAL_X / 2;
 
-	CCamera* c = CResourcesManager::GetInstance()->_camera;
-	D3DXVECTOR3 pos = c->Transform(x, _physical.y - 6);
+	//CCamera* c = CResourcesManager::GetInstance()->_camera;
+	//D3DXVECTOR3 pos = c->Transform(x, _physical.y - 6);
 
-	//_current_sprite->PerformAllEffect(GROUND_TIME_EFFECT);
-	for (int i = 0; i < _count; i++)
-	{
-		_current_sprite->Draw(pos.x, pos.y);
-		pos.x += GROUND_SIZE_NORMAL_X;
-	}
+	////_current_sprite->PerformAllEffect(GROUND_TIME_EFFECT);
+	//for (int i = 0; i < _count; i++)
+	//{
+	//	_current_sprite->Draw(pos.x, pos.y);
+	//	pos.x += GROUND_SIZE_NORMAL_X;
+	//}
 }
 
 void CGroundGrass::Update(int delta_time)

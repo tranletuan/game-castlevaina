@@ -184,6 +184,10 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(Boss2_Arm);
 	}
+	else if (x == "Boss3")
+	{
+		setSpecificType(Boss3);
+	}
 }
 
 void CObject::setTrack(string x)

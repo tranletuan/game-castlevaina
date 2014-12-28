@@ -145,6 +145,7 @@ public:
 	CTexture* _bullet_ne;
 	CTexture* _bullet_b;
 	CTexture* _bullet_b2;
+	CTexture* _bullet_b3;
 	CTexture* _bullet_sp;
 
 	//Ground
@@ -189,6 +190,7 @@ public:
 	CTexture* _boss2_die;
 	CTexture* _boss2_elbow;
 	CTexture* _boss2_hand;
+	CTexture* _boss3;
 
 
 	/*-------- Background -------*/
