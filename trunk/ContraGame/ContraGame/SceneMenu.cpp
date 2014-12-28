@@ -130,12 +130,7 @@ void SceneMenu::processInput()
 	// phim enter
 	if (m_input->onKeyDown(DIK_RETURN))
 	{
-		// play nhac nen
-		if (!m_onSound)
-		{
-			m_audio->playSound(m_music_bg);		
-		}
-		m_onSound = true;
+		
 
 		if (m_runBG)
 		{
@@ -143,6 +138,13 @@ void SceneMenu::processInput()
 		}
 		else
 		{
+			// play nhac nen
+			if (!m_onSound)
+			{
+				m_audio->playSound(m_music_bg);
+			}
+			m_onSound = true;
+
 			m_checkItem = true;
 		}
 	}
