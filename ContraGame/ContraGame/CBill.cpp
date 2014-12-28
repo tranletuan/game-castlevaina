@@ -61,6 +61,9 @@ void CBill::LoadResources()
 
 	// input
 	_input = rs->m_input;
+
+	_audio = rs->m_audio;
+	_sound_bullet = rs->sound_bullet_default;
 }
 
 void CBill::Draw()
@@ -212,6 +215,7 @@ void CBill::SetGunDirection(GunDirection gd)
 //ACTIONS
 void CBill::Dying()
 {
+	_audio->playSound(CResourcesManager::GetInstance()->sound_bill_dead);
 	//Kiểm tra trạng thái chuyển thành công hay không
 	if (_player_status == Die) return;
 
@@ -257,6 +261,8 @@ void CBill::Jumping()
 
 void CBill::Attacking()
 {
+	
+
 	//Hàm này chủ yếu để tính toán góc bắn của player
 	//k đưa các thông số constant vào config.h vì quá nhiều quá đặc biệt
 	
@@ -397,6 +403,7 @@ void CBill::Standing(float y_ground, int id_ground)
 
 void CBill::Living()
 {
+	_sound_bullet = _sound_bullet = CResourcesManager::GetInstance()->sound_bullet_default;
 	DWORD now = GetTickCount();
 	if (_last_time_die == 0)
 	{
@@ -441,6 +448,8 @@ void CBill::Living()
 
 void CBill::GoingToNext()
 {
+	
+
 	_is_wait = true;
 	_can_impact = false;
 	DWORD now = GetTickCount();
@@ -748,6 +757,9 @@ void CBill::OnKeyDown()
 	
 	if (_input->onKeyDown(DIK_J))
 	{
+		_sound_bullet->Reset();
+		_audio->playSound(_sound_bullet);
+
 		Attacking();
 	}
 }
@@ -796,9 +808,18 @@ void CBill::IsKeyDown()
 	{
 		SetGunDirection(Down);
 	}
+	
 
 	if (_input->KeyDown(DIK_J) && _weapon->GetWeaponType() == WPM)
 	{
+		// play sound
+		if (!_sound_bullet->IsSoundPlaying())
+		{
+			_sound_bullet->Reset();
+			_audio->playSound(_sound_bullet);
+		}
+		
+
 		if (_last_time_shoot == 0)
 		{
 			_last_time_shoot = GetTickCount();
