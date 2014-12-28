@@ -37,15 +37,26 @@ void CBoss1::Draw()
 		DrawWhenBadgeDie(pos);
 		break;
 	case B1S_DestroyBG1:
+		//play sound
+		CResourcesManager::GetInstance()->m_audio->playSound(CResourcesManager::GetInstance()->sound_boss_dead);
 		DrawWhenDestroyBG1(pos);
 		break;
 	case B1S_DestroyBG2:
 		DrawWhenDestroyBG2(pos);
+		//play sound
+		CResourcesManager::GetInstance()->m_audio->playSound(CResourcesManager::GetInstance()->sound_boss_dead);
+
 		break;
 	case B1S_DestroyBG3:
+		//play sound
+		CResourcesManager::GetInstance()->m_audio->playSound(CResourcesManager::GetInstance()->sound_boss_dead);
+
 		DrawWhenDestroyBG3(pos);
 		break;
 	case B1S_DestroyBG4:
+		//play sound
+		CResourcesManager::GetInstance()->m_audio->playSound(CResourcesManager::GetInstance()->sound_boss_dead);
+
 		DrawWhenDestroyBG4(pos);
 		break;
 	case B1S_Acti:
@@ -137,6 +148,8 @@ void CBoss1::DrawWhenBadgeDie(D3DXVECTOR3 pos)
 
 void CBoss1::DrawWhenDestroyBG1(D3DXVECTOR3 pos)
 {
+	
+
 	_sprite_bg->DrawWithDirectionAndOneTimeEffect(pos, 1, 0, 1, 100);
 	D3DXVECTOR3 pos_draw = D3DXVECTOR3(pos.x - 2.3* BOSS1_SPACE_DESTROY_X, pos.y + 30, 0);
 	D3DXVECTOR3 pos_draw1 = D3DXVECTOR3(pos.x - 2.3* BOSS1_SPACE_DESTROY_X, pos.y + 30 + BOSS1_SPACE_DESTROY_Y, 0);

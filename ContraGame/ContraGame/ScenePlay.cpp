@@ -104,7 +104,6 @@ void ScenePlay::update(float time)
 
 	if (m_nextScene)
 	{
-		m_audio->stopSound(m_music_bg);
 		m_audio->stopSound(m_resource->sound_stage_clear);
 		m_state = PS_InGame;
 		if (m_resource->m_life > 0)
@@ -129,7 +128,6 @@ void ScenePlay::update(float time)
 				{
 					SceneManager::getInstance()->createLoadingScene();
 				}
-
 			}
 
 		}
@@ -159,8 +157,9 @@ void ScenePlay::update(float time)
 
 	if (_boss != NULL && _boss->_hp <= 0)
 	{
-		m_audio->stopSound(m_resource->sound_boss_dead);	
-		m_audio->playSound(m_resource->sound_stage_clear);
+
+		m_audio->stopSound(m_music_bg);
+		m_audio->stopSound(m_resource->sound_boss_dead);
 		_player1->GoingToNext();
 	}
 
@@ -327,7 +326,7 @@ void ScenePlay::ProcessEnemiesWithOneAnother()
 						m_resource->sound_bill_1up->Reset();
 						m_audio->playSound(m_resource->sound_bill_1up);
 					}
-					
+
 					enemy->_hp--;
 
 					// chơi sound
@@ -370,7 +369,7 @@ void ScenePlay::ProcessItemsWithOneAnother()
 				{
 					// play sound
 					m_resource->sound_get_item->Reset();
-					m_audio->playSound(m_resource->sound_get_item);		
+					m_audio->playSound(m_resource->sound_get_item);
 
 					switch (item->_specific_type)
 					{

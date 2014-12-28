@@ -448,8 +448,6 @@ void CBill::Living()
 
 void CBill::GoingToNext()
 {
-	
-
 	_is_wait = true;
 	_can_impact = false;
 	DWORD now = GetTickCount();
@@ -465,11 +463,11 @@ void CBill::GoingToNext()
 		switch (rs->m_curMap)
 		{
 		case 1:
+			_audio->playSound(CResourcesManager::GetInstance()->sound_stage_clear);
 			Moving(BILL_VX);
 			SetGunDirection(Normal);
-
 			if (_physical.x >= 3260 && _count_jump == 0)
-			{
+			{				
 				Jumping();
 				_count_jump++;
 			}

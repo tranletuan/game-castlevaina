@@ -10,7 +10,7 @@ CTank::CTank(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int
 	_attack_angle = 180;
 	_distance_acti = width;
 	LoadResources();
-	_physical.x = pos.x + width / 2 + _current_sprite->sprite_texture->frame_width/2;
+	_physical.x = pos.x + width / 2 + _current_sprite->sprite_texture->frame_width;
 }
 
 CTank::~CTank()
@@ -36,14 +36,14 @@ void CTank::Draw()
 void CTank::Update(int delta_time)
 {
 	CResourcesManager *rs = CResourcesManager::GetInstance();
-	
+
 	_physical.SetBounds(0, 0, 0, 0);
 	// set cho camera di chuyển
 	if (rs->_camera->getState() == CamS_Follow && _count == 0
 		&& rs->m_posBill.x > _physical.x - _distance_acti)
 	{
 		rs->_camera->setState(CamS_Move);
-	}	
+	}
 
 	// Khi camera dưng lại mới update tank
 	if (rs->_camera->getState() == CamS_Stop)
@@ -97,7 +97,7 @@ void CTank::Update(int delta_time)
 
 void CTank::SetTarget(float x, float y)
 {
-	CEnemyUseGun::SetTarget(x, y);
+	CEnemyUseGun::SetTarget(x, y - 20);
 	Attacking();
 }
 
