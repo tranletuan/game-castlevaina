@@ -27,7 +27,7 @@ protected:
 	CInput *_input;
 	CPlayerWeapon* _weapon;
 	CAudio *_audio;
-	CSound *_sound_bullet;
+
 
 	CSprite* _bill_stand;
 	CSprite* _bill_jump;
@@ -86,9 +86,6 @@ public:
 
 	int GetIdGroundIgnore();
 	int	GetGunDirection();
-
-	// cài đặt âm thanh đạn
-	void setSoundBullet(CSound *x){ _sound_bullet = x; }
 
 	void ProcessInput();
 
