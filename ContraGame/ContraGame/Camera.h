@@ -20,7 +20,7 @@ private:
 	float _vX; // Vận tốc vX
 	float _vY;
 	float _distanceX; // khoảng di chuyển theo X
-	float _distanceY; 
+	
 
 public:
 	D3DXVECTOR2 view_port;

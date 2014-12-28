@@ -17,7 +17,7 @@ CCamera::CCamera(float posX, float posY)
 	_vX = 0.08;
 	_vY = 0.08;
 	_distanceX = kScreenWidth / 2;
-	_distanceY = kScreenHeight / 2;
+	
 }
 
 void CCamera::UpdateCameraX(float x)
@@ -54,7 +54,7 @@ void CCamera::Update(int time)
 	case CamS_Follow:
 		if (rs->m_curMap == 2)
 		{
-			if (rs->m_posBill.y < rs->m_heightMap - kScreenHeight)
+			if (rs->m_posBill.y < rs->m_heightMap - 216)
 			{
 				UpdateCameraY(rs->m_posBill.y);
 			}
@@ -82,12 +82,8 @@ void CCamera::Update(int time)
 			{
 				view_port.y = rs->m_heightMap - kScreenHeight;
 			}
-		}
-		else if (rs->m_curMap == 3)
-		{
-
-		}
-		else if (rs->m_curMap == 1)
+		}		
+		else
 		{
 			if (rs->m_widthMap - kScreenWidth < view_port.x)
 			{
@@ -142,11 +138,11 @@ void CCamera::processInput()
 	}
 	if (rs->m_input->KeyDown(DIK_UP))
 	{
-		view_port.y += 2;
+		view_port.y += 10;
 	}
 	if (rs->m_input->KeyDown(DIK_DOWN))
 	{
-		view_port.y -= 2;
+		view_port.y -= 10;
 	}
 }
 
@@ -174,13 +170,9 @@ void CCamera::MoveY(int time)
 {
 	int delta = (int)time*_vY;
 	view_port.y += delta;
-	if (_distanceY <= 0)
+	if (view_port.y >= CResourcesManager::GetInstance()->m_heightMap)
 	{
-		_state = CamS_Stop;
-		_distanceY = kScreenHeight / 2;
+		_state = CamS_Stop;		
 	}
-	else
-	{
-		_distanceY -= delta;
-	}
+	
 }
