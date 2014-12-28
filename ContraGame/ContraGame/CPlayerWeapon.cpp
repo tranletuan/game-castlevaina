@@ -123,6 +123,8 @@ CollisionDirection CPlayerWeapon::CheckCollision(CObject* obj)
 
 void CPlayerWeapon::LoadResources()
 {
+	_audio_waepon = CResourcesManager::GetInstance()->m_audio;
+
 	int id = 1;
 	//NBullet
 	for (int i = 0; i < BULLET_N_TOTAL; i++)
@@ -176,6 +178,10 @@ bool CPlayerWeapon::ShootingNBullet(D3DXVECTOR3 pos, int angle, float vo)
 		_queue_bullet_n.pop();
 		_list_bullet[bullet->_id] = bullet;
 
+		//play sound
+		CResourcesManager::GetInstance()->sound_bullet_default->Reset();
+		_audio_waepon->playSound(CResourcesManager::GetInstance()->sound_bullet_default);
+
 		return true;
 	}
 
@@ -192,6 +198,10 @@ bool CPlayerWeapon::ShootingMBullet(D3DXVECTOR3 pos, int angle, float vo)
 		_queue_bullet_m.pop();
 		_list_bullet[bullet->_id] = bullet;
 
+		//play sound
+		CResourcesManager::GetInstance()->sound_bullet_m->Reset();
+		_audio_waepon->playSound(CResourcesManager::GetInstance()->sound_bullet_m);
+
 		return true;
 	}
 
@@ -207,6 +217,10 @@ bool CPlayerWeapon::ShootingFBullet(D3DXVECTOR3 pos, int angle, float vo)
 
 		_queue_bullet_f.pop();
 		_list_bullet[bullet->_id] = bullet;
+
+		//play sound
+		CResourcesManager::GetInstance()->sound_bullet_l->Reset();
+		_audio_waepon->playSound(CResourcesManager::GetInstance()->sound_bullet_l);
 
 		return true;
 	}
@@ -248,6 +262,10 @@ bool CPlayerWeapon::ShootingLBullet(D3DXVECTOR3 pos, int angle, float vo)
 		_count++;
 	}
 
+	//play sound
+	CResourcesManager::GetInstance()->sound_bullet_l->Reset();
+	_audio_waepon->playSound(CResourcesManager::GetInstance()->sound_bullet_l);
+
 	return true;
 }
 
@@ -273,6 +291,12 @@ bool CPlayerWeapon::ShootingSBullet(D3DXVECTOR3 pos, int angle, float vo)
 		_list_bullet[bullet->_id] = bullet;
 		_count++;
 	}
+
+
+	//play sound
+	CResourcesManager::GetInstance()->sound_bullet_s->Reset();
+	_audio_waepon->playSound(CResourcesManager::GetInstance()->sound_bullet_s);
+
 
 	return true;
 }

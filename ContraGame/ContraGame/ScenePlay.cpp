@@ -105,6 +105,7 @@ void ScenePlay::update(float time)
 	if (m_nextScene)
 	{
 		m_audio->stopSound(m_resource->sound_stage_clear);
+		m_audio->stopSound(m_music_bg);
 		m_state = PS_InGame;
 		if (m_resource->m_life > 0)
 		{
@@ -157,7 +158,6 @@ void ScenePlay::update(float time)
 
 	if (_boss != NULL && _boss->_hp <= 0)
 	{
-
 		m_audio->stopSound(m_music_bg);
 		m_audio->stopSound(m_resource->sound_boss_dead);
 		_player1->GoingToNext();
@@ -373,18 +373,22 @@ void ScenePlay::ProcessItemsWithOneAnother()
 
 					switch (item->_specific_type)
 					{
-					case ItemM_Stand:
-						_player1->setSoundBullet(m_resource->sound_bullet_m);
+					case ItemM_Stand:						
 						_weapon_player1->SetWaeponType(WPM);
 						break;
-					case ItemF_Stand:
-						_player1->setSoundBullet(m_resource->sound_bullet_default);
+					case ItemF_Stand:					
 						_weapon_player1->SetWaeponType(WPF);
 						break;
-					case ItemS_Stand:
-						_player1->setSoundBullet(m_resource->sound_bullet_s);
+					case ItemS_Stand:						
 						_weapon_player1->SetWaeponType(WPS);
 						break;
+					case ItemL_Stand:						
+						_weapon_player1->SetWaeponType(WPL);
+						break;
+					case ItemB_Stand:
+						
+						break;
+
 					}
 
 					item->_physical.SetBounds(0, 0, 0, 0);

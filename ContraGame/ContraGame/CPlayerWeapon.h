@@ -31,6 +31,8 @@ private:
 	queue<CBullet*> _queue_bullet_f;
 	queue<CBullet*> _queue_bullet_l;
 
+	CAudio* _audio_waepon;
+
 public:
 	CPlayerWeapon();
 	~CPlayerWeapon();
