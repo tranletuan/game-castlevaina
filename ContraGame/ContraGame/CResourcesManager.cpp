@@ -26,6 +26,7 @@ void CResourcesManager::prepareManager(LPD3DXSPRITE sp, LPDIRECT3DDEVICE9 pd3Dev
 	GetInstance()->m_numScore = 0;
 	GetInstance()->m_highScore = 0;
 	GetInstance()->m_numScore = 0;
+	GetInstance()->m_effecKill = 0;
 	GetInstance()->readFileConfiDefault();
 }
 
@@ -117,6 +118,7 @@ void CResourcesManager::loadPlayGraphics()
 	// Camera HUD
 	HUD_badge = new CTexture(PATH_HUD_BADGE); // huy chuong
 	HUD_gameover = new CTexture(PATH_HUD_GAMEOVER); //Game over
+	HUD_effect_kill = new CTexture(PATH_HUD_EFFECT_KILL, 3); //Game over
 
 	//Player
 	_bill_stand = new CTexture(PATH_PLAYER_STAND, 6);
@@ -146,7 +148,6 @@ void CResourcesManager::loadPlayGraphics()
 	_boss3_door_die = new CTexture(PATH_BOSS3_DOOR_DIE);
 }
 
-
 void CResourcesManager::loadPlayAudio()
 {
 	music_map1_bg = m_audio->LoadSound(PATH_MUSIC_MAP1_BG);
@@ -166,6 +167,7 @@ void CResourcesManager::loadPlayAudio()
 	sound_bullet_l = m_audio->LoadSound(PATH_SOUND_BULLET_L);
 
 }
+
 void CResourcesManager::unloadPlayResource()
 {
 

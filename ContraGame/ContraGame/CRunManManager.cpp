@@ -211,8 +211,8 @@ void CRunmanManager::CheckCollisionWithGround()
 						ground->_specific_type);
 
 					//Khi runman chạy hết đường thì hoặc là quay đầu, hoặc là nhảy
-					if ((runman->_physical.bounds.left - 8 <= ground->_physical.bounds.left ||
-						runman->_physical.bounds.right + 8 >= ground->_physical.bounds.right) &&
+					if ((runman->_physical.bounds.left - 4 <= ground->_physical.bounds.left ||
+						runman->_physical.bounds.right + 4 >= ground->_physical.bounds.right) &&
 						runman->_rm_status == RMRun)
 					{
 						int ran = rand() % 10;

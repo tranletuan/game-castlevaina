@@ -82,6 +82,24 @@ void CListItemFly::CheckCollisionWithPlayerAndWeapon(CPlayerWeapon* weapon, CBil
 				case ItemB:
 					player->Undying();
 					break;
+				case ItemX:
+					CResourcesManager* rs = CResourcesManager::GetInstance();
+					vector<CObject*> enemies = rs->_enemies;
+					for (vector<CObject*>::iterator i = enemies.begin(); i != enemies.end(); i++)
+					{
+						CObject* enemy = (*i);
+						D3DXVECTOR3 pos_check = rs->_camera->Transform(enemy->_physical.x, enemy->_physical.y);
+
+						if (pos_check.x + 30 > 0 &&
+							pos_check.x - 30 < rs->_camera->getWidth() &&
+							pos_check.y + 30 > 0 &&
+							pos_check.y - 30 < rs->_camera->getWidth())
+						{
+							enemy->_hp = 0;
+						}
+					}
+					CResourcesManager::GetInstance()->m_effecKill = 3;
+					break;
 				}
 
 				item->_physical.SetBounds(0, 0, 0, 0);

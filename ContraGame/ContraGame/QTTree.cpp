@@ -220,6 +220,7 @@ CObject * QTTree::getObjectTrust(CObject *x)
 	case ItemS_Stand:
 	case ItemB_Stand:
 	case ItemL_Stand:
+	case ItemX_Stand:
 		return new CItemStand(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());
 	case Effect_Water:
 		return new CWaterEffect(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getWidth(), x->getHeight());

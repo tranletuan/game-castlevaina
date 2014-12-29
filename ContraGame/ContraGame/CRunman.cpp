@@ -170,7 +170,7 @@ void CRunman::Standing(float y_ground, SpecificType ground_type)
 {
 	if (_physical.n == 0)
 	{
-		if (_hp > 0)
+		if (_hp > 0 && _rm_status != RMAttack)
 		{
 			if (ground_type == Ground_Water)
 			{

@@ -1,5 +1,5 @@
-1 RunMan 227 519 18 33 0 
-2 RunMan 3 266 18 33 0 
+1 RunManFire 227 519 18 33 0 
+2 RunManFire 3 266 18 33 0 
 3 ItemB 66 712 24 15 3 
 4 ItemR 177 711 24 15 3 
 5 RunMan 235 860 18 33 0 

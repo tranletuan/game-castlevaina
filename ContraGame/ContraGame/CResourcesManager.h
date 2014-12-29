@@ -1,4 +1,4 @@
-#ifndef RESOURCEMANAGER_H
+﻿#ifndef RESOURCEMANAGER_H
 #define RESOURCEMANAGER_H
 
 #include <map>
@@ -51,6 +51,7 @@ public:
 	int m_widthMap;
 	int m_numScore;
 	int m_highScore;
+	int m_effecKill; //Cờ đánh dấu hiệu ứng (nhận giá trị lớn hơn 1)
 	
 	vector<string> _listString; // danh sach string cac texture duoc load len o scene game
 	vector<CObject*> listObinView;
@@ -64,6 +65,7 @@ public:
 	/*------    HUD Camera     -----*/
 	CTexture *HUD_badge;
 	CTexture *HUD_gameover;
+	CTexture *HUD_effect_kill;
 
 	/*------    Sound      -----*/
 	CSound *sound_enemy_attacked;

@@ -1,4 +1,4 @@
-#ifndef CAMERAHUD_H
+﻿#ifndef CAMERAHUD_H
 #define CAMERAHUD_H
 
 #include "CResourcesManager.h"
@@ -13,6 +13,8 @@ class CameraHUD
 private:
 	CSprite *m_spriteBadge;
 	CSprite *m_spriteOver;
+	CSprite *m_spriteEffectKill;
+
 	int m_life; // so mang 
 
 public:

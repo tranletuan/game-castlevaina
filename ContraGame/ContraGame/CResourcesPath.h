@@ -65,6 +65,7 @@
 #pragma region HUDPath
 #define PATH_HUD_BADGE ".//DataGame//Images//Game//HUD//badge.png"
 #define PATH_HUD_GAMEOVER ".//DataGame//Images//Game//HUD//gameover.png"
+#define PATH_HUD_EFFECT_KILL ".//DataGame//Images//Game//HUD//effect_kill.png"
 #pragma endregion HUDPath
 
 #pragma region MapPath
