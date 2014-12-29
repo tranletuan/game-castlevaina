@@ -115,6 +115,7 @@ CObject *CListItemFly::getObjectTrust(CObject *x)
 		case ItemL:
 		case ItemR:
 		case ItemS:
+		case ItemX:
 			return new CItemFly(x->_id, x->getSpecificType(), D3DXVECTOR3(posX, posY, 0), x->getTrack(), x->getWidth(), x->getHeight());
 	}
 }
