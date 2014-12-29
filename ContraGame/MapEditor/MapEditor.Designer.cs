@@ -578,6 +578,7 @@
             this.imageListItem.Images.SetKeyName(3, "ItemM.png");
             this.imageListItem.Images.SetKeyName(4, "ItemR.png");
             this.imageListItem.Images.SetKeyName(5, "ItemS.png");
+            this.imageListItem.Images.SetKeyName(6, "ItemX.png");
             // 
             // groupBox4
             // 
