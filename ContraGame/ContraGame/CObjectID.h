@@ -56,6 +56,7 @@ enum  SpecificType
 	ItemR,
 	ItemF,
 	ItemS,
+	ItemX,
 	ItemM_Stand, // item dung yen
 	ItemF_Stand,
 	ItemS_Stand,

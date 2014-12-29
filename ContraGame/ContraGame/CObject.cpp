@@ -80,6 +80,10 @@ void CObject::setSpecificType(string x)
 	{
 		setSpecificType(ItemL);
 	}
+	else if (x == "ItemX")
+	{
+		setSpecificType(ItemX);
+	}
 	else if (x == "ItemStandM")
 	{
 		setSpecificType(ItemM_Stand);

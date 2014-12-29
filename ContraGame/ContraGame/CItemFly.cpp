@@ -63,6 +63,9 @@ void CItemFly::LoadResources()
 	case  ItemR:
 		_sprite_item->SelectFrameOf(6);
 		break;
+	case  ItemX:
+		_sprite_item->SelectFrameOf(7);
+		break;
 	}
 
 	
@@ -178,7 +181,15 @@ void CItemFly::DrawWhenDie(D3DXVECTOR3 pos)
 	// Vẽ item văng lên	
 	if (_enable)
 	{
-		_sprite_item->Draw(pos.x, pos.y);
+		if (_specific_type != ItemX)
+		{
+			_sprite_item->Draw(pos.x, pos.y);
+		}
+		else
+		{
+			_sprite_item->DrawWithDirection(pos,1,7,9);
+		}
+		
 	}
 }
 
