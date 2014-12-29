@@ -114,33 +114,34 @@ namespace MapEditor
             "confi_map_" + System.IO.Path.GetFileNameWithoutExtension(saveFile.FileName)) + ".txt";
             System.IO.StreamWriter sWriter = new System.IO.StreamWriter(path);
             List<String> listString = new List<string>();
-
-            int levelMap = Convert.ToInt32(saveFile.FileName) + 1;
-            listString.Add(levelMap.ToString());
             listString.Add("RunMan");
             listString.Add("RunManFire");
             listString.Add("Item");
 
-            for (int i = 0; i < listtree.Count; i++)
+            if (listtree.Count > 0)
             {
-                if (listnotree.ElementAt(i).Name.IndexOf("ItemStand") == 0)
+                for (int i = 0; i < listtree.Count; i++)
                 {
-                    listString.Add("ItemStand");
-                }
-                else
-                {
-                     listString.Add(listtree.ElementAt(i).Name);
-                }
-               
-                for (int j = 0; j < listString.Count - 1; j++)
-                {
-                    if (listString.ElementAt(j) == listString.ElementAt(listString.Count - 1))
+                    if (listtree.ElementAt(i).Name.IndexOf("ItemStand") == 0)
+                    {                       
+                        listString.Add("ItemStand");
+                    }
+                    else
                     {
-                        listString.RemoveAt(listString.Count - 1);
-                        break;
+                        listString.Add(listtree.ElementAt(i).Name);
+                    }
+
+                    for (int j = 0; j < listString.Count - 1; j++)
+                    {
+                        if (listString.ElementAt(j) == listString.ElementAt(listString.Count - 1))
+                        {
+                            listString.RemoveAt(listString.Count - 1);
+                            break;
+                        }
                     }
                 }
             }
+
 
             for (int i = 0; i < listString.Count; i++)
             {

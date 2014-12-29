@@ -77,6 +77,7 @@ namespace MapEditor
             listViewItem.Items.Add("ItemM", 3);
             listViewItem.Items.Add("ItemR", 4);
             listViewItem.Items.Add("ItemS", 5);
+            listViewItem.Items.Add("ItemX", 6);
 
             // List Background
             listViewBG.LargeImageList = imageListBG;
