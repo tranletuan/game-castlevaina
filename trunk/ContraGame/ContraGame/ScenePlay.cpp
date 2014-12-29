@@ -36,16 +36,6 @@ void ScenePlay::processInput()
 	{
 		m_nextScene = true;
 	}
-
-	if (m_input->onKeyDown(DIK_9))
-	{
-		boss_test->_enable = true;
-	}
-
-	if (m_input->onKeyDown(DIK_0))
-	{
-		boss_test->_hp = 0;
-	}
 }
 
 void ScenePlay::init()

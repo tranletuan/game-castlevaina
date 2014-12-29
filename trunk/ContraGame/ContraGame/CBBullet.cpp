@@ -20,7 +20,14 @@ void CBBullet::LoadResources()
 
 void CBBullet::Update(int delta_time)
 {
-	if (_current_sprite == _bullet_sprite)
+	if (_physical.y < 32)
+	{
+		if (_current_sprite != _ontarget_sprite)
+		{
+			OnTarget();
+		}
+	}
+	else
 	{
 		_physical.CalcPositionWithGravitation(delta_time, GRAVITY);
 		_physical.SetBounds(
