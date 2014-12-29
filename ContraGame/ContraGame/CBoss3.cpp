@@ -35,7 +35,7 @@ void CBoss3::Update(int delta_time)
 {
 	CResourcesManager* rs = CResourcesManager::GetInstance();
 	CCamera* c = rs->_camera;
-	if (c->view_port.y + c->getWidth() >= rs->m_widthMap) _enable = true;
+	if (c->view_port.x + c->getWidth() + 5 >= rs->m_widthMap) _enable = true;
 
 	if (_hp == 0) SetStatus(EDie);
 	if (!_enable || _hp <= 0) return;	
@@ -94,7 +94,7 @@ void CBoss3::Update(int delta_time)
 		break;
 	case EAttack:
 		_can_impact = true;
-		_physical.SetBounds(_physical.x, _physical.y, 20, 20);
+		_physical.SetBounds(_physical.x, _physical.y, 40, 40);
 		break;
 	}
 }
@@ -156,9 +156,9 @@ void CBoss3::DrawWhenAttack(D3DXVECTOR3 pos)
 
 void CBoss3::DrawWhenDie(D3DXVECTOR3 pos)
 {
-	_current_sprite->Draw(pos.x, pos.y);
 	if (_count_time_destroy < 3)
 	{
+		_current_sprite->Draw(pos.x, pos.y);
 		bool done = _die_sprite->PerformEffectOneTime(0, 2, 150);
 
 		int x = pos.x - 12;

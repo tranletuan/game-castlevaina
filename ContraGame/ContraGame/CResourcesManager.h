@@ -56,6 +56,7 @@ public:
 	vector<CObject*> listObinView;
 	vector<CObject*> listObNoTree; // list ob khong nam trong quad tree
 	vector<CObject*> _grounds;
+	vector<CObject*> _enemies;
 	CPlayerWeapon* _weapon_player1;
 	CPlayerWeapon* _weapon_player2;
 	CEnemyWeapon* _weapon_enemy;

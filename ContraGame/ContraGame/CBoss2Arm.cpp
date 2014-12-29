@@ -3,7 +3,7 @@
 CBoss2Arm::CBoss2Arm(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height, int direction)
 	:CObject(id, specific_type, Enemy, pos, width, height)
 {
-	_hp = 20;
+	_hp = 12;
 	_length = 5;
 	_count_change = 0;
 	_last_time_change = 0;

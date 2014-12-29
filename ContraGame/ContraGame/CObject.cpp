@@ -237,9 +237,10 @@ CollisionDirection CObject::CheckCollision(CObject* ob)
 	for (vector<CPhysical>::iterator i = ob_elements.begin(); i != ob_elements.end(); i++)
 	{
 		cd = _physical.Collision(&(*i));
+		if (cd != NoCollision) return cd;
 	}
 
-	return cd;
+	return NoCollision;
 }
 
 vector<CPhysical> CObject::GetListElement()

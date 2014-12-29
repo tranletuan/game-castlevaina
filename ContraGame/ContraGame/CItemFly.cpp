@@ -95,7 +95,11 @@ void CItemFly::Draw()
 void CItemFly::Update(int delta_time)
 {
 	CResourcesManager* rs = CResourcesManager::GetInstance();
-	_physical.SetBounds(_physical.x, _physical.y, 20, 20);
+	
+	if (_physical.n == 0)
+	{
+		_physical.SetBounds(_physical.x, _physical.y, 20, 20);
+	}
 
 	if (_hp == 0)
 	{
@@ -105,6 +109,7 @@ void CItemFly::Update(int delta_time)
 	switch (_state_item_fly)
 	{
 	case SIF_Move:
+		
 		MoveFollowCos(delta_time);
 		break;
 	case SIF_Die:
@@ -123,6 +128,7 @@ void CItemFly::Update(int delta_time)
 					_physical.y = ground->_physical.bounds.top + 2;
 					_physical.vx = 0;
 					_physical.vy = 0;
+					_physical.SetBounds(_physical.x, _physical.y, 20, 30);
 					break;
 				}
 			}

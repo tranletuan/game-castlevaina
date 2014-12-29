@@ -533,6 +533,7 @@ void CBill::GoingToNext()
 				_last_time_wait = 0;
 				_mission_complete = true;
 				_is_wait = false;
+				_enable = false;
 			}
 			break;
 		}
