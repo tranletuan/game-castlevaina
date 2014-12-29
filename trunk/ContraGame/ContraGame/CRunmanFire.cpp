@@ -61,6 +61,8 @@ void CRunmanFire::SetTarget(D3DXVECTOR3 pos, D3DXVECTOR3 target)
 
 void CRunmanFire::SetTargetAttack(float x, float y)
 {
+	if (_physical.n == 0) return; //Đang lơ lững thì k bắn
+
 	float distance_x = _physical.x > x ? _physical.x - x : x - _physical.x;
 	float distance_y = _physical.y > y ? _physical.y - y : y - _physical.y;
 

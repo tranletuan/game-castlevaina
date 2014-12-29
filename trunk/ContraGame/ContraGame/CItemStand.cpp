@@ -36,6 +36,9 @@ void CItemStand::LoadResources()
 	case ItemL_Stand:
 		_sprite_item->SelectFrameOf(5);
 		break;
+	case  ItemX_Stand:
+		_sprite_item->SelectFrameOf(7);
+		break;
 	}
 }
 
@@ -196,7 +199,14 @@ void CItemStand::DrawWhenAttack(D3DXVECTOR3 pos)
 	if (_physical.bounds.left != 0 && _physical.bounds.top != 0 &&
 		_physical.bounds.right != 0 && _physical.bounds.bottom != 0 && _enable)
 	{
-		_sprite_item->Draw(pos.x, pos.y);
+		if (_specific_type != ItemX_Stand)
+		{
+			_sprite_item->Draw(pos.x, pos.y);
+		}
+		else
+		{
+			_sprite_item->DrawWithDirection(pos, 1, 7, 9);
+		}
 	}
 }
 

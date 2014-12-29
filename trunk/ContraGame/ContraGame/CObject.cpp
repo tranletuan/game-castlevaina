@@ -47,11 +47,11 @@ void CObject::setSpecificType(string x)
 	if (x == "Ground")
 	{
 		setSpecificType(Ground_Grass);
-	}	
+	}
 	else if (x == "Sniper")
 	{
 		setSpecificType(Sniper_Stand);
-	}	
+	}
 	else if (x == "RunMan")
 	{
 		setSpecificType(RunMan);
@@ -103,6 +103,10 @@ void CObject::setSpecificType(string x)
 	else if (x == "ItemStandL")
 	{
 		setSpecificType(ItemL_Stand);
+	}
+	else if (x == "ItemStandX")
+	{
+		setSpecificType(ItemX_Stand);
 	}
 	else if (x == "WaterEffect1")
 	{

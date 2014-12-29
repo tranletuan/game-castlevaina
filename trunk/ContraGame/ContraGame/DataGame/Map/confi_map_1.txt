@@ -13,5 +13,4 @@ Boss1
 StarEffect
 Brigde
 SniperBoss
-RunManFire
 Tank

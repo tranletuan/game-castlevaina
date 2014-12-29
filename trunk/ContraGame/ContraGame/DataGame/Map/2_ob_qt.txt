@@ -118,4 +118,4 @@
 123 Boss2Arm 58 2104 32 32 
 124 Boss2Arm 164 2104 32 32 
 0 Camera 0 240 256 240 
-0 Character 40 70 36 46 
+0 Character 40 100 36 46 

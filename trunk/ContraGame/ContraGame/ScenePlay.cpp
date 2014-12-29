@@ -30,7 +30,6 @@ ScenePlay::~ScenePlay()
 void ScenePlay::processInput()
 {
 	_player1->ProcessInput();
-	m_camera->processInput();
 
 	if (m_input->onKeyDown(DIK_RETURN))
 	{
@@ -419,8 +418,8 @@ void ScenePlay::ProcessItemsWithOneAnother()
 							}
 
 						}
+						m_resource->m_effecKill = 3;
 						break;
-
 					}
 
 					item->_physical.SetBounds(0, 0, 0, 0);
