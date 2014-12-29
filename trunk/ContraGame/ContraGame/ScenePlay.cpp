@@ -403,7 +403,7 @@ void ScenePlay::ProcessItemsWithOneAnother()
 						_weapon_player1->SetWaeponType(WPL);
 						break;
 					case ItemB_Stand:
-						
+						_player1->Undying();
 						break;
 
 					}

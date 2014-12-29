@@ -30,6 +30,7 @@ CBill::CBill()
 	_enable = true;
 	_is_revival = true;	
 	_last_time_revival = 0;
+	_revival_time = BILL_REVIVAL_TIME;
 	_count_jump = 0;
 	LoadResources();
 }
@@ -158,11 +159,12 @@ void CBill::Update(int delta_time)
 		}
 
 		//Kết thúc giai đoạn bất tử
-		if (now - _last_time_revival >= BILL_REVIVAL_TIME)
+		if (now - _last_time_revival >= _revival_time)
 		{
 			_enable = true;
 			_can_impact = true;
 			_is_revival = false;
+			_revival_time = BILL_REVIVAL_TIME;
 		}
 	}
 
@@ -223,6 +225,7 @@ void CBill::Dying()
 	int sign = _physical.vx_last > 0 ? -1 : 1;
 	_physical.vx = BILL_VX * sign;
 	_physical.vy = BILL_VY_DIE;
+	_revival_time = BILL_REVIVAL_TIME;
 	_physical.n = 0;
 	_physical.time_in_space = 0;
 }
@@ -443,6 +446,13 @@ void CBill::Living()
 			_last_time_die = 0;
 		}
 	}
+}
+
+void CBill::Undying()
+{
+	if (_player_status == Die) return;
+	_is_revival = true;
+	_revival_time = ITEM_REVIVAL_TIME;
 }
 
 void CBill::GoingToNext()

@@ -79,7 +79,10 @@ void CBoss2::Update(int time)
 	if (_count_time_undying < BOSS2_MAX_TIME_UNDYING)
 		_physical.SetBounds(0, 0, 0, 0);
 	else
+	{
 		_physical.SetBounds(_physical.x, _physical.y + 64, 20, 20);
+		_can_impact = true;
+	}
 }
 
 void CBoss2::Draw()

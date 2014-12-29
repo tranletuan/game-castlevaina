@@ -1,11 +1,13 @@
 ﻿#include "CBoss2Elbow.h"
 
 CBoss2Elbow::CBoss2Elbow(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height, int direction)
+
 	: CObject(id, specific_type, Enemy, pos, width, height)
 {
 	_hp = 1;
 	_is_active = true;
 	_enable = true;
+	_can_impact = true;
 	_delta_radius = 0;
 	_x_circle = _physical.x;
 	_y_circle = _physical.y;
