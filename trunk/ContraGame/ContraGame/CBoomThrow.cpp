@@ -64,7 +64,7 @@ void CBoomThrow::Update(int delta_time)
 		break;
 	case BoS_Throw:
 		_physical.CalcPositionWithGravitation(delta_time, ENEMY_BOOM_THROW_GRAVITY);
-		_physical.SetBounds(_physical.x, _physical.y, 16, 16);
+		_physical.SetBounds(_physical.x, _physical.y, 10, 10);
 
 		// xet va cham voi ground
 		for (int i = 0; i < Obs.size(); i++)
@@ -79,6 +79,7 @@ void CBoomThrow::Update(int delta_time)
 					_physical.vx = 0;
 					_physical.vy = 0;
 					_physical.time_in_space = 0;
+					_physical.SetBounds(0, 0, 0, 0);
 					break;
 				}
 			}

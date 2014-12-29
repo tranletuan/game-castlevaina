@@ -172,8 +172,10 @@ void ScenePlay::update(float time)
 void ScenePlay::draw()
 {
 	m_background->draw();
+	m_cameraHUD->draw();
 	m_tree->draw();
 	m_listItemFLy->Draw();
+
 	_runmans->Draw();
 	_weapon_enemy->Draw();
 	_weapon_player1->Draw();
@@ -185,9 +187,6 @@ void ScenePlay::draw()
 			m_spDoor->Draw(m_spDoor->_pos);
 		}
 	}
-	
-	m_cameraHUD->draw();
-	
 }
 
 void ScenePlay::destroy()
@@ -405,6 +404,22 @@ void ScenePlay::ProcessItemsWithOneAnother()
 					case ItemB_Stand:
 						_player1->Undying();
 						break;
+					case ItemX_Stand:
+						for (vector<CObject*>::iterator i = _enemies.begin(); i != _enemies.end(); i++)
+						{
+							CObject* enemy = (*i);
+							D3DXVECTOR3 pos_check = m_resource->_camera->Transform(enemy->_physical.x, enemy->_physical.y);
+
+							if (pos_check.x + 30 > 0 &&
+								pos_check.x - 30 < m_resource->_camera->getWidth() &&
+								pos_check.y + 30 > 0 &&
+								pos_check.y - 30 < m_resource->_camera->getWidth())
+							{
+								enemy->_hp = 0;
+							}
+
+						}
+						break;
 
 					}
 
@@ -433,4 +448,5 @@ void ScenePlay::UpdateGlobalVariable()
 {
 	m_resource->_grounds = _grounds;
 	m_resource->_weapon_enemy = _weapon_enemy;
+	m_resource->_enemies = _enemies;
 }

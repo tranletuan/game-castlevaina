@@ -4,7 +4,6 @@ CSniperWater::CSniperWater(int id, SpecificType specific_type, D3DXVECTOR3 pos, 
 	:CEnemyUseGun(id, specific_type, pos, width, height)
 {
 	_hp = 1;
-	_last_time_shoot = 0;
 	LoadResources();
 }
 
@@ -105,7 +104,7 @@ bool CSniperWater::CheckTarget()
 		break;
 	case 2:
 		D3DXVECTOR3 pos_view = c->Transform(_physical.x, _physical.y);
-		if (_target.y > _physical.y + 16 && pos_view.y + 32 < c->getHeight())
+		if (_target.y > _physical.y + 16 && pos_view.y < c->getHeight())
 			is_attack = true;
 		break;
 	}

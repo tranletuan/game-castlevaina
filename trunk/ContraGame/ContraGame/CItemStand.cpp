@@ -161,6 +161,7 @@ void CItemStand::Update(int delta_time)
 					_physical.vx = 0;
 					_physical.vy = 0;
 					_state_item_stand = SIS_EAT;
+					_physical.SetBounds(_physical.x, _physical.y, 20, 30);
 					break;
 				}
 			}

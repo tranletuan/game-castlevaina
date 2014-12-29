@@ -3,7 +3,7 @@
 CBoss2::CBoss2(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
 	:CEnemyUseGun(id, specific_type, pos, width, height)
 {
-	_hp = 1;
+	_hp = 20;
 	_is_shot = false;
 	_enable = false;
 	_last_time_shoot = 0;

@@ -62,6 +62,7 @@ enum  SpecificType
 	ItemS_Stand,
 	ItemL_Stand,
 	ItemB_Stand,	
+	ItemX_Stand,
 
 	// Boss
 	Boss1,
