@@ -43,12 +43,13 @@ protected:
 	DWORD _last_time_wait;
 	DWORD _last_time_shoot;
 
-	float _x_last;
-	float _y_last;
-	int _count_jump;
-	bool _is_wait;
-	bool _is_revival;
-	int _id_ground_stand;
+	float	_x_last;
+	float	_y_last;
+	int		_count_jump;
+	bool	_is_wait;
+	bool	_is_revival;
+	int		_revival_time;
+	int		_id_ground_stand;
 	void UpdateBounds();
 	bool SetStatus(PlayerStatus status);
 	void DrawWhenMove(D3DXVECTOR3 pos);
@@ -83,6 +84,7 @@ public:
 	bool Falling(CObject* ground);
 	void Living();
 	void GoingToNext();
+	void Undying();
 
 	int GetIdGroundIgnore();
 	int	GetGunDirection();

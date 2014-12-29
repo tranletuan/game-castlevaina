@@ -141,6 +141,8 @@
 #define ITEM_FLY_VX_DIE 0.02f
 #define ITEM_FLY_VY_DIE 6.2f
 
+#define ITEM_REVIVAL_TIME 15000
+
 // BOSS
 #define BOSS1_SPACE_X 36
 #define BOSS1_SPACE_Y 36

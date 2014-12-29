@@ -76,10 +76,11 @@ void CListItemFly::CheckCollisionWithPlayerAndWeapon(CPlayerWeapon* weapon, CBil
 				case ItemL:					
 					weapon->SetWaeponType(WPL);
 					break;
-				case ItemB:
-					break;
 				case ItemS:				
 					weapon->SetWaeponType(WPS);
+					break;
+				case ItemB:
+					player->Undying();
 					break;
 				}
 
