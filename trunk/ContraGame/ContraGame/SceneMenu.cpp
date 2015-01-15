@@ -31,6 +31,7 @@ void SceneMenu::init()
 	m_spBadge->setPostion(D3DXVECTOR2(266, 155));
 
 	m_music_bg = m_resource->music_menu_bg;
+	m_resource->m_numBullet = 1;
 }
 
 void SceneMenu::draw()

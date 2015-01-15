@@ -41,7 +41,7 @@ void ScenePlay::init()
 {
 	m_camera = m_resource->_camera;
 	m_spDoor = new CSprite(m_resource->_boss3_door_die);
-	m_spDoor->setPostion(D3DXVECTOR2(190, 98));
+	m_spDoor->setPostion(D3DXVECTOR2(190, 115));
 
 	switch (m_resource->m_curMap)
 	{
@@ -106,8 +106,7 @@ void ScenePlay::update(float time)
 
 	if (m_nextScene)
 	{
-		m_audio->stopSound(m_resource->sound_stage_clear);
-		m_audio->stopSound(m_music_bg);
+		m_audio->stopSound(m_resource->sound_stage_clear);		
 		m_state = PS_InGame;
 		if (m_resource->m_life > 0)
 		{
@@ -119,11 +118,11 @@ void ScenePlay::update(float time)
 			// chuyen qua scene loading
 			else
 			{
-
+				m_audio->stopSound(m_music_bg);
 				// thêm highscore mới vào
 				m_resource->editHighScoreOfMap();
 
-				if (m_resource->m_curMap == 1)
+				if (m_resource->m_curMap == 3)
 				{
 					SceneManager::getInstance()->createWinScene();
 				}
@@ -136,6 +135,7 @@ void ScenePlay::update(float time)
 		}
 		else
 		{
+			m_audio->stopSound(m_music_bg);
 			SceneManager::getInstance()->createOverScene();
 		}
 	}
@@ -171,7 +171,7 @@ void ScenePlay::update(float time)
 void ScenePlay::draw()
 {
 	m_background->draw();
-	m_cameraHUD->draw();
+	
 	m_tree->draw();
 	m_listItemFLy->Draw();
 
@@ -186,6 +186,8 @@ void ScenePlay::draw()
 			m_spDoor->Draw(m_spDoor->_pos);
 		}
 	}
+
+	m_cameraHUD->draw();
 }
 
 void ScenePlay::destroy()

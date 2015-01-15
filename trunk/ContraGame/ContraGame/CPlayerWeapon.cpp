@@ -1,8 +1,7 @@
 ﻿#include "CPlayerWeapon.h"
 
 CPlayerWeapon::CPlayerWeapon()
-{
-	SetWaeponType(WPN);
+{	
 	LoadResources();
 }
 
@@ -123,7 +122,28 @@ CollisionDirection CPlayerWeapon::CheckCollision(CObject* obj)
 
 void CPlayerWeapon::LoadResources()
 {
-	_audio_waepon = CResourcesManager::GetInstance()->m_audio;
+	CResourcesManager *rs = CResourcesManager::GetInstance();
+	// set bullet from resource
+	switch (rs->m_numBullet)
+	{
+	case 1:
+		SetWaeponType(WPN);
+		break;
+	case 2:
+		SetWaeponType(WPL);
+		break;
+	case 3:
+		SetWaeponType(WPS);
+		break;
+	case 4:
+		SetWaeponType(WPF);
+		break;
+	default:
+		break;
+	}
+	
+
+	_audio_waepon = rs->m_audio;
 
 	int id = 1;
 	//NBullet
