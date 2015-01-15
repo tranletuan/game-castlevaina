@@ -22,7 +22,7 @@ namespace MapEditor
 
     public partial class MapEditor : Form
     {
-        int Xwidth,Xheight;
+        int Xwidth, Xheight;
         Background frmBG;
         Image imageCursor = null;
         CursorCur CurrentCursor;
@@ -334,8 +334,8 @@ namespace MapEditor
                         {
                             nameOb = "ItemStand" + comboBoxNameItem.Text.Trim();
                         }
-                       
-                      
+
+
                         ObjectTile ob = new ObjectTile(p, (listObject.Count + 1), nameOb, Convert.ToInt32(textBoxX.Text.Trim()),
                             Convert.ToInt32(textBoxY.Text.Trim()), direction);
                         if (nameOb == "RockRoll")
@@ -347,12 +347,40 @@ namespace MapEditor
                             ob.Width = 256;
                             ob.PosX -= 256;
                         }
-                      
+
+
                         listObject.Add(ob);
                         listObject.ElementAt(listObject.Count - 1).Pic.Click += new System.EventHandler(PictureBoxes_Click);
                         listObject.ElementAt(listObject.Count - 1).Pic.MouseMove += new System.Windows.Forms.MouseEventHandler(PictureBoxes_MouseMove);
                         listObject.ElementAt(listObject.Count - 1).Pic.MouseLeave += new System.EventHandler(PictureBoxes_MouseLeave);
                         pictureBoxBG.Controls.Add(listObject.ElementAt(listObject.Count - 1).Pic);
+
+                        if (nameOb == "Boss1")
+                        {
+                            ObjectTile ob_sniper = new ObjectTile((listObject.Count + 1), "SniperBoss", Convert.ToInt32(textBoxX.Text.Trim()),
+                            Convert.ToInt32(textBoxY.Text.Trim()), 32, 32, direction);
+                            listObject.Add(ob_sniper);
+
+                            ObjectTile ob_gun1 = new ObjectTile((listObject.Count + 1), "Boss1Gun", Convert.ToInt32(textBoxX.Text.Trim()) - 8,
+                           Convert.ToInt32(textBoxY.Text.Trim()) - 85, 32, 32, direction);
+                            listObject.Add(ob_gun1);
+
+                            ObjectTile ob_gun2 = new ObjectTile((listObject.Count + 1), "Boss1Gun", Convert.ToInt32(textBoxX.Text.Trim()) + 12,
+                           Convert.ToInt32(textBoxY.Text.Trim()) - 85, 32, 32, direction);
+                            listObject.Add(ob_gun2);
+
+                        }
+                        else if (nameOb == "Boss2")
+                        {
+                            ObjectTile ob_arm1 = new ObjectTile((listObject.Count + 1), "SniperBoss", Convert.ToInt32(textBoxX.Text.Trim()) + 58,
+                            Convert.ToInt32(textBoxY.Text.Trim()) - 72, 32, 32, direction);
+                            listObject.Add(ob_arm1);
+
+                            ObjectTile ob_arm2 = new ObjectTile((listObject.Count + 1), "Boss1Gun", Convert.ToInt32(textBoxX.Text.Trim()) + 164,
+                            Convert.ToInt32(textBoxY.Text.Trim()) - 72, 32, 32, direction);
+                            listObject.Add(ob_arm2);
+                        }
+
                     }
 
                 }
@@ -535,7 +563,7 @@ namespace MapEditor
                     }
                     else if (imgIndex == 9)
                     {
-                        imageCursor = FileTool.ResizeImage(imageCursor, 32 * Xwidth, 16*Xheight);
+                        imageCursor = FileTool.ResizeImage(imageCursor, 32 * Xwidth, 16 * Xheight);
                     }
 
                 }
@@ -673,7 +701,7 @@ namespace MapEditor
 
         }
         private void PictureBoxes_MouseMove(object sender, EventArgs e)
-        {           
+        {
             this.Cursor = Cursors.Hand;
         }
 

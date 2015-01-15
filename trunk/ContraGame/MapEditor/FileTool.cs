@@ -114,9 +114,11 @@ namespace MapEditor
             "confi_map_" + System.IO.Path.GetFileNameWithoutExtension(saveFile.FileName)) + ".txt";
             System.IO.StreamWriter sWriter = new System.IO.StreamWriter(path);
             List<String> listString = new List<string>();
+            listString.Add("1");
             listString.Add("RunMan");
             listString.Add("RunManFire");
             listString.Add("Item");
+
 
             if (listtree.Count > 0)
             {
