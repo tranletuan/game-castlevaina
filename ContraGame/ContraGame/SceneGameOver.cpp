@@ -63,8 +63,6 @@ void SceneGameOver::init()
 
 	m_music_bg = m_resource->music_gameover_bg;
 	m_audio->playSound(m_music_bg);
-	
-	m_resource->m_numBullet = 1;
 }
 
 void SceneGameOver::draw()

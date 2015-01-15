@@ -13,7 +13,15 @@ ScenePlay::ScenePlay()
 	m_tree = new QTTree();
 	m_listItemFLy = new CListItemFly();
 
-	_weapon_player1 = new CPlayerWeapon();
+	if (m_resource->_weapon_player1 == NULL)
+	{
+		_weapon_player1 = new CPlayerWeapon();
+	}
+	else
+	{
+		_weapon_player1 = m_resource->_weapon_player1;
+	}
+
 	_player1 = new CBill();
 	_player1->SetWeapon(_weapon_player1);
 	_weapon_enemy = new CEnemyWeapon();
@@ -450,4 +458,5 @@ void ScenePlay::UpdateGlobalVariable()
 	m_resource->_grounds = _grounds;
 	m_resource->_weapon_enemy = _weapon_enemy;
 	m_resource->_enemies = _enemies;
+	m_resource->_weapon_player1 = _weapon_player1;
 }
