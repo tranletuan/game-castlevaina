@@ -131,7 +131,7 @@
 #define BG_TILED_HEIGTH 16
 
 // ITEM
-#define ITEM_STAND_VY_ENABLE 6.7f
+#define ITEM_STAND_VY_ENABLE 6.8f
 #define ITEM_STAND_VX_ENABLE 0.042f
 
 #define ITEM_FLY_VX_MOVE 0.1f
@@ -139,7 +139,7 @@
 #define ITEM_FLY_ANGLE 10 
 #define ITEM_FLY_BOUND_COS 3
 #define ITEM_FLY_VX_DIE 0.02f
-#define ITEM_FLY_VY_DIE 6.2f
+#define ITEM_FLY_VY_DIE 6.5f
 
 #define ITEM_REVIVAL_TIME 15000
 

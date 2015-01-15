@@ -9,7 +9,7 @@ CBill::CBill(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int
 	_player_status = Fall;
 	_physical.time_in_space = 0;
 	_physical.vx = 0;
-	_id_ground_stand = -1;
+	_lenght_ground_stand = 0;
 	_enable = true;
 	_is_revival = true;
 	_last_time_revival = 0;
@@ -26,7 +26,7 @@ CBill::CBill()
 	_mission_complete = false;
 	_is_wait = false;
 	_physical.vx = 0;
-	_id_ground_stand = -1;
+	_lenght_ground_stand = 0;
 	_enable = true;
 	_is_revival = true;	
 	_last_time_revival = 0;
@@ -165,6 +165,7 @@ void CBill::Update(int delta_time)
 			_can_impact = true;
 			_is_revival = false;
 			_revival_time = BILL_REVIVAL_TIME;
+			_last_time_revival = 0;
 		}
 	}
 
@@ -235,7 +236,7 @@ bool CBill::Falling(CObject* ground)
 	//Trước khi rơi kiểm tra xem có khả năng tiếp đất hay không
 	if (_physical.x >= ground->_physical.bounds.left &&
 		_physical.x <= ground->_physical.bounds.right &&
-		_id_ground_stand != ground->_id &&
+		_ground_stand != ground &&
 		_physical.y - BILL_DISTANCE_GROUND - 0.5f > ground->_physical.bounds.top)
 	{
 		//Nếu có khả năng tiếp đất, kiểm tra trạng thái hiện tại 
@@ -368,7 +369,7 @@ void CBill::Moving(float vx)
 	}
 }
 
-void CBill::Standing(float y_ground, int id_ground)
+void CBill::Standing(CObject* ground)
 {
 	//y_ground là tọa độ mặt đất ở game world mà nhân vật tiếp xúc (ground->_physical.bounds.top + BILL_BOUNDS_HEIGHT / 2 + 1)
 	//id_ground là id của mặt đất nhân vật đang tiếp xúc
@@ -389,17 +390,17 @@ void CBill::Standing(float y_ground, int id_ground)
 
 	//Chạm đất thì vector phản lực n phải có 1 lực tương đương với vector trọng trường
 	CCamera* c = CResourcesManager::GetInstance()->_camera;
-	D3DXVECTOR3 pos_view = c->Transform(_physical.x, y_ground);
-	if (pos_view.y < c->getHeight())
-	{
-		_x_last = _physical.x;
-		_y_last = _physical.y;
-	}
+	D3DXVECTOR3 pos_view = c->Transform(_physical.x, ground->_physical.bounds.top);
 
 	_physical.n = GRAVITY;
 	_physical.time_in_space = GetTickCount();
-	_physical.y = y_ground + BILL_DISTANCE_GROUND + 0.5f;
-	_id_ground_stand = id_ground;
+	_physical.y = ground->_physical.bounds.top + BILL_DISTANCE_GROUND + 0.5f;
+	
+	if (pos_view.y < c->getHeight())
+	{ 
+		_ground_stand = ground;
+		_lenght_ground_stand = _physical.x - ground->_physical.bounds.left;
+	}
 }
 
 void CBill::Living()
@@ -425,24 +426,26 @@ void CBill::Living()
 			_physical.vx = 0;
 			_physical.vy = 0;
 			_physical.n = 0;
-			_id_ground_stand = -1;
 			_enable = true;
 			_is_revival = true;
 			_last_time_revival = 0;
 			_bill_die->Reset();
-			_physical.x = _x_last;
+			_physical.x = _ground_stand->_physical.bounds.left + _lenght_ground_stand;
 			_weapon->SetWaeponType(WPN);
 
 			//Kiểm tra tọa độ rơi
 			int cur_map = rs->m_curMap;
 			if (cur_map == 2)
 			{
-				_physical.y = _y_last + 16;
+				_physical.y = _ground_stand->_physical.bounds.top + 16;
 			}
 			else
 			{
 				_physical.y = rs->_camera->getPosY();
 			}
+
+			_ground_stand = NULL;
+			_lenght_ground_stand = 0;
 			_last_time_die = 0;
 		}
 	}
@@ -482,7 +485,7 @@ void CBill::GoingToNext()
 				_count_jump++;
 			}
 
-			if (_physical.x >= rs->m_widthMap - 20)
+			if (_physical.x >= rs->m_widthMap)
 			{
 				_count_jump = 0;
 				_last_time_wait = 0;
@@ -802,9 +805,9 @@ int CBill::GetIdGroundIgnore()
 {
 	//Hàm này phục vụ cho xét va chạm, chỉ va chạm với 
 	//mặt đất mà nhân vật k bỏ qua (hàm Falling)
-	if (_player_status == Fall && _id_ground_stand >= 0)
+	if (_player_status == Fall && _ground_stand != NULL)
 	{
-		return _id_ground_stand;
+		return _ground_stand->_id;
 	}
 	else
 	{

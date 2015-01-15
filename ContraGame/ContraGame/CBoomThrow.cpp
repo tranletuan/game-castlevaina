@@ -79,7 +79,6 @@ void CBoomThrow::Update(int delta_time)
 					_physical.vx = 0;
 					_physical.vy = 0;
 					_physical.time_in_space = 0;
-					_physical.SetBounds(0, 0, 0, 0);
 					break;
 				}
 			}
@@ -93,9 +92,17 @@ void CBoomThrow::Update(int delta_time)
 	if (_hp == 0 && _state == BoS_Throw)
 	{
 		_state = BoS_Die;
+		_physical.SetBounds(_physical.x, _physical.y, 20, 20);
 		_physical.vx = 0;
 		_physical.vy = 0;
 		_physical.time_in_space = 0;
+	}
+
+	//Hiệu ứng nổ đã hoàn thành
+	if (_sprite_effect->index == 2)
+	{
+		_physical.SetBounds(0, 0, 0, 0);
+		_state = BoS_Wait;
 	}
 }
 
@@ -106,11 +113,6 @@ void CBoomThrow::DrawWhenDie(D3DXVECTOR3 pos)
 	{
 		_sprite_effect->DrawWithDirectionAndOneTimeEffect(posDie, 1, 0, 2);
 	}
-	else
-	{
-		_state = BoS_Wait;
-	}
-
 }
 
 void CBoomThrow::DrawWhenThrow(D3DXVECTOR3 pos)
