@@ -108,11 +108,7 @@ namespace MapEditor
         // check ob nam trong node
         public bool AABBCheck(ObjectTile ob, QuadTreeNode node)
         {
-            if (ob.Pic == null)
-            {
-                return false;
-            }
-            return !(ob.PosX + ob.Pic.Width < node.PosX || ob.PosX > node.PosX + node.Width || ob.PosY - ob.Pic.Height > node.PosY || ob.PosY < node.PosY - node.Height);
+             return !(ob.PosX + ob.Width < node.PosX || ob.PosX > node.PosX + node.Width || ob.PosY - ob.Height > node.PosY || ob.PosY < node.PosY - node.Height);
         }
 
        

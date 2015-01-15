@@ -95,7 +95,6 @@ namespace MapEditor
             _name = name;
             _posX = posX;
             _posY = posY;
-            _pic = null;
             _width = width;
             _height = height;
             _direction = direction;
