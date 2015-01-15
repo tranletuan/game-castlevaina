@@ -49,6 +49,7 @@ protected:
 	bool		_is_wait;
 	bool		_is_revival;
 	int			_revival_time;
+	int			_id_ground_stand;
 	int			_lenght_ground_stand;
 	CObject*	_ground_stand;
 
