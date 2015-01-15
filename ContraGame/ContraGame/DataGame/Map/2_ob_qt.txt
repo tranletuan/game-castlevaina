@@ -23,7 +23,7 @@
 23 RockRoll 162 382 28 240 
 24 RockRoll 65 415 28 240 
 25 ItemStandF 127 321 32 32 
-26 ItemStandB 130 449 32 32 
+26 ItemStandL 130 449 32 32 
 27 RockRoll 132 478 28 240 
 28 Sniper 208 558 24 32 
 29 Ground 2 576 64 16 
@@ -72,9 +72,9 @@
 72 Obstacle 208 1502 32 32 
 73 BlockHouse 31 1522 32 32 
 74 ItemStandM 0 1489 32 32 
-75 ItemStandL 159 1312 32 32 
+75 ItemStandS 159 1312 32 32 
 76 RockFly 99 1576 96 32 
-79 Sniper 21 1819 24 32 
+79 Sniper 22 1824 24 32 
 80 Ground 192 1617 64 16 
 81 Ground 97 1759 96 16 
 82 Ground 158 1649 96 16 
