@@ -98,7 +98,7 @@ void CItemFly::Update(int delta_time)
 	
 	if (_physical.n == 0)
 	{
-		_physical.SetBounds(_physical.x, _physical.y, 20, 20);
+		_physical.SetBounds(_physical.x, _physical.y, 15, 15);
 	}
 
 	if (_hp == 0)
@@ -118,7 +118,7 @@ void CItemFly::Update(int delta_time)
 		for (vector<CObject*>::iterator i = grounds.begin(); i != grounds.end(); i++)
 		{
 			CObject* ground = (*i);
-			if (ground->_specific_type == Ground_Grass)
+			if (ground->_specific_type == Ground_Grass || ground->_specific_type == Ground_Electron)
 			{
 				CollisionDirection collision = NoCollision;
 				collision = _physical.Collision(&ground->_physical);

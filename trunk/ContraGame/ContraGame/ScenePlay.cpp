@@ -264,7 +264,7 @@ void ScenePlay::ProcessGroundsWithOneAnother()
 
 				if (collision_player1 == TopCollision && _player1->_physical.current_vy < 0)
 				{
-					_player1->Standing(ground->_physical.bounds.top, ground->_id);
+					_player1->Standing(ground);
 					_player1->_physical.vx_accretion = 0;
 					if (ground->_specific_type == Ground_Water)
 					{
