@@ -28,7 +28,6 @@ void CResourcesManager::prepareManager(LPD3DXSPRITE sp, LPDIRECT3DDEVICE9 pd3Dev
 	GetInstance()->m_numScore = 0;
 	GetInstance()->m_effecKill = 0;
 	GetInstance()->readFileConfiDefault();
-	GetInstance()->m_numBullet = 1;
 }
 
 
