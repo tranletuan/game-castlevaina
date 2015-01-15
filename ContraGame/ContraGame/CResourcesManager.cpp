@@ -22,12 +22,13 @@ void CResourcesManager::prepareManager(LPD3DXSPRITE sp, LPDIRECT3DDEVICE9 pd3Dev
 	GetInstance()->m_audio = audio;
 
 	// init var default
-	GetInstance()->m_life = 30;
+	GetInstance()->m_life = 5;
 	GetInstance()->m_numScore = 0;
 	GetInstance()->m_highScore = 0;
 	GetInstance()->m_numScore = 0;
 	GetInstance()->m_effecKill = 0;
 	GetInstance()->readFileConfiDefault();
+	GetInstance()->m_numBullet = 1;
 }
 
 

@@ -1,11 +1,11 @@
 ﻿#include "CTank.h"
 
 CTank::CTank(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
-	:CEnemyUseGun(id, specific_type, pos, width, height)
+:CEnemyUseGun(id, specific_type, pos, width, height)
 {
 	_hp = 30;
 	_can_impact = true;
-	_distance_move = 5;
+	_distance_move = 4.5;
 	_count = 0;
 	_attack_angle = 180;
 	_distance_acti = width;
@@ -69,17 +69,18 @@ void CTank::Update(int delta_time)
 		}
 		else if (_enemy_status == EWait)
 		{
-			if (_count <= 9)
+			_physical.vx = -0.04f;
+			_distance_move += _physical.vx;
+			_physical.CalcPositionWithoutGravitation(delta_time);
+			if (_distance_move <= 0)
 			{
-				_physical.vx = -0.04f;
-				_distance_move += _physical.vx;
-				_physical.CalcPositionWithoutGravitation(delta_time);
-				if (_distance_move <= 0)
+				if (_count < 9)
 				{
 					_enemy_status = EAttack;
-					_physical.vx = 0;
 				}
+				_physical.vx = 0;
 			}
+
 		}
 
 		// hp = 0
@@ -178,10 +179,10 @@ void CTank::Attacking()
 	if (now - _last_time_shoot >= ENEMY_SNIPER_STAND_ELAPSED_SHOOT)
 	{
 
-		if (_count == 9 && _enemy_status == EAttack)
+		if (_count >= 9 && _enemy_status == EAttack)
 		{
 			_enemy_status = EWait;
-			_distance_move = 12;
+			_distance_move = 8;
 		}
 
 		//Kiểm tra số đạn đã bắn, nếu vẫn còn bắn được thì bắn

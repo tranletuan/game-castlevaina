@@ -3,7 +3,7 @@
 CBoss1::CBoss1(int id, SpecificType specific_type, D3DXVECTOR3 pos, int width, int height)
 	:CObject(id, specific_type, Enemy, pos, width, height)
 {
-	_hp = 1;
+	_hp = 20;
 	_state = B1S_Acti;
 	_destroy_bg = false;
 	_time_counter = 0;

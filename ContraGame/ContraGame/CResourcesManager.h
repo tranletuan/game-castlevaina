@@ -52,6 +52,7 @@ public:
 	int m_numScore;
 	int m_highScore;
 	int m_effecKill; //Cờ đánh dấu hiệu ứng (nhận giá trị lớn hơn 1)
+	int m_numBullet;
 	
 	vector<string> _listString; // danh sach string cac texture duoc load len o scene game
 	vector<CObject*> listObinView;
