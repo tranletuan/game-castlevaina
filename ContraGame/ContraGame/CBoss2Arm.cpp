@@ -54,7 +54,6 @@ void CBoss2Arm::Update(int time)
 	if (c->view_port.y == rs->m_heightMap) _enable = true;
 
 	if (!_enable) return;
-	_can_impact = true;
 
 	if (_is_wait)
 	{
@@ -78,6 +77,10 @@ void CBoss2Arm::Update(int time)
 					_is_boot = _elbows[i]->Boot(time);
 				}
 				return;
+			}
+			else
+			{
+				_can_impact = true;
 			}
 
 			//Cập nhật tay quay
