@@ -485,12 +485,14 @@ void CBill::GoingToNext()
 				_count_jump++;
 			}
 
-			if (_physical.x >= rs->m_widthMap - 10)
+			if (_physical.x >= rs->m_widthMap - 20)
 			{
 				_count_jump = 0;
 				_last_time_wait = 0;
 				_mission_complete = true;
 				_is_wait = false;
+				_enable = false;
+				Moving(0);
 			}
 
 			break;
