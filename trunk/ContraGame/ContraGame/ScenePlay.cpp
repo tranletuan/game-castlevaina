@@ -20,6 +20,10 @@ ScenePlay::ScenePlay()
 	else
 	{
 		_weapon_player1 = m_resource->_weapon_player1;
+		if (m_resource->m_curMap == 1)
+		{
+			_weapon_player1->SetWaeponType(WPN);
+		}
 	}
 
 	_player1 = new CBill();
