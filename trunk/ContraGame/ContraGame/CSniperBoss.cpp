@@ -105,7 +105,7 @@ void CSniperBoss::Draw()
 
 bool CSniperBoss::CheckTarget()
 {
-	return (abs(_physical.x - _target.x) <= ENEMY_ATTACK_DISTANCE + 50);
+	return (abs(_physical.x - _target.x) <= ENEMY_ATTACK_DISTANCE + 30);
 }
 
 void CSniperBoss::SetTarget(float x, float y)
