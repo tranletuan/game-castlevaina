@@ -149,6 +149,7 @@
 #define PATH_BOSS2_HAND ".//DataGame//Images//Game//Object//boss//boss2_hand.png"
 #define PATH_BOSS3 ".//DataGame//Images//Game//Object//boss//boss3.png"
 #define PATH_BOSS3_DOOR_DIE ".//DataGame//Images//Game//Object//boss//boss3_door_die.png"
+#define PATH_BOSS3_DOOR ".//DataGame//Images//Game//Object//boss//boss3_door.png"
 #pragma endregion BossPath
 
 #pragma region DataPath
