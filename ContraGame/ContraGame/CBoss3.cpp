@@ -23,6 +23,8 @@ void CBoss3::LoadResources()
 	_live_sprite = new CSprite(rs->_boss3);
 	_die_sprite = new CSprite(rs->_effect_destroy);
 	_current_sprite = _live_sprite;
+	_sprite_door = new CSprite(rs->_boss3_door);
+	_sprite_door->setPostion(D3DXVECTOR2(170, 135));
 }
 
 void CBoss3::Draw()
@@ -152,6 +154,7 @@ void CBoss3::DrawWhenAttack(D3DXVECTOR3 pos)
 	{
 		_current_sprite->DrawWithDirection(pos, 1, 10, 11);
 	}
+	_sprite_door->Draw(_sprite_door->_pos);
 }
 
 void CBoss3::DrawWhenDie(D3DXVECTOR3 pos)
@@ -194,5 +197,6 @@ void CBoss3::DrawWhenWait(D3DXVECTOR3 pos)
 	if (_current_sprite->index != 0)
 	{
 		_current_sprite->DrawWithDirectionAndOneTimeEffect(pos, 1, 10, 0, 50);
-	}
+	}	
+	_sprite_door->Draw(_sprite_door->_pos);
 }

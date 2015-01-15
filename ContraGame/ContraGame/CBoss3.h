@@ -6,6 +6,7 @@
 class CBoss3 : public CEnemyUseGun
 {
 protected:
+	CSprite* _sprite_door;
 	DWORD _last_time_shoot_fb;
 	DWORD _last_time_shoot_b3;
 	DWORD _last_time_hide;

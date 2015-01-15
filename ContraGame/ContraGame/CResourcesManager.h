@@ -193,7 +193,9 @@ public:
 	CTexture* _boss2_elbow;
 	CTexture* _boss2_hand;
 	CTexture* _boss3;
+	CTexture* _boss3_door;
 	CTexture* _boss3_door_die;
+
 
 
 	/*-------- Background -------*/

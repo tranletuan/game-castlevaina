@@ -591,6 +591,7 @@ void CResourcesManager::loadTexture(ResourceID id)
 		break;
 	case RESID_BOSS_3:
 		_boss3 = new CTexture(PATH_BOSS3, 2, 6);
+		_boss3_door = new CTexture(PATH_BOSS3_DOOR);
 		break;
 	}
 }
